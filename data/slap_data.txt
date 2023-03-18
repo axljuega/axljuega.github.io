@@ -159,5 +159,6 @@
 `un peluche de Pikachu`,
 `un malvavisco gigante`,
 `una toalla mojada`,
-`una pelota de playa`
+`una pelota de playa`,
+`mongolito llevándote una corona`
 ]
