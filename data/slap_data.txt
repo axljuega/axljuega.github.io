@@ -182,5 +182,11 @@
 `un muñeco de vudú (falso, por supuesto)`,
 `un cepillo de pelo`,
 `una pala de ping-pong`,
-`una mesa de ping-pong`
+`una mesa de ping-pong`,
+`un cubo de basura vacío`,
+`una esterilla para practicar yoga`,
+`un palo de selfie`,
+`unas pantuflas de peluche`,
+`un cactus de juguete`,
+`un libro de chistes malos`
 ]
