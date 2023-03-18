@@ -155,5 +155,9 @@
 `una fregona`,
 `una peluca de payaso`,
 `una baguette`,
-`un peluche de mongolito`
+`un peluche de mongolito`,
+`un peluche de Pikachu`,
+`un malvavisco gigante`,
+`una toalla mojada`,
+`una pelota de playa`
 ]
