@@ -175,5 +175,6 @@
 `un lanzador de pelotas de tenis`,
 `una escobilla del baño`,
 `una flauta dulce`,
-`un sombrero de payaso`
+`un sombrero de payaso`,
+`una piedra de attrezzo`
 ]
