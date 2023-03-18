@@ -118,5 +118,10 @@
 `el banhammer`,
 `un tronco de árbol falso`,
 `una botella de ketchup vacía`,
-`un bote de Dalsy fresquito`
+`un bote de Dalsy fresquito`,
+`una paletilla de jamón serrano`,
+`un racimo de plátanos`, 
+`un pez globo inflado`,
+`un paquete de galletas Oreo`,
+`un micrófono de karaoke`
 ]
