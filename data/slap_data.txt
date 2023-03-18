@@ -131,5 +131,10 @@
 `una txapela`,
 `una txapela de color fucsia neón`,
 `la Ikurriña`,
-`una guitarra con las cuerdas desafinadas`
+`una guitarra con las cuerdas desafinadas`,
+`un globo de agua`,
+`un sombrero de fiesta con confetti`,
+`un matasuegras desafinado`,
+`una bolsa de harina`,
+`una pierna de maniquí`
 ]
