@@ -146,5 +146,7 @@
 `un tanga del Primark en oferta`,
 `un casco de moto con un tutú y unas botas de tacón`,
 `el ratón`,
-`su teclado`
+`su teclado`,
+`una tarjeta Barik sin recargar`,
+`una tarjeta Barik con viajes ilimitados`
 ]
