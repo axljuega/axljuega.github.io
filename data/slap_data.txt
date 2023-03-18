@@ -127,5 +127,9 @@
 `un orinal oxidado`,
 `unas pantuflas de felpa`,
 `un flotador de unicornio inflable`,
-`un sombrero de fiesta`
+`un sombrero de fiesta`,
+`una txapela`,
+`una txapela de color fucsia neón`,
+`la Ikurriña`,
+`una guitarra con las cuerdas desafinadas`
 ]
