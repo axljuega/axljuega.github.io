@@ -143,5 +143,6 @@
 `un cono de tráfico descolorido`,
 `un tyrannosaurus rex de juguete`,
 `la skin de Teemo Abejorro`,
-`un tanga del Primark de oferta`
+`un tanga del Primark en oferta`,
+`un casco de moto con un tutú y unas botas de tacón`
 ]
