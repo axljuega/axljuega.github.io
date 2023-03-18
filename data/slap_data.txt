@@ -64,7 +64,6 @@
 `una bola de bolos con dentadura postiza`,
 `un pato de goma gigante`, 
 `una berenjena con antifaz`, 
-`una tostadora que lanza tostadoras que lanzan tostadoras que lanzan pan tostado`, 
 `un sombrero de copa hecho de queso`, 
 `un cactus disfrazado de corderito`, 
 `un bote de champú que te hace hablar en emojis`, 
