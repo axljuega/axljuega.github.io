@@ -160,5 +160,6 @@
 `un malvavisco gigante`,
 `una toalla mojada`,
 `una pelota de playa`,
-`mongolito llevándote una corona`
+`mongolito llevándote una corona`,
+`una nariz de payaso`
 ]
