@@ -110,5 +110,13 @@
 `una almohada de emojis`,
 `una botella de agua de plástico vacía`,
 `un paquete de pañuelos`,
-`una pelota de tennis en llamas`
+`una pelota de tennis en llamas`,
+`un libro grueso`,
+`una sardina en lata`,
+`un tomate maduro`,
+`una bolsa de pelotas de ping pong`,
+`el banhammer`,
+`un tronco de árbol falso`,
+`una botella de ketchup vacía`,
+`un bote de Dalsy fresquito`
 ]
