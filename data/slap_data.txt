@@ -171,5 +171,9 @@
 `un paquete de chicles vacío`,
 `una lata de refresco vacía`,
 `un rodillo de cocina`,
-`una sartén de juguete`
+`una sartén de juguete`,
+`un lanzador de pelotas de tenis`,
+`una escobilla del baño`,
+`una flauta dulce`,
+`un sombrero de payaso`
 ]
