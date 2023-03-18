@@ -188,5 +188,9 @@
 `un palo de selfie`,
 `unas pantuflas de peluche`,
 `un cactus de juguete`,
-`un libro de chistes malos`
+`un libro de chistes malos`,
+`un peluche de unicornio con cuerno de plástico duro`,
+`una piñata de cumpleaños llena de chucherías`, 
+`una esponja empapada en agua`,
+`un disfraz de dinosaurio inflable`
 ]
