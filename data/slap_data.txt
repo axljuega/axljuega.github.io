@@ -142,5 +142,6 @@
 `un caballo cyborg alienígena de juguete`,
 `un cono de tráfico descolorido`,
 `un tyrannosaurus rex de juguete`,
-`la skin de Teemo Abejorro`
+`la skin de Teemo Abejorro`,
+`un tanga del Primark de oferta`
 ]
