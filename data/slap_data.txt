@@ -100,5 +100,15 @@
 `un par de calcetines sudados`,
 `un muñeco de nieve en traje de esquí`,
 `una cebolla`,
-`una cebolla pocha`
+`una cebolla pocha`,
+`una almohada de plumas gigante`, 
+`tres pollos de goma`,
+`un peluche de oso`,
+`un bate de beisbol de juguete`,
+`una piñata llena de caramelos`,
+`un ramo de flores (sin las flores)`,
+`un osito de peluche con un palo dentro`,
+`una almohada de emojis`,
+`una botella de agua de plástico vacía`,
+`un paquete de pañuelos`
 ]
