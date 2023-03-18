@@ -7,7 +7,7 @@
 `un pollo de goma`,
 `un fideo húmedo`,
 `un dedo de gomaespuma`,
-`un pila de tortitas`,
+`una pila de tortitas`,
 `una mano inflable gigante`,
 `un almohadón de plumas`, 
 `un balde de gelatina`, 
@@ -110,5 +110,6 @@
 `un osito de peluche con un palo dentro`,
 `una almohada de emojis`,
 `una botella de agua de plástico vacía`,
-`un paquete de pañuelos`
+`un paquete de pañuelos`,
+`una pelota de tennis en llamas`
 ]
