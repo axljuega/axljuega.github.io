@@ -98,5 +98,7 @@
 `una tostadora que lanza tostadoras que lanzan tostadoras que lanzan pan tostado`,
 `un bote de champú`,
 `un par de calcetines sudados`,
-`un muñeco de nieve en traje de esquí`
+`un muñeco de nieve en traje de esquí`,
+`una cebolla`,
+`una cebolla pocha`
 ]
