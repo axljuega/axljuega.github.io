@@ -88,5 +88,15 @@
 `una mochila con forma de hamburguesa con patatas fritas`, 
 `un gorro de lana con forma de zanahoria gigante`, 
 `una corbata con forma de monstruo espagueti volador con almóndigas`, 
-`una fotocopia del DNI caducado`
+`una fotocopia del DNI caducado`,
+`un par de calcetines`,
+`un almohadón de plumas con fedora`,
+`un burrito de tofu con pasamontañas`,
+`un peluche`,
+`un patito de goma gigante`,
+`una tostadora que lanza pan tostado`,
+`una tostadora que lanza tostadoras que lanzan tostadoras que lanzan pan tostado`,
+`un bote de champú`,
+`un par de calcetines sudados`,
+`un muñeco de nieve en traje de esquí`
 ]
