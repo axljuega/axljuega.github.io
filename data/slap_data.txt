@@ -141,5 +141,6 @@
 `una almohada blandita`,
 `un caballo cyborg alienígena de juguete`,
 `un cono de tráfico descolorido`,
-`un tyrannosaurus rex de juguete`
+`un tyrannosaurus rex de juguete`,
+`la skin de Teemo Abejorro`
 ]
