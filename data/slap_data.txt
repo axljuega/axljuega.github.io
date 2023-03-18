@@ -149,5 +149,10 @@
 `su teclado`,
 `su pantalla`,
 `una tarjeta Barik sin recargar`,
-`una tarjeta Barik con viajes ilimitados`
+`una tarjeta Barik con viajes ilimitados`,
+`un cubo de Rubik`,
+`un ramo de flores falsas`,
+`una fregona`,
+`una peluca de payaso`,
+`una baguette`
 ]
