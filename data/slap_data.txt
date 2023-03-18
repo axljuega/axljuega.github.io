@@ -176,5 +176,11 @@
 `una escobilla del baño`,
 `una flauta dulce`,
 `un sombrero de payaso`,
-`una piedra de attrezzo`
+`una piedra de attrezzo`,
+`una bola de discoteca`,
+`un flan`,
+`un muñeco de vudú (falso, por supuesto)`,
+`un cepillo de pelo`,
+`una pala de ping-pong`,
+`una mesa de ping-pong`
 ]
