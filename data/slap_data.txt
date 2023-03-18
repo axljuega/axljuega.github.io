@@ -138,5 +138,6 @@
 `una bolsa de harina`,
 `una pierna de maniquí`,
 `una espada láser escacharrada`,
-`una almohada`
+`una almohada blandita`,
+`un caballo cyborg alienígena de juguete`
 ]
