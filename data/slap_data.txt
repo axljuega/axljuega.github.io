@@ -145,8 +145,9 @@
 `la skin de Teemo Abejorro`,
 `un tanga del Primark en oferta`,
 `un casco de moto con un tutú y unas botas de tacón`,
-`el ratón`,
+`su ratón`,
 `su teclado`,
+`su pantalla`,
 `una tarjeta Barik sin recargar`,
 `una tarjeta Barik con viajes ilimitados`
 ]
