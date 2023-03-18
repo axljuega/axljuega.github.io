@@ -123,5 +123,6 @@
 `un racimo de plátanos`, 
 `un pez globo inflado`,
 `un paquete de galletas Oreo`,
-`un micrófono de karaoke`
+`un micrófono de karaoke`,
+`un orinal oxidado`
 ]
