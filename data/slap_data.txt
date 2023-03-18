@@ -161,5 +161,15 @@
 `una toalla mojada`,
 `una pelota de playa`,
 `mongolito llevándote una corona`,
-`una nariz de payaso`
+`una nariz de payaso`,
+`un calcetín sucio`,
+`una peluca de colores`,
+`un rollo de papel higiénico`,
+`un gorro de baño`, 
+`un frisbee`,
+`una bolsa de patatas fritas vacía`,
+`un paquete de chicles vacío`,
+`una lata de refresco vacía`,
+`un rodillo de cocina`,
+`una sartén de juguete`
 ]
