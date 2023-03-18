@@ -136,5 +136,7 @@
 `un sombrero de fiesta con confetti`,
 `un matasuegras desafinado`,
 `una bolsa de harina`,
-`una pierna de maniquí`
+`una pierna de maniquí`,
+`una espada láser escacharrada`,
+`una almohada`
 ]
