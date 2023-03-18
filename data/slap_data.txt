@@ -192,5 +192,11 @@
 `un peluche de unicornio con cuerno de plástico duro`,
 `una piñata de cumpleaños llena de chucherías`, 
 `una esponja empapada en agua`,
-`un disfraz de dinosaurio inflable`
+`un disfraz de dinosaurio inflable`,
+`un ramo de flores de plástico`, 
+`una chancla`,
+`un pastel de crema`,
+`un micrófono falso de karaoke`,
+`un sombrero de copa de cartón`,
+`un ukelele de plástico`
 ]
