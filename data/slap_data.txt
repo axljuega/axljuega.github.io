@@ -154,5 +154,6 @@
 `un ramo de flores falsas`,
 `una fregona`,
 `una peluca de payaso`,
-`una baguette`
+`una baguette`,
+`un peluche de mongolito`
 ]
