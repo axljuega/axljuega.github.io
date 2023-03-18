@@ -124,5 +124,8 @@
 `un pez globo inflado`,
 `un paquete de galletas Oreo`,
 `un micrófono de karaoke`,
-`un orinal oxidado`
+`un orinal oxidado`,
+`unas pantuflas de felpa`,
+`un flotador de unicornio inflable`,
+`un sombrero de fiesta`
 ]
