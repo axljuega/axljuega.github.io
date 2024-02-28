@@ -1,15 +1,48 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Mi Primera Página</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <input id="numero1" type="number" placeholder="Número 1">
-    <input id="numero2" type="number" placeholder="Número 2">
-    <button onclick="sumar()">Sumar</button>
-    <p id="resultado"></p>
+	<header>
+        <h1>Welcome to My Website</h1>
+        <nav>
+            <ul>
+                <li><a href="list.html">News Category 1</a></li>
+                <li><a href="list.html">News Category 2</a></li>
+                <li><a href="list.html">News Category 3</a></li>
+                <li><a href="list.html">News Category 4</a></li>
+                <li><a href="add.html">Add News</a></li>
+            </ul>
+        </nav>
+    </header>
+	<main>
+		<section class="gallery">
+            <a href="list.html"><img src="image1.jpg" alt="News 1"></a>
+            <a href="list.html"><img src="image2.jpg" alt="News 2"></a>
+            <a href="list.html"><img src="image3.jpg" alt="News 3"></a>
+            <a href="list.html"><img src="image4.jpg" alt="News 4"></a>
+            <a href="add.html"><img src="add.jpg" alt="Add News"></a>
+		</section>
+		
+		<section>
+			<input id="numero1" type="number" placeholder="Número 1">
+			<input id="numero2" type="number" placeholder="Número 2">
+			<button id="btnSumar" onclick="sumar()">"Cargando..."</button>
+		</section>
+		
+		<section>
+			<p id="resultado"></p>
+		</section>
+	
+	</main>
+	<footer>
+        <p>&copy; 2024 My Website. All rights reserved.</p>
+    </footer>
+	
     <script src="script.js"></script>
 </body>
 </html>

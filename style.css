@@ -1,38 +1,123 @@
+/* Establece los colores básicos para la paleta */
+:root {
+    --color-primary: #007BFF;
+    --color-primary-dark: #0056b3;
+    --color-background: #f0f0f0;
+    --color-text: #333;
+    --color-text-light: #ffffff;
+}
+
 body {
+	font-family: 'Arial', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header {
     background-color: #f0f0f0;
+    padding: 20px 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.gallery img {
+    width: 100%;
+    height: auto;
+}
+
+footer {
+    background-color: #f0f0f0;
+    text-align: center;
+    padding: 20px 0;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 
 .boton-container {
     transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Espacio entre el botón y el input */
+}
+
+input[type="number"] {
+    padding: 8px 15px;
+    border: 2px solid var(--color-primary);
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s ease;
+
+    /* Añadiendo un poco de estilo al foco */
+    &:focus {
+        border-color: var(--color-primary-dark);
+    }
 }
 
 button {
     padding: 10px 20px;
     border: none;
-    background-color: #007BFF;
-    color: white;
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
     cursor: pointer;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-weight: bold; /* Hace el texto un poco más audaz */
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: var(--color-primary-dark);
     animation: pulse 1s infinite;
 }
 
+/* Refinando la animación para que sea más suave */
 @keyframes pulse {
     0% {
         transform: scale(1);
     }
     50% {
-        transform: scale(1.1);
+        transform: scale(1.05);
     }
     100% {
         transform: scale(1);
     }
+}
+
+/* Estilizando el resultado para mejorar la visibilidad */
+#resultado {
+    margin-top: 15px;
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 1.1rem;
+	visibility: hidden;
 }
