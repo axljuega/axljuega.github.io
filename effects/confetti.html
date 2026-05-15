@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confetti Alert – axljuega</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 1920px;
+      height: 1080px;
+      background: transparent;
+      overflow: hidden;
+      font-family: 'Syne', sans-serif;
+    }
+
+    /* ─── Canvas de confetti ─── */
+    #confetti-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* ─── Banner central de alerta ─── */
+    #alert-banner {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      z-index: 20;
+      text-align: center;
+      opacity: 0;
+      transition: none;
+    }
+
+    #alert-banner.show {
+      animation: bannerIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.6) forwards,
+                 bannerOut 0.4s ease-in 3.6s forwards;
+    }
+
+    @keyframes bannerIn {
+      0%   { transform: translate(-50%, -50%) scale(0) rotate(-6deg); opacity: 0; }
+      100% { transform: translate(-50%, -50%) scale(1) rotate(0deg);  opacity: 1; }
+    }
+    @keyframes bannerOut {
+      0%   { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      100% { transform: translate(-50%, -50%) scale(0.8) translateY(-40px); opacity: 0; }
+    }
+
+    .banner-inner {
+      position: relative;
+      padding: 28px 60px 24px;
+      background: rgba(10, 5, 20, 0.88);
+      border: 2px solid rgba(255,255,255,0.12);
+      border-radius: 4px;
+      backdrop-filter: blur(12px);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.04),
+        0 32px 80px rgba(0,0,0,0.6),
+        0 0 60px rgba(180, 80, 255, 0.25),
+        inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+
+    /* línea superior de color */
+    .banner-inner::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      border-radius: 4px 4px 0 0;
+      background: linear-gradient(90deg, #ff4ecd, #a855f7, #3b82f6, #06b6d4);
+      background-size: 300% 100%;
+      animation: gradientShift 2s linear infinite;
+    }
+
+    @keyframes gradientShift {
+      0%   { background-position: 0% 50%; }
+      100% { background-position: 300% 50%; }
+    }
+
+    .event-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 10px;
+    }
+
+    .event-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 48px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+      text-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+
+    .event-message {
+      font-family: 'Syne', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── Emoji explosión ─── */
+    .emoji-burst {
+      position: fixed;
+      font-size: 40px;
+      pointer-events: none;
+      z-index: 30;
+      animation: emojiFly 1.6s ease-out forwards;
+    }
+
+    @keyframes emojiFly {
+      0%   { transform: translate(0,0) scale(0) rotate(0deg); opacity: 1; }
+      60%  { opacity: 1; }
+      100% { transform: translate(var(--dx), var(--dy)) scale(1.2) rotate(var(--rot)); opacity: 0; }
+    }
+
+    /* ─── Botón de test (solo en modo prueba) ─── */
+    #test-controls {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      z-index: 100;
+    }
+
+    .test-btn {
+      padding: 10px 22px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.7);
+      font-family: 'Syne', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 3px;
+      backdrop-filter: blur(8px);
+      transition: all 0.15s;
+    }
+    .test-btn:hover {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      border-color: rgba(255,255,255,0.4);
+    }
+    .test-btn:active { transform: scale(0.97); }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+<div id="alert-banner">
+  <div class="banner-inner">
+    <div class="event-label" id="event-label">Nueva suscripción</div>
+    <div class="event-name"  id="event-name">axlfc</div>
+    <div class="event-message" id="event-message">¡Gracias por el apoyo!</div>
+  </div>
+</div>
+
+<!-- Botones de prueba — quítalos en producción -->
+<div id="test-controls">
+  <button class="test-btn" onclick="triggerAlert('sub',    'axlfc',     '¡Gracias por el apoyo!',    '🎉')">Test Sub</button>
+  <button class="test-btn" onclick="triggerAlert('follow', 'misterX99', '¡Bienvenido al stream!',    '❤️')">Test Follow</button>
+  <button class="test-btn" onclick="triggerAlert('raid',   'STREAMERBRO','¡Raid con 42 viewers!',    '⚡')">Test Raid</button>
+  <button class="test-btn" onclick="triggerAlert('bits',   'donacoins',  '¡500 bits donados!',       '💎')">Test Bits</button>
+</div>
+
+<script>
+// ─────────────────────────────────────────────
+//  CONFIG
+// ─────────────────────────────────────────────
+const CONFIG = {
+  particleCount:  320,
+  gravity:        0.55,
+  wind:           0.08,
+  drag:           0.985,
+  colors: [
+    '#ff4ecd', '#a855f7', '#3b82f6', '#06b6d4',
+    '#f59e0b', '#10b981', '#f43f5e', '#fff'
+  ],
+  shapes: ['rect', 'circle', 'strip'],
+  emojis: {
+    sub:    ['🎉', '🥳', '⭐', '💜', '🎊'],
+    follow: ['❤️', '✨', '👋', '🌟', '💫'],
+    raid:   ['⚡', '🚀', '🔥', '💥', '👾'],
+    bits:   ['💎', '💸', '🪙', '✨', '💰'],
+  },
+  labels: {
+    sub:    'nueva suscripción',
+    follow: 'nuevo follow',
+    raid:   'raid entrante',
+    bits:   'donación de bits',
+  }
+};
+
+// ─────────────────────────────────────────────
+//  CANVAS + PARTÍCULAS
+// ─────────────────────────────────────────────
+const canvas = document.getElementById('confetti-canvas');
+const ctx    = canvas.getContext('2d');
+let   W = canvas.width  = 1920;
+let   H = canvas.height = 1080;
+let   particles = [];
+let   animFrame = null;
+let   active    = false;
+
+class Particle {
+  constructor() { this.reset(); }
+
+  reset() {
+    // origen: spread a lo largo del borde superior
+    this.x     = Math.random() * W;
+    this.y     = Math.random() * -200;
+    this.vx    = (Math.random() - 0.5) * 6;
+    this.vy    = Math.random() * 5 + 2;
+    this.size  = Math.random() * 10 + 4;
+    this.color = CONFIG.colors[Math.floor(Math.random() * CONFIG.colors.length)];
+    this.shape = CONFIG.shapes[Math.floor(Math.random() * CONFIG.shapes.length)];
+    this.rot   = Math.random() * Math.PI * 2;
+    this.rotV  = (Math.random() - 0.5) * 0.25;
+    this.alpha = 1;
+    this.life  = 1; // 1 → 0
+    this.decay = Math.random() * 0.004 + 0.002;
+    // strip dimensions
+    this.w = this.shape === 'strip' ? this.size * 0.3 : this.size;
+    this.h = this.shape === 'strip' ? this.size * 2.5 : this.size;
+  }
+
+  update() {
+    this.vy  += CONFIG.gravity;
+    this.vx  += CONFIG.wind * (Math.random() - 0.5);
+    this.vx  *= CONFIG.drag;
+    this.vy  *= CONFIG.drag;
+    this.x   += this.vx;
+    this.y   += this.vy;
+    this.rot += this.rotV;
+    this.life -= this.decay;
+    this.alpha = Math.max(0, this.life);
+  }
+
+  draw(ctx) {
+    ctx.save();
+    ctx.globalAlpha = this.alpha;
+    ctx.fillStyle   = this.color;
+    ctx.translate(this.x, this.y);
+    ctx.rotate(this.rot);
+    if (this.shape === 'circle') {
+      ctx.beginPath();
+      ctx.arc(0, 0, this.w / 2, 0, Math.PI * 2);
+      ctx.fill();
+    } else {
+      ctx.fillRect(-this.w / 2, -this.h / 2, this.w, this.h);
+    }
+    ctx.restore();
+  }
+}
+
+function spawnBurst(count) {
+  for (let i = 0; i < count; i++) {
+    particles.push(new Particle());
+  }
+}
+
+function tick() {
+  ctx.clearRect(0, 0, W, H);
+  particles = particles.filter(p => p.life > 0 && p.y < H + 60);
+  particles.forEach(p => { p.update(); p.draw(ctx); });
+
+  if (particles.length > 0) {
+    animFrame = requestAnimationFrame(tick);
+  } else {
+    active = false;
+    cancelAnimationFrame(animFrame);
+  }
+}
+
+// ─────────────────────────────────────────────
+//  EMOJI EXPLOSIÓN CENTRAL
+// ─────────────────────────────────────────────
+function spawnEmojis(type) {
+  const set = CONFIG.emojis[type] || CONFIG.emojis.sub;
+  const cx  = W / 2;
+  const cy  = H / 2;
+
+  for (let i = 0; i < 10; i++) {
+    const el = document.createElement('div');
+    el.className   = 'emoji-burst';
+    el.textContent = set[Math.floor(Math.random() * set.length)];
+    const angle = (Math.random() * Math.PI * 2);
+    const dist  = 120 + Math.random() * 180;
+    el.style.left = cx + 'px';
+    el.style.top  = cy + 'px';
+    el.style.setProperty('--dx', Math.cos(angle) * dist + 'px');
+    el.style.setProperty('--dy', Math.sin(angle) * dist + 'px');
+    el.style.setProperty('--rot', (Math.random() * 360) + 'deg');
+    el.style.animationDelay = (Math.random() * 0.3) + 's';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 2200);
+  }
+}
+
+// ─────────────────────────────────────────────
+//  BANNER DE ALERTA
+// ─────────────────────────────────────────────
+let alertQueue = [];
+let alertRunning = false;
+
+function showBanner(type, user, message) {
+  const banner = document.getElementById('alert-banner');
+  document.getElementById('event-label').textContent   = CONFIG.labels[type] || type;
+  document.getElementById('event-name').textContent    = user;
+  document.getElementById('event-message').textContent = message;
+
+  banner.classList.remove('show');
+  void banner.offsetWidth; // reflow para reiniciar animación
+  banner.classList.add('show');
+
+  setTimeout(() => {
+    banner.classList.remove('show');
+    setTimeout(() => { alertRunning = false; processQueue(); }, 500);
+  }, 4200);
+}
+
+function processQueue() {
+  if (alertQueue.length === 0 || alertRunning) return;
+  alertRunning = true;
+  const { type, user, message, emoji } = alertQueue.shift();
+
+  // Confetti
+  if (!active) {
+    active = true;
+    spawnBurst(CONFIG.particleCount);
+    animFrame = requestAnimationFrame(tick);
+  } else {
+    spawnBurst(Math.floor(CONFIG.particleCount * 0.6));
+  }
+
+  // Emojis
+  spawnEmojis(type);
+
+  // Banner
+  showBanner(type, user, message);
+
+  // Segunda ola de confetti a los 800ms
+  setTimeout(() => spawnBurst(CONFIG.particleCount * 0.5), 800);
+}
+
+// ─────────────────────────────────────────────
+//  API PÚBLICA — llama esto desde Twitch/n8n/etc.
+// ─────────────────────────────────────────────
+function triggerAlert(type, user, message, emoji) {
+  alertQueue.push({ type, user, message, emoji });
+  processQueue();
+}
+
+// ─────────────────────────────────────────────
+//  ESCUCHA MENSAJES EXTERNOS
+//  Permite mandar eventos desde el padre o desde
+//  OBS -> Browser Source -> Interact (Execute JS)
+//  o desde un WebSocket local
+// ─────────────────────────────────────────────
+window.addEventListener('message', (e) => {
+  if (e.data && e.data.type === 'stream-alert') {
+    triggerAlert(
+      e.data.event   || 'sub',
+      e.data.user    || 'alguien',
+      e.data.message || '¡Gracias!',
+      e.data.emoji   || '🎉'
+    );
+  }
+});
+
+// Exposición global por si se llama via OBS Execute JS
+window.streamAlert = triggerAlert;
+
+// ─────────────────────────────────────────────
+//  RESIZE (por si la resolución cambia)
+// ─────────────────────────────────────────────
+window.addEventListener('resize', () => {
+  W = canvas.width  = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+});
+</script>
+</body>
+</html>
