@@ -19,7 +19,6 @@
       font-family: 'Syne', sans-serif;
     }
 
-    /* ─── Canvas de confetti ─── */
     #confetti-canvas {
       position: fixed;
       top: 0; left: 0;
@@ -28,7 +27,6 @@
       z-index: 10;
     }
 
-    /* ─── Banner central de alerta ─── */
     #alert-banner {
       position: fixed;
       top: 50%;
@@ -68,7 +66,6 @@
         inset 0 1px 0 rgba(255,255,255,0.1);
     }
 
-    /* línea superior de color */
     .banner-inner::before {
       content: '';
       position: absolute;
@@ -114,7 +111,6 @@
       letter-spacing: 0.05em;
     }
 
-    /* ─── Emoji explosión ─── */
     .emoji-burst {
       position: fixed;
       font-size: 40px;
@@ -129,15 +125,17 @@
       100% { transform: translate(var(--dx), var(--dy)) scale(1.2) rotate(var(--rot)); opacity: 0; }
     }
 
-    /* ─── Botón de test (solo en modo prueba) ─── */
     #test-controls {
       position: fixed;
       bottom: 30px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 12px;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
       z-index: 100;
+      max-width: 900px;
     }
 
     .test-btn {
@@ -176,15 +174,25 @@
   </div>
 </div>
 
-<!-- Botones de prueba — quítalos en producción -->
+<!-- Botones de prueba — se ocultan con ?prod en la URL -->
 <div id="test-controls">
-  <button class="test-btn" onclick="triggerAlert('sub',    'axlfc',     '¡Gracias por el apoyo!',    '🎉')">Test Sub</button>
-  <button class="test-btn" onclick="triggerAlert('follow', 'misterX99', '¡Bienvenido al stream!',    '❤️')">Test Follow</button>
-  <button class="test-btn" onclick="triggerAlert('raid',   'STREAMERBRO','¡Raid con 42 viewers!',    '⚡')">Test Raid</button>
-  <button class="test-btn" onclick="triggerAlert('bits',   'donacoins',  '¡500 bits donados!',       '💎')">Test Bits</button>
+  <button class="test-btn" onclick="triggerAlert('follow',   'misterX99',  '¡Bienvenido al stream!',              '❤️')">Test Follow</button>
+  <button class="test-btn" onclick="triggerAlert('sub',      'axlfc',      '¡Gracias por suscribirte!',           '🎉')">Test Sub</button>
+  <button class="test-btn" onclick="triggerAlert('resub',    'axlfc',      '¡3 meses con nosotros!',              '🔥')">Test Resub</button>
+  <button class="test-btn" onclick="triggerAlert('giftsub',  'donacoins',  '¡Ha regalado un sub a juanito99!',    '🎁')">Test Gift Sub</button>
+  <button class="test-btn" onclick="triggerAlert('massgift', 'donacoins',  '¡Ha regalado 10 subs al canal!',      '🎊')">Test Mass Gift</button>
+  <button class="test-btn" onclick="triggerAlert('kicks',    'donacoins',  '¡Ha enviado 42 Kicks al canal!',      '⚡')">Test Kicks</button>
 </div>
 
 <script>
+// ─────────────────────────────────────────────
+//  Ocultar botones de test en producción
+//  Añade ?prod a la URL para ocultarlos
+// ─────────────────────────────────────────────
+if (new URLSearchParams(location.search).has('prod')) {
+  document.getElementById('test-controls').style.display = 'none';
+}
+
 // ─────────────────────────────────────────────
 //  CONFIG
 // ─────────────────────────────────────────────
@@ -199,16 +207,20 @@ const CONFIG = {
   ],
   shapes: ['rect', 'circle', 'strip'],
   emojis: {
-    sub:    ['🎉', '🥳', '⭐', '💜', '🎊'],
-    follow: ['❤️', '✨', '👋', '🌟', '💫'],
-    raid:   ['⚡', '🚀', '🔥', '💥', '👾'],
-    bits:   ['💎', '💸', '🪙', '✨', '💰'],
+    follow:   ['❤️', '✨', '👋', '🌟', '💫'],
+    sub:      ['🎉', '🥳', '⭐', '💜', '🎊'],
+    resub:    ['🔥', '💪', '⭐', '🏆', '🎊'],
+    giftsub:  ['🎁', '🥳', '💜', '🎊', '✨'],
+    massgift: ['🎊', '🎁', '🥳', '💥', '🌟'],
+    kicks:    ['⚡', '🚀', '🔥', '💥', '👾'],
   },
   labels: {
-    sub:    'nueva suscripción',
-    follow: 'nuevo follow',
-    raid:   'raid entrante',
-    bits:   'donación de bits',
+    follow:   'nuevo follow',
+    sub:      'nueva suscripción',
+    resub:    'resuscripción',
+    giftsub:  'gift subscription',
+    massgift: 'mass gift subscription',
+    kicks:    'kicks gifted',
   }
 };
 
@@ -227,7 +239,6 @@ class Particle {
   constructor() { this.reset(); }
 
   reset() {
-    // origen: spread a lo largo del borde superior
     this.x     = Math.random() * W;
     this.y     = Math.random() * -200;
     this.vx    = (Math.random() - 0.5) * 6;
@@ -238,9 +249,8 @@ class Particle {
     this.rot   = Math.random() * Math.PI * 2;
     this.rotV  = (Math.random() - 0.5) * 0.25;
     this.alpha = 1;
-    this.life  = 1; // 1 → 0
+    this.life  = 1;
     this.decay = Math.random() * 0.004 + 0.002;
-    // strip dimensions
     this.w = this.shape === 'strip' ? this.size * 0.3 : this.size;
     this.h = this.shape === 'strip' ? this.size * 2.5 : this.size;
   }
@@ -297,7 +307,7 @@ function tick() {
 //  EMOJI EXPLOSIÓN CENTRAL
 // ─────────────────────────────────────────────
 function spawnEmojis(type) {
-  const set = CONFIG.emojis[type] || CONFIG.emojis.sub;
+  const set = CONFIG.emojis[type] || CONFIG.emojis.follow;
   const cx  = W / 2;
   const cy  = H / 2;
 
@@ -321,7 +331,7 @@ function spawnEmojis(type) {
 // ─────────────────────────────────────────────
 //  BANNER DE ALERTA
 // ─────────────────────────────────────────────
-let alertQueue = [];
+let alertQueue   = [];
 let alertRunning = false;
 
 function showBanner(type, user, message) {
@@ -331,7 +341,7 @@ function showBanner(type, user, message) {
   document.getElementById('event-message').textContent = message;
 
   banner.classList.remove('show');
-  void banner.offsetWidth; // reflow para reiniciar animación
+  void banner.offsetWidth;
   banner.classList.add('show');
 
   setTimeout(() => {
@@ -345,7 +355,6 @@ function processQueue() {
   alertRunning = true;
   const { type, user, message, emoji } = alertQueue.shift();
 
-  // Confetti
   if (!active) {
     active = true;
     spawnBurst(CONFIG.particleCount);
@@ -354,18 +363,13 @@ function processQueue() {
     spawnBurst(Math.floor(CONFIG.particleCount * 0.6));
   }
 
-  // Emojis
   spawnEmojis(type);
-
-  // Banner
   showBanner(type, user, message);
-
-  // Segunda ola de confetti a los 800ms
   setTimeout(() => spawnBurst(CONFIG.particleCount * 0.5), 800);
 }
 
 // ─────────────────────────────────────────────
-//  API PÚBLICA — llama esto desde Twitch/n8n/etc.
+//  API PÚBLICA
 // ─────────────────────────────────────────────
 function triggerAlert(type, user, message, emoji) {
   alertQueue.push({ type, user, message, emoji });
@@ -373,15 +377,26 @@ function triggerAlert(type, user, message, emoji) {
 }
 
 // ─────────────────────────────────────────────
-//  ESCUCHA MENSAJES EXTERNOS
-//  Permite mandar eventos desde el padre o desde
-//  OBS -> Browser Source -> Interact (Execute JS)
-//  o desde un WebSocket local
+//  LISTENER: OBS WebSocket → emit_event
+//  via CallVendorRequest → event_name: "stream-alert"
+// ─────────────────────────────────────────────
+window.addEventListener('stream-alert', (e) => {
+  const data = e.detail || {};
+  triggerAlert(
+    data.type    || 'follow',
+    data.user    || 'alguien',
+    data.message || '¡Gracias!',
+    data.emoji   || '🎉'
+  );
+});
+
+// ─────────────────────────────────────────────
+//  LISTENER: window.postMessage (compatibilidad)
 // ─────────────────────────────────────────────
 window.addEventListener('message', (e) => {
   if (e.data && e.data.type === 'stream-alert') {
     triggerAlert(
-      e.data.event   || 'sub',
+      e.data.event   || 'follow',
       e.data.user    || 'alguien',
       e.data.message || '¡Gracias!',
       e.data.emoji   || '🎉'
@@ -389,11 +404,11 @@ window.addEventListener('message', (e) => {
   }
 });
 
-// Exposición global por si se llama via OBS Execute JS
+// Exposición global
 window.streamAlert = triggerAlert;
 
 // ─────────────────────────────────────────────
-//  RESIZE (por si la resolución cambia)
+//  RESIZE
 // ─────────────────────────────────────────────
 window.addEventListener('resize', () => {
   W = canvas.width  = window.innerWidth;
