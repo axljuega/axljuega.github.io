@@ -97,22 +97,4 @@ public class CPHInline
 
         return m;
     }
-
-    // ════════════════════════════════════════════════════════
-    //  Tabla de referencia — todos los multiplicadores posibles
-    // ════════════════════════════════════════════════════════
-    //
-    //  Caso                           Factores          Total
-    //  ─────────────────────────────────────────────────────
-    //  Sub 12m + HoraFeliz + Ley.     2.5 × 2.0 × 1.5  = x7.5
-    //  Sub 12m + Racha30 + Ley.       2.5 × 2.0 × 1.5  = x7.5
-    //  Sub 6m  + HoraFeliz + Terc.    2.0 × 2.0 × 1.25 = x5.0
-    //  Sub act + Racha7               1.5 × 1.5         = x2.25
-    //  Sin sub + HoraFeliz            1.0 × 2.0         = x2.0
-    //  Sin sub + sin eventos          1.0               = x1.0
-    //
-    //  Máximo teórico (sub 12m + HoraFeliz + Racha30 + Ley + Aniv):
-    //    2.5 × 2.0 × 2.0 × 1.5 × 3.0 = x45.0
-    //    → Considera poner un cap si esto te parece excesivo.
-    // ════════════════════════════════════════════════════════
 }
