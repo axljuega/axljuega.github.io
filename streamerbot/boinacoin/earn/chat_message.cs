@@ -41,17 +41,16 @@ public class CPHInline
         if (string.IsNullOrEmpty(userId)) return false;
 
         // ── 0. Excluir al propio bot y al streamer ───────────
-        // Evita race conditions en LiteDB y que el bot gane coins
+        // FIX: .UserId en lugar de .Id (KickUserInfo v1.x)
         var botInfo = CPH.KickGetBot();
-        if (botInfo != null && userId == botInfo.Id.ToString()) return false;
+        if (botInfo != null && userId == botInfo.UserId.ToString()) return false;
 
         var broadcasterInfo = CPH.KickGetBroadcaster();
-        if (broadcasterInfo != null && userId == broadcasterInfo.Id.ToString()) return false;
+        if (broadcasterInfo != null && userId == broadcasterInfo.UserId.ToString()) return false;
 
         long nowUnix = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
 
         // ── 1. Cooldown de 60 segundos ───────────────────────
-        // FIX: GetKickUserVarById (userId numérico, no userName)
         long lastMessageTime = CPH.GetKickUserVarById<long>(userId, "boinacoin_chat_last");
         bool onCooldown      = (nowUnix - lastMessageTime) < COOLDOWN_SECONDS;
 
@@ -62,14 +61,12 @@ public class CPHInline
         }
 
         // ── 2. Registrar timestamp del mensaje ───────────────
-        // FIX: SetKickUserVarById
         CPH.SetKickUserVarById(userId, "boinacoin_chat_last", nowUnix, true);
         UpdateChatActivity(userId, nowUnix);
 
         // ── 3. Bonus primer mensaje del día ──────────────────
         long   dailyBonus  = 0;
         string todayDate   = DateTime.UtcNow.ToString("yyyy-MM-dd");
-        // FIX: GetKickUserVarById
         string lastChatDay = CPH.GetKickUserVarById<string>(userId, "boinacoin_chat_day") ?? "";
 
         if (lastChatDay != todayDate)
@@ -101,7 +98,6 @@ public class CPHInline
         if (dailyBonus > 0)
         {
             string multText = mult > 1.0 ? $" (x{mult:0.##} ⚡)" : "";
-            // FIX: SendKickMessage (no SendMessage genérico)
             CPH.SendKickMessage(
                 $"👋 ¡Buen día, {userName}! " +
                 $"+{earned} Boinacoins por tu primer mensaje de hoy{multText} · " +
@@ -148,7 +144,6 @@ public class CPHInline
         if (newRank <= oldRank) return;
 
         CPH.SetKickUserVarById(userId, "boinacoin_rank", newRank, true);
-        // FIX: SendKickMessage
         CPH.SendKickMessage($"🎉 ¡{userName} sube a {RankName(newRank)}!");
 
         CPH.SetArgument("rankUpUserId",   userId);
