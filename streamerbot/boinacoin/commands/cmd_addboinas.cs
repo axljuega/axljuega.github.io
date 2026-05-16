@@ -20,8 +20,8 @@ public class CPHInline
     // ────────────────────────────────────────────────────────
     public bool Execute()
     {
-        string modId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
-        string modName = args.ContainsKey("userName") ? args["userName"].ToString() : "mod";
+        string modId   = args.ContainsKey("kickUserId")   ? args["kickUserId"].ToString()   : "";
+        string modName = args.ContainsKey("kickUserName") ? args["kickUserName"].ToString() : "mod";
 
         if (string.IsNullOrEmpty(modId)) return false;
 
@@ -48,7 +48,7 @@ public class CPHInline
 
         // ── 3. Resolver usuario ───────────────────────────────
         string targetName = rawTarget.TrimStart('@');
-        string targetId   = CPH.GetUserIdByUserName(targetName);
+        string targetId   = CPH.KickGetUserIdByUserName(targetName);
 
         if (string.IsNullOrEmpty(targetId))
         {
@@ -64,16 +64,16 @@ public class CPHInline
         }
 
         // ── 5. Calcular nuevo saldo (nunca por debajo de 0) ───
-        long currentBalance = CPH.GetUserVar<long>(targetId, "boinacoin", true);
+        long currentBalance = CPH.KickGetUserVar<long>(targetId, "boinacoin", true);
         long newBalance     = Math.Max(0, currentBalance + amount);
 
-        CPH.SetUserVar(targetId, "boinacoin", newBalance, true);
+        CPH.KickSetUserVar(targetId, "boinacoin", newBalance, true);
 
         // ── 6. Histórico: solo si se añaden puntos ────────────
         if (amount > 0)
         {
-            long totalEarned = CPH.GetUserVar<long>(targetId, "boinacoin_total_earned", true) + amount;
-            CPH.SetUserVar(targetId, "boinacoin_total_earned", totalEarned, true);
+            long totalEarned = CPH.KickGetUserVar<long>(targetId, "boinacoin_total_earned", true) + amount;
+            CPH.KickSetUserVar(targetId, "boinacoin_total_earned", totalEarned, true);
         }
 
         // ── 7. Comprobar subida (o bajada) de rango ───────────
@@ -93,12 +93,12 @@ public class CPHInline
     // ── Gestiona tanto subida como bajada de rango ────────────
     private void CheckRankChange(string userId, string userName, long balance)
     {
-        int oldRank = CPH.GetUserVar<int>(userId, "boinacoin_rank", true);
+        int oldRank = CPH.KickGetUserVar<int>(userId, "boinacoin_rank", true);
         int newRank = RankForBalance(balance);
 
         if (newRank == oldRank) return;
 
-        CPH.SetUserVar(userId, "boinacoin_rank", newRank, true);
+        CPH.KickSetUserVar(userId, "boinacoin_rank", newRank, true);
 
         if (newRank > oldRank)
         {

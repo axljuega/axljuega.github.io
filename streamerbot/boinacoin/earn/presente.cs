@@ -34,20 +34,20 @@ public class CPHInline
     // ────────────────────────────────────────────────────────
     public bool Execute()
     {
-        string userId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
-        string userName = args.ContainsKey("userName") ? args["userName"].ToString() : "alguien";
+        string userId   = args.ContainsKey("kickUserId")   ? args["kickUserId"].ToString()   : "";
+        string userName = args.ContainsKey("kickUserName") ? args["kickUserName"].ToString() : "alguien";
 
         if (string.IsNullOrEmpty(userId)) return false;
 
         string todayDate = DateTime.UtcNow.ToString("yyyy-MM-dd");
 
         // ── 1. Guard: solo una vez por stream (día) ──────────
-        string lastPresenteDate = CPH.GetUserVar<string>(userId, "boinacoin_daily_claimed", true) ?? "";
+        string lastPresenteDate = CPH.KickGetUserVar<string>(userId, "boinacoin_daily_claimed", true) ?? "";
 
         if (lastPresenteDate == todayDate)
         {
-            long balance = CPH.GetUserVar<long>(userId, "boinacoin", true);
-            int  streak  = CPH.GetUserVar<int>(userId, "boinacoin_streak", true);
+            long balance = CPH.KickGetUserVar<long>(userId, "boinacoin", true);
+            int  streak  = CPH.KickGetUserVar<int>(userId, "boinacoin_streak", true);
             CPH.SendMessage(
                 $"⏳ {userName}, ya hiciste !presente hoy. " +
                 $"Saldo: {balance} 🪙 · Racha: {streak} streams 🔥");
@@ -56,24 +56,24 @@ public class CPHInline
 
         // ── 2. Actualizar racha de asistencia ────────────────
         int newStreak = CalculateStreak(userId, todayDate);
-        CPH.SetUserVar(userId, "boinacoin_streak",       newStreak, true);
-        CPH.SetUserVar(userId, "boinacoin_streak_date",  todayDate, true);
-        CPH.SetUserVar(userId, "boinacoin_daily_claimed", todayDate, true);
+        CPH.KickSetUserVar(userId, "boinacoin_streak",       newStreak, true);
+        CPH.KickSetUserVar(userId, "boinacoin_streak_date",  todayDate, true);
+        CPH.KickSetUserVar(userId, "boinacoin_daily_claimed", todayDate, true);
 
         // ── 3. Calcular recompensa ───────────────────────────
         double mult   = GetMultiplier(userId);
         long   earned = (long)Math.Floor(REWARD_PRESENTE * mult);
 
         // ── 4. Actualizar saldo ──────────────────────────────
-        long balance2 = CPH.GetUserVar<long>(userId, "boinacoin", true) + earned;
-        CPH.SetUserVar(userId, "boinacoin", balance2, true);
+        long balance2 = CPH.KickGetUserVar<long>(userId, "boinacoin", true) + earned;
+        CPH.KickSetUserVar(userId, "boinacoin", balance2, true);
 
         // ── 5. Estadística histórica ─────────────────────────
-        long totalEarned = CPH.GetUserVar<long>(userId, "boinacoin_total_earned", true) + earned;
-        CPH.SetUserVar(userId, "boinacoin_total_earned", totalEarned, true);
+        long totalEarned = CPH.KickGetUserVar<long>(userId, "boinacoin_total_earned", true) + earned;
+        CPH.KickSetUserVar(userId, "boinacoin_total_earned", totalEarned, true);
 
         // ── 6. Timestamp antiinactividad ─────────────────────
-        CPH.SetUserVar(userId, "boinacoin_last_seen",
+        CPH.KickSetUserVar(userId, "boinacoin_last_seen",
             DateTimeOffset.UtcNow.ToUnixTimeSeconds(), true);
 
         // ── 7. Comprobar subida de rango ─────────────────────
@@ -96,8 +96,8 @@ public class CPHInline
     // ── Calcula la nueva racha ────────────────────────────────
     private int CalculateStreak(string userId, string todayDate)
     {
-        string lastDateStr = CPH.GetUserVar<string>(userId, "boinacoin_streak_date", true) ?? "";
-        int    currentStreak = CPH.GetUserVar<int>(userId, "boinacoin_streak", true);
+        string lastDateStr = CPH.KickGetUserVar<string>(userId, "boinacoin_streak_date", true) ?? "";
+        int    currentStreak = CPH.KickGetUserVar<int>(userId, "boinacoin_streak", true);
 
         if (string.IsNullOrEmpty(lastDateStr)) return 1;
 
@@ -142,17 +142,17 @@ public class CPHInline
     {
         double m = 1.0;
 
-        double subMult = CPH.GetUserVar<double>(userId, "boinacoin_multiplier", true);
+        double subMult = CPH.KickGetUserVar<double>(userId, "boinacoin_multiplier", true);
         if (subMult > 1.0) m *= subMult;
 
         bool horaFeliz = CPH.GetGlobalVar<bool>("boinacoin_horafeliz", true);
         if (horaFeliz) m *= 2.0;
 
-        int streak = CPH.GetUserVar<int>(userId, "boinacoin_streak", true);
+        int streak = CPH.KickGetUserVar<int>(userId, "boinacoin_streak", true);
         if      (streak >= 30) m *= 2.0;
         else if (streak >= 7)  m *= 1.5;
 
-        int rank = CPH.GetUserVar<int>(userId, "boinacoin_rank", true);
+        int rank = CPH.KickGetUserVar<int>(userId, "boinacoin_rank", true);
         if      (rank == 4) m *= 1.5;
         else if (rank == 3) m *= 1.25;
 
@@ -162,12 +162,12 @@ public class CPHInline
     // ── Subida de rango ───────────────────────────────────────
     private void CheckRankUp(string userId, string userName, long balance)
     {
-        int oldRank = CPH.GetUserVar<int>(userId, "boinacoin_rank", true);
+        int oldRank = CPH.KickGetUserVar<int>(userId, "boinacoin_rank", true);
         int newRank = RankForBalance(balance);
 
         if (newRank <= oldRank) return;
 
-        CPH.SetUserVar(userId, "boinacoin_rank", newRank, true);
+        CPH.KickSetUserVar(userId, "boinacoin_rank", newRank, true);
         CPH.SendMessage($"🎉 ¡{userName} sube a {RankName(newRank)}!");
 
         CPH.SetArgument("rankUpUserId",   userId);

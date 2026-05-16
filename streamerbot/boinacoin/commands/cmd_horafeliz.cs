@@ -34,8 +34,8 @@ public class CPHInline
     // ────────────────────────────────────────────────────────
     public bool Execute()
     {
-        string callerId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
-        string callerName = args.ContainsKey("userName") ? args["userName"].ToString() : "streamer";
+        string callerId   = args.ContainsKey("kickUserId")   ? args["kickUserId"].ToString()   : "";
+        string callerName = args.ContainsKey("kickUserName") ? args["kickUserName"].ToString() : "streamer";
         string mode       = args.ContainsKey("mode")     ? args["mode"].ToString()     : "toggle";
 
         // ── Rama de fin automático (llamada desde timer) ──────

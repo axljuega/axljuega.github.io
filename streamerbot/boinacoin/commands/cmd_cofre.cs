@@ -40,8 +40,8 @@ public class CPHInline
     // ════════════════════════════════════════════════════════
     private bool HandleSpawn()
     {
-        string callerId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
-        string callerName = args.ContainsKey("userName") ? args["userName"].ToString() : "streamer";
+        string callerId   = args.ContainsKey("kickUserId")   ? args["kickUserId"].ToString()   : "";
+        string callerName = args.ContainsKey("kickUserName") ? args["kickUserName"].ToString() : "streamer";
 
         // ── Verificar permisos (solo streamer) ────────────────
         bool isStreamer    = args.ContainsKey("isOwner")       && (bool)args["isOwner"];
@@ -103,8 +103,8 @@ public class CPHInline
     // ════════════════════════════════════════════════════════
     private bool HandleOpen()
     {
-        string userId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
-        string userName = args.ContainsKey("userName") ? args["userName"].ToString() : "alguien";
+        string userId   = args.ContainsKey("kickUserId")   ? args["kickUserId"].ToString()   : "";
+        string userName = args.ContainsKey("kickUserName") ? args["kickUserName"].ToString() : "alguien";
 
         if (string.IsNullOrEmpty(userId)) return false;
 
@@ -123,13 +123,13 @@ public class CPHInline
         long prize = CPH.GetGlobalVar<long>("boinacoin_cofre_prize", true);
 
         // ── Entregar premio ───────────────────────────────────
-        long balance = CPH.GetUserVar<long>(userId, "boinacoin", true) + prize;
-        CPH.SetUserVar(userId, "boinacoin", balance, true);
+        long balance = CPH.KickGetUserVar<long>(userId, "boinacoin", true) + prize;
+        CPH.KickSetUserVar(userId, "boinacoin", balance, true);
 
-        long totalEarned = CPH.GetUserVar<long>(userId, "boinacoin_total_earned", true) + prize;
-        CPH.SetUserVar(userId, "boinacoin_total_earned", totalEarned, true);
+        long totalEarned = CPH.KickGetUserVar<long>(userId, "boinacoin_total_earned", true) + prize;
+        CPH.KickSetUserVar(userId, "boinacoin_total_earned", totalEarned, true);
 
-        CPH.SetUserVar(userId, "boinacoin_last_seen", nowUnix, true);
+        CPH.KickSetUserVar(userId, "boinacoin_last_seen", nowUnix, true);
 
         // ── Marcar cofre como reclamado ───────────────────────
         string todayDate = DateTime.UtcNow.ToString("yyyy-MM-dd");
@@ -152,12 +152,12 @@ public class CPHInline
     // ── Subida de rango ───────────────────────────────────────
     private void CheckRankUp(string userId, string userName, long balance)
     {
-        int oldRank = CPH.GetUserVar<int>(userId, "boinacoin_rank", true);
+        int oldRank = CPH.KickGetUserVar<int>(userId, "boinacoin_rank", true);
         int newRank = RankForBalance(balance);
 
         if (newRank <= oldRank) return;
 
-        CPH.SetUserVar(userId, "boinacoin_rank", newRank, true);
+        CPH.KickSetUserVar(userId, "boinacoin_rank", newRank, true);
         CPH.SendMessage($"🎉 ¡{userName} sube a {GetRankName(newRank)}!");
 
         CPH.SetArgument("rankUpUserId",   userId);
