@@ -11,39 +11,48 @@
 //    4. Si no acepta en 60s → duelo caduca automáticamente
 //       (la caducidad se comprueba en el !aceptar)
 //
-//  Configuración en Streamer.bot — DOS acciones, mismo código:
-//    Acción A → trigger "!duelo"   → Set Argument "mode" = "challenge"
-//    Acción B → trigger "!aceptar" → Set Argument "mode" = "accept"
-//    Ambas ejecutan este mismo C# inline.
-//
-//  Estado del duelo (variables globales persistidas):
-//    boinacoin_duel_challengerId   → userId del retador
-//    boinacoin_duel_challengerName → nombre del retador
-//    boinacoin_duel_targetId       → userId del retado
-//    boinacoin_duel_targetName     → nombre del retado
-//    boinacoin_duel_amount         → cantidad en juego
-//    boinacoin_duel_expiry         → unix timestamp de caducidad
-//
 //  Nota sobre BoinaBot:
-//    BoinaBot actúa como "la casa". Se le permite ser target
-//    aunque tenga rango 0 y no lleve saldo real en BD.
+//    BoinaBot actúa como "la casa". Si se le desafía, el duelo
+//    se resuelve automáticamente con un 50/50 de probabilidad
+//    de aceptar/rechazar y un 50/50 de ganar/perder.
 // ============================================================
 
 using System;
+using System.Threading;
 
 public class CPHInline
 {
-    private const int  DUEL_TIMEOUT_SECS = 60;
-    private const long MIN_BET           = 10;
-
-    // Nombre en minúsculas del bot — ajusta si cambia
+    private const int DUEL_TIMEOUT_SECS = 60;
+    private const long MIN_BET = 10;
     private const string BOT_NAME_LOWER = "boinabot";
+
+    private readonly string[] SELF_DUEL_MESSAGES = new string[]
+    {
+        "¿Peleando contigo mismo? Eso explica mucho sobre tu vida social.",
+        "El duelo contra tu propia sombra es el único que puedes ganar, y aun así tengo mis dudas.",
+        "Si quieres atención, ve a terapia. Aquí venimos a apostar.",
+        "Ganaste tú... y también perdiste tú. Felicidades por ser un desperdicio de código.",
+        "Esa es la señal más clara de esquizofrenia que he visto hoy. Y soy un bot.",
+        "Búscate un amigo. O un enemigo. O un perro. Pero deja de molestarme.",
+        "Duelo de egos: tú contra tu vacío existencial. Gana el vacío por goleada.",
+        "¿Auto-duelo? El nivel de desesperación está por las nubes, colegas.",
+        "Acabas de perder contra ti mismo en una pelea imaginaria. Bravo.",
+        "Ni mi procesador más lento tiene tan poco que hacer como tú ahora mismo."
+    };
+
+    private readonly string[] BOT_REJECT_MESSAGES = new string[]
+    {
+        "Tengo pelusa en los engranajes, paso.",
+        "No me levanto por esa miseria. Vuelve cuando tengas Boinacoins de verdad.",
+        "Ahora mismo estoy ocupado ignorándote. Inténtalo más tarde.",
+        "Mis algoritmos dicen que no vales el gasto de energía.",
+        "Paso. Me das pereza hasta a mí, que soy código estático."
+    };
 
     // ────────────────────────────────────────────────────────
     public bool Execute()
     {
         string mode = args.ContainsKey("mode") ? args["mode"].ToString() : "challenge";
-
         return mode == "accept" ? HandleAccept() : HandleChallenge();
     }
 
@@ -52,7 +61,7 @@ public class CPHInline
     // ════════════════════════════════════════════════════════
     private bool HandleChallenge()
     {
-        string challengerId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
+        string challengerId = args.ContainsKey("userId") ? args["userId"].ToString() : "";
         string challengerName = args.ContainsKey("userName") ? args["userName"].ToString() : "alguien";
 
         if (string.IsNullOrEmpty(challengerId)) return false;
@@ -81,18 +90,20 @@ public class CPHInline
             return true;
         }
 
-        // ── Resolver rival ────────────────────────────────────
-        string targetName       = rawTarget.TrimStart('@');
-        bool   targetIsBoinaBot = targetName.ToLower() == BOT_NAME_LOWER;
+        // ── Resolver rival y sanitizar ────────────────────────
+        string targetName = rawTarget.ToLower().Trim().Replace("@", "");
+        string challengerNameClean = challengerName.ToLower().Trim().Replace("@", "");
 
-        if (targetName.ToLower() == challengerName.ToLower())
+        if (targetName == challengerNameClean)
         {
-            CPH.SendKickMessage($"😅 {challengerName}, no puedes desafiarte a ti mismo.");
+            string msg = SELF_DUEL_MESSAGES[new Random().Next(SELF_DUEL_MESSAGES.Length)];
+            CPH.SendKickMessage($"😅 {challengerName}: {msg}");
             return true;
         }
 
+        bool targetIsBoinaBot = targetName == BOT_NAME_LOWER;
+
         // ── Verificar rango del rival ─────────────────────────
-        // FIX: BoinaBot (la casa) está exento del check de rango.
         int targetRank = CPH.GetKickUserVar<int>(targetName, "boinacoin_rank");
         if (!targetIsBoinaBot && targetRank < 1)
         {
@@ -102,7 +113,7 @@ public class CPHInline
 
         // ── Verificar que no haya duelo activo ────────────────
         long existingExpiry = CPH.GetGlobalVar<long>("boinacoin_duel_expiry", true);
-        long nowUnix        = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+        long nowUnix = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
 
         if (existingExpiry > nowUnix)
         {
@@ -115,39 +126,87 @@ public class CPHInline
         long challengerBalance = CPH.GetKickUserVarById<long>(challengerId, "boinacoin");
         if (challengerBalance < amount)
         {
-            CPH.SendKickMessage(
-                $"❌ {challengerName}, no tienes suficientes Boinacoins. " +
-                $"Saldo: {challengerBalance} 🪙");
+            CPH.SendKickMessage($"❌ {challengerName}, no tienes suficientes Boinacoins. Saldo: {challengerBalance} 🪙");
             return true;
         }
 
-        // ── Verificar saldo del rival ─────────────────────────
-        // FIX: BoinaBot (la casa) tiene saldo ilimitado implícito.
-        long targetBalance = targetIsBoinaBot
-            ? long.MaxValue
-            : CPH.GetKickUserVar<long>(targetName, "boinacoin");
-
-        if (!targetIsBoinaBot && targetBalance < amount)
+        // ── Duelo contra el Bot (La Casa) ─────────────────────
+        if (targetIsBoinaBot)
         {
-            CPH.SendKickMessage(
-                $"❌ {targetName} no tiene suficientes Boinacoins para el duelo " +
-                $"({targetBalance} 🪙 disponibles).");
+            return ResolveBotDuel(challengerId, challengerName, amount);
+        }
+
+        // ── Duelo contra Humano: Verificar saldo del rival ────
+        long targetBalance = CPH.GetKickUserVar<long>(targetName, "boinacoin");
+        if (targetBalance < amount)
+        {
+            CPH.SendKickMessage($"❌ {targetName} no tiene suficientes Boinacoins para el duelo ({targetBalance} 🪙 disponibles).");
             return true;
         }
 
         // ── Registrar duelo pendiente ─────────────────────────
         long expiry = nowUnix + DUEL_TIMEOUT_SECS;
-        CPH.SetGlobalVar("boinacoin_duel_challengerId",   challengerId,   true);
+        CPH.SetGlobalVar("boinacoin_duel_challengerId", challengerId, true);
         CPH.SetGlobalVar("boinacoin_duel_challengerName", challengerName, true);
-        CPH.SetGlobalVar("boinacoin_duel_targetName",     targetName,     true);
-        CPH.SetGlobalVar("boinacoin_duel_amount",         amount,         true);
-        CPH.SetGlobalVar("boinacoin_duel_expiry",         expiry,         true);
+        CPH.SetGlobalVar("boinacoin_duel_targetName", targetName, true);
+        CPH.SetGlobalVar("boinacoin_duel_amount", amount, true);
+        CPH.SetGlobalVar("boinacoin_duel_expiry", expiry, true);
 
         // ── Anuncio ───────────────────────────────────────────
-        string targetLabel = targetIsBoinaBot ? "¡la CASA!" : $"@{targetName}";
         CPH.SendKickMessage(
-            $"⚔️ ¡{challengerName} desafía a {targetLabel} a un duelo de {amount} Boinacoins! " +
+            $"⚔️ ¡{challengerName} desafía a @{targetName} a un duelo de {amount} Boinacoins! " +
             $"@{targetName}, escribe !aceptar en los próximos {DUEL_TIMEOUT_SECS}s. ¿Te atreves? 🎩");
+
+        return true;
+    }
+
+    private bool ResolveBotDuel(string challengerId, string challengerName, long amount)
+    {
+        CPH.SendKickMessage($"⚔️ {challengerName} ha osado desafiar a ¡la CASA! por {amount} Boinacoins... veamos qué dice la suerte. 🎩");
+
+        // Simular pensamiento
+        Thread.Sleep(3000);
+
+        Random rnd = new Random();
+
+        // 1. ¿Acepta el bot? (50/50)
+        if (rnd.Next(0, 2) == 0)
+        {
+            string rejectMsg = BOT_REJECT_MESSAGES[rnd.Next(BOT_REJECT_MESSAGES.Length)];
+            CPH.SendKickMessage($"🤖 BoinaBot: {rejectMsg}");
+            return true;
+        }
+
+        // 2. Resolver duelo (50/50)
+        bool challengerWins = rnd.Next(0, 2) == 1;
+        long challengerOldBalance = CPH.GetKickUserVarById<long>(challengerId, "boinacoin");
+        long nowUnix = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+
+        if (challengerWins)
+        {
+            long newBalance = challengerOldBalance + amount;
+            CPH.SetKickUserVarById(challengerId, "boinacoin", newBalance, true);
+
+            long totalEarned = CPH.GetKickUserVarById<long>(challengerId, "boinacoin_total_earned") + amount;
+            CPH.SetKickUserVarById(challengerId, "boinacoin_total_earned", totalEarned, true);
+            CPH.SetKickUserVarById(challengerId, "boinacoin_last_seen", nowUnix, true);
+
+            CPH.SendKickMessage(
+                $"🏆 ¡{challengerName} ha derrotado a la casa! +{amount} Boinacoins. " +
+                $"Saldo: {newBalance} 🪙. 🤖 \"Maldita sea... mis circuitos deben estar fallando.\"");
+
+            CheckRankUp(challengerId, challengerName, newBalance);
+        }
+        else
+        {
+            long newBalance = challengerOldBalance - amount;
+            CPH.SetKickUserVarById(challengerId, "boinacoin", newBalance, true);
+            CPH.SetKickUserVarById(challengerId, "boinacoin_last_seen", nowUnix, true);
+
+            CPH.SendKickMessage(
+                $"💀 {challengerName} ha sido humillado por la casa. Pierde {amount} Boinacoins. " +
+                $"Saldo: {newBalance} 🪙. 🤖 \"¡JA! La casa siempre gana, humano.\"");
+        }
 
         return true;
     }
@@ -157,13 +216,13 @@ public class CPHInline
     // ════════════════════════════════════════════════════════
     private bool HandleAccept()
     {
-        string acceptorId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
+        string acceptorId = args.ContainsKey("userId") ? args["userId"].ToString() : "";
         string acceptorName = args.ContainsKey("userName") ? args["userName"].ToString() : "alguien";
 
         if (string.IsNullOrEmpty(acceptorId)) return false;
 
         // ── ¿Hay duelo pendiente? ─────────────────────────────
-        long expiry  = CPH.GetGlobalVar<long>("boinacoin_duel_expiry", true);
+        long expiry = CPH.GetGlobalVar<long>("boinacoin_duel_expiry", true);
         long nowUnix = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
 
         if (expiry == 0 || nowUnix > expiry)
@@ -173,28 +232,22 @@ public class CPHInline
         }
 
         // ── ¿Es el retado quien acepta? ───────────────────────
-        string targetName     = CPH.GetGlobalVar<string>("boinacoin_duel_targetName",     true) ?? "";
-        string challengerId   = CPH.GetGlobalVar<string>("boinacoin_duel_challengerId",   true) ?? "";
+        string targetName = (CPH.GetGlobalVar<string>("boinacoin_duel_targetName", true) ?? "").ToLower().Trim().Replace("@", "");
+        string challengerId = CPH.GetGlobalVar<string>("boinacoin_duel_challengerId", true) ?? "";
         string challengerName = CPH.GetGlobalVar<string>("boinacoin_duel_challengerName", true) ?? "";
-        long   amount         = CPH.GetGlobalVar<long>("boinacoin_duel_amount",           true);
+        long amount = CPH.GetGlobalVar<long>("boinacoin_duel_amount", true);
 
-        bool targetIsBoinaBot = targetName.ToLower() == BOT_NAME_LOWER;
+        string acceptorNameClean = acceptorName.ToLower().Trim().Replace("@", "");
 
-        if (acceptorName.ToLower() != targetName.ToLower())
+        if (acceptorNameClean != targetName)
         {
             CPH.SendKickMessage($"❌ {acceptorName}, el duelo es entre {challengerName} y {targetName}.");
             return true;
         }
 
         // ── Verificar saldos actuales antes de resolver ───────
-        string targetId = acceptorId;
-
         long challengerBalance = CPH.GetKickUserVarById<long>(challengerId, "boinacoin");
-
-        // FIX: BoinaBot no tiene saldo real; se trata como saldo ilimitado.
-        long targetBalance = targetIsBoinaBot
-            ? long.MaxValue
-            : CPH.GetKickUserVarById<long>(targetId, "boinacoin");
+        long targetBalance = CPH.GetKickUserVarById<long>(acceptorId, "boinacoin");
 
         if (challengerBalance < amount)
         {
@@ -202,9 +255,9 @@ public class CPHInline
             ClearDuel();
             return true;
         }
-        if (!targetIsBoinaBot && targetBalance < amount)
+        if (targetBalance < amount)
         {
-            CPH.SendKickMessage($"❌ {targetName} ya no tiene suficientes Boinacoins. Duelo cancelado.");
+            CPH.SendKickMessage($"❌ {acceptorName} ya no tiene suficientes Boinacoins. Duelo cancelado.");
             ClearDuel();
             return true;
         }
@@ -213,82 +266,56 @@ public class CPHInline
         bool challengerWins = new Random().Next(0, 2) == 1;
 
         string winnerId, winnerName, loserId, loserName;
-        long   winnerOldBalance, loserOldBalance;
+        long winnerOldBalance, loserOldBalance;
 
         if (challengerWins)
         {
             winnerId = challengerId; winnerName = challengerName;
-            loserId  = targetId;    loserName  = targetName;
+            loserId = acceptorId; loserName = acceptorName;
             winnerOldBalance = challengerBalance;
-            loserOldBalance  = targetBalance;
+            loserOldBalance = targetBalance;
         }
         else
         {
-            winnerId = targetId;    winnerName = targetName;
-            loserId  = challengerId; loserName = challengerName;
+            winnerId = acceptorId; winnerName = acceptorName;
+            loserId = challengerId; loserName = challengerName;
             winnerOldBalance = targetBalance;
-            loserOldBalance  = challengerBalance;
+            loserOldBalance = challengerBalance;
         }
 
         // ── Transferencia ─────────────────────────────────────
-        // FIX: si BoinaBot gana no escribimos en BD (no lleva saldo real);
-        //      si BoinaBot pierde tampoco descontamos de su BD.
-        if (winnerName.ToLower() != BOT_NAME_LOWER)
-            CPH.SetKickUserVarById(winnerId, "boinacoin", winnerOldBalance + amount, true);
+        CPH.SetKickUserVarById(winnerId, "boinacoin", winnerOldBalance + amount, true);
+        CPH.SetKickUserVarById(loserId, "boinacoin", loserOldBalance - amount, true);
 
-        if (loserName.ToLower() != BOT_NAME_LOWER)
-            CPH.SetKickUserVarById(loserId, "boinacoin", loserOldBalance - amount, true);
+        long winnerTotal = CPH.GetKickUserVarById<long>(winnerId, "boinacoin_total_earned") + amount;
+        CPH.SetKickUserVarById(winnerId, "boinacoin_total_earned", winnerTotal, true);
 
-        // Histórico del ganador (solo si no es el bot)
-        if (winnerName.ToLower() != BOT_NAME_LOWER)
-        {
-            long winnerTotal = CPH.GetKickUserVarById<long>(winnerId, "boinacoin_total_earned") + amount;
-            CPH.SetKickUserVarById(winnerId, "boinacoin_total_earned", winnerTotal, true);
-        }
+        CPH.SetKickUserVarById(winnerId, "boinacoin_last_seen", nowUnix, true);
+        CPH.SetKickUserVarById(loserId, "boinacoin_last_seen", nowUnix, true);
 
-        // Timestamps (solo usuarios reales)
-        if (winnerName.ToLower() != BOT_NAME_LOWER)
-            CPH.SetKickUserVarById(winnerId, "boinacoin_last_seen", nowUnix, true);
-        if (loserName.ToLower() != BOT_NAME_LOWER)
-            CPH.SetKickUserVarById(loserId, "boinacoin_last_seen", nowUnix, true);
-
-        // ── Comprobar rango del ganador (solo usuarios reales) ─
-        if (winnerName.ToLower() != BOT_NAME_LOWER)
-            CheckRankUp(winnerId, winnerName, winnerOldBalance + amount);
-
-        // ── Saldos para el mensaje (BoinaBot no tiene saldo real)
-        string winnerBalanceText = winnerName.ToLower() == BOT_NAME_LOWER
-            ? "∞"
-            : (winnerOldBalance + amount).ToString();
-        string loserBalanceText  = loserName.ToLower()  == BOT_NAME_LOWER
-            ? "∞"
-            : (loserOldBalance  - amount).ToString();
+        // ── Comprobar rango del ganador ───────────────────────
+        CheckRankUp(winnerId, winnerName, winnerOldBalance + amount);
 
         // ── Anuncio del resultado ─────────────────────────────
         CPH.SendKickMessage(
             $"⚔️ ¡El bot ha lanzado los dados! " +
-            $"🏆 GANA {winnerName} · +{amount} Boinacoins · " +
-            $"Saldo: {winnerBalanceText} 🪙 · " +
-            $"💀 {loserName} pierde {amount} · Saldo: {loserBalanceText} 🪙");
+            $"🏆 GANA {winnerName} · +{amount} Boinacoins · Saldo: {winnerOldBalance + amount} 🪙 · " +
+            $"💀 {loserName} pierde {amount} · Saldo: {loserOldBalance - amount} 🪙");
 
-        // ── Limpiar estado del duelo ──────────────────────────
         ClearDuel();
-
         return true;
     }
 
-    // ── Limpia todas las variables globales del duelo ─────────
     private void ClearDuel()
     {
-        CPH.SetGlobalVar("boinacoin_duel_challengerId",   "",  true);
-        CPH.SetGlobalVar("boinacoin_duel_challengerName", "",  true);
-        CPH.SetGlobalVar("boinacoin_duel_targetId",       "",  true);
-        CPH.SetGlobalVar("boinacoin_duel_targetName",     "",  true);
-        CPH.SetGlobalVar("boinacoin_duel_amount",         0L,  true);
-        CPH.SetGlobalVar("boinacoin_duel_expiry",         0L,  true);
+        CPH.SetGlobalVar("boinacoin_duel_challengerId", "", true);
+        CPH.SetGlobalVar("boinacoin_duel_challengerName", "", true);
+        CPH.SetGlobalVar("boinacoin_duel_targetId", "", true);
+        CPH.SetGlobalVar("boinacoin_duel_targetName", "", true);
+        CPH.SetGlobalVar("boinacoin_duel_amount", 0L, true);
+        CPH.SetGlobalVar("boinacoin_duel_expiry", 0L, true);
     }
 
-    // ── Subida de rango ───────────────────────────────────────
     private void CheckRankUp(string userId, string userName, long balance)
     {
         int oldRank = CPH.GetKickUserVarById<int>(userId, "boinacoin_rank");
@@ -299,18 +326,18 @@ public class CPHInline
         CPH.SetKickUserVarById(userId, "boinacoin_rank", newRank, true);
         CPH.SendKickMessage($"🎉 ¡{userName} sube a {GetRankName(newRank)}!");
 
-        CPH.SetArgument("rankUpUserId",   userId);
+        CPH.SetArgument("rankUpUserId", userId);
         CPH.SetArgument("rankUpUserName", userName);
-        CPH.SetArgument("rankUpNewRank",  newRank);
+        CPH.SetArgument("rankUpNewRank", newRank);
         CPH.RunAction("Boinacoin · RankChecker", false);
     }
 
     private int RankForBalance(long balance)
     {
         if (balance >= 100_000) return 4;
-        if (balance >= 50_000)  return 3;
-        if (balance >= 10_000)  return 2;
-        if (balance >= 1_000)   return 1;
+        if (balance >= 50_000) return 3;
+        if (balance >= 10_000) return 2;
+        if (balance >= 1_000) return 1;
         return 0;
     }
 
