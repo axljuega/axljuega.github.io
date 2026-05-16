@@ -36,15 +36,29 @@ public class CPHInline
         string userId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
         string userName = args.ContainsKey("userName") ? args["userName"].ToString() : "alguien";
 
-        if (string.IsNullOrEmpty(userId)) return false;
+        CPH.LogInfo($"[Boinacoin Debug] Iniciando !presente para {userName} ({userId})");
 
-        // ── 0. Excluir al propio bot y al streamer ───────────
-        // FIX: .UserId en lugar de .Id (KickUserInfo v1.x)
+        if (string.IsNullOrEmpty(userId))
+        {
+            CPH.LogInfo("[Boinacoin Debug] Saliendo por verificación de ID nulo.");
+            return false;
+        }
+
+        // ── 0. Excluir al propio bot (el streamer ahora puede jugar)
         var botInfo = CPH.KickGetBot();
-        if (botInfo != null && userId == botInfo.UserId.ToString()) return false;
+        if (botInfo != null && userId == botInfo.UserId.ToString())
+        {
+            CPH.LogInfo("[Boinacoin Debug] Saliendo: El bot no puede usar !presente.");
+            return false;
+        }
 
-        var broadcasterInfo = CPH.KickGetBroadcaster();
-        if (broadcasterInfo != null && userId == broadcasterInfo.UserId.ToString()) return false;
+        // Bypass de cooldown para afaces y LaChicaDeLaBoina (Testing/Admin)
+        string lowerUser = userName.ToLower().Replace("@", "");
+        if (lowerUser == "afaces" || lowerUser == "lachicadelaboina")
+        {
+            CPH.LogInfo($"[Boinacoin Debug] {userName} detectado. Forzando limpieza de cooldown diario.");
+            CPH.SetKickUserVarById(userId, "boinacoin_daily_claimed", "", true);
+        }
 
         string todayDate = DateTime.UtcNow.ToString("yyyy-MM-dd");
 
@@ -58,6 +72,8 @@ public class CPHInline
             CPH.SendKickMessage(
                 $"⏳ {userName}, ya hiciste !presente hoy. " +
                 $"Saldo: {balance} 🪙 · Racha: {streak} streams 🔥");
+
+            CPH.LogInfo("[Boinacoin Debug] Saliendo por cooldown activo (ya reclamado hoy).");
             return true;
         }
 
@@ -86,18 +102,40 @@ public class CPHInline
         // ── 7. Comprobar subida de rango ─────────────────────
         CheckRankUp(userId, userName, balance2);
 
-        // ── 8. Mensaje al chat ───────────────────────────────
+        // ── 8. Mensaje al chat (Persona Inmersiva) ───────────
+        string rollCallMessage = GetRandomRollCallMessage(userName);
         string multText   = mult > 1.0 ? $" (x{mult:0.##} ⚡)" : "";
         string streakText = BuildStreakText(newStreak);
         CPH.SendKickMessage(
-            $"✅ ¡Presente, {userName}! " +
+            $"{rollCallMessage} " +
             $"+{earned} Boinacoins{multText} · " +
             $"Saldo: {balance2} 🪙 · {streakText}");
 
         // ── 9. Hito de racha: anuncio especial ───────────────
         AnnounceStreakMilestone(userName, newStreak);
 
+        CPH.LogInfo("[Boinacoin Debug] !presente ejecutado con éxito.");
         return true;
+    }
+
+    // ── Mensajes aleatorios de pasar lista ────────────────────
+    private string GetRandomRollCallMessage(string userName)
+    {
+        string[] messages = new string[]
+        {
+            $"¡Presente! *bostezo*... Apuntado en la lista, @{userName}. No te acostumbres.",
+            $"A ver... @{userName}... Sí, ya veo tu boina por aquí. Avanzamos.",
+            $"¡Presente! Otro día más pasando lista... Aquí tienes tus monedas, @{userName}.",
+            $"Te puse el positivo, @{userName}. Deja de gritar en clase.",
+            $"@{userName}, llegas justo a tiempo. No hagas ruido al sentarte.",
+            $"¿@{userName}? Sí, presente. Sigamos con la lección.",
+            $"Anotado, @{userName}. A ver si mañana vienes con la boina más limpia.",
+            $"¡@{userName}! Te he visto entrar por los pelos. Presente.",
+            $"Presente... @{userName}, deja de pasar papelitos a los demás.",
+            $"¡Presente! @{userName}, siéntate de una vez, que distraes al personal."
+        };
+        Random rnd = new Random();
+        return messages[rnd.Next(messages.Length)];
     }
 
     // ── Calcula la nueva racha ────────────────────────────────
