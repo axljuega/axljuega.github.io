@@ -12,6 +12,10 @@
 //  Cómo conectarlo en Streamer.bot:
 //    Acción → trigger "Kick · Chat Message"
 //    Añadir filtro: excluir grupo "Bots"
+//
+//  Arg keys confirmadas via dump (KickChatMessage / CommandTriggered):
+//    userId   → ID numérico del sender (String)
+//    userName → login name del sender  (String)
 // ============================================================
 
 using System;
@@ -23,45 +27,47 @@ public class CPHInline
     private const long RANK_TERCIOPELO = 50_000;
     private const long RANK_LEGENDARIA = 100_000;
 
-    private const long   REWARD_MESSAGE    = 5;
-    private const long   REWARD_DAILY_CHAT = 25;
-    private const int    COOLDOWN_SECONDS  = 60;
+    private const long REWARD_MESSAGE    = 5;
+    private const long REWARD_DAILY_CHAT = 25;
+    private const int  COOLDOWN_SECONDS  = 60;
 
     // ────────────────────────────────────────────────────────
     public bool Execute()
     {
-        string userId   = args.ContainsKey("kickUserId")   ? args["kickUserId"].ToString()   : "";
-        string userName = args.ContainsKey("kickUserName") ? args["kickUserName"].ToString() : "alguien";
+        // FIX: arg keys correctas (sin prefijo "kick")
+        string userId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
+        string userName = args.ContainsKey("userName") ? args["userName"].ToString() : "alguien";
 
         if (string.IsNullOrEmpty(userId)) return false;
 
         long nowUnix = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
 
         // ── 1. Cooldown de 60 segundos ───────────────────────
-        long lastMessageTime = CPH.GetKickUserVar<long>(userId, "boinacoin_chat_last");
+        // FIX: GetKickUserVarById (userId numérico, no userName)
+        long lastMessageTime = CPH.GetKickUserVarById<long>(userId, "boinacoin_chat_last");
         bool onCooldown      = (nowUnix - lastMessageTime) < COOLDOWN_SECONDS;
 
         if (onCooldown)
         {
-            // Aunque no gane puntos, actualizamos la actividad
-            // para que timed_payout.cs sepa que sigue en chat.
             UpdateChatActivity(userId, nowUnix);
             return true;
         }
 
         // ── 2. Registrar timestamp del mensaje ───────────────
-        CPH.SetKickUserVar(userId, "boinacoin_chat_last", nowUnix, true);
+        // FIX: SetKickUserVarById
+        CPH.SetKickUserVarById(userId, "boinacoin_chat_last", nowUnix, true);
         UpdateChatActivity(userId, nowUnix);
 
         // ── 3. Bonus primer mensaje del día ──────────────────
-        long dailyBonus   = 0;
-        string todayDate  = DateTime.UtcNow.ToString("yyyy-MM-dd");
-        string lastChatDay = CPH.GetKickUserVar<string>(userId, "boinacoin_chat_day") ?? "";
+        long   dailyBonus  = 0;
+        string todayDate   = DateTime.UtcNow.ToString("yyyy-MM-dd");
+        // FIX: GetKickUserVarById
+        string lastChatDay = CPH.GetKickUserVarById<string>(userId, "boinacoin_chat_day") ?? "";
 
         if (lastChatDay != todayDate)
         {
             dailyBonus = REWARD_DAILY_CHAT;
-            CPH.SetKickUserVar(userId, "boinacoin_chat_day", todayDate, true);
+            CPH.SetKickUserVarById(userId, "boinacoin_chat_day", todayDate, true);
         }
 
         // ── 4. Calcular recompensa total ─────────────────────
@@ -70,26 +76,25 @@ public class CPHInline
         long   earned     = (long)Math.Floor(baseReward * mult);
 
         // ── 5. Actualizar saldo ──────────────────────────────
-        long balance = CPH.GetKickUserVar<long>(userId, "boinacoin") + earned;
-        CPH.SetKickUserVar(userId, "boinacoin", balance, true);
+        long balance = CPH.GetKickUserVarById<long>(userId, "boinacoin") + earned;
+        CPH.SetKickUserVarById(userId, "boinacoin", balance, true);
 
         // ── 6. Estadística histórica ─────────────────────────
-        long totalEarned = CPH.GetKickUserVar<long>(userId, "boinacoin_total_earned") + earned;
-        CPH.SetKickUserVar(userId, "boinacoin_total_earned", totalEarned, true);
+        long totalEarned = CPH.GetKickUserVarById<long>(userId, "boinacoin_total_earned") + earned;
+        CPH.SetKickUserVarById(userId, "boinacoin_total_earned", totalEarned, true);
 
         // ── 7. Timestamp antiinactividad ─────────────────────
-        CPH.SetKickUserVar(userId, "boinacoin_last_seen", nowUnix, true);
+        CPH.SetKickUserVarById(userId, "boinacoin_last_seen", nowUnix, true);
 
         // ── 8. Comprobar subida de rango ─────────────────────
         CheckRankUp(userId, userName, balance);
 
         // ── 9. Mensaje de bienvenida solo en el bonus diario ─
-        // No spameamos el chat en cada mensaje, solo cuando hay
-        // algo especial que destacar (el bonus del primer mensaje).
         if (dailyBonus > 0)
         {
             string multText = mult > 1.0 ? $" (x{mult:0.##} ⚡)" : "";
-            CPH.SendMessage(
+            // FIX: SendKickMessage (no SendMessage genérico)
+            CPH.SendKickMessage(
                 $"👋 ¡Buen día, {userName}! " +
                 $"+{earned} Boinacoins por tu primer mensaje de hoy{multText} · " +
                 $"Saldo: {balance} 🪙");
@@ -99,12 +104,9 @@ public class CPHInline
     }
 
     // ── Actualiza el timestamp de actividad en chat ───────────
-    // timed_payout.cs lo leerá para decidir si el usuario
-    // merece el pago pasivo (+15 cada 10 min).
-    // Condición: último mensaje hace menos de 20 min (1.200 s).
     private void UpdateChatActivity(string userId, long nowUnix)
     {
-        CPH.SetKickUserVar(userId, "boinacoin_chat_active", nowUnix, true);
+        CPH.SetKickUserVarById(userId, "boinacoin_chat_active", nowUnix, true);
     }
 
     // ── Multiplicador total activo ────────────────────────────
@@ -112,17 +114,17 @@ public class CPHInline
     {
         double m = 1.0;
 
-        double subMult = CPH.GetKickUserVar<double>(userId, "boinacoin_multiplier");
+        double subMult = CPH.GetKickUserVarById<double>(userId, "boinacoin_multiplier");
         if (subMult > 1.0) m *= subMult;
 
         bool horaFeliz = CPH.GetGlobalVar<bool>("boinacoin_horafeliz", true);
         if (horaFeliz) m *= 2.0;
 
-        int streak = CPH.GetKickUserVar<int>(userId, "boinacoin_streak");
+        int streak = CPH.GetKickUserVarById<int>(userId, "boinacoin_streak");
         if      (streak >= 30) m *= 2.0;
         else if (streak >= 7)  m *= 1.5;
 
-        int rank = CPH.GetKickUserVar<int>(userId, "boinacoin_rank");
+        int rank = CPH.GetKickUserVarById<int>(userId, "boinacoin_rank");
         if      (rank == 4) m *= 1.5;
         else if (rank == 3) m *= 1.25;
 
@@ -132,13 +134,14 @@ public class CPHInline
     // ── Subida de rango ───────────────────────────────────────
     private void CheckRankUp(string userId, string userName, long balance)
     {
-        int oldRank = CPH.GetKickUserVar<int>(userId, "boinacoin_rank");
+        int oldRank = CPH.GetKickUserVarById<int>(userId, "boinacoin_rank");
         int newRank = RankForBalance(balance);
 
         if (newRank <= oldRank) return;
 
-        CPH.SetKickUserVar(userId, "boinacoin_rank", newRank, true);
-        CPH.SendMessage($"🎉 ¡{userName} sube a {RankName(newRank)}!");
+        CPH.SetKickUserVarById(userId, "boinacoin_rank", newRank, true);
+        // FIX: SendKickMessage
+        CPH.SendKickMessage($"🎉 ¡{userName} sube a {RankName(newRank)}!");
 
         CPH.SetArgument("rankUpUserId",   userId);
         CPH.SetArgument("rankUpUserName", userName);
