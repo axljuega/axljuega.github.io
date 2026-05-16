@@ -27,6 +27,13 @@ public class CPHInline
 
         if (string.IsNullOrEmpty(userId)) return false;
 
+        // ── 0. Excluir al propio bot y al streamer ───────────
+        var botInfo = CPH.KickGetBot();
+        if (botInfo != null && userId == botInfo.Id.ToString()) return false;
+
+        var broadcasterInfo = CPH.KickGetBroadcaster();
+        if (broadcasterInfo != null && userId == broadcasterInfo.Id.ToString()) return false;
+
         // ── 1. Calcular recompensa con multiplicadores ───────
         const long BASE = 250;
         double mult   = GetMultiplier(userId);

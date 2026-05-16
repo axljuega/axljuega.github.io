@@ -34,6 +34,12 @@ public class CPHInline
         long nowUnix       = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
         int  rewardedCount = 0;
 
+        var botInfo = CPH.KickGetBot();
+        string botId = botInfo?.Id.ToString() ?? "";
+
+        var broadcasterInfo = CPH.KickGetBroadcaster();
+        string broadcasterId = broadcasterInfo?.Id.ToString() ?? "";
+
         foreach (var viewer in viewers)
         {
             // Streamer.bot expone userName y userId en el objeto viewer
@@ -41,6 +47,9 @@ public class CPHInline
             string userName = viewer.UserName?.ToString() ?? "";
 
             if (string.IsNullOrEmpty(userId)) continue;
+
+            // ── Excluir al propio bot y al streamer ───────────
+            if (userId == botId || userId == broadcasterId) continue;
 
             // ── Condición de actividad ───────────────────────
             // Solo cobra quien haya chateado en los últimos 20 min.
@@ -67,7 +76,7 @@ public class CPHInline
             // ── Comprobar subida de rango ────────────────────
             // Sin mensaje de rango aquí para no spamear el chat
             // cada 10 min. El mensaje se emite igualmente desde
-            // CheckRankUp because llama a RankChecker.
+            // CheckRankUp ya que llama a RankChecker.
             CheckRankUp(userId, userName, balance);
 
             rewardedCount++;

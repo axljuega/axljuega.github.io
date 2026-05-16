@@ -28,6 +28,13 @@ public class CPHInline
 
         if (string.IsNullOrEmpty(userId)) return false;
 
+        // ── 0. Excluir al propio bot y al streamer ───────────
+        var botInfo = CPH.KickGetBot();
+        if (botInfo != null && userId == botInfo.Id.ToString()) return false;
+
+        var broadcasterInfo = CPH.KickGetBroadcaster();
+        if (broadcasterInfo != null && userId == broadcasterInfo.Id.ToString()) return false;
+
         // ── 1. Actualizar multiplicador de sub ───────────────
         // Lo guardamos ANTES de calcular la recompensa para que
         // el propio sub ya se beneficie de su nuevo multiplicador.

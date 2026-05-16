@@ -18,13 +18,13 @@ using System;
 public class CPHInline
 {
     private const long PRIZE_MIN           = 500;
-    private const long PRIZE_MAX           = 2_500;
+    private const long PRIZE_MAX           = 5_000;
     private const int  COFRE_TIMEOUT_SECS  = 300; // 5 minutos
 
     // ────────────────────────────────────────────────────────
     public bool Execute()
     {
-        string mode = args.ContainsKey("mode") ? args["mode"].ToString() : "open";
+        string mode = args.ContainsKey("mode") ? args["mode"].ToString() : "spawn";
 
         return mode == "spawn" ? HandleSpawn() : HandleOpen();
     }

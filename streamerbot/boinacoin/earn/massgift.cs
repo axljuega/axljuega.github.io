@@ -29,6 +29,15 @@ public class CPHInline
         string gifterId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
         string gifterName = args.ContainsKey("userName") ? args["userName"].ToString() : "alguien";
 
+        if (string.IsNullOrEmpty(gifterId)) return false;
+
+        // ── 0. Excluir al propio bot y al streamer ───────────
+        var botInfo = CPH.KickGetBot();
+        if (botInfo != null && gifterId == botInfo.Id.ToString()) return false;
+
+        var broadcasterInfo = CPH.KickGetBroadcaster();
+        if (broadcasterInfo != null && gifterId == broadcasterInfo.Id.ToString()) return false;
+
         // Cantidad de subs del mass gift (informativo para el mensaje)
         int quantity = 1;
         if (args.ContainsKey("quantity"))

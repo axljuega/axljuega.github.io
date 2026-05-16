@@ -31,6 +31,15 @@ public class CPHInline
         string userId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
         string userName = args.ContainsKey("userName") ? args["userName"].ToString() : "alguien";
 
+        if (string.IsNullOrEmpty(userId)) return false;
+
+        // ── 0. Excluir al propio bot y al streamer ───────────
+        var botInfo = CPH.KickGetBot();
+        if (botInfo != null && userId == botInfo.Id.ToString()) return false;
+
+        var broadcasterInfo = CPH.KickGetBroadcaster();
+        if (broadcasterInfo != null && userId == broadcasterInfo.Id.ToString()) return false;
+
         // Nº de Kicks enviados en este evento
         int kicksAmount = 0;
         if (args.ContainsKey("amount"))

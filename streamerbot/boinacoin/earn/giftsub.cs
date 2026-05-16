@@ -29,6 +29,15 @@ public class CPHInline
         string gifterId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
         string gifterName = args.ContainsKey("userName") ? args["userName"].ToString() : "alguien";
 
+        if (string.IsNullOrEmpty(gifterId)) return false;
+
+        // ── 0. Excluir al propio bot y al streamer ───────────
+        var botInfo = CPH.KickGetBot();
+        if (botInfo != null && gifterId == botInfo.Id.ToString()) return false;
+
+        var broadcasterInfo = CPH.KickGetBroadcaster();
+        if (broadcasterInfo != null && gifterId == broadcasterInfo.Id.ToString()) return false;
+
         // Datos del receptor (informativo para el mensaje)
         string recipientName = args.ContainsKey("recipientUserName")
             ? args["recipientUserName"].ToString()

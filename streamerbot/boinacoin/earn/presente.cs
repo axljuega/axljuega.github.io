@@ -39,6 +39,13 @@ public class CPHInline
 
         if (string.IsNullOrEmpty(userId)) return false;
 
+        // ── 0. Excluir al propio bot y al streamer ───────────
+        var botInfo = CPH.KickGetBot();
+        if (botInfo != null && userId == botInfo.Id.ToString()) return false;
+
+        var broadcasterInfo = CPH.KickGetBroadcaster();
+        if (broadcasterInfo != null && userId == broadcasterInfo.Id.ToString()) return false;
+
         string todayDate = DateTime.UtcNow.ToString("yyyy-MM-dd");
 
         // ── 1. Guard: solo una vez por stream (día) ──────────
