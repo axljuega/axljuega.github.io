@@ -40,6 +40,14 @@ public class CPHInline
 
         if (string.IsNullOrEmpty(userId)) return false;
 
+        // ── 0. Excluir al propio bot y al streamer ───────────
+        // Evita race conditions en LiteDB y que el bot gane coins
+        var botInfo = CPH.KickGetBot();
+        if (botInfo != null && userId == botInfo.Id.ToString()) return false;
+
+        var broadcasterInfo = CPH.KickGetBroadcaster();
+        if (broadcasterInfo != null && userId == broadcasterInfo.Id.ToString()) return false;
+
         long nowUnix = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
 
         // ── 1. Cooldown de 60 segundos ───────────────────────

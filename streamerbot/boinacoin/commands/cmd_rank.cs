@@ -27,15 +27,15 @@ public class CPHInline
     // ────────────────────────────────────────────────────────
     public bool Execute()
     {
-        string userId   = args.ContainsKey("kickUserId")   ? args["kickUserId"].ToString()   : "";
-        string userName = args.ContainsKey("kickUserName") ? args["kickUserName"].ToString() : "alguien";
+        string userId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
+        string userName = args.ContainsKey("userName") ? args["userName"].ToString() : "alguien";
 
         if (string.IsNullOrEmpty(userId)) return false;
 
         // ── Datos propios ─────────────────────────────────────
-        long balance = CPH.GetKickUserVar<long>(userId, "boinacoin");
-        int  rank    = CPH.GetKickUserVar<int>(userId, "boinacoin_rank");
-        int  streak  = CPH.GetKickUserVar<int>(userId, "boinacoin_streak");
+        long balance = CPH.GetKickUserVarById<long>(userId, "boinacoin");
+        int  rank    = CPH.GetKickUserVarById<int>(userId, "boinacoin_rank");
+        int  streak  = CPH.GetKickUserVarById<int>(userId, "boinacoin_streak");
 
         // ── Obtener ranking global ────────────────────────────
         var allVars = CPH.GetKickUsersVar<long>("boinacoin", true);
@@ -66,7 +66,7 @@ public class CPHInline
             ? $"Posición #{position} de {totalUsers}"
             : $"Posición #{position}";
 
-        CPH.SendMessage(
+        CPH.SendKickMessage(
             $"📊 {rankEmoji} {userName} · {posText} · " +
             $"Saldo: {balance} 🪙 · {rankName}{streakText}{nextRankText}");
 

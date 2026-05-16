@@ -73,7 +73,7 @@ public class CPHInline
             long   balance  = entry.Value;
 
             // ── Comprobar inactividad ─────────────────────────
-            long lastSeen = CPH.GetKickUserVar<long>(userId, "boinacoin_last_seen");
+            long lastSeen = CPH.GetKickUserVarById<long>(userId, "boinacoin_last_seen");
 
             // Si nunca se registró last_seen, saltar (usuario antiguo
             // sin datos; no penalizamos sin certeza)
@@ -90,13 +90,13 @@ public class CPHInline
             if (applied == 0) continue;
 
             // ── Aplicar ───────────────────────────────────────
-            CPH.SetKickUserVar(userId, "boinacoin", newBalance, true);
+            CPH.SetKickUserVarById(userId, "boinacoin", newBalance, true);
 
             // Actualizar rango si baja
-            int oldRank = CPH.GetKickUserVar<int>(userId, "boinacoin_rank");
+            int oldRank = CPH.GetKickUserVarById<int>(userId, "boinacoin_rank");
             int newRank = RankForBalance(newBalance);
             if (newRank < oldRank)
-                CPH.SetKickUserVar(userId, "boinacoin_rank", newRank, true);
+                CPH.SetKickUserVarById(userId, "boinacoin_rank", newRank, true);
 
             // ── Log por usuario ───────────────────────────────
             long daysInactive = daysSinceActive / 86400;
@@ -120,7 +120,7 @@ public class CPHInline
         // (mensaje discreto, sin nombres — privacidad)
         if (penalizedCount > 0)
         {
-            CPH.SendMessage(
+            CPH.SendKickMessage(
                 $"📊 Revisión de inactividad completada · " +
                 $"{penalizedCount} cuenta{(penalizedCount == 1 ? "" : "s")} " +
                 $"con penalización por +30 días sin aparecer.");

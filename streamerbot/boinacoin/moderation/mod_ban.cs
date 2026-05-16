@@ -29,15 +29,15 @@ public class CPHInline
     {
         // Resolver usuario baneado (misma lógica dual que mod_timeout)
         string userId   = args.ContainsKey("targetUserId")   ? args["targetUserId"].ToString()
-                        : args.ContainsKey("kickUserId")         ? args["kickUserId"].ToString()   : "";
+                        : args.ContainsKey("userId")         ? args["userId"].ToString()   : "";
         string userName = args.ContainsKey("targetUserName") ? args["targetUserName"].ToString()
-                        : args.ContainsKey("kickUserName")       ? args["kickUserName"].ToString() : "usuario";
+                        : args.ContainsKey("userName")       ? args["userName"].ToString() : "usuario";
 
         if (string.IsNullOrEmpty(userId)) return false;
 
         // ── 1. Leer datos anteriores para el log ──────────────
-        long oldBalance = CPH.GetKickUserVar<long>(userId, "boinacoin");
-        int  oldRank    = CPH.GetKickUserVar<int>(userId, "boinacoin_rank");
+        long oldBalance = CPH.GetKickUserVarById<long>(userId, "boinacoin");
+        int  oldRank    = CPH.GetKickUserVarById<int>(userId, "boinacoin_rank");
 
         // Si ya estaba en 0 no hay nada que hacer
         if (oldBalance == 0 && oldRank == 0)
@@ -49,18 +49,18 @@ public class CPHInline
         // ── 2. Reset del perfil económico ────────────────────
         // Solo variables de saldo y progreso — no cooldowns ni
         // timestamps (el usuario no volverá a usarlos de todas formas)
-        CPH.SetKickUserVar(userId, "boinacoin",            0L,  true);
-        CPH.SetKickUserVar(userId, "boinacoin_rank",       0,   true);
-        CPH.SetKickUserVar(userId, "boinacoin_multiplier", 0.0, true);
-        CPH.SetKickUserVar(userId, "boinacoin_streak",     0,   true);
-        CPH.SetKickUserVar(userId, "boinacoin_streak_sub", 0,   true);
+        CPH.SetKickUserVarById(userId, "boinacoin",            0L,  true);
+        CPH.SetKickUserVarById(userId, "boinacoin_rank",       0,   true);
+        CPH.SetKickUserVarById(userId, "boinacoin_multiplier", 0.0, true);
+        CPH.SetKickUserVarById(userId, "boinacoin_streak",     0,   true);
+        CPH.SetKickUserVarById(userId, "boinacoin_streak_sub", 0,   true);
         // boinacoin_total_earned se conserva para auditoría
 
         // ── 3. Log de auditoría ───────────────────────────────
         CPH.LogInfo(
             $"[Boinacoin] BAN PERMANENTE · {userName} (id:{userId}) · " +
             $"Saldo borrado: {oldBalance} · Rango borrado: {GetRankName(oldRank)} · " +
-            $"Total histórico conservado: {CPH.GetKickUserVar<long>(userId, "boinacoin_total_earned")}");
+            $"Total histórico conservado: {CPH.GetKickUserVarById<long>(userId, "boinacoin_total_earned")}");
 
         // ── 4. Sin mensaje al chat ────────────────────────────
         // El ban ya es visible para todos. Anunciar además la

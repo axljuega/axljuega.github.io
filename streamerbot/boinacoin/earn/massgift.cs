@@ -26,8 +26,17 @@ public class CPHInline
     // ────────────────────────────────────────────────────────
     public bool Execute()
     {
-        string gifterId   = args.ContainsKey("kickUserId")   ? args["kickUserId"].ToString()   : "";
-        string gifterName = args.ContainsKey("kickUserName") ? args["kickUserName"].ToString() : "alguien";
+        string gifterId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
+        string gifterName = args.ContainsKey("userName") ? args["userName"].ToString() : "alguien";
+
+        if (string.IsNullOrEmpty(gifterId)) return false;
+
+        // ── 0. Excluir al propio bot y al streamer ───────────
+        var botInfo = CPH.KickGetBot();
+        if (botInfo != null && gifterId == botInfo.Id.ToString()) return false;
+
+        var broadcasterInfo = CPH.KickGetBroadcaster();
+        if (broadcasterInfo != null && gifterId == broadcasterInfo.Id.ToString()) return false;
 
         // Cantidad de subs del mass gift (informativo para el mensaje)
         int quantity = 1;
@@ -45,15 +54,15 @@ public class CPHInline
         long   earned = (long)Math.Floor(BASE * mult);
 
         // ── 2. Actualizar saldo del gifter ───────────────────
-        long balance = CPH.GetKickUserVar<long>(gifterId, "boinacoin") + earned;
-        CPH.SetKickUserVar(gifterId, "boinacoin", balance, true);
+        long balance = CPH.GetKickUserVarById<long>(gifterId, "boinacoin") + earned;
+        CPH.SetKickUserVarById(gifterId, "boinacoin", balance, true);
 
         // ── 3. Estadística histórica ─────────────────────────
-        long totalEarned = CPH.GetKickUserVar<long>(gifterId, "boinacoin_total_earned") + earned;
-        CPH.SetKickUserVar(gifterId, "boinacoin_total_earned", totalEarned, true);
+        long totalEarned = CPH.GetKickUserVarById<long>(gifterId, "boinacoin_total_earned") + earned;
+        CPH.SetKickUserVarById(gifterId, "boinacoin_total_earned", totalEarned, true);
 
         // ── 4. Timestamp antiinactividad ─────────────────────
-        CPH.SetKickUserVar(gifterId, "boinacoin_last_seen",
+        CPH.SetKickUserVarById(gifterId, "boinacoin_last_seen",
             DateTimeOffset.UtcNow.ToUnixTimeSeconds(), true);
 
         // ── 5. Comprobar subida de rango ─────────────────────
@@ -62,7 +71,7 @@ public class CPHInline
         // ── 6. Mensaje al chat ───────────────────────────────
         string subWord  = quantity == 1 ? "sub" : "subs";
         string multText = mult > 1.0 ? $" (x{mult:0.##} ⚡)" : "";
-        CPH.SendMessage(
+        CPH.SendKickMessage(
             $"🎁🎁 ¡¡{gifterName} acaba de regalar {quantity} {subWord} al canal!! " +
             $"+{earned} Boinacoins{multText} · Saldo: {balance} 🪙 · " +
             $"¡¡GRACIAS!!");
@@ -75,17 +84,17 @@ public class CPHInline
     {
         double m = 1.0;
 
-        double subMult = CPH.GetKickUserVar<double>(userId, "boinacoin_multiplier");
+        double subMult = CPH.GetKickUserVarById<double>(userId, "boinacoin_multiplier");
         if (subMult > 1.0) m *= subMult;
 
         bool horaFeliz = CPH.GetGlobalVar<bool>("boinacoin_horafeliz", true);
         if (horaFeliz) m *= 2.0;
 
-        int streak = CPH.GetKickUserVar<int>(userId, "boinacoin_streak");
+        int streak = CPH.GetKickUserVarById<int>(userId, "boinacoin_streak");
         if      (streak >= 30) m *= 2.0;
         else if (streak >= 7)  m *= 1.5;
 
-        int rank = CPH.GetKickUserVar<int>(userId, "boinacoin_rank");
+        int rank = CPH.GetKickUserVarById<int>(userId, "boinacoin_rank");
         if      (rank == 4) m *= 1.5;
         else if (rank == 3) m *= 1.25;
 
@@ -95,13 +104,13 @@ public class CPHInline
     // ── Subida de rango ───────────────────────────────────────
     private void CheckRankUp(string userId, string userName, long balance)
     {
-        int oldRank = CPH.GetKickUserVar<int>(userId, "boinacoin_rank");
+        int oldRank = CPH.GetKickUserVarById<int>(userId, "boinacoin_rank");
         int newRank = RankForBalance(balance);
 
         if (newRank <= oldRank) return;
 
-        CPH.SetKickUserVar(userId, "boinacoin_rank", newRank, true);
-        CPH.SendMessage($"🎉 ¡{userName} sube a {RankName(newRank)}!");
+        CPH.SetKickUserVarById(userId, "boinacoin_rank", newRank, true);
+        CPH.SendKickMessage($"🎉 ¡{userName} sube a {RankName(newRank)}!");
 
         CPH.SetArgument("rankUpUserId",   userId);
         CPH.SetArgument("rankUpUserName", userName);

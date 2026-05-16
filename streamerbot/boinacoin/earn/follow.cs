@@ -22,10 +22,17 @@ public class CPHInline
     public bool Execute()
     {
         // Datos del evento
-        string userId   = args.ContainsKey("kickUserId")   ? args["kickUserId"].ToString()   : "";
-        string userName = args.ContainsKey("kickUserName") ? args["kickUserName"].ToString() : "alguien";
+        string userId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
+        string userName = args.ContainsKey("userName") ? args["userName"].ToString() : "alguien";
 
         if (string.IsNullOrEmpty(userId)) return false;
+
+        // ── 0. Excluir al propio bot y al streamer ───────────
+        var botInfo = CPH.KickGetBot();
+        if (botInfo != null && userId == botInfo.Id.ToString()) return false;
+
+        var broadcasterInfo = CPH.KickGetBroadcaster();
+        if (broadcasterInfo != null && userId == broadcasterInfo.Id.ToString()) return false;
 
         // ── 1. Calcular recompensa con multiplicadores ───────
         const long BASE = 250;
@@ -33,15 +40,15 @@ public class CPHInline
         long   earned = (long)Math.Floor(BASE * mult);
 
         // ── 2. Actualizar saldo ──────────────────────────────
-        long balance = CPH.GetKickUserVar<long>(userId, "boinacoin") + earned;
-        CPH.SetKickUserVar(userId, "boinacoin", balance, true);
+        long balance = CPH.GetKickUserVarById<long>(userId, "boinacoin") + earned;
+        CPH.SetKickUserVarById(userId, "boinacoin", balance, true);
 
         // ── 3. Estadística histórica ─────────────────────────
-        long totalEarned = CPH.GetKickUserVar<long>(userId, "boinacoin_total_earned") + earned;
-        CPH.SetKickUserVar(userId, "boinacoin_total_earned", totalEarned, true);
+        long totalEarned = CPH.GetKickUserVarById<long>(userId, "boinacoin_total_earned") + earned;
+        CPH.SetKickUserVarById(userId, "boinacoin_total_earned", totalEarned, true);
 
         // ── 4. Timestamp antiinactividad ─────────────────────
-        CPH.SetKickUserVar(userId, "boinacoin_last_seen",
+        CPH.SetKickUserVarById(userId, "boinacoin_last_seen",
             DateTimeOffset.UtcNow.ToUnixTimeSeconds(), true);
 
         // ── 5. Comprobar subida de rango ─────────────────────
@@ -49,7 +56,7 @@ public class CPHInline
 
         // ── 6. Mensaje de bienvenida ─────────────────────────
         string multText = mult > 1.0 ? $" (x{mult:0.##} ⚡)" : "";
-        CPH.SendMessage(
+        CPH.SendKickMessage(
             $"🎩 ¡Bienvenid@ {userName}! +{earned} Boinacoins por el follow{multText} · " +
             $"Saldo total: {balance} 🪙");
 
@@ -62,7 +69,7 @@ public class CPHInline
         double m = 1.0;
 
         // Multiplicador de sub tier (guardado en boinacoin_multiplier por sub.cs / resub.cs)
-        double subMult = CPH.GetKickUserVar<double>(userId, "boinacoin_multiplier");
+        double subMult = CPH.GetKickUserVarById<double>(userId, "boinacoin_multiplier");
         if (subMult > 1.0) m *= subMult;
 
         // Hora feliz global (activada por cmd_horafeliz.cs)
@@ -70,12 +77,12 @@ public class CPHInline
         if (horaFeliz) m *= 2.0;
 
         // Racha de asistencia (boinacoin_streak actualizado por presente.cs)
-        int streak = CPH.GetKickUserVar<int>(userId, "boinacoin_streak");
+        int streak = CPH.GetKickUserVarById<int>(userId, "boinacoin_streak");
         if      (streak >= 30) m *= 2.0;
         else if (streak >= 7)  m *= 1.5;
 
         // Bonus de rango alto
-        int rank = CPH.GetKickUserVar<int>(userId, "boinacoin_rank");
+        int rank = CPH.GetKickUserVarById<int>(userId, "boinacoin_rank");
         if      (rank == 4) m *= 1.5;   // Legendaria
         else if (rank == 3) m *= 1.25;  // Terciopelo
 
@@ -85,13 +92,13 @@ public class CPHInline
     // ── Comprueba si el usuario sube de rango ────────────────
     private void CheckRankUp(string userId, string userName, long balance)
     {
-        int oldRank = CPH.GetKickUserVar<int>(userId, "boinacoin_rank");
+        int oldRank = CPH.GetKickUserVarById<int>(userId, "boinacoin_rank");
         int newRank = RankForBalance(balance);
 
         if (newRank <= oldRank) return;
 
-        CPH.SetKickUserVar(userId, "boinacoin_rank", newRank, true);
-        CPH.SendMessage($"🎉 ¡{userName} sube a {RankName(newRank)}!");
+        CPH.SetKickUserVarById(userId, "boinacoin_rank", newRank, true);
+        CPH.SendKickMessage($"🎉 ¡{userName} sube a {RankName(newRank)}!");
 
         // Almacena el nuevo rango como argumento para que rank_checker.cs
         // (acción encadenada) dispare el webhook de Discord si corresponde.

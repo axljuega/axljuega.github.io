@@ -47,7 +47,7 @@ public class CPHInline
         string userName = args.ContainsKey("rankUpUserName") ? args["rankUpUserName"].ToString() : "alguien";
         int    newRank  = args.ContainsKey("rankUpNewRank")  ? Convert.ToInt32(args["rankUpNewRank"]) : 0;
 
-        if (string.IsNullOrEmpty(userId) || newRank < 1 || newRank > 4) return false;
+        if (string.IsNullOrEmpty(userName) || newRank < 1 || newRank > 4) return false;
 
         // ── 1. Guard antiduplicado ────────────────────────────
         // Comprobamos que el rango guardado en la variable del
@@ -56,32 +56,51 @@ public class CPHInline
         // podríamos detectar una doble llamada.
         // Usamos una variable de "último rango anunciado" separada
         // del rango real para no interferir con la lógica de rango.
-        int lastAnnounced = CPH.GetKickUserVar<int>(userId, "boinacoin_rank_announced");
+
+        int lastAnnounced = 0;
+        if (!string.IsNullOrEmpty(userId)) {
+             lastAnnounced = CPH.GetKickUserVarById<int>(userId, "boinacoin_rank_announced");
+        } else {
+             lastAnnounced = CPH.GetKickUserVar<int>(userName, "boinacoin_rank_announced");
+        }
+
         if (lastAnnounced >= newRank)
         {
             CPH.LogInfo($"[Boinacoin] RankChecker: {userName} rango {newRank} ya anunciado, omitiendo.");
             return true;
         }
 
-        CPH.SetKickUserVar(userId, "boinacoin_rank_announced", newRank, true);
+        if (!string.IsNullOrEmpty(userId)) {
+            CPH.SetKickUserVarById(userId, "boinacoin_rank_announced", newRank, true);
+        } else {
+            CPH.SetKickUserVar(userName, "boinacoin_rank_announced", newRank, true);
+        }
 
         // ── 2. Bonus de Boinacoins por alcanzar el rango ─────
         long bonus = newRank < RANK_BONUS.Length ? RANK_BONUS[newRank] : 0;
 
         if (bonus > 0)
         {
-            long balance = CPH.GetKickUserVar<long>(userId, "boinacoin") + bonus;
-            CPH.SetKickUserVar(userId, "boinacoin", balance, true);
+            if (!string.IsNullOrEmpty(userId)) {
+                long balance = CPH.GetKickUserVarById<long>(userId, "boinacoin") + bonus;
+                CPH.SetKickUserVarById(userId, "boinacoin", balance, true);
 
-            long totalEarned = CPH.GetKickUserVar<long>(userId, "boinacoin_total_earned") + bonus;
-            CPH.SetKickUserVar(userId, "boinacoin_total_earned", totalEarned, true);
+                long totalEarned = CPH.GetKickUserVarById<long>(userId, "boinacoin_total_earned") + bonus;
+                CPH.SetKickUserVarById(userId, "boinacoin_total_earned", totalEarned, true);
+            } else {
+                long balance = CPH.GetKickUserVar<long>(userName, "boinacoin") + bonus;
+                CPH.SetKickUserVar(userName, "boinacoin", balance, true);
+
+                long totalEarned = CPH.GetKickUserVar<long>(userName, "boinacoin_total_earned") + bonus;
+                CPH.SetKickUserVar(userName, "boinacoin_total_earned", totalEarned, true);
+            }
         }
 
         // ── 3. Anuncio enriquecido en chat ────────────────────
         if (newRank < RANK_MESSAGES.Length)
         {
             string msg = string.Format(RANK_MESSAGES[newRank], userName, bonus);
-            CPH.SendMessage(msg);
+            CPH.SendKickMessage(msg);
         }
 
         // ── 4. Anuncio especial para La Boina Legendaria ──────
@@ -89,7 +108,7 @@ public class CPHInline
         {
             // Mención extra en el stream — pausa dramática incluida
             CPH.Wait(1500);
-            CPH.SendMessage(
+            CPH.SendKickMessage(
                 $"👑👑👑 @{userName} ES LA BOINA LEGENDARIA 👑👑👑 " +
                 $"¡El rango más alto del canal! Merece un aplauso enorme. 🎩🎩🎩");
         }

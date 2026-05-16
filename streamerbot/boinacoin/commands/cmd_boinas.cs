@@ -22,6 +22,10 @@ public class CPHInline
     // ────────────────────────────────────────────────────────
     public bool Execute()
     {
+        // Mitigar race condition si se ejecuta junto a chat_message.cs
+        // Damos margen suficiente para que el script de ganancia persista el saldo
+        CPH.Wait(1000);
+
         // Quien ejecuta el comando
         // Arg keys confirmadas: 'userId' y 'userName' (sin prefijo kick)
         string callerId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
