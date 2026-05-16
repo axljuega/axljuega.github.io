@@ -4,19 +4,16 @@
 //  Permiso: Boina de Lana+ (rank >= 1)
 //
 //  Mecánica:
-//    El bot lanza una moneda.
-//    · Cara (50%) → gana: saldo + cantidad apostada (x2)
-//    · Cruz (50%) → pierde: saldo - cantidad apostada (x0)
-//
-//  Límites antiinflación:
-//    · Mínimo apostable: 10 Boinacoins
-//    · Máximo apostable: el menor valor entre 5.000 y el 20%
-//      del saldo actual del usuario
-//    · Cooldown: 5 minutos por usuario
+//    1. Usuario apuesta X Boinacoins
+//    2. Probabilidad 50% de ganar (dobla apuesta) o perder.
+//    3. Límites:
+//       - Mínimo: 10
+//       - Máximo: 20% del saldo (o 5.000 absoluto)
+//    4. Cooldown: 5 minutos por usuario
 //
 //  Cómo conectarlo en Streamer.bot:
 //    Acción → trigger "Kick · Chat Command · !apostar"
-//    Parse Input activado: input0 = cantidad
+//    Habilitar "Parse Input" para capturar la cantidad
 // ============================================================
 
 using System;
@@ -31,17 +28,17 @@ public class CPHInline
     // ────────────────────────────────────────────────────────
     public bool Execute()
     {
-        string userId   = args.ContainsKey("kickUserId")   ? args["kickUserId"].ToString()   : "";
-        string userName = args.ContainsKey("kickUserName") ? args["kickUserName"].ToString() : "alguien";
+        string userId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
+        string userName = args.ContainsKey("userName") ? args["userName"].ToString() : "alguien";
 
         if (string.IsNullOrEmpty(userId)) return false;
 
         // ── 1. Verificar rango mínimo (Boina de Lana+) ───────
-        int rank = CPH.GetKickUserVar<int>(userId, "boinacoin_rank");
+        int rank = CPH.GetKickUserVarById<int>(userId, "boinacoin_rank");
         if (rank < 1)
         {
-            long toLana = 1_000 - CPH.GetKickUserVar<long>(userId, "boinacoin");
-            CPH.SendMessage(
+            long toLana = 1_000 - CPH.GetKickUserVarById<long>(userId, "boinacoin");
+            CPH.SendKickMessage(
                 $"🔒 {userName}, necesitas ser 🧶 Boina de Lana para apostar. " +
                 $"Te faltan {Math.Max(0, toLana)} Boinacoins.");
             return true;
@@ -52,30 +49,30 @@ public class CPHInline
 
         if (!long.TryParse(rawAmount, out long bet) || bet <= 0)
         {
-            CPH.SendMessage($"❌ {userName}, uso correcto: !apostar cantidad");
+            CPH.SendKickMessage($"❌ {userName}, uso correcto: !apostar cantidad");
             return true;
         }
 
         // ── 3. Cooldown de 5 minutos ──────────────────────────
         long nowUnix     = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-        long lastBet     = CPH.GetKickUserVar<long>(userId, "boinacoin_apostar_last");
+        long lastBet     = CPH.GetKickUserVarById<long>(userId, "boinacoin_apostar_last");
         long secsLeft    = COOLDOWN_SECS - (nowUnix - lastBet);
 
         if (secsLeft > 0)
         {
             int minsLeft = (int)Math.Ceiling(secsLeft / 60.0);
-            CPH.SendMessage(
+            CPH.SendKickMessage(
                 $"⏳ {userName}, cooldown activo. " +
                 $"Puedes volver a apostar en {minsLeft} min.");
             return true;
         }
 
         // ── 4. Validar límites de apuesta ─────────────────────
-        long balance = CPH.GetKickUserVar<long>(userId, "boinacoin");
+        long balance = CPH.GetKickUserVarById<long>(userId, "boinacoin");
 
         if (balance < MIN_BET)
         {
-            CPH.SendMessage($"❌ {userName}, necesitas al menos {MIN_BET} Boinacoins para apostar.");
+            CPH.SendKickMessage($"❌ {userName}, necesitas al menos {MIN_BET} Boinacoins para apostar.");
             return true;
         }
 
@@ -84,13 +81,13 @@ public class CPHInline
 
         if (bet < MIN_BET)
         {
-            CPH.SendMessage($"❌ {userName}, apuesta mínima: {MIN_BET} Boinacoins.");
+            CPH.SendKickMessage($"❌ {userName}, apuesta mínima: {MIN_BET} Boinacoins.");
             return true;
         }
 
         if (bet > maxBet)
         {
-            CPH.SendMessage(
+            CPH.SendKickMessage(
                 $"❌ {userName}, tu apuesta máxima ahora es {maxBet} Boinacoins " +
                 $"(20% de tu saldo o {MAX_BET_ABSOLUTE}, lo que sea menor).");
             return true;
@@ -113,26 +110,26 @@ public class CPHInline
         }
 
         // ── 6. Guardar nuevo saldo ────────────────────────────
-        CPH.SetKickUserVar(userId, "boinacoin", newBalance, true);
+        CPH.SetKickUserVarById(userId, "boinacoin", newBalance, true);
 
         // ── 7. Registrar cooldown ─────────────────────────────
-        CPH.SetKickUserVar(userId, "boinacoin_apostar_last", nowUnix, true);
+        CPH.SetKickUserVarById(userId, "boinacoin_apostar_last", nowUnix, true);
 
         // ── 8. Timestamp antiinactividad ─────────────────────
-        CPH.SetKickUserVar(userId, "boinacoin_last_seen", nowUnix, true);
+        CPH.SetKickUserVarById(userId, "boinacoin_last_seen", nowUnix, true);
 
         // ── 9. Si gana, actualizar histórico ──────────────────
         if (win)
         {
-            long total = CPH.GetKickUserVar<long>(userId, "boinacoin_total_earned") + bet;
-            CPH.SetKickUserVar(userId, "boinacoin_total_earned", total, true);
+            long total = CPH.GetKickUserVarById<long>(userId, "boinacoin_total_earned") + bet;
+            CPH.SetKickUserVarById(userId, "boinacoin_total_earned", total, true);
 
             // Comprobar subida de rango solo al ganar
             CheckRankUp(userId, userName, newBalance);
         }
 
         // ── 10. Mensaje al chat ───────────────────────────────
-        CPH.SendMessage(resultMsg);
+        CPH.SendKickMessage(resultMsg);
 
         return true;
     }
@@ -140,13 +137,13 @@ public class CPHInline
     // ── Subida de rango ───────────────────────────────────────
     private void CheckRankUp(string userId, string userName, long balance)
     {
-        int oldRank = CPH.GetKickUserVar<int>(userId, "boinacoin_rank");
+        int oldRank = CPH.GetKickUserVarById<int>(userId, "boinacoin_rank");
         int newRank = RankForBalance(balance);
 
         if (newRank <= oldRank) return;
 
-        CPH.SetKickUserVar(userId, "boinacoin_rank", newRank, true);
-        CPH.SendMessage($"🎉 ¡{userName} sube a {GetRankName(newRank)}!");
+        CPH.SetKickUserVarById(userId, "boinacoin_rank", newRank, true);
+        CPH.SendKickMessage($"🎉 ¡{userName} sube a {GetRankName(newRank)}!");
 
         CPH.SetArgument("rankUpUserId",   userId);
         CPH.SetArgument("rankUpUserName", userName);

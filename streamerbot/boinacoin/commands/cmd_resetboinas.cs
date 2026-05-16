@@ -29,8 +29,8 @@ public class CPHInline
     // ────────────────────────────────────────────────────────
     public bool Execute()
     {
-        string callerId   = args.ContainsKey("kickUserId")   ? args["kickUserId"].ToString()   : "";
-        string callerName = args.ContainsKey("kickUserName") ? args["kickUserName"].ToString() : "alguien";
+        string callerId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
+        string callerName = args.ContainsKey("userName") ? args["userName"].ToString() : "alguien";
 
         if (string.IsNullOrEmpty(callerId)) return false;
 
@@ -51,49 +51,42 @@ public class CPHInline
 
         if (string.IsNullOrEmpty(rawTarget))
         {
-            CPH.SendMessage("❌ Uso: !resetboinas @usuario");
+            CPH.SendKickMessage("❌ Uso: !resetboinas @usuario");
             return true;
         }
 
         // ── 3. Resolver usuario ───────────────────────────────
         string targetName = rawTarget.TrimStart('@');
-        string targetId   = CPH.KickGetUserIdForUser(targetName);
-
-        if (string.IsNullOrEmpty(targetId))
-        {
-            CPH.SendMessage($"❌ No encuentro a @{targetName} en la base de datos.");
-            return true;
-        }
 
         // ── 4. Guardar datos anteriores para el log ───────────
-        long oldBalance = CPH.GetKickUserVar<long>(targetId, "boinacoin");
-        int  oldRank    = CPH.GetKickUserVar<int>(targetId, "boinacoin_rank");
+        long oldBalance = CPH.GetKickUserVar<long>(targetName, "boinacoin");
+        int  oldRank    = CPH.GetKickUserVar<int>(targetName, "boinacoin_rank");
 
         // ── 5. Reset completo del perfil ──────────────────────
-        CPH.SetKickUserVar(targetId, "boinacoin",              0L,   true);
-        CPH.SetKickUserVar(targetId, "boinacoin_rank",         0,    true);
-        CPH.SetKickUserVar(targetId, "boinacoin_multiplier",   0.0,  true);
-        CPH.SetKickUserVar(targetId, "boinacoin_streak",       0,    true);
-        CPH.SetKickUserVar(targetId, "boinacoin_streak_sub",   0,    true);
-        CPH.SetKickUserVar(targetId, "boinacoin_streak_date",  "",   true);
-        CPH.SetKickUserVar(targetId, "boinacoin_daily_claimed","",   true);
-        CPH.SetKickUserVar(targetId, "boinacoin_chat_day",     "",   true);
-        CPH.SetKickUserVar(targetId, "boinacoin_chat_last",    0L,   true);
-        CPH.SetKickUserVar(targetId, "boinacoin_chat_active",  0L,   true);
-        CPH.SetKickUserVar(targetId, "boinacoin_last_seen",    0L,   true);
-        CPH.SetKickUserVar(targetId, "boinacoin_apostar_last", 0L,   true);
-        CPH.SetKickUserVar(targetId, "boinacoin_regalar_last", 0L,   true);
+        CPH.SetKickUserVar(targetName, "boinacoin",              0L,   true);
+        CPH.SetKickUserVar(targetName, "boinacoin_rank",         0,    true);
+        CPH.SetKickUserVar(targetName, "boinacoin_multiplier",   0.0,  true);
+        CPH.SetKickUserVar(targetName, "boinacoin_streak",       0,    true);
+        CPH.SetKickUserVar(targetName, "boinacoin_streak_sub",   0,    true);
+        CPH.SetKickUserVar(targetName, "boinacoin_streak_date",  "",   true);
+        CPH.SetKickUserVar(targetName, "boinacoin_daily_claimed","",   true);
+        CPH.SetKickUserVar(targetName, "boinacoin_chat_day",     "",   true);
+        CPH.SetKickUserVar(targetName, "boinacoin_chat_last",    0L,   true);
+        CPH.SetKickUserVar(targetName, "boinacoin_chat_active",  0L,   true);
+        CPH.SetKickUserVar(targetName, "boinacoin_last_seen",    0L,   true);
+        CPH.SetKickUserVar(targetName, "boinacoin_apostar_last", 0L,   true);
+        CPH.SetKickUserVar(targetName, "boinacoin_regalar_last", 0L,   true);
         // boinacoin_total_earned se conserva intencionalmente
 
         // ── 6. Log interno (no al chat público) ──────────────
         CPH.LogInfo(
-            $"[Boinacoin] RESET · {targetName} (id:{targetId}) · " +
+            $"[Boinacoin] RESET · {targetName} · " +
             $"Saldo borrado: {oldBalance} · Rango borrado: {oldRank} · " +
             $"Ejecutado por: {callerName}");
 
         // ── 7. Mensaje de confirmación (discreto) ─────────────
         // Mensaje mínimo: no conviene publicitar el reset en el chat.
-        CPH.SendMessage(
+        CPH.SendKickMessage(
             $"🛠️ [{callerName}] Perfil Boinacoin de {targetName} reseteado a cero.");
 
         return true;

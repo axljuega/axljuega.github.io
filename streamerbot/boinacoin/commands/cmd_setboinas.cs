@@ -24,8 +24,8 @@ public class CPHInline
     // ────────────────────────────────────────────────────────
     public bool Execute()
     {
-        string modId   = args.ContainsKey("kickUserId")   ? args["kickUserId"].ToString()   : "";
-        string modName = args.ContainsKey("kickUserName") ? args["kickUserName"].ToString() : "mod";
+        string modId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
+        string modName = args.ContainsKey("userName") ? args["userName"].ToString() : "mod";
 
         if (string.IsNullOrEmpty(modId)) return false;
 
@@ -36,7 +36,7 @@ public class CPHInline
 
         if (!isMod && !isStreamer && !isBroadcaster)
         {
-            CPH.SendMessage($"🔒 {modName}, este comando es solo para moderadores.");
+            CPH.SendKickMessage($"🔒 {modName}, este comando es solo para moderadores.");
             return true;
         }
 
@@ -46,48 +46,41 @@ public class CPHInline
 
         if (string.IsNullOrEmpty(rawTarget) || string.IsNullOrEmpty(rawAmount))
         {
-            CPH.SendMessage("❌ Uso: !setboinas @usuario cantidad");
+            CPH.SendKickMessage("❌ Uso: !setboinas @usuario cantidad");
             return true;
         }
 
         // ── 3. Resolver usuario ───────────────────────────────
         string targetName = rawTarget.TrimStart('@');
-        string targetId   = CPH.KickGetUserIdForUser(targetName);
-
-        if (string.IsNullOrEmpty(targetId))
-        {
-            CPH.SendMessage($"❌ No encuentro a @{targetName} en la base de datos.");
-            return true;
-        }
 
         // ── 4. Validar cantidad (≥ 0, no negativa) ───────────
         if (!long.TryParse(rawAmount, out long newAmount) || newAmount < 0)
         {
-            CPH.SendMessage("❌ La cantidad debe ser un número entero positivo (o 0).");
+            CPH.SendKickMessage("❌ La cantidad debe ser un número entero positivo (o 0).");
             return true;
         }
 
         // ── 5. Guardar saldo anterior para el log ─────────────
-        long oldBalance = CPH.GetKickUserVar<long>(targetId, "boinacoin");
+        long oldBalance = CPH.GetKickUserVar<long>(targetName, "boinacoin");
 
         // ── 6. Fijar nuevo saldo ──────────────────────────────
-        CPH.SetKickUserVar(targetId, "boinacoin", newAmount, true);
+        CPH.SetKickUserVar(targetName, "boinacoin", newAmount, true);
 
         // ── 7. Ajustar histórico total ────────────────────────
         // Si el nuevo saldo es mayor, la diferencia va al histórico.
         // Si es menor, no tocamos el histórico (no restamos ganancia histórica).
         if (newAmount > oldBalance)
         {
-            long totalEarned = CPH.GetKickUserVar<long>(targetId, "boinacoin_total_earned");
-            CPH.SetKickUserVar(targetId, "boinacoin_total_earned", totalEarned + (newAmount - oldBalance), true);
+            long totalEarned = CPH.GetKickUserVar<long>(targetName, "boinacoin_total_earned");
+            CPH.SetKickUserVar(targetName, "boinacoin_total_earned", totalEarned + (newAmount - oldBalance), true);
         }
 
         // ── 8. Comprobar cambio de rango ──────────────────────
-        CheckRankChange(targetId, targetName, newAmount);
+        CheckRankChange(targetName, newAmount);
 
         // ── 9. Mensaje de confirmación ────────────────────────
         string arrow = newAmount > oldBalance ? "⬆️" : newAmount < oldBalance ? "⬇️" : "↔️";
-        CPH.SendMessage(
+        CPH.SendKickMessage(
             $"🛠️ [{modName}] Saldo de {targetName} fijado a {newAmount} 🪙 " +
             $"{arrow} (antes: {oldBalance})");
 
@@ -95,27 +88,26 @@ public class CPHInline
     }
 
     // ── Gestiona subida y bajada de rango ─────────────────────
-    private void CheckRankChange(string userId, string userName, long balance)
+    private void CheckRankChange(string userName, long balance)
     {
-        int oldRank = CPH.GetKickUserVar<int>(userId, "boinacoin_rank");
+        int oldRank = CPH.GetKickUserVar<int>(userName, "boinacoin_rank");
         int newRank = RankForBalance(balance);
 
         if (newRank == oldRank) return;
 
-        CPH.SetKickUserVar(userId, "boinacoin_rank", newRank, true);
+        CPH.SetKickUserVar(userName, "boinacoin_rank", newRank, true);
 
         if (newRank > oldRank)
         {
-            CPH.SendMessage($"🎉 ¡{userName} sube a {GetRankName(newRank)}!");
+            CPH.SendKickMessage($"🎉 ¡{userName} sube a {GetRankName(newRank)}!");
 
-            CPH.SetArgument("rankUpUserId",   userId);
             CPH.SetArgument("rankUpUserName", userName);
             CPH.SetArgument("rankUpNewRank",  newRank);
             CPH.RunAction("Boinacoin · RankChecker", false);
         }
         else
         {
-            CPH.SendMessage(
+            CPH.SendKickMessage(
                 $"⬇️ {userName} baja a {GetRankName(newRank)} " +
                 $"(antes: {GetRankName(oldRank)}).");
         }

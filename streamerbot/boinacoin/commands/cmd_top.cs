@@ -28,7 +28,7 @@ public class CPHInline
     // ────────────────────────────────────────────────────────
     public bool Execute()
     {
-        string callerName = args.ContainsKey("kickUserName") ? args["kickUserName"].ToString() : "alguien";
+        string callerName = args.ContainsKey("userName") ? args["userName"].ToString() : "alguien";
 
         // ── Obtener todos los registros de "boinacoin" ───────
         // GetUsersVar devuelve List<UserVariableValue<T>> con
@@ -37,7 +37,7 @@ public class CPHInline
 
         if (allVars == null || allVars.Count == 0)
         {
-            CPH.SendMessage($"📊 Todavía no hay nadie en el ranking, {callerName}. ¡Sé el primero!");
+            CPH.SendKickMessage($"📊 Todavía no hay nadie en el ranking, {callerName}. ¡Sé el primero!");
             return true;
         }
 
@@ -49,7 +49,7 @@ public class CPHInline
 
         if (filtered.Count == 0)
         {
-            CPH.SendMessage("📊 Aún nadie tiene Boinacoins. ¡El ranking está vacío!");
+            CPH.SendKickMessage("📊 Aún nadie tiene Boinacoins. ¡El ranking está vacío!");
             return true;
         }
 
@@ -72,13 +72,13 @@ public class CPHInline
             string medal    = i < medals.Length ? medals[i] : $"{i + 1}.";
             string name     = top[i].UserName;
             long   balance  = top[i].Value;
-            int    rank     = CPH.GetKickUserVar<int>(top[i].UserId, "boinacoin_rank");
+            int    rank     = CPH.GetKickUserVarById<int>(top[i].UserId, "boinacoin_rank");
             string rankEmoji = GetRankEmoji(rank);
 
             sb.Append($"{medal} {name} {rankEmoji} ({FormatNumber(balance)})  ");
         }
 
-        CPH.SendMessage(sb.ToString().TrimEnd());
+        CPH.SendKickMessage(sb.ToString().TrimEnd());
 
         return true;
     }

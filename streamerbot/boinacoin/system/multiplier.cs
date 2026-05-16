@@ -69,7 +69,7 @@ public class CPHInline
         //   Sub activa   → 1.5
         //   ≥ 6 meses    → 2.0
         //   ≥ 12 meses   → 2.5
-        double subMult = CPH.GetKickUserVar<double>(userId, "boinacoin_multiplier");
+        double subMult = CPH.GetKickUserVarById<double>(userId, "boinacoin_multiplier");
         if (subMult > 1.0) m *= subMult;
 
         // ── 2. Hora Feliz (global) ────────────────────────────
@@ -80,12 +80,12 @@ public class CPHInline
         if (horaFeliz && nowUnix < hfExpiry) m *= 2.0;
 
         // ── 3. Racha de asistencia a streams ─────────────────
-        int streak = CPH.GetKickUserVar<int>(userId, "boinacoin_streak");
+        int streak = CPH.GetKickUserVarById<int>(userId, "boinacoin_streak");
         if      (streak >= 30) m *= 2.0;
         else if (streak >= 7)  m *= 1.5;
 
         // ── 4. Bonus permanente por rango alto ────────────────
-        int rank = CPH.GetKickUserVar<int>(userId, "boinacoin_rank");
+        int rank = CPH.GetKickUserVarById<int>(userId, "boinacoin_rank");
         if      (rank == 4) m *= 1.5;   // La Boina Legendaria
         else if (rank == 3) m *= 1.25;  // Boina de Terciopelo
 
@@ -97,22 +97,4 @@ public class CPHInline
 
         return m;
     }
-
-    // ════════════════════════════════════════════════════════
-    //  Tabla de referencia — todos los multiplicadores posibles
-    // ════════════════════════════════════════════════════════
-    //
-    //  Caso                           Factores          Total
-    //  ─────────────────────────────────────────────────────
-    //  Sub 12m + HoraFeliz + Ley.     2.5 × 2.0 × 1.5  = x7.5
-    //  Sub 12m + Racha30 + Ley.       2.5 × 2.0 × 1.5  = x7.5
-    //  Sub 6m  + HoraFeliz + Terc.    2.0 × 2.0 × 1.25 = x5.0
-    //  Sub act + Racha7               1.5 × 1.5         = x2.25
-    //  Sin sub + HoraFeliz            1.0 × 2.0         = x2.0
-    //  Sin sub + sin eventos          1.0               = x1.0
-    //
-    //  Máximo teórico (sub 12m + HoraFeliz + Racha30 + Ley + Aniv):
-    //    2.5 × 2.0 × 2.0 × 1.5 × 3.0 = x45.0
-    //    → Considera poner un cap si esto te parece excesivo.
-    // ════════════════════════════════════════════════════════
 }

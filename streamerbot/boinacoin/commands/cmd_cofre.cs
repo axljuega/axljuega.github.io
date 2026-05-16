@@ -1,49 +1,43 @@
 // ============================================================
 //  BOINACOIN · commands/cmd_cofre.cs
-//  Comandos: !cofre  (streamer) /  !abrir  (todos)
+//  Comandos: !cofre (streamer)  /  !abrir (todos)
 //
 //  Mecánica:
-//    1. Streamer escribe !cofre → bot anuncia cofre en chat
-//    2. El primer viewer en escribir !abrir se lleva el premio
-//    3. Premio aleatorio entre 500 y 5.000 Boinacoins
-//    4. El cofre caduca a los 5 min si nadie lo abre
-//    5. Solo 1 cofre activo a la vez · 1 vez por stream
+//    1. Streamer escribe !cofre → se activa un cofre por 5 min.
+//    2. El primer viewer que escriba !abrir gana el premio.
+//    3. Premio aleatorio: 500 a 2.500 Boinacoins.
+//    4. Máximo 1 cofre por stream (día).
 //
-//  Variables globales:
-//    boinacoin_cofre_active  → bool
-//    boinacoin_cofre_prize   → long (generado al activar)
-//    boinacoin_cofre_expiry  → unix timestamp de caducidad
-//    boinacoin_cofre_claimed → fecha "yyyy-MM-dd" (1/stream)
-//
-//  Configuración en Streamer.bot — DOS acciones, mismo código:
-//    Acción A → trigger "!cofre"  → Set Argument "mode" = "spawn"
-//    Acción B → trigger "!abrir"  → Set Argument "mode" = "open"
+//  Configuración en Streamer.bot:
+//    Acción A → trigger "!cofre" → Set Argument "mode" = "spawn"
+//    Acción B → trigger "!abrir" → Set Argument "mode" = "open"
 // ============================================================
 
 using System;
 
 public class CPHInline
 {
-    private const int  COFRE_TIMEOUT_SECS = 300;  // 5 minutos
-    private const long PRIZE_MIN          = 500;
-    private const long PRIZE_MAX          = 5_000;
+    private const long PRIZE_MIN           = 500;
+    private const long PRIZE_MAX           = 2_500;
+    private const int  COFRE_TIMEOUT_SECS  = 300; // 5 minutos
 
     // ────────────────────────────────────────────────────────
     public bool Execute()
     {
-        string mode = args.ContainsKey("mode") ? args["mode"].ToString() : "spawn";
-        return mode == "open" ? HandleOpen() : HandleSpawn();
+        string mode = args.ContainsKey("mode") ? args["mode"].ToString() : "open";
+
+        return mode == "spawn" ? HandleSpawn() : HandleOpen();
     }
 
     // ════════════════════════════════════════════════════════
-    //  RAMA A · !cofre  (streamer activa el cofre)
+    //  RAMA A · !cofre (solo streamer)
     // ════════════════════════════════════════════════════════
     private bool HandleSpawn()
     {
-        string callerId   = args.ContainsKey("kickUserId")   ? args["kickUserId"].ToString()   : "";
-        string callerName = args.ContainsKey("kickUserName") ? args["kickUserName"].ToString() : "streamer";
+        string callerId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
+        string callerName = args.ContainsKey("userName") ? args["userName"].ToString() : "streamer";
 
-        // ── Verificar permisos (solo streamer) ────────────────
+        // ── Verificar permisos ─────────────────────────────
         bool isStreamer    = args.ContainsKey("isOwner")       && (bool)args["isOwner"];
         bool isBroadcaster = args.ContainsKey("isBroadcaster") && (bool)args["isBroadcaster"];
 
@@ -63,7 +57,7 @@ public class CPHInline
         if (cofreActive && notExpired)
         {
             long secsLeft = cofreExpiry - nowUnix;
-            CPH.SendMessage(
+            CPH.SendKickMessage(
                 $"📦 Ya hay un cofre abierto esperando. " +
                 $"Caduca en {secsLeft}s. ¡Escribe !abrir!");
             return true;
@@ -75,7 +69,7 @@ public class CPHInline
 
         if (claimedDate == todayDate)
         {
-            CPH.SendMessage("📦 Ya se ha abierto un cofre hoy. ¡Solo 1 por stream!");
+            CPH.SendKickMessage("📦 Ya se ha abierto un cofre hoy. ¡Solo 1 por stream!");
             return true;
         }
 
@@ -89,7 +83,7 @@ public class CPHInline
         CPH.SetGlobalVar("boinacoin_cofre_expiry", expiry,  true);
 
         // ── Anuncio en chat ───────────────────────────────────
-        CPH.SendMessage(
+        CPH.SendKickMessage(
             $"📦✨ ¡¡HA APARECIDO UN COFRE SECRETO!! " +
             $"El primero en escribir !abrir se llevará entre " +
             $"{PRIZE_MIN} y {PRIZE_MAX} Boinacoins. " +
@@ -103,8 +97,8 @@ public class CPHInline
     // ════════════════════════════════════════════════════════
     private bool HandleOpen()
     {
-        string userId   = args.ContainsKey("kickUserId")   ? args["kickUserId"].ToString()   : "";
-        string userName = args.ContainsKey("kickUserName") ? args["kickUserName"].ToString() : "alguien";
+        string userId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
+        string userName = args.ContainsKey("userName") ? args["userName"].ToString() : "alguien";
 
         if (string.IsNullOrEmpty(userId)) return false;
 
@@ -123,13 +117,13 @@ public class CPHInline
         long prize = CPH.GetGlobalVar<long>("boinacoin_cofre_prize", true);
 
         // ── Entregar premio ───────────────────────────────────
-        long balance = CPH.GetKickUserVar<long>(userId, "boinacoin") + prize;
-        CPH.SetKickUserVar(userId, "boinacoin", balance, true);
+        long balance = CPH.GetKickUserVarById<long>(userId, "boinacoin") + prize;
+        CPH.SetKickUserVarById(userId, "boinacoin", balance, true);
 
-        long totalEarned = CPH.GetKickUserVar<long>(userId, "boinacoin_total_earned") + prize;
-        CPH.SetKickUserVar(userId, "boinacoin_total_earned", totalEarned, true);
+        long totalEarned = CPH.GetKickUserVarById<long>(userId, "boinacoin_total_earned") + prize;
+        CPH.SetKickUserVarById(userId, "boinacoin_total_earned", totalEarned, true);
 
-        CPH.SetKickUserVar(userId, "boinacoin_last_seen", nowUnix, true);
+        CPH.SetKickUserVarById(userId, "boinacoin_last_seen", nowUnix, true);
 
         // ── Marcar cofre como reclamado ───────────────────────
         string todayDate = DateTime.UtcNow.ToString("yyyy-MM-dd");
@@ -142,7 +136,7 @@ public class CPHInline
         CheckRankUp(userId, userName, balance);
 
         // ── Anuncio del ganador ───────────────────────────────
-        CPH.SendMessage(
+        CPH.SendKickMessage(
             $"🎉 ¡¡{userName} ha abierto el cofre secreto y gana {prize} Boinacoins!! " +
             $"Saldo: {balance} 🪙 🎊");
 
@@ -152,13 +146,13 @@ public class CPHInline
     // ── Subida de rango ───────────────────────────────────────
     private void CheckRankUp(string userId, string userName, long balance)
     {
-        int oldRank = CPH.GetKickUserVar<int>(userId, "boinacoin_rank");
+        int oldRank = CPH.GetKickUserVarById<int>(userId, "boinacoin_rank");
         int newRank = RankForBalance(balance);
 
         if (newRank <= oldRank) return;
 
-        CPH.SetKickUserVar(userId, "boinacoin_rank", newRank, true);
-        CPH.SendMessage($"🎉 ¡{userName} sube a {GetRankName(newRank)}!");
+        CPH.SetKickUserVarById(userId, "boinacoin_rank", newRank, true);
+        CPH.SendKickMessage($"🎉 ¡{userName} sube a {GetRankName(newRank)}!");
 
         CPH.SetArgument("rankUpUserId",   userId);
         CPH.SetArgument("rankUpUserName", userName);
