@@ -45,15 +45,15 @@ public class CPHInline
         long   earned = (long)Math.Floor(BASE * mult);
 
         // ── 2. Actualizar saldo del gifter ───────────────────
-        long balance = CPH.KickGetUserVar<long>(gifterId, "boinacoin", true) + earned;
-        CPH.KickSetUserVar(gifterId, "boinacoin", balance, true);
+        long balance = CPH.GetKickUserVar<long>(gifterId, "boinacoin") + earned;
+        CPH.SetKickUserVar(gifterId, "boinacoin", balance, true);
 
         // ── 3. Estadística histórica ─────────────────────────
-        long totalEarned = CPH.KickGetUserVar<long>(gifterId, "boinacoin_total_earned", true) + earned;
-        CPH.KickSetUserVar(gifterId, "boinacoin_total_earned", totalEarned, true);
+        long totalEarned = CPH.GetKickUserVar<long>(gifterId, "boinacoin_total_earned") + earned;
+        CPH.SetKickUserVar(gifterId, "boinacoin_total_earned", totalEarned, true);
 
         // ── 4. Timestamp antiinactividad ─────────────────────
-        CPH.KickSetUserVar(gifterId, "boinacoin_last_seen",
+        CPH.SetKickUserVar(gifterId, "boinacoin_last_seen",
             DateTimeOffset.UtcNow.ToUnixTimeSeconds(), true);
 
         // ── 5. Comprobar subida de rango ─────────────────────
@@ -75,17 +75,17 @@ public class CPHInline
     {
         double m = 1.0;
 
-        double subMult = CPH.KickGetUserVar<double>(userId, "boinacoin_multiplier", true);
+        double subMult = CPH.GetKickUserVar<double>(userId, "boinacoin_multiplier");
         if (subMult > 1.0) m *= subMult;
 
         bool horaFeliz = CPH.GetGlobalVar<bool>("boinacoin_horafeliz", true);
         if (horaFeliz) m *= 2.0;
 
-        int streak = CPH.KickGetUserVar<int>(userId, "boinacoin_streak", true);
+        int streak = CPH.GetKickUserVar<int>(userId, "boinacoin_streak");
         if      (streak >= 30) m *= 2.0;
         else if (streak >= 7)  m *= 1.5;
 
-        int rank = CPH.KickGetUserVar<int>(userId, "boinacoin_rank", true);
+        int rank = CPH.GetKickUserVar<int>(userId, "boinacoin_rank");
         if      (rank == 4) m *= 1.5;
         else if (rank == 3) m *= 1.25;
 
@@ -95,12 +95,12 @@ public class CPHInline
     // ── Subida de rango ───────────────────────────────────────
     private void CheckRankUp(string userId, string userName, long balance)
     {
-        int oldRank = CPH.KickGetUserVar<int>(userId, "boinacoin_rank", true);
+        int oldRank = CPH.GetKickUserVar<int>(userId, "boinacoin_rank");
         int newRank = RankForBalance(balance);
 
         if (newRank <= oldRank) return;
 
-        CPH.KickSetUserVar(userId, "boinacoin_rank", newRank, true);
+        CPH.SetKickUserVar(userId, "boinacoin_rank", newRank, true);
         CPH.SendMessage($"🎉 ¡{userName} sube a {RankName(newRank)}!");
 
         CPH.SetArgument("rankUpUserId",   userId);

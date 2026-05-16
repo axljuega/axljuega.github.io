@@ -51,7 +51,7 @@ public class CPHInline
         if (string.IsNullOrEmpty(challengerId)) return false;
 
         // ── Verificar rango mínimo ────────────────────────────
-        int rank = CPH.KickGetUserVar<int>(challengerId, "boinacoin_rank", true);
+        int rank = CPH.GetKickUserVar<int>(challengerId, "boinacoin_rank");
         if (rank < 1)
         {
             CPH.SendMessage($"🔒 {challengerName}, necesitas 🧶 Boina de Lana para duelos.");
@@ -76,7 +76,7 @@ public class CPHInline
 
         // ── Resolver rival ────────────────────────────────────
         string targetName = rawTarget.TrimStart('@');
-        string targetId   = CPH.KickGetUserIdByUserName(targetName);
+        string targetId   = CPH.KickGetUserIdForUser(targetName);
 
         if (string.IsNullOrEmpty(targetId))
         {
@@ -91,7 +91,7 @@ public class CPHInline
         }
 
         // ── Verificar rango del rival ─────────────────────────
-        int targetRank = CPH.KickGetUserVar<int>(targetId, "boinacoin_rank", true);
+        int targetRank = CPH.GetKickUserVar<int>(targetId, "boinacoin_rank");
         if (targetRank < 1)
         {
             CPH.SendMessage($"❌ {challengerName}, {targetName} necesita 🧶 Boina de Lana para duelos.");
@@ -110,7 +110,7 @@ public class CPHInline
         }
 
         // ── Verificar saldo del retador ───────────────────────
-        long challengerBalance = CPH.KickGetUserVar<long>(challengerId, "boinacoin", true);
+        long challengerBalance = CPH.GetKickUserVar<long>(challengerId, "boinacoin");
         if (challengerBalance < amount)
         {
             CPH.SendMessage(
@@ -120,7 +120,7 @@ public class CPHInline
         }
 
         // ── Verificar saldo del rival ─────────────────────────
-        long targetBalance = CPH.KickGetUserVar<long>(targetId, "boinacoin", true);
+        long targetBalance = CPH.GetKickUserVar<long>(targetId, "boinacoin");
         if (targetBalance < amount)
         {
             CPH.SendMessage(
@@ -180,8 +180,8 @@ public class CPHInline
         }
 
         // ── Verificar saldos actuales antes de resolver ───────
-        long challengerBalance = CPH.KickGetUserVar<long>(challengerId, "boinacoin", true);
-        long targetBalance     = CPH.KickGetUserVar<long>(targetId,     "boinacoin", true);
+        long challengerBalance = CPH.GetKickUserVar<long>(challengerId, "boinacoin");
+        long targetBalance     = CPH.GetKickUserVar<long>(targetId, "boinacoin");
 
         if (challengerBalance < amount)
         {
@@ -218,16 +218,16 @@ public class CPHInline
         }
 
         // ── Transferencia ─────────────────────────────────────
-        CPH.KickSetUserVar(winnerId, "boinacoin", winnerOldBalance + amount, true);
-        CPH.KickSetUserVar(loserId,  "boinacoin", loserOldBalance  - amount, true);
+        CPH.SetKickUserVar(winnerId, "boinacoin", winnerOldBalance + amount, true);
+        CPH.SetKickUserVar(loserId,  "boinacoin", loserOldBalance  - amount, true);
 
         // Histórico del ganador
-        long winnerTotal = CPH.KickGetUserVar<long>(winnerId, "boinacoin_total_earned", true) + amount;
-        CPH.KickSetUserVar(winnerId, "boinacoin_total_earned", winnerTotal, true);
+        long winnerTotal = CPH.GetKickUserVar<long>(winnerId, "boinacoin_total_earned") + amount;
+        CPH.SetKickUserVar(winnerId, "boinacoin_total_earned", winnerTotal, true);
 
         // Timestamps
-        CPH.KickSetUserVar(winnerId, "boinacoin_last_seen", nowUnix, true);
-        CPH.KickSetUserVar(loserId,  "boinacoin_last_seen", nowUnix, true);
+        CPH.SetKickUserVar(winnerId, "boinacoin_last_seen", nowUnix, true);
+        CPH.SetKickUserVar(loserId,  "boinacoin_last_seen", nowUnix, true);
 
         // ── Comprobar rango del ganador ───────────────────────
         CheckRankUp(winnerId, winnerName, winnerOldBalance + amount);
@@ -259,12 +259,12 @@ public class CPHInline
     // ── Subida de rango ───────────────────────────────────────
     private void CheckRankUp(string userId, string userName, long balance)
     {
-        int oldRank = CPH.KickGetUserVar<int>(userId, "boinacoin_rank", true);
+        int oldRank = CPH.GetKickUserVar<int>(userId, "boinacoin_rank");
         int newRank = RankForBalance(balance);
 
         if (newRank <= oldRank) return;
 
-        CPH.KickSetUserVar(userId, "boinacoin_rank", newRank, true);
+        CPH.SetKickUserVar(userId, "boinacoin_rank", newRank, true);
         CPH.SendMessage($"🎉 ¡{userName} sube a {GetRankName(newRank)}!");
 
         CPH.SetArgument("rankUpUserId",   userId);

@@ -69,7 +69,7 @@ public class CPHInline
         //   Sub activa   → 1.5
         //   ≥ 6 meses    → 2.0
         //   ≥ 12 meses   → 2.5
-        double subMult = CPH.KickGetUserVar<double>(userId, "boinacoin_multiplier", true);
+        double subMult = CPH.GetKickUserVar<double>(userId, "boinacoin_multiplier");
         if (subMult > 1.0) m *= subMult;
 
         // ── 2. Hora Feliz (global) ────────────────────────────
@@ -80,12 +80,12 @@ public class CPHInline
         if (horaFeliz && nowUnix < hfExpiry) m *= 2.0;
 
         // ── 3. Racha de asistencia a streams ─────────────────
-        int streak = CPH.KickGetUserVar<int>(userId, "boinacoin_streak", true);
+        int streak = CPH.GetKickUserVar<int>(userId, "boinacoin_streak");
         if      (streak >= 30) m *= 2.0;
         else if (streak >= 7)  m *= 1.5;
 
         // ── 4. Bonus permanente por rango alto ────────────────
-        int rank = CPH.KickGetUserVar<int>(userId, "boinacoin_rank", true);
+        int rank = CPH.GetKickUserVar<int>(userId, "boinacoin_rank");
         if      (rank == 4) m *= 1.5;   // La Boina Legendaria
         else if (rank == 3) m *= 1.25;  // Boina de Terciopelo
 

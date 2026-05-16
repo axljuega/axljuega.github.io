@@ -123,13 +123,13 @@ public class CPHInline
         long prize = CPH.GetGlobalVar<long>("boinacoin_cofre_prize", true);
 
         // ── Entregar premio ───────────────────────────────────
-        long balance = CPH.KickGetUserVar<long>(userId, "boinacoin", true) + prize;
-        CPH.KickSetUserVar(userId, "boinacoin", balance, true);
+        long balance = CPH.GetKickUserVar<long>(userId, "boinacoin") + prize;
+        CPH.SetKickUserVar(userId, "boinacoin", balance, true);
 
-        long totalEarned = CPH.KickGetUserVar<long>(userId, "boinacoin_total_earned", true) + prize;
-        CPH.KickSetUserVar(userId, "boinacoin_total_earned", totalEarned, true);
+        long totalEarned = CPH.GetKickUserVar<long>(userId, "boinacoin_total_earned") + prize;
+        CPH.SetKickUserVar(userId, "boinacoin_total_earned", totalEarned, true);
 
-        CPH.KickSetUserVar(userId, "boinacoin_last_seen", nowUnix, true);
+        CPH.SetKickUserVar(userId, "boinacoin_last_seen", nowUnix, true);
 
         // ── Marcar cofre como reclamado ───────────────────────
         string todayDate = DateTime.UtcNow.ToString("yyyy-MM-dd");
@@ -152,12 +152,12 @@ public class CPHInline
     // ── Subida de rango ───────────────────────────────────────
     private void CheckRankUp(string userId, string userName, long balance)
     {
-        int oldRank = CPH.KickGetUserVar<int>(userId, "boinacoin_rank", true);
+        int oldRank = CPH.GetKickUserVar<int>(userId, "boinacoin_rank");
         int newRank = RankForBalance(balance);
 
         if (newRank <= oldRank) return;
 
-        CPH.KickSetUserVar(userId, "boinacoin_rank", newRank, true);
+        CPH.SetKickUserVar(userId, "boinacoin_rank", newRank, true);
         CPH.SendMessage($"🎉 ¡{userName} sube a {GetRankName(newRank)}!");
 
         CPH.SetArgument("rankUpUserId",   userId);
