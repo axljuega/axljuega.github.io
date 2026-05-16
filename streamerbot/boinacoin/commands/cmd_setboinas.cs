@@ -24,8 +24,8 @@ public class CPHInline
     // ────────────────────────────────────────────────────────
     public bool Execute()
     {
-        string modId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
-        string modName = args.ContainsKey("userName") ? args["userName"].ToString() : "mod";
+        string modId   = args.ContainsKey("kickUserId")   ? args["kickUserId"].ToString()   : "";
+        string modName = args.ContainsKey("kickUserName") ? args["kickUserName"].ToString() : "mod";
 
         if (string.IsNullOrEmpty(modId)) return false;
 
@@ -52,7 +52,7 @@ public class CPHInline
 
         // ── 3. Resolver usuario ───────────────────────────────
         string targetName = rawTarget.TrimStart('@');
-        string targetId   = CPH.GetUserIdByUserName(targetName);
+        string targetId   = CPH.KickGetUserIdByUserName(targetName);
 
         if (string.IsNullOrEmpty(targetId))
         {
@@ -68,18 +68,18 @@ public class CPHInline
         }
 
         // ── 5. Guardar saldo anterior para el log ─────────────
-        long oldBalance = CPH.GetUserVar<long>(targetId, "boinacoin", true);
+        long oldBalance = CPH.KickGetUserVar<long>(targetId, "boinacoin", true);
 
         // ── 6. Fijar nuevo saldo ──────────────────────────────
-        CPH.SetUserVar(targetId, "boinacoin", newAmount, true);
+        CPH.KickSetUserVar(targetId, "boinacoin", newAmount, true);
 
         // ── 7. Ajustar histórico total ────────────────────────
         // Si el nuevo saldo es mayor, la diferencia va al histórico.
         // Si es menor, no tocamos el histórico (no restamos ganancia histórica).
         if (newAmount > oldBalance)
         {
-            long totalEarned = CPH.GetUserVar<long>(targetId, "boinacoin_total_earned", true);
-            CPH.SetUserVar(targetId, "boinacoin_total_earned", totalEarned + (newAmount - oldBalance), true);
+            long totalEarned = CPH.KickGetUserVar<long>(targetId, "boinacoin_total_earned", true);
+            CPH.KickSetUserVar(targetId, "boinacoin_total_earned", totalEarned + (newAmount - oldBalance), true);
         }
 
         // ── 8. Comprobar cambio de rango ──────────────────────
@@ -97,12 +97,12 @@ public class CPHInline
     // ── Gestiona subida y bajada de rango ─────────────────────
     private void CheckRankChange(string userId, string userName, long balance)
     {
-        int oldRank = CPH.GetUserVar<int>(userId, "boinacoin_rank", true);
+        int oldRank = CPH.KickGetUserVar<int>(userId, "boinacoin_rank", true);
         int newRank = RankForBalance(balance);
 
         if (newRank == oldRank) return;
 
-        CPH.SetUserVar(userId, "boinacoin_rank", newRank, true);
+        CPH.KickSetUserVar(userId, "boinacoin_rank", newRank, true);
 
         if (newRank > oldRank)
         {

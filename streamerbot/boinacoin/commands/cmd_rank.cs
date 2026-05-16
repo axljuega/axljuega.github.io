@@ -27,18 +27,18 @@ public class CPHInline
     // ────────────────────────────────────────────────────────
     public bool Execute()
     {
-        string userId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
-        string userName = args.ContainsKey("userName") ? args["userName"].ToString() : "alguien";
+        string userId   = args.ContainsKey("kickUserId")   ? args["kickUserId"].ToString()   : "";
+        string userName = args.ContainsKey("kickUserName") ? args["kickUserName"].ToString() : "alguien";
 
         if (string.IsNullOrEmpty(userId)) return false;
 
         // ── Datos propios ─────────────────────────────────────
-        long balance = CPH.GetUserVar<long>(userId, "boinacoin",      true);
-        int  rank    = CPH.GetUserVar<int>(userId,  "boinacoin_rank", true);
-        int  streak  = CPH.GetUserVar<int>(userId,  "boinacoin_streak", true);
+        long balance = CPH.KickGetUserVar<long>(userId, "boinacoin",      true);
+        int  rank    = CPH.KickGetUserVar<int>(userId,  "boinacoin_rank", true);
+        int  streak  = CPH.KickGetUserVar<int>(userId,  "boinacoin_streak", true);
 
         // ── Obtener ranking global ────────────────────────────
-        var allVars = CPH.GetUsersVar<long>("boinacoin", true);
+        var allVars = CPH.KickGetUsersVar<long>("boinacoin", true);
 
         int position   = 1;
         int totalUsers = 0;

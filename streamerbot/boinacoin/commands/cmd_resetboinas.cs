@@ -29,8 +29,8 @@ public class CPHInline
     // ────────────────────────────────────────────────────────
     public bool Execute()
     {
-        string callerId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
-        string callerName = args.ContainsKey("userName") ? args["userName"].ToString() : "alguien";
+        string callerId   = args.ContainsKey("kickUserId")   ? args["kickUserId"].ToString()   : "";
+        string callerName = args.ContainsKey("kickUserName") ? args["kickUserName"].ToString() : "alguien";
 
         if (string.IsNullOrEmpty(callerId)) return false;
 
@@ -57,7 +57,7 @@ public class CPHInline
 
         // ── 3. Resolver usuario ───────────────────────────────
         string targetName = rawTarget.TrimStart('@');
-        string targetId   = CPH.GetUserIdByUserName(targetName);
+        string targetId   = CPH.KickGetUserIdByUserName(targetName);
 
         if (string.IsNullOrEmpty(targetId))
         {
@@ -66,23 +66,23 @@ public class CPHInline
         }
 
         // ── 4. Guardar datos anteriores para el log ───────────
-        long oldBalance = CPH.GetUserVar<long>(targetId, "boinacoin",      true);
-        int  oldRank    = CPH.GetUserVar<int>(targetId,  "boinacoin_rank", true);
+        long oldBalance = CPH.KickGetUserVar<long>(targetId, "boinacoin",      true);
+        int  oldRank    = CPH.KickGetUserVar<int>(targetId,  "boinacoin_rank", true);
 
         // ── 5. Reset completo del perfil ──────────────────────
-        CPH.SetUserVar(targetId, "boinacoin",              0L,   true);
-        CPH.SetUserVar(targetId, "boinacoin_rank",         0,    true);
-        CPH.SetUserVar(targetId, "boinacoin_multiplier",   0.0,  true);
-        CPH.SetUserVar(targetId, "boinacoin_streak",       0,    true);
-        CPH.SetUserVar(targetId, "boinacoin_streak_sub",   0,    true);
-        CPH.SetUserVar(targetId, "boinacoin_streak_date",  "",   true);
-        CPH.SetUserVar(targetId, "boinacoin_daily_claimed","",   true);
-        CPH.SetUserVar(targetId, "boinacoin_chat_day",     "",   true);
-        CPH.SetUserVar(targetId, "boinacoin_chat_last",    0L,   true);
-        CPH.SetUserVar(targetId, "boinacoin_chat_active",  0L,   true);
-        CPH.SetUserVar(targetId, "boinacoin_last_seen",    0L,   true);
-        CPH.SetUserVar(targetId, "boinacoin_apostar_last", 0L,   true);
-        CPH.SetUserVar(targetId, "boinacoin_regalar_last", 0L,   true);
+        CPH.KickSetUserVar(targetId, "boinacoin",              0L,   true);
+        CPH.KickSetUserVar(targetId, "boinacoin_rank",         0,    true);
+        CPH.KickSetUserVar(targetId, "boinacoin_multiplier",   0.0,  true);
+        CPH.KickSetUserVar(targetId, "boinacoin_streak",       0,    true);
+        CPH.KickSetUserVar(targetId, "boinacoin_streak_sub",   0,    true);
+        CPH.KickSetUserVar(targetId, "boinacoin_streak_date",  "",   true);
+        CPH.KickSetUserVar(targetId, "boinacoin_daily_claimed","",   true);
+        CPH.KickSetUserVar(targetId, "boinacoin_chat_day",     "",   true);
+        CPH.KickSetUserVar(targetId, "boinacoin_chat_last",    0L,   true);
+        CPH.KickSetUserVar(targetId, "boinacoin_chat_active",  0L,   true);
+        CPH.KickSetUserVar(targetId, "boinacoin_last_seen",    0L,   true);
+        CPH.KickSetUserVar(targetId, "boinacoin_apostar_last", 0L,   true);
+        CPH.KickSetUserVar(targetId, "boinacoin_regalar_last", 0L,   true);
         // boinacoin_total_earned se conserva intencionalmente
 
         // ── 6. Log interno (no al chat público) ──────────────

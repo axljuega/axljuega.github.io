@@ -19,8 +19,8 @@ public class CPHInline
     public bool Execute()
     {
         // Quien ejecuta el comando
-        string callerId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
-        string callerName = args.ContainsKey("userName") ? args["userName"].ToString() : "alguien";
+        string callerId   = args.ContainsKey("kickUserId")   ? args["kickUserId"].ToString()   : "";
+        string callerName = args.ContainsKey("kickUserName") ? args["kickUserName"].ToString() : "alguien";
 
         if (string.IsNullOrEmpty(callerId)) return false;
 
@@ -39,7 +39,7 @@ public class CPHInline
             string lookupName = rawInput.TrimStart('@');
 
             // Buscar usuario por nombre en Streamer.bot
-            var targetUser = CPH.GetUserIdByUserName(lookupName);
+            var targetUser = CPH.KickGetUserIdByUserName(lookupName);
 
             if (targetUser == null)
             {
@@ -58,11 +58,11 @@ public class CPHInline
         }
 
         // ── Leer datos del objetivo ───────────────────────────
-        long   balance  = CPH.GetUserVar<long>(targetId,   "boinacoin",        true);
-        int    rank     = CPH.GetUserVar<int>(targetId,    "boinacoin_rank",   true);
-        int    streak   = CPH.GetUserVar<int>(targetId,    "boinacoin_streak", true);
-        double subMult  = CPH.GetUserVar<double>(targetId, "boinacoin_multiplier", true);
-        long   total    = CPH.GetUserVar<long>(targetId,   "boinacoin_total_earned", true);
+        long   balance  = CPH.KickGetUserVar<long>(targetId,   "boinacoin",        true);
+        int    rank     = CPH.KickGetUserVar<int>(targetId,    "boinacoin_rank",   true);
+        int    streak   = CPH.KickGetUserVar<int>(targetId,    "boinacoin_streak", true);
+        double subMult  = CPH.KickGetUserVar<double>(targetId, "boinacoin_multiplier", true);
+        long   total    = CPH.KickGetUserVar<long>(targetId,   "boinacoin_total_earned", true);
 
         string rankName  = GetRankName(rank);
         string rankEmoji = GetRankEmoji(rank);
@@ -97,11 +97,11 @@ public class CPHInline
         bool horaFeliz = CPH.GetGlobalVar<bool>("boinacoin_horafeliz", true);
         if (horaFeliz) m *= 2.0;
 
-        int streak = CPH.GetUserVar<int>(userId, "boinacoin_streak", true);
+        int streak = CPH.KickGetUserVar<int>(userId, "boinacoin_streak", true);
         if      (streak >= 30) m *= 2.0;
         else if (streak >= 7)  m *= 1.5;
 
-        int rank = CPH.GetUserVar<int>(userId, "boinacoin_rank", true);
+        int rank = CPH.KickGetUserVar<int>(userId, "boinacoin_rank", true);
         if      (rank == 4) m *= 1.5;
         else if (rank == 3) m *= 1.25;
 
