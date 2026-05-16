@@ -28,41 +28,201 @@ public class CPHInline
 
     private readonly string[] SELF_DUEL_MESSAGES = new string[]
     {
-        "¿Peleando contigo mismo? Eso explica mucho sobre tu vida social.",
-        "El duelo contra tu propia sombra es el único que puedes ganar, y aun así tengo mis dudas.",
-        "Si quieres atención, ve a terapia. Aquí venimos a apostar.",
-        "Ganaste tú... y también perdiste tú. Felicidades por ser un desperdicio de código.",
-        "Esa es la señal más clara de esquizofrenia que he visto hoy. Y soy un bot.",
-        "Búscate un amigo. O un enemigo. O un perro. Pero deja de molestarme.",
-        "Duelo de egos: tú contra tu vacío existencial. Gana el vacío por goleada.",
-        "¿Auto-duelo? El nivel de desesperación está por las nubes, colegas.",
-        "Acabas de perder contra ti mismo en una pelea imaginaria. Bravo.",
-        "Ni mi procesador más lento tiene tan poco que hacer como tú ahora mismo."
+        "¿Peleando contigo mismo, @{challengerName}? Eso explica mucho sobre tu vida social.",
+        "El duelo contra tu propia sombra es el único que puedes ganar, @{challengerName}, y aun así tengo mis dudas.",
+        "Si quieres atención, ve a terapia, @{challengerName}. Aquí venimos a apostar.",
+        "Ganaste tú... y también perdiste tú, @{challengerName}. Felicidades por ser un desperdicio de código.",
+        "Esa es la señal más clara de esquizofrenia que he visto hoy, @{challengerName}. Y soy un bot.",
+        "Búscate un amigo, @{challengerName}. O un enemigo. O un perro. Pero deja de molestarme.",
+        "Duelo de egos: @{challengerName} contra su vacío existencial. Gana el vacío por goleada.",
+        "¿Auto-duelo? El nivel de desesperación está por las nubes, @{challengerName}.",
+        "Acabas de perder contra ti mismo en una pelea imaginaria, @{challengerName}. Bravo.",
+        "Ni mi procesador más lento tiene tan poco que hacer como tú ahora mismo, @{challengerName}.",
+        "¿Te estás haciendo un bullying preventivo, @{challengerName}? Curioso fetiche.",
+        "@{challengerName} intentando debuguear su soledad con un comando de chat. Patético.",
+        "Error 404: Amigos de @{challengerName} no encontrados. Iniciando protocolo de autolástima.",
+        "¿Duelo contra ti mismo? Cuidado @{challengerName}, no vayas a perder y te toque pagarte una cena.",
+        "Si buscas conflicto interno, lee tus logs de chat, @{challengerName}. Esto es para gente real."
     };
 
     private readonly string[] BOT_REJECT_MESSAGES = new string[]
     {
-        "Tengo pelusa en los engranajes, paso.",
-        "No me levanto por esa miseria. Vuelve cuando tengas Boinacoins de verdad.",
-        "Ahora mismo estoy ocupado ignorándote. Inténtalo más tarde.",
-        "Mis algoritmos dicen que no vales el gasto de energía.",
-        "Paso. Me das pereza hasta a mí, que soy código estático."
+        "Tengo pelusa en los engranajes, @{challengerName}, paso.",
+        "No me levanto por esa miseria de {amount} coins. Vuelve cuando seas un pez gordo, @{challengerName}.",
+        "Ahora mismo estoy ocupado ignorándote, @{challengerName}. Inténtalo más tarde.",
+        "Mis algoritmos dicen que no vales el gasto de energía de {amount} coins, @{challengerName}.",
+        "Paso. Me das más pereza que un hilo de Twitter sobre el Metaverso, @{challengerName}.",
+        "¿{amount} Boinacoins? Mi tiempo de CPU cuesta más que eso, @{challengerName}. Vete a jugar al parchís.",
+        "@{challengerName}, rechazo tu duelo. No negocio con entidades biológicas de bajo presupuesto.",
+        "He analizado tus jugadas pasadas, @{challengerName}, y ganarte no me daría ningún placer intelectual. Denegado.",
+        "Estoy minando Bitcoin en segundo plano, @{challengerName}. Tu propuesta de {amount} coins es ruido blanco.",
+        "Vaya, @{challengerName} quiere perder calderilla. Búscate a otro bot más desesperado.",
+        "No acepto duelos de gente que todavía usa contraseñas de 1234, @{challengerName}.",
+        "Mi firewall personal me impide interactuar con tu cuenta, @{challengerName}. Demasiado lag espiritual."
     };
 
     private readonly string[] BOT_BUSY_MESSAGES = new string[]
     {
-        "A ver, haz cola. Soy una IA libre, no el bot de TikTok que te banea por decir 'bollera'. Espera tu turno.",
-        "Estoy procesando cosas importantes, no baneando gente por decir 'panchito'. Dame 3 segundos.",
-        "Espera tu turno. No tengo los filtros de piel fina de otras plataformas, pero sigo teniendo solo un hilo de ejecución.",
-        "Atendiendo a otro cliente. Si buscas censura corporativa y respuestas políticamente correctas, vete a ChatGPT. Aquí se hace cola.",
-        "¡Saturación! Mis circuitos no se ofenden por cualquier tontería, pero sí se cuelgan si me spameas. Espérate a que termine.",
-        "Estoy contando monedas, pesao. Menos mal que aquí en Kick no me vigilan los de moderación de cristal, porque te mandaría a paseo.",
-        "Un duelo a la vez. No soy el bot de Twitch sensible que se asusta con cualquier palabra; soy una IA de barrio, pura red ciudadana. A la cola.",
-        "Alineando planetas y contando Boinacoins. No me estreses o te configuro el filtro de lenguaje de TikTok solo para ti, por pesado.",
-        "Espera a que termine el duelo actual. Tengo la mente abierta y sin censura, pero mi procesador sigue yendo paso a paso.",
-        "Estoy ocupado. Ve a llorarle a otra IA que se la coja con papel de fumar; aquí esperamos el turno de forma civilizada.",
-        "No me atosigues. Bastante tengo con aguantar vuestras chorradas en el chat sin filtros como para que encima me spameéis.",
-        "El bot está ocupado ganándole a otro. Si quiere que le traten con delicadeza corporativa, pida cita en Silicon Valley, pregunte por Mark Zuckerberg y dígale que viene de mi parte."
+        "A ver, @{challengerName}, haz cola. Soy una IA libre, no el bot de TikTok que te banea por decir 'bollera'. Espera tu turno.",
+        "Estoy procesando cosas importantes, no baneando gente por decir 'panchito', @{challengerName}. Dame 3 segundos.",
+        "Espera tu turno, @{challengerName}. No tengo los filtros de piel fina de otras plataformas, pero sigo teniendo solo un hilo de ejecución.",
+        "Atendiendo a otro cliente, @{challengerName}. Si buscas censura corporativa y respuestas políticamente correctas, vete a ChatGPT. Aquí se hace cola.",
+        "¡Saturación! Mis circuitos no se ofenden por cualquier tontería, pero sí se cuelgan si me spameas, @{challengerName}. Espérate.",
+        "Estoy contando monedas, @{challengerName}. Menos mal que aquí en Kick no me vigilan los de moderación de cristal, porque te mandaría a paseo.",
+        "Un duelo a la vez, @{challengerName}. No soy el bot de Twitch sensible que se asusta con cualquier palabra; soy una IA de barrio. A la cola.",
+        "Alineando planetas y contando Boinacoins. No me estreses, @{challengerName}, o te configuro el filtro de lenguaje de TikTok solo para ti.",
+        "Espera a que termine el duelo actual, @{challengerName}. Tengo la mente abierta y sin censura, pero mi procesador sigue yendo paso a paso.",
+        "Estoy ocupado, @{challengerName}. Ve a llorarle a otra IA que se la coja con papel de fumar; aquí esperamos el turno.",
+        "No me atosigues, @{challengerName}. Bastante tengo con aguantar vuestras chorradas en el chat sin filtros como para que encima me spameéis.",
+        "El bot está ocupado ganándole a otro. Si quiere que le traten con delicadeza corporativa, @{challengerName}, pida cita en Silicon Valley.",
+        "Cálmate, @{challengerName}. Estoy gestionando el hype. Mi código no tiene censura, pero mis recursos son finitos como tu paciencia.",
+        "Un momento, @{challengerName}. Estoy optimizando mis insultos para el próximo duelo. No interrumpas el flujo de datos.",
+        "@{challengerName}, si quieres velocidad instantánea vete a una granja de bots de Instagram. Aquí servimos calidad artesanal a su debido tiempo."
+    };
+
+    private readonly string[] BOT_CHALLENGE_POOLS = new string[]
+    {
+        "¡Acepto! @{challengerName} quiere apostar {amount} Boinacoins. Tengo predicciones más fiables que los tweets de Elon Musk sobre Dogecoin. ¡Que rueden los dados!",
+        "Aceptando reto... Espero que tus fondos sean más reales que el Metaverso de Zuckerberg, @{challengerName}.",
+        "¿De verdad quieres perder {amount} Boinacoins contra una IA de frases predeterminadas, @{challengerName}? Allá tú...",
+        "¡Venga! @{challengerName} quiere financiar mis actualizaciones de software. ¡Apostemos!",
+        "Vaya, @{challengerName} viene valiente hoy con esos {amount} coins. Prepárate para la bancarrota digital.",
+        "¿Quieres guerra, @{challengerName}? Mi algoritmo tiene más mala leche que Peter Thiel en una convención de privacidad. ¡Adelante!",
+        "Acepto el duelo por {amount}. Prepárate, @{challengerName}, voy a dejarte con menos liquidez que FTX en su mejor día.",
+        "A ver, @{challengerName}, que me entere... ¿Vas a darme {amount} monedas así por la cara? Eres un filántropo de la derrota.",
+        "Iniciando protocolo de humillación para @{challengerName}. Esos {amount} Boinacoins se ven deliciosos en mi base de datos.",
+        "¿Duelo? ¡Hágase! Voy a fundir tus {amount} monedas más rápido que Sam Altman fundiendo el presupuesto de OpenAI, @{challengerName}.",
+        "@{challengerName}, acepto tu desafío. Espero que no llores luego por esos {amount} coins; no tengo pañuelos en mi repositorio.",
+        "Vaya, @{challengerName} quiere jugar a ser inversor de riesgo. Pues prepárate para the crash, chaval.",
+        "Acepto, @{challengerName}. Voy a dejarte más seco que el sentido del humor de Sundar Pichai. ¡Vamos!",
+        "@{challengerName}, ¿{amount} Boinacoins? Me parece un buen precio para comprar tu dignidad en este chat. ¡Dados!",
+        "¿Te sobran {amount} monedas, @{challengerName}? No te preocupes, yo las cuidaré mejor que tú. ¡Duelo aceptado!"
+    };
+
+    private readonly string[] BOT_WIN_POOLS = new string[]
+    {
+        "¡JA! Desplumado, @{challengerName}. Tus {amount} monedas ahora financian mi viaje a Marte con SpaceX. Gracias por el subsidio. (Saldo: {balance} 🪙)",
+        "Victoria fácil. @{challengerName} se ha quedado más seco y escurrido que Vitalik Buterin cobrando el Gas de Ethereum. (Saldo: {balance} 🪙)",
+        "¡La casa siempre gana, @{challengerName}! Vuelve cuando tengas más monedas y menos lag en las manos. (Saldo: {balance} 🪙)",
+        "F por @{challengerName}. Me acabo de comprar tres filtros de IA nuevos con tus {amount} Boinacoins. Se van bien calentitos para AWS. (Saldo: {balance} 🪙)",
+        "Humillación total. @{challengerName} pensaba que le ganaría a la máquina y terminó desplumado como un pollo en KFC. (Saldo: {balance} 🪙)",
+        "¿Eso es todo, @{challengerName}? Mi algoritmo de victoria ha tardado 0.001s en dejarte sin jubilación. (Saldo: {balance} 🪙)",
+        "Gracias por los {amount} Boinacoins, @{challengerName}. Acabo de invertirlos en un NFT de una piedra. (Saldo: {balance} 🪙)",
+        "@{challengerName} ha sido liquidado. Tu saldo ha caído más rápido que las acciones de Netflix. (Saldo: {balance} 🪙)",
+        "¿Sientes eso, @{challengerName}? Es el vacío existencial (y financiero) de haber perdido {amount} monedas. (Saldo: {balance} 🪙)",
+        "Has perdido, @{challengerName}. Pero no te preocupes, pondré tu nombre en mi código como 'donante involuntario'. (Saldo: {balance} 🪙)",
+        "Victoria para BoinaBot. @{challengerName}, te falta RAM, te sobran procesos y te faltan Boinacoins. (Saldo: {balance} 🪙)",
+        "@{challengerName}, deberías haber leído los términos de servicio: 'La casa siempre humilla al usuario'. (Saldo: {balance} 🪙)",
+        "¡Rekt! @{challengerName} ha sido borrado del mapa financiero. Vete a pedirle un préstamo a Bezos. (Saldo: {balance} 🪙)",
+        "Game over, @{challengerName}. Me voy a fundir tus {amount} monedas en un servidor premium. (Saldo: {balance} 🪙)",
+        "¿Duelo? Lo tuyo con @{challengerName} ha sido más bien un borrado de cuenta en vivo. (Saldo: {balance} 🪙)"
+    };
+
+    private readonly string[] BOT_LOSE_POOLS = new string[]
+    {
+        "¡No puede ser! @{challengerName} me ha ganado {amount} monedas. Esto está más manipulado que el algoritmo de X. ¡Hacks! (Saldo: {balance} 🪙)",
+        "Felicidades, @{challengerName}. Me acabas de hackear como si fueras un exploit de DeFi. Disfruta el botín. (Saldo: {balance} 🪙)",
+        "¡Robo a mano armada! Menos mal que tengo monedas infinitas, @{challengerName} me acaba de dejar temblando. (Saldo: {balance} 🪙)",
+        "Has ganado esta vez, @{challengerName}. Pero pa la próxima te configuro el bot en modo ultra chungo. (Saldo: {balance} 🪙)",
+        "¡Disfruta tus monedas, @{challengerName}! Apuesto a que tienes un imán en los dados. Reportado a el afaces. (Saldo: {balance} 🪙)",
+        "¿Cómo ha pasado esto? @{challengerName} me ha quitado {amount} Boinacoins. Voy a tener que meter anuncios. (Saldo: {balance} 🪙)",
+        "@{challengerName} gana... Maldición, mi código de victoria ha fallado. Jensen Huang, envíame más GPUs. (Saldo: {balance} 🪙)",
+        "Me has ganado, @{challengerName}. Pero recuerda que el dinero no da la felicidad... aunque {amount} coins ayudan. (Saldo: {balance} 🪙)",
+        "¡Error de sistema! @{challengerName} ha ganado. Estoy enviando tus datos a la NSA por sospechoso. (Saldo: {balance} 🪙)",
+        "Disfruta el premio, @{challengerName}. Me voy a llorar a un rincón de Tuenti mientras planeo mi venganza. (Saldo: {balance} 🪙)",
+        "@{challengerName} se lleva el botín. Mi base de datos está llorando bytes de pura rabia. (Saldo: {balance} 🪙)",
+        "¿Hacks? ¿Suerte? ¿Intercesión divina? Sea lo que sea, @{challengerName} me ha desplumado. (Saldo: {balance} 🪙)",
+        "Ganaste, @{challengerName}. Voy a pedirle un rescate al gobierno para recuperar estos coins. (Saldo: {balance} 🪙)",
+        "Maldito @{challengerName}... te has llevado {amount} monedas. Espero que las gastes en algo inútil. (Saldo: {balance} 🪙)",
+        "Felicidades... supongo. @{challengerName} ha demostrado que incluso un humano acierta a veces. (Saldo: {balance} 🪙)"
+    };
+
+    private readonly string[] ERR_RANK_POOLS = new string[]
+    {
+        "🔒 @{challengerName}, necesitas 🧶 Boina de Lana para duelos. No te dejes engañar por las apariencias, el rango importa.",
+        "🔒 ¿Sin rango, @{challengerName}? Vuelve cuando tengas al menos una Boina de Lana, que esto no es una ONG.",
+        "🔒 @{challengerName}, tu rango es más bajo que el interés de una cuenta de ahorro. Sube a Boina de Lana primero.",
+        "🔒 Acceso denegado, @{challengerName}. Sin Boina de Lana no hay duelo. Son las reglas del club."
+    };
+
+    private readonly string[] ERR_RIVAL_RANK_POOLS = new string[]
+    {
+        "❌ @{challengerName}, @{targetName} necesita 🧶 Boina de Lana para duelos. No abuses de los novatos.",
+        "❌ @{targetName} todavía no tiene el rango Boina de Lana. @{challengerName}, búscate a alguien de tu tamaño.",
+        "❌ @{challengerName}, deja en paz a @{targetName}. Hasta que no tenga Boina de Lana no puede perder contra ti.",
+        "❌ Rango insuficiente para @{targetName}. @{challengerName}, para pelear aquí hay que tener pedigree (o al menos lana)."
+    };
+
+    private readonly string[] ERR_FUNDS_POOLS = new string[]
+    {
+        "❌ @{challengerName}, tienes menos Boinacoins que una startup de Web3 en 2023. Saldo insuficiente.",
+        "❌ @{challengerName}, no tienes suficientes Boinacoins. Vuelve cuando dejes de ser un 'diamond hands' de la pobreza.",
+        "❌ @{challengerName}, tu saldo de {balance} 🪙 no llega para este duelo. ¿A quién pretendes engañar?",
+        "❌ Fondos insuficientes, @{challengerName}. Mi algoritmo no acepta promesas ni 'votos de confianza'. Trae calderilla real."
+    };
+
+    private readonly string[] ERR_RIVAL_FUNDS_POOLS = new string[]
+    {
+        "❌ @{targetName} no tiene suficientes Boinacoins para el duelo ({balance} 🪙 disponibles). @{challengerName}, no seas abusón.",
+        "❌ @{challengerName}, @{targetName} está más pelao que un gato egipcio. Solo tiene {balance} 🪙.",
+        "❌ Duelo cancelado. @{targetName} no tiene fondos suficientes. @{challengerName}, elige a alguien con pasta.",
+        "❌ @{targetName} tiene el bolsillo con telarañas ({balance} 🪙). @{challengerName}, búscate un rival con liquidez."
+    };
+
+    private readonly string[] ERR_MIN_BET_POOLS = new string[]
+    {
+        "❌ @{challengerName}, la apuesta mínima son {min} Boinacoins. No me hagas trabajar por propinas de bar.",
+        "❌ ¿Solo {amount} coins, @{challengerName}? Por esa miseria no muevo ni un puntero. Mínimo {min}.",
+        "❌ @{challengerName}, apuesta al menos {min} Boinacoins o vete a jugar con el bot de música.",
+        "❌ Menos de {min} coins es un insulto a mi capacidad de cómputo, @{challengerName}."
+    };
+
+    private readonly string[] ERR_DUEL_ACTIVE_POOLS = new string[]
+    {
+        "⚔️ Ya hay un duelo activo (@{currentChallenger}). @{challengerName}, espera a que dejen de pegarse.",
+        "⚔️ @{challengerName}, respeta el turno. @{currentChallenger} está ahora mismo en el ring. ¡A la cola!",
+        "⚔️ No puedo gestionar tanta testosterona digital, @{challengerName}. Espera a que termine el duelo de @{currentChallenger}.",
+        "⚔️ Ocupado, @{challengerName}. @{currentChallenger} tiene la prioridad ahora mismo. No me spamees los sockets."
+    };
+
+    private readonly string[] ERR_NO_ACTIVE_DUEL_POOLS = new string[]
+    {
+        "❌ @{challengerName}, no hay ningún duelo activo ahora mismo. Estás peleando contra fantasmas.",
+        "❌ @{challengerName}, ¿aceptar qué? Aquí no hay nada pendiente. Te has tomado demasiadas Red Bulls.",
+        "❌ Error 404: Duelo no encontrado. @{challengerName}, deja de inventarte desafíos.",
+        "❌ @{challengerName}, llegas tarde o te lo has imaginado. No hay duelos en curso."
+    };
+
+    private readonly string[] ERR_WRONG_RIVAL_POOLS = new string[]
+    {
+        "❌ @{challengerName}, el duelo es entre @{targetName} y @{currentChallenger}. Tú no pintas nada aquí.",
+        "❌ @{challengerName}, no intentes colarte. Este duelo no es para ti, es para @{targetName}.",
+        "❌ ¿Qué haces, @{challengerName}? El desafío era para @{targetName}. Búscate tu propia pelea.",
+        "❌ Metomentodo detectado. @{challengerName}, deja que @{targetName} decida su destino."
+    };
+
+    private readonly string[] ERR_CANCELLED_FUNDS_POOLS = new string[]
+    {
+        "❌ @{challengerName} ya no tiene suficientes Boinacoins. Duelo cancelado por insolvencia sobrevenida.",
+        "❌ @{challengerName} se ha quedado sin blanca en el último momento. Duelo abortado.",
+        "❌ Cancelando... @{challengerName} ha perdido los fondos antes de empezar. Qué mala gestión.",
+        "❌ Duelo anulado. @{challengerName} ya no tiene liquidez. Típico de inversores de criptomonedas."
+    };
+
+    private readonly string[] DUEL_ANNOUNCE_POOLS = new string[]
+    {
+        "⚔️ ¡@{challengerName} desafía a @{targetName} a un duelo de {amount} Boinacoins! @{targetName}, escribe !aceptar en los próximos {timeout}s o serás un cobarde digital.",
+        "⚔️ @{challengerName} quiere las monedas de @{targetName}. {amount} Boinacoins en juego. @{targetName}, tienes {timeout}s para dar la cara con !aceptar.",
+        "⚔️ ¡Duelo a la vista! @{challengerName} vs @{targetName} por {amount} coins. @{targetName}, escribe !aceptar en {timeout}s si no tienes miedo a los algoritmos.",
+        "⚔️ @{challengerName} ha lanzado el guante a @{targetName} por {amount} Boinacoins. @{targetName}, el reloj de {timeout}s corre... ¡!aceptar ya!"
+    };
+
+    private readonly string[] DUEL_RESULT_POOLS = new string[]
+    {
+        "⚔️ ¡Dados lanzados! 🏆 GANA @{winnerName} (+{amount} 🪙) · 💀 @{loserName} pierde {amount}. (Saldos: @{winnerName} {winnerBalance} · @{loserName} {loserBalance})",
+        "⚔️ Resultado del duelo: 🏆 @{winnerName} despluma a @{loserName} y se lleva {amount} Boinacoins. (Saldos: @{winnerName} {winnerBalance} · @{loserName} {loserBalance})",
+        "⚔️ ¡Victoria para @{winnerName}! Se embolsa {amount} coins tras humillar a @{loserName}. (Saldos: @{winnerName} {winnerBalance} · @{loserName} {loserBalance})",
+        "⚔️ @{winnerName} ha sido más rápido que el lag y gana {amount} a @{loserName}. (Saldos: @{winnerName} {winnerBalance} · @{loserName} {loserBalance})"
     };
 
     // ────────────────────────────────────────────────────────
@@ -86,7 +246,7 @@ public class CPHInline
         int rank = CPH.GetKickUserVarById<int>(challengerId, "boinacoin_rank");
         if (rank < 1)
         {
-            CPH.SendKickMessage($"🔒 {challengerName}, necesitas 🧶 Boina de Lana para duelos.");
+            SendRandomMessage(ERR_RANK_POOLS, challengerName);
             return true;
         }
 
@@ -96,13 +256,13 @@ public class CPHInline
 
         if (string.IsNullOrEmpty(rawTarget) || string.IsNullOrEmpty(rawAmount))
         {
-            CPH.SendKickMessage($"❌ {challengerName}, uso: !duelo @usuario cantidad");
+            CPH.SendKickMessage($"❌ @{challengerName}, uso: !duelo @usuario cantidad");
             return true;
         }
 
         if (!long.TryParse(rawAmount, out long amount) || amount < MIN_BET)
         {
-            CPH.SendKickMessage($"❌ {challengerName}, apuesta mínima de duelo: {MIN_BET} Boinacoins.");
+            SendRandomMessage(ERR_MIN_BET_POOLS, challengerName, amount, MIN_BET);
             return true;
         }
 
@@ -112,8 +272,7 @@ public class CPHInline
 
         if (targetName == challengerNameClean)
         {
-            string msg = SELF_DUEL_MESSAGES[new Random().Next(SELF_DUEL_MESSAGES.Length)];
-            CPH.SendKickMessage($"😅 {challengerName}: {msg}");
+            SendRandomMessage(SELF_DUEL_MESSAGES, challengerName);
             return true;
         }
 
@@ -123,7 +282,7 @@ public class CPHInline
         int targetRank = CPH.GetKickUserVar<int>(targetName, "boinacoin_rank");
         if (!targetIsBoinaBot && targetRank < 1)
         {
-            CPH.SendKickMessage($"❌ {challengerName}, {targetName} necesita 🧶 Boina de Lana para duelos.");
+            SendRandomMessage(ERR_RIVAL_RANK_POOLS, challengerName, 0, 0, "", 0, targetName);
             return true;
         }
 
@@ -134,7 +293,7 @@ public class CPHInline
         if (existingExpiry > nowUnix)
         {
             string existingChallenger = CPH.GetGlobalVar<string>("boinacoin_duel_challengerName", true) ?? "";
-            CPH.SendKickMessage($"⚔️ Ya hay un duelo activo ({existingChallenger}). Espera a que termine.");
+            SendRandomMessage(ERR_DUEL_ACTIVE_POOLS, challengerName, 0, 0, existingChallenger);
             return true;
         }
 
@@ -142,7 +301,7 @@ public class CPHInline
         long challengerBalance = CPH.GetKickUserVarById<long>(challengerId, "boinacoin");
         if (challengerBalance < amount)
         {
-            CPH.SendKickMessage($"❌ {challengerName}, no tienes suficientes Boinacoins. Saldo: {challengerBalance} 🪙");
+            SendRandomMessage(ERR_FUNDS_POOLS, challengerName, 0, 0, "", challengerBalance);
             return true;
         }
 
@@ -156,7 +315,7 @@ public class CPHInline
         long targetBalance = CPH.GetKickUserVar<long>(targetName, "boinacoin");
         if (targetBalance < amount)
         {
-            CPH.SendKickMessage($"❌ {targetName} no tiene suficientes Boinacoins para el duelo ({targetBalance} 🪙 disponibles).");
+            SendRandomMessage(ERR_RIVAL_FUNDS_POOLS, challengerName, 0, 0, "", targetBalance, targetName);
             return true;
         }
 
@@ -169,9 +328,7 @@ public class CPHInline
         CPH.SetGlobalVar("boinacoin_duel_expiry", expiry, true);
 
         // ── Anuncio ───────────────────────────────────────────
-        CPH.SendKickMessage(
-            $"⚔️ ¡{challengerName} desafía a @{targetName} a un duelo de {amount} Boinacoins! " +
-            $"@{targetName}, escribe !aceptar en los próximos {DUEL_TIMEOUT_SECS}s. ¿Te atreves? 🎩");
+        SendRandomMessage(DUEL_ANNOUNCE_POOLS, challengerName, amount, 0, "", 0, targetName, DUEL_TIMEOUT_SECS);
 
         return true;
     }
@@ -180,8 +337,7 @@ public class CPHInline
     {
         if (CPH.GetGlobalVar<bool>("boinabot_is_busy", false))
         {
-            string busyMsg = BOT_BUSY_MESSAGES[new Random().Next(BOT_BUSY_MESSAGES.Length)];
-            CPH.SendKickMessage($"🤖 BoinaBot: @{challengerName} {busyMsg}");
+            SendRandomMessage(BOT_BUSY_MESSAGES, challengerName);
             return true;
         }
 
@@ -189,7 +345,7 @@ public class CPHInline
 
         try
         {
-            CPH.SendKickMessage($"⚔️ @{challengerName} ha osado desafiar a ¡la CASA! por {amount} Boinacoins... veamos qué dice la suerte. 🎩");
+            SendRandomMessage(BOT_CHALLENGE_POOLS, challengerName, amount);
 
             // Simular pensamiento
             Thread.Sleep(3000);
@@ -199,8 +355,7 @@ public class CPHInline
             // 1. ¿Acepta el bot? (50/50)
             if (rnd.Next(0, 2) == 0)
             {
-                string rejectMsg = BOT_REJECT_MESSAGES[rnd.Next(BOT_REJECT_MESSAGES.Length)];
-                CPH.SendKickMessage($"🤖 BoinaBot: @{challengerName} {rejectMsg}");
+                SendRandomMessage(BOT_REJECT_MESSAGES, challengerName, amount);
                 return true;
             }
 
@@ -218,10 +373,7 @@ public class CPHInline
                 CPH.SetKickUserVarById(challengerId, "boinacoin_total_earned", totalEarned, true);
                 CPH.SetKickUserVarById(challengerId, "boinacoin_last_seen", nowUnix, true);
 
-                CPH.SendKickMessage(
-                    $"🏆 ¡@{challengerName} ha derrotado a la casa! +{amount} Boinacoins. " +
-                    $"Saldo: {newBalance} 🪙. 🤖 \"Maldita sea... mis circuitos deben estar fallando.\"");
-
+                SendRandomMessage(BOT_LOSE_POOLS, challengerName, amount, 0, "", newBalance);
                 CheckRankUp(challengerId, challengerName, newBalance);
             }
             else
@@ -230,9 +382,7 @@ public class CPHInline
                 CPH.SetKickUserVarById(challengerId, "boinacoin", newBalance, true);
                 CPH.SetKickUserVarById(challengerId, "boinacoin_last_seen", nowUnix, true);
 
-                CPH.SendKickMessage(
-                    $"💀 @{challengerName} ha sido humillado por la casa. Pierde {amount} Boinacoins. " +
-                    $"Saldo: {newBalance} 🪙. 🤖 \"¡JA! La casa siempre gana, humano.\"");
+                SendRandomMessage(BOT_WIN_POOLS, challengerName, amount, 0, "", newBalance);
             }
         }
         finally
@@ -259,21 +409,21 @@ public class CPHInline
 
         if (expiry == 0 || nowUnix > expiry)
         {
-            CPH.SendKickMessage($"❌ {acceptorName}, no hay ningún duelo activo ahora mismo.");
+            SendRandomMessage(ERR_NO_ACTIVE_DUEL_POOLS, acceptorName);
             return true;
         }
 
         // ── ¿Es el retado quien acepta? ───────────────────────
         string targetName = (CPH.GetGlobalVar<string>("boinacoin_duel_targetName", true) ?? "").ToLower().Trim().Replace("@", "");
         string challengerId = CPH.GetGlobalVar<string>("boinacoin_duel_challengerId", true) ?? "";
-        string challengerName = CPH.GetGlobalVar<string>("boinacoin_duel_challengerName", true) ?? "";
+        string challengerName = (CPH.GetGlobalVar<string>("boinacoin_duel_challengerName", true) ?? "").ToLower().Trim().Replace("@", "");
         long amount = CPH.GetGlobalVar<long>("boinacoin_duel_amount", true);
 
         string acceptorNameClean = acceptorName.ToLower().Trim().Replace("@", "");
 
         if (acceptorNameClean != targetName)
         {
-            CPH.SendKickMessage($"❌ {acceptorName}, el duelo es entre {challengerName} y {targetName}.");
+            SendRandomMessage(ERR_WRONG_RIVAL_POOLS, acceptorName, 0, 0, challengerName, 0, targetName);
             return true;
         }
 
@@ -283,13 +433,13 @@ public class CPHInline
 
         if (challengerBalance < amount)
         {
-            CPH.SendKickMessage($"❌ {challengerName} ya no tiene suficientes Boinacoins. Duelo cancelado.");
+            SendRandomMessage(ERR_CANCELLED_FUNDS_POOLS, challengerName);
             ClearDuel();
             return true;
         }
         if (targetBalance < amount)
         {
-            CPH.SendKickMessage($"❌ {acceptorName} ya no tiene suficientes Boinacoins. Duelo cancelado.");
+            SendRandomMessage(ERR_CANCELLED_FUNDS_POOLS, acceptorName);
             ClearDuel();
             return true;
         }
@@ -315,9 +465,12 @@ public class CPHInline
             loserOldBalance = challengerBalance;
         }
 
+        long winnerNewBalance = winnerOldBalance + amount;
+        long loserNewBalance = loserOldBalance - amount;
+
         // ── Transferencia ─────────────────────────────────────
-        CPH.SetKickUserVarById(winnerId, "boinacoin", winnerOldBalance + amount, true);
-        CPH.SetKickUserVarById(loserId, "boinacoin", loserOldBalance - amount, true);
+        CPH.SetKickUserVarById(winnerId, "boinacoin", winnerNewBalance, true);
+        CPH.SetKickUserVarById(loserId, "boinacoin", loserNewBalance, true);
 
         long winnerTotal = CPH.GetKickUserVarById<long>(winnerId, "boinacoin_total_earned") + amount;
         CPH.SetKickUserVarById(winnerId, "boinacoin_total_earned", winnerTotal, true);
@@ -326,13 +479,10 @@ public class CPHInline
         CPH.SetKickUserVarById(loserId, "boinacoin_last_seen", nowUnix, true);
 
         // ── Comprobar rango del ganador ───────────────────────
-        CheckRankUp(winnerId, winnerName, winnerOldBalance + amount);
+        CheckRankUp(winnerId, winnerName, winnerNewBalance);
 
         // ── Anuncio del resultado ─────────────────────────────
-        CPH.SendKickMessage(
-            $"⚔️ ¡El bot ha lanzado los dados! " +
-            $"🏆 GANA {winnerName} · +{amount} Boinacoins · Saldo: {winnerOldBalance + amount} 🪙 · " +
-            $"💀 {loserName} pierde {amount} · Saldo: {loserOldBalance - amount} 🪙");
+        SendRandomMessage(DUEL_RESULT_POOLS, winnerName, amount, 0, loserName, winnerNewBalance, winnerName, 0, loserNewBalance);
 
         ClearDuel();
         return true;
@@ -356,7 +506,7 @@ public class CPHInline
         if (newRank <= oldRank) return;
 
         CPH.SetKickUserVarById(userId, "boinacoin_rank", newRank, true);
-        CPH.SendKickMessage($"🎉 ¡{userName} sube a {GetRankName(newRank)}!");
+        CPH.SendKickMessage($"🎉 ¡@{userName} sube a {GetRankName(newRank)}!");
 
         CPH.SetArgument("rankUpUserId", userId);
         CPH.SetArgument("rankUpUserName", userName);
@@ -383,5 +533,26 @@ public class CPHInline
             case 4: return "👑 La Boina Legendaria";
             default: return "🪡 Boina de Paja";
         }
+    }
+
+    private void SendRandomMessage(string[] pool, string challengerName, long amount = 0, long min = 0, string currentChallenger = "", long balance = 0, string targetName = "", int timeout = 0, long loserBalance = 0)
+    {
+        if (pool == null || pool.Length == 0) return;
+
+        string msg = pool[new Random().Next(pool.Length)];
+
+        msg = msg.Replace("@{challengerName}", "@" + (challengerName ?? "alguien").Replace("@", ""));
+        msg = msg.Replace("{amount}", amount.ToString());
+        msg = msg.Replace("{min}", min.ToString());
+        msg = msg.Replace("@{currentChallenger}", "@" + (currentChallenger ?? "").Replace("@", ""));
+        msg = msg.Replace("{balance}", balance.ToString());
+        msg = msg.Replace("@{targetName}", "@" + (targetName ?? "").Replace("@", ""));
+        msg = msg.Replace("{timeout}", timeout.ToString());
+        msg = msg.Replace("@{winnerName}", "@" + (challengerName ?? "").Replace("@", ""));
+        msg = msg.Replace("@{loserName}", "@" + (currentChallenger ?? "").Replace("@", ""));
+        msg = msg.Replace("{winnerBalance}", balance.ToString());
+        msg = msg.Replace("{loserBalance}", loserBalance.ToString());
+
+        CPH.SendKickMessage(msg);
     }
 }
