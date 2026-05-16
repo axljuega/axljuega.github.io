@@ -28,7 +28,6 @@ public class CPHInline
     private const long REWARD_PRESENTE = 50;
 
     // Días máximos entre streams para no romper la racha.
-    // Ajusta según la frecuencia de emisión del canal.
     private const int STREAK_GAP_TOLERANCE_DAYS = 3;
 
     // ────────────────────────────────────────────────────────
@@ -40,11 +39,12 @@ public class CPHInline
         if (string.IsNullOrEmpty(userId)) return false;
 
         // ── 0. Excluir al propio bot y al streamer ───────────
+        // FIX: .UserId en lugar de .Id (KickUserInfo v1.x)
         var botInfo = CPH.KickGetBot();
-        if (botInfo != null && userId == botInfo.Id.ToString()) return false;
+        if (botInfo != null && userId == botInfo.UserId.ToString()) return false;
 
         var broadcasterInfo = CPH.KickGetBroadcaster();
-        if (broadcasterInfo != null && userId == broadcasterInfo.Id.ToString()) return false;
+        if (broadcasterInfo != null && userId == broadcasterInfo.UserId.ToString()) return false;
 
         string todayDate = DateTime.UtcNow.ToString("yyyy-MM-dd");
 
@@ -63,8 +63,8 @@ public class CPHInline
 
         // ── 2. Actualizar racha de asistencia ────────────────
         int newStreak = CalculateStreak(userId, todayDate);
-        CPH.SetKickUserVarById(userId, "boinacoin_streak",       newStreak, true);
-        CPH.SetKickUserVarById(userId, "boinacoin_streak_date",  todayDate, true);
+        CPH.SetKickUserVarById(userId, "boinacoin_streak",        newStreak, true);
+        CPH.SetKickUserVarById(userId, "boinacoin_streak_date",   todayDate, true);
         CPH.SetKickUserVarById(userId, "boinacoin_daily_claimed", todayDate, true);
 
         // ── 3. Calcular recompensa ───────────────────────────
@@ -87,8 +87,8 @@ public class CPHInline
         CheckRankUp(userId, userName, balance2);
 
         // ── 8. Mensaje al chat ───────────────────────────────
-        string multText    = mult > 1.0 ? $" (x{mult:0.##} ⚡)" : "";
-        string streakText  = BuildStreakText(newStreak);
+        string multText   = mult > 1.0 ? $" (x{mult:0.##} ⚡)" : "";
+        string streakText = BuildStreakText(newStreak);
         CPH.SendKickMessage(
             $"✅ ¡Presente, {userName}! " +
             $"+{earned} Boinacoins{multText} · " +
@@ -103,19 +103,18 @@ public class CPHInline
     // ── Calcula la nueva racha ────────────────────────────────
     private int CalculateStreak(string userId, string todayDate)
     {
-        string lastDateStr = CPH.GetKickUserVarById<string>(userId, "boinacoin_streak_date") ?? "";
+        string lastDateStr   = CPH.GetKickUserVarById<string>(userId, "boinacoin_streak_date") ?? "";
         int    currentStreak = CPH.GetKickUserVarById<int>(userId, "boinacoin_streak");
 
         if (string.IsNullOrEmpty(lastDateStr)) return 1;
-
         if (!DateTime.TryParse(lastDateStr, out DateTime lastDate)) return 1;
 
-        DateTime today = DateTime.Parse(todayDate);
-        int dayGap     = (int)(today - lastDate).TotalDays;
+        DateTime today  = DateTime.Parse(todayDate);
+        int      dayGap = (int)(today - lastDate).TotalDays;
 
-        if      (dayGap == 0)                              return currentStreak; // mismo día (no debería llegar aquí)
-        else if (dayGap <= STREAK_GAP_TOLERANCE_DAYS)      return currentStreak + 1;
-        else                                               return 1; // racha rota
+        if      (dayGap == 0)                         return currentStreak;
+        else if (dayGap <= STREAK_GAP_TOLERANCE_DAYS) return currentStreak + 1;
+        else                                          return 1;
     }
 
     // ── Texto de racha para el mensaje ───────────────────────
@@ -127,7 +126,7 @@ public class CPHInline
         return $"Racha: {streak} stream";
     }
 
-    // ── Anuncios en hitos de racha (1 mensaje por hito) ──────
+    // ── Anuncios en hitos de racha ────────────────────────────
     private void AnnounceStreakMilestone(string userName, int streak)
     {
         switch (streak)
