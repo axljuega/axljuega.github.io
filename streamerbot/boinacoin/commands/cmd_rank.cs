@@ -33,12 +33,12 @@ public class CPHInline
         if (string.IsNullOrEmpty(userId)) return false;
 
         // ── Datos propios ─────────────────────────────────────
-        long balance = CPH.KickGetUserVar<long>(userId, "boinacoin",      true);
-        int  rank    = CPH.KickGetUserVar<int>(userId,  "boinacoin_rank", true);
-        int  streak  = CPH.KickGetUserVar<int>(userId,  "boinacoin_streak", true);
+        long balance = CPH.GetKickUserVar<long>(userId, "boinacoin");
+        int  rank    = CPH.GetKickUserVar<int>(userId, "boinacoin_rank");
+        int  streak  = CPH.GetKickUserVar<int>(userId, "boinacoin_streak");
 
         // ── Obtener ranking global ────────────────────────────
-        var allVars = CPH.KickGetUsersVar<long>("boinacoin", true);
+        var allVars = CPH.GetKickUsersVar<long>("boinacoin", true);
 
         int position   = 1;
         int totalUsers = 0;

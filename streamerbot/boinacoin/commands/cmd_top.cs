@@ -5,7 +5,7 @@
 //  Muestra el top 5 de viewers por saldo de Boinacoins
 //
 //  Nota técnica:
-//    Usa CPH.KickGetUsersVar<long>() para leer la variable
+//    Usa CPH.GetKickUsersVar<long>() para leer la variable
 //    "boinacoin" de todos los usuarios registrados en la
 //    base de datos local de Streamer.bot, luego ordena en
 //    memoria. El grupo "Bots" se excluye automáticamente
@@ -33,7 +33,7 @@ public class CPHInline
         // ── Obtener todos los registros de "boinacoin" ───────
         // GetUsersVar devuelve List<UserVariableValue<T>> con
         // propiedades: UserId, UserName, Value
-        var allVars = CPH.KickGetUsersVar<long>("boinacoin", true);
+        var allVars = CPH.GetKickUsersVar<long>("boinacoin", true);
 
         if (allVars == null || allVars.Count == 0)
         {
@@ -72,7 +72,7 @@ public class CPHInline
             string medal    = i < medals.Length ? medals[i] : $"{i + 1}.";
             string name     = top[i].UserName;
             long   balance  = top[i].Value;
-            int    rank     = CPH.KickGetUserVar<int>(top[i].UserId, "boinacoin_rank", true);
+            int    rank     = CPH.GetKickUserVar<int>(top[i].UserId, "boinacoin_rank");
             string rankEmoji = GetRankEmoji(rank);
 
             sb.Append($"{medal} {name} {rankEmoji} ({FormatNumber(balance)})  ");

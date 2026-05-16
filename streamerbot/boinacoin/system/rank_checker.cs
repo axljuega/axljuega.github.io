@@ -56,25 +56,25 @@ public class CPHInline
         // podríamos detectar una doble llamada.
         // Usamos una variable de "último rango anunciado" separada
         // del rango real para no interferir con la lógica de rango.
-        int lastAnnounced = CPH.KickGetUserVar<int>(userId, "boinacoin_rank_announced", true);
+        int lastAnnounced = CPH.GetKickUserVar<int>(userId, "boinacoin_rank_announced");
         if (lastAnnounced >= newRank)
         {
             CPH.LogInfo($"[Boinacoin] RankChecker: {userName} rango {newRank} ya anunciado, omitiendo.");
             return true;
         }
 
-        CPH.KickSetUserVar(userId, "boinacoin_rank_announced", newRank, true);
+        CPH.SetKickUserVar(userId, "boinacoin_rank_announced", newRank, true);
 
         // ── 2. Bonus de Boinacoins por alcanzar el rango ─────
         long bonus = newRank < RANK_BONUS.Length ? RANK_BONUS[newRank] : 0;
 
         if (bonus > 0)
         {
-            long balance = CPH.KickGetUserVar<long>(userId, "boinacoin", true) + bonus;
-            CPH.KickSetUserVar(userId, "boinacoin", balance, true);
+            long balance = CPH.GetKickUserVar<long>(userId, "boinacoin") + bonus;
+            CPH.SetKickUserVar(userId, "boinacoin", balance, true);
 
-            long totalEarned = CPH.KickGetUserVar<long>(userId, "boinacoin_total_earned", true) + bonus;
-            CPH.KickSetUserVar(userId, "boinacoin_total_earned", totalEarned, true);
+            long totalEarned = CPH.GetKickUserVar<long>(userId, "boinacoin_total_earned") + bonus;
+            CPH.SetKickUserVar(userId, "boinacoin_total_earned", totalEarned, true);
         }
 
         // ── 3. Anuncio enriquecido en chat ────────────────────

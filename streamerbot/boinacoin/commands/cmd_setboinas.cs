@@ -52,7 +52,7 @@ public class CPHInline
 
         // ── 3. Resolver usuario ───────────────────────────────
         string targetName = rawTarget.TrimStart('@');
-        string targetId   = CPH.KickGetUserIdByUserName(targetName);
+        string targetId   = CPH.KickGetUserIdForUser(targetName);
 
         if (string.IsNullOrEmpty(targetId))
         {
@@ -68,18 +68,18 @@ public class CPHInline
         }
 
         // ── 5. Guardar saldo anterior para el log ─────────────
-        long oldBalance = CPH.KickGetUserVar<long>(targetId, "boinacoin", true);
+        long oldBalance = CPH.GetKickUserVar<long>(targetId, "boinacoin");
 
         // ── 6. Fijar nuevo saldo ──────────────────────────────
-        CPH.KickSetUserVar(targetId, "boinacoin", newAmount, true);
+        CPH.SetKickUserVar(targetId, "boinacoin", newAmount, true);
 
         // ── 7. Ajustar histórico total ────────────────────────
         // Si el nuevo saldo es mayor, la diferencia va al histórico.
         // Si es menor, no tocamos el histórico (no restamos ganancia histórica).
         if (newAmount > oldBalance)
         {
-            long totalEarned = CPH.KickGetUserVar<long>(targetId, "boinacoin_total_earned", true);
-            CPH.KickSetUserVar(targetId, "boinacoin_total_earned", totalEarned + (newAmount - oldBalance), true);
+            long totalEarned = CPH.GetKickUserVar<long>(targetId, "boinacoin_total_earned");
+            CPH.SetKickUserVar(targetId, "boinacoin_total_earned", totalEarned + (newAmount - oldBalance), true);
         }
 
         // ── 8. Comprobar cambio de rango ──────────────────────
@@ -97,12 +97,12 @@ public class CPHInline
     // ── Gestiona subida y bajada de rango ─────────────────────
     private void CheckRankChange(string userId, string userName, long balance)
     {
-        int oldRank = CPH.KickGetUserVar<int>(userId, "boinacoin_rank", true);
+        int oldRank = CPH.GetKickUserVar<int>(userId, "boinacoin_rank");
         int newRank = RankForBalance(balance);
 
         if (newRank == oldRank) return;
 
-        CPH.KickSetUserVar(userId, "boinacoin_rank", newRank, true);
+        CPH.SetKickUserVar(userId, "boinacoin_rank", newRank, true);
 
         if (newRank > oldRank)
         {

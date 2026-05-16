@@ -54,7 +54,7 @@ public class CPHInline
         long totalDeducted  = 0;
 
         // ── Obtener todos los usuarios con saldo ──────────────
-        var allVars = CPH.KickGetUsersVar<long>("boinacoin", true);
+        var allVars = CPH.GetKickUsersVar<long>("boinacoin", true);
 
         if (allVars == null || allVars.Count == 0)
         {
@@ -73,7 +73,7 @@ public class CPHInline
             long   balance  = entry.Value;
 
             // ── Comprobar inactividad ─────────────────────────
-            long lastSeen = CPH.KickGetUserVar<long>(userId, "boinacoin_last_seen", true);
+            long lastSeen = CPH.GetKickUserVar<long>(userId, "boinacoin_last_seen");
 
             // Si nunca se registró last_seen, saltar (usuario antiguo
             // sin datos; no penalizamos sin certeza)
@@ -90,13 +90,13 @@ public class CPHInline
             if (applied == 0) continue;
 
             // ── Aplicar ───────────────────────────────────────
-            CPH.KickSetUserVar(userId, "boinacoin", newBalance, true);
+            CPH.SetKickUserVar(userId, "boinacoin", newBalance, true);
 
             // Actualizar rango si baja
-            int oldRank = CPH.KickGetUserVar<int>(userId, "boinacoin_rank", true);
+            int oldRank = CPH.GetKickUserVar<int>(userId, "boinacoin_rank");
             int newRank = RankForBalance(newBalance);
             if (newRank < oldRank)
-                CPH.KickSetUserVar(userId, "boinacoin_rank", newRank, true);
+                CPH.SetKickUserVar(userId, "boinacoin_rank", newRank, true);
 
             // ── Log por usuario ───────────────────────────────
             long daysInactive = daysSinceActive / 86400;

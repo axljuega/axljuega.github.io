@@ -36,7 +36,7 @@ public class CPHInline
         if (string.IsNullOrEmpty(userId)) return false;
 
         // ── 1. Leer saldo actual ──────────────────────────────
-        long currentBalance = CPH.KickGetUserVar<long>(userId, "boinacoin", true);
+        long currentBalance = CPH.GetKickUserVar<long>(userId, "boinacoin");
 
         if (currentBalance <= 0)
         {
@@ -49,7 +49,7 @@ public class CPHInline
         long penaltyApplied = Math.Min(PENALTY, currentBalance);
         long newBalance     = currentBalance - penaltyApplied;
 
-        CPH.KickSetUserVar(userId, "boinacoin", newBalance, true);
+        CPH.SetKickUserVar(userId, "boinacoin", newBalance, true);
 
         // ── 3. Comprobar bajada de rango ──────────────────────
         CheckRankDown(userId, userName, newBalance);
@@ -74,12 +74,12 @@ public class CPHInline
     // ── Gestiona bajada de rango por penalización ─────────────
     private void CheckRankDown(string userId, string userName, long balance)
     {
-        int oldRank = CPH.KickGetUserVar<int>(userId, "boinacoin_rank", true);
+        int oldRank = CPH.GetKickUserVar<int>(userId, "boinacoin_rank");
         int newRank = RankForBalance(balance);
 
         if (newRank >= oldRank) return;
 
-        CPH.KickSetUserVar(userId, "boinacoin_rank", newRank, true);
+        CPH.SetKickUserVar(userId, "boinacoin_rank", newRank, true);
         CPH.LogInfo(
             $"[Boinacoin] {userName} baja de rango: " +
             $"{GetRankName(oldRank)} → {GetRankName(newRank)}");

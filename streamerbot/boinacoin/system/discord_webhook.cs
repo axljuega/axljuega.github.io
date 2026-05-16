@@ -117,9 +117,9 @@ public class CPHInline
         }
 
         // ── Construir payload JSON del embed ──────────────────
-        long balance = CPH.KickGetUserVar<long>(userId, "boinacoin", true);
-        int  streak  = CPH.KickGetUserVar<int>(userId,  "boinacoin_streak", true);
-        long total   = CPH.KickGetUserVar<long>(userId,  "boinacoin_total_earned", true);
+        long balance = CPH.GetKickUserVar<long>(userId, "boinacoin");
+        int  streak  = CPH.GetKickUserVar<int>(userId, "boinacoin_streak");
+        long total   = CPH.GetKickUserVar<long>(userId, "boinacoin_total_earned");
 
         string timestamp = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ");
         string roleText  = !string.IsNullOrEmpty(roleId)
