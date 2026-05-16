@@ -34,8 +34,8 @@ public class CPHInline
     // ────────────────────────────────────────────────────────
     public bool Execute()
     {
-        string callerId   = args.ContainsKey("kickUserId")   ? args["kickUserId"].ToString()   : "";
-        string callerName = args.ContainsKey("kickUserName") ? args["kickUserName"].ToString() : "streamer";
+        string callerId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
+        string callerName = args.ContainsKey("userName") ? args["userName"].ToString() : "streamer";
         string mode       = args.ContainsKey("mode")     ? args["mode"].ToString()     : "toggle";
 
         // ── Rama de fin automático (llamada desde timer) ──────
@@ -70,7 +70,7 @@ public class CPHInline
             // ── Desactivar ────────────────────────────────────
             DeactivateHoraFeliz();
             long remaining = Math.Max(0, expiry - nowUnix);
-            CPH.SendMessage(
+            CPH.SendKickMessage(
                 $"⏹️ Hora Feliz desactivada manualmente por {callerName}. " +
                 $"Quedaban {remaining / 60} min {remaining % 60}s.");
         }
@@ -85,7 +85,7 @@ public class CPHInline
             string endTime = DateTimeOffset.FromUnixTimeSeconds(newExpiry)
                                            .ToString("HH:mm") + " UTC";
 
-            CPH.SendMessage(
+            CPH.SendKickMessage(
                 $"⚡ ¡¡HORA FELIZ activada por {callerName}!! " +
                 $"Todos los Boinacoins x2 durante 30 minutos · " +
                 $"Termina a las {endTime} 🎉🎉");
@@ -121,7 +121,7 @@ public class CPHInline
 
         DeactivateHoraFeliz();
 
-        CPH.SendMessage(
+        CPH.SendKickMessage(
             "⏰ ¡La Hora Feliz ha terminado! " +
             "Los multiplicadores vuelven a la normalidad. " +
             "¡Gracias por estar aquí! 🎩");

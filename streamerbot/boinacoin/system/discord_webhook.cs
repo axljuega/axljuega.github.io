@@ -61,7 +61,7 @@ public class CPHInline
         string userName = args.ContainsKey("webhookUserName") ? args["webhookUserName"].ToString() : "alguien";
         int    newRank  = args.ContainsKey("webhookNewRank")  ? Convert.ToInt32(args["webhookNewRank"]) : 0;
 
-        if (string.IsNullOrEmpty(userId) || newRank < 1 || newRank > 4) return false;
+        if (string.IsNullOrEmpty(userName) || newRank < 1 || newRank > 4) return false;
 
         // ── Seleccionar webhook y datos según rango ───────────
         string webhookUrl, rankName, rankEmoji, roleId, description;
@@ -117,9 +117,19 @@ public class CPHInline
         }
 
         // ── Construir payload JSON del embed ──────────────────
-        long balance = CPH.GetKickUserVar<long>(userId, "boinacoin");
-        int  streak  = CPH.GetKickUserVar<int>(userId, "boinacoin_streak");
-        long total   = CPH.GetKickUserVar<long>(userId, "boinacoin_total_earned");
+        long balance = 0;
+        int  streak  = 0;
+        long total   = 0;
+
+        if (!string.IsNullOrEmpty(userId)) {
+            balance = CPH.GetKickUserVarById<long>(userId, "boinacoin");
+            streak  = CPH.GetKickUserVarById<int>(userId, "boinacoin_streak");
+            total   = CPH.GetKickUserVarById<long>(userId, "boinacoin_total_earned");
+        } else {
+            balance = CPH.GetKickUserVar<long>(userName, "boinacoin");
+            streak  = CPH.GetKickUserVar<int>(userName, "boinacoin_streak");
+            total   = CPH.GetKickUserVar<long>(userName, "boinacoin_total_earned");
+        }
 
         string timestamp = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ");
         string roleText  = !string.IsNullOrEmpty(roleId)

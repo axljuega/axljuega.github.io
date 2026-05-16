@@ -45,16 +45,16 @@ public class CPHInline
     // ════════════════════════════════════════════════════════
     private bool HandleChallenge()
     {
-        string challengerId   = args.ContainsKey("kickUserId")   ? args["kickUserId"].ToString()   : "";
-        string challengerName = args.ContainsKey("kickUserName") ? args["kickUserName"].ToString() : "alguien";
+        string challengerId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
+        string challengerName = args.ContainsKey("userName") ? args["userName"].ToString() : "alguien";
 
         if (string.IsNullOrEmpty(challengerId)) return false;
 
         // ── Verificar rango mínimo ────────────────────────────
-        int rank = CPH.GetKickUserVar<int>(challengerId, "boinacoin_rank");
+        int rank = CPH.GetKickUserVarById<int>(challengerId, "boinacoin_rank");
         if (rank < 1)
         {
-            CPH.SendMessage($"🔒 {challengerName}, necesitas 🧶 Boina de Lana para duelos.");
+            CPH.SendKickMessage($"🔒 {challengerName}, necesitas 🧶 Boina de Lana para duelos.");
             return true;
         }
 
@@ -64,37 +64,31 @@ public class CPHInline
 
         if (string.IsNullOrEmpty(rawTarget) || string.IsNullOrEmpty(rawAmount))
         {
-            CPH.SendMessage($"❌ {challengerName}, uso: !duelo @usuario cantidad");
+            CPH.SendKickMessage($"❌ {challengerName}, uso: !duelo @usuario cantidad");
             return true;
         }
 
         if (!long.TryParse(rawAmount, out long amount) || amount < MIN_BET)
         {
-            CPH.SendMessage($"❌ {challengerName}, apuesta mínima de duelo: {MIN_BET} Boinacoins.");
+            CPH.SendKickMessage($"❌ {challengerName}, apuesta mínima de duelo: {MIN_BET} Boinacoins.");
             return true;
         }
 
         // ── Resolver rival ────────────────────────────────────
         string targetName = rawTarget.TrimStart('@');
-        string targetId   = CPH.KickGetUserIdForUser(targetName);
+        // FIX: Remove KickGetUserIdForUser (deprecated)
 
-        if (string.IsNullOrEmpty(targetId))
+        if (targetName.ToLower() == challengerName.ToLower())
         {
-            CPH.SendMessage($"❌ {challengerName}, no encuentro a @{targetName} en el canal.");
+            CPH.SendKickMessage($"😅 {challengerName}, no puedes desafiarte a ti mismo.");
             return true;
         }
 
-        if (targetId == challengerId)
-        {
-            CPH.SendMessage($"😅 {challengerName}, no puedes desafiarte a ti mismo.");
-            return true;
-        }
-
-        // ── Verificar rango del rival ─────────────────────────
-        int targetRank = CPH.GetKickUserVar<int>(targetId, "boinacoin_rank");
+        // ── Verificar rango del rival (por nombre) ────────────
+        int targetRank = CPH.GetKickUserVar<int>(targetName, "boinacoin_rank");
         if (targetRank < 1)
         {
-            CPH.SendMessage($"❌ {challengerName}, {targetName} necesita 🧶 Boina de Lana para duelos.");
+            CPH.SendKickMessage($"❌ {challengerName}, {targetName} necesita 🧶 Boina de Lana para duelos.");
             return true;
         }
 
@@ -105,25 +99,25 @@ public class CPHInline
         if (existingExpiry > nowUnix)
         {
             string existingChallenger = CPH.GetGlobalVar<string>("boinacoin_duel_challengerName", true) ?? "";
-            CPH.SendMessage($"⚔️ Ya hay un duelo activo ({existingChallenger}). Espera a que termine.");
+            CPH.SendKickMessage($"⚔️ Ya hay un duelo activo ({existingChallenger}). Espera a que termine.");
             return true;
         }
 
         // ── Verificar saldo del retador ───────────────────────
-        long challengerBalance = CPH.GetKickUserVar<long>(challengerId, "boinacoin");
+        long challengerBalance = CPH.GetKickUserVarById<long>(challengerId, "boinacoin");
         if (challengerBalance < amount)
         {
-            CPH.SendMessage(
+            CPH.SendKickMessage(
                 $"❌ {challengerName}, no tienes suficientes Boinacoins. " +
                 $"Saldo: {challengerBalance} 🪙");
             return true;
         }
 
-        // ── Verificar saldo del rival ─────────────────────────
-        long targetBalance = CPH.GetKickUserVar<long>(targetId, "boinacoin");
+        // ── Verificar saldo del rival (por nombre) ────────────
+        long targetBalance = CPH.GetKickUserVar<long>(targetName, "boinacoin");
         if (targetBalance < amount)
         {
-            CPH.SendMessage(
+            CPH.SendKickMessage(
                 $"❌ {targetName} no tiene suficientes Boinacoins para el duelo " +
                 $"({targetBalance} 🪙 disponibles).");
             return true;
@@ -133,13 +127,12 @@ public class CPHInline
         long expiry = nowUnix + DUEL_TIMEOUT_SECS;
         CPH.SetGlobalVar("boinacoin_duel_challengerId",   challengerId,   true);
         CPH.SetGlobalVar("boinacoin_duel_challengerName", challengerName, true);
-        CPH.SetGlobalVar("boinacoin_duel_targetId",       targetId,       true);
         CPH.SetGlobalVar("boinacoin_duel_targetName",     targetName,     true);
         CPH.SetGlobalVar("boinacoin_duel_amount",         amount,         true);
         CPH.SetGlobalVar("boinacoin_duel_expiry",         expiry,         true);
 
         // ── Anuncio ───────────────────────────────────────────
-        CPH.SendMessage(
+        CPH.SendKickMessage(
             $"⚔️ ¡{challengerName} desafía a {targetName} a un duelo de {amount} Boinacoins! " +
             $"@{targetName}, escribe !aceptar en los próximos {DUEL_TIMEOUT_SECS}s. ¿Te atreves? 🎩");
 
@@ -151,8 +144,8 @@ public class CPHInline
     // ════════════════════════════════════════════════════════
     private bool HandleAccept()
     {
-        string acceptorId   = args.ContainsKey("kickUserId")   ? args["kickUserId"].ToString()   : "";
-        string acceptorName = args.ContainsKey("kickUserName") ? args["kickUserName"].ToString() : "alguien";
+        string acceptorId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
+        string acceptorName = args.ContainsKey("userName") ? args["userName"].ToString() : "alguien";
 
         if (string.IsNullOrEmpty(acceptorId)) return false;
 
@@ -162,36 +155,38 @@ public class CPHInline
 
         if (expiry == 0 || nowUnix > expiry)
         {
-            CPH.SendMessage($"❌ {acceptorName}, no hay ningún duelo activo ahora mismo.");
+            CPH.SendKickMessage($"❌ {acceptorName}, no hay ningún duelo activo ahora mismo.");
             return true;
         }
 
         // ── ¿Es el retado quien acepta? ───────────────────────
-        string targetId       = CPH.GetGlobalVar<string>("boinacoin_duel_targetId",       true) ?? "";
         string targetName     = CPH.GetGlobalVar<string>("boinacoin_duel_targetName",     true) ?? "";
         string challengerId   = CPH.GetGlobalVar<string>("boinacoin_duel_challengerId",   true) ?? "";
         string challengerName = CPH.GetGlobalVar<string>("boinacoin_duel_challengerName", true) ?? "";
         long   amount         = CPH.GetGlobalVar<long>("boinacoin_duel_amount",           true);
 
-        if (acceptorId != targetId)
+        if (acceptorName.ToLower() != targetName.ToLower())
         {
-            CPH.SendMessage($"❌ {acceptorName}, el duelo es entre {challengerName} y {targetName}.");
+            CPH.SendKickMessage($"❌ {acceptorName}, el duelo es entre {challengerName} y {targetName}.");
             return true;
         }
 
         // ── Verificar saldos actuales antes de resolver ───────
-        long challengerBalance = CPH.GetKickUserVar<long>(challengerId, "boinacoin");
-        long targetBalance     = CPH.GetKickUserVar<long>(targetId, "boinacoin");
+        // Ahora tenemos el ID del aceptante (targetId)
+        string targetId = acceptorId;
+
+        long challengerBalance = CPH.GetKickUserVarById<long>(challengerId, "boinacoin");
+        long targetBalance     = CPH.GetKickUserVarById<long>(targetId,     "boinacoin");
 
         if (challengerBalance < amount)
         {
-            CPH.SendMessage($"❌ {challengerName} ya no tiene suficientes Boinacoins. Duelo cancelado.");
+            CPH.SendKickMessage($"❌ {challengerName} ya no tiene suficientes Boinacoins. Duelo cancelado.");
             ClearDuel();
             return true;
         }
         if (targetBalance < amount)
         {
-            CPH.SendMessage($"❌ {targetName} ya no tiene suficientes Boinacoins. Duelo cancelado.");
+            CPH.SendKickMessage($"❌ {targetName} ya no tiene suficientes Boinacoins. Duelo cancelado.");
             ClearDuel();
             return true;
         }
@@ -218,22 +213,22 @@ public class CPHInline
         }
 
         // ── Transferencia ─────────────────────────────────────
-        CPH.SetKickUserVar(winnerId, "boinacoin", winnerOldBalance + amount, true);
-        CPH.SetKickUserVar(loserId,  "boinacoin", loserOldBalance  - amount, true);
+        CPH.SetKickUserVarById(winnerId, "boinacoin", winnerOldBalance + amount, true);
+        CPH.SetKickUserVarById(loserId,  "boinacoin", loserOldBalance  - amount, true);
 
         // Histórico del ganador
-        long winnerTotal = CPH.GetKickUserVar<long>(winnerId, "boinacoin_total_earned") + amount;
-        CPH.SetKickUserVar(winnerId, "boinacoin_total_earned", winnerTotal, true);
+        long winnerTotal = CPH.GetKickUserVarById<long>(winnerId, "boinacoin_total_earned") + amount;
+        CPH.SetKickUserVarById(winnerId, "boinacoin_total_earned", winnerTotal, true);
 
         // Timestamps
-        CPH.SetKickUserVar(winnerId, "boinacoin_last_seen", nowUnix, true);
-        CPH.SetKickUserVar(loserId,  "boinacoin_last_seen", nowUnix, true);
+        CPH.SetKickUserVarById(winnerId, "boinacoin_last_seen", nowUnix, true);
+        CPH.SetKickUserVarById(loserId,  "boinacoin_last_seen", nowUnix, true);
 
         // ── Comprobar rango del ganador ───────────────────────
         CheckRankUp(winnerId, winnerName, winnerOldBalance + amount);
 
         // ── Anuncio del resultado ─────────────────────────────
-        CPH.SendMessage(
+        CPH.SendKickMessage(
             $"⚔️ ¡El bot ha lanzado los dados! " +
             $"🏆 GANA {winnerName} · +{amount} Boinacoins · " +
             $"Saldo: {winnerOldBalance + amount} 🪙 · " +
@@ -259,13 +254,13 @@ public class CPHInline
     // ── Subida de rango ───────────────────────────────────────
     private void CheckRankUp(string userId, string userName, long balance)
     {
-        int oldRank = CPH.GetKickUserVar<int>(userId, "boinacoin_rank");
+        int oldRank = CPH.GetKickUserVarById<int>(userId, "boinacoin_rank");
         int newRank = RankForBalance(balance);
 
         if (newRank <= oldRank) return;
 
-        CPH.SetKickUserVar(userId, "boinacoin_rank", newRank, true);
-        CPH.SendMessage($"🎉 ¡{userName} sube a {GetRankName(newRank)}!");
+        CPH.SetKickUserVarById(userId, "boinacoin_rank", newRank, true);
+        CPH.SendKickMessage($"🎉 ¡{userName} sube a {GetRankName(newRank)}!");
 
         CPH.SetArgument("rankUpUserId",   userId);
         CPH.SetArgument("rankUpUserName", userName);

@@ -26,9 +26,9 @@ public class CPHInline
         // En Kick, el evento de ban/timeout incluye los datos
         // del usuario penalizado (no del moderador que lo hizo)
         string userId   = args.ContainsKey("targetUserId")   ? args["targetUserId"].ToString()
-                        : args.ContainsKey("kickUserId")         ? args["kickUserId"].ToString()   : "";
+                        : args.ContainsKey("userId")         ? args["userId"].ToString()   : "";
         string userName = args.ContainsKey("targetUserName") ? args["targetUserName"].ToString()
-                        : args.ContainsKey("kickUserName")       ? args["kickUserName"].ToString() : "alguien";
+                        : args.ContainsKey("userName")       ? args["userName"].ToString() : "alguien";
 
         // Duración del timeout (segundos) — informativo
         string durationStr = args.ContainsKey("duration") ? args["duration"].ToString() : "?";
@@ -36,7 +36,7 @@ public class CPHInline
         if (string.IsNullOrEmpty(userId)) return false;
 
         // ── 1. Leer saldo actual ──────────────────────────────
-        long currentBalance = CPH.GetKickUserVar<long>(userId, "boinacoin");
+        long currentBalance = CPH.GetKickUserVarById<long>(userId, "boinacoin");
 
         if (currentBalance <= 0)
         {
@@ -49,7 +49,7 @@ public class CPHInline
         long penaltyApplied = Math.Min(PENALTY, currentBalance);
         long newBalance     = currentBalance - penaltyApplied;
 
-        CPH.SetKickUserVar(userId, "boinacoin", newBalance, true);
+        CPH.SetKickUserVarById(userId, "boinacoin", newBalance, true);
 
         // ── 3. Comprobar bajada de rango ──────────────────────
         CheckRankDown(userId, userName, newBalance);
@@ -64,7 +64,7 @@ public class CPHInline
         // ── 5. Mensaje al chat ────────────────────────────────
         // Breve y directo — no queremos darle más protagonismo
         // del necesario al usuario penalizado.
-        CPH.SendMessage(
+        CPH.SendKickMessage(
             $"⚠️ {userName} ha sido silenciado · " +
             $"-{penaltyApplied} Boinacoins · Saldo: {newBalance} 🪙");
 
@@ -74,12 +74,12 @@ public class CPHInline
     // ── Gestiona bajada de rango por penalización ─────────────
     private void CheckRankDown(string userId, string userName, long balance)
     {
-        int oldRank = CPH.GetKickUserVar<int>(userId, "boinacoin_rank");
+        int oldRank = CPH.GetKickUserVarById<int>(userId, "boinacoin_rank");
         int newRank = RankForBalance(balance);
 
         if (newRank >= oldRank) return;
 
-        CPH.SetKickUserVar(userId, "boinacoin_rank", newRank, true);
+        CPH.SetKickUserVarById(userId, "boinacoin_rank", newRank, true);
         CPH.LogInfo(
             $"[Boinacoin] {userName} baja de rango: " +
             $"{GetRankName(oldRank)} → {GetRankName(newRank)}");
