@@ -5,8 +5,16 @@
 //  Mecánica:
 //    1. Streamer escribe !cofre → se activa un cofre por 5 min.
 //    2. El primer viewer que escriba !abrir gana el premio.
-//    3. Premio aleatorio: 500 a 2.500 Boinacoins.
+//    3. Premio aleatorio: 500 a 5.000 Boinacoins.
 //    4. Máximo 1 cofre por stream (día).
+//
+//  FIX 1: Random.NextInt64() no existe en el runtime de
+//         Streamer.bot (pre-.NET 6). Se reemplaza por un
+//         cálculo equivalente con Next(int, int).
+//
+//  FIX 2: args["isBroadcaster"] NO está disponible en los
+//         Kick Command Triggers. Se usa KickGetBroadcaster().UserId
+//         igual que en cmd_resetboinas.cs.
 //
 //  Configuración en Streamer.bot:
 //    Acción A → trigger "!cofre" → Set Argument "mode" = "spawn"
@@ -17,9 +25,9 @@ using System;
 
 public class CPHInline
 {
-    private const long PRIZE_MIN           = 500;
-    private const long PRIZE_MAX           = 5_000;
-    private const int  COFRE_TIMEOUT_SECS  = 300; // 5 minutos
+    private const long PRIZE_MIN          = 500;
+    private const long PRIZE_MAX          = 5_000;
+    private const int  COFRE_TIMEOUT_SECS = 300; // 5 minutos
 
     // ────────────────────────────────────────────────────────
     public bool Execute()
@@ -30,31 +38,35 @@ public class CPHInline
     }
 
     // ════════════════════════════════════════════════════════
-    //  RAMA A · !cofre (solo streamer)
+    //  RAMA A · !cofre (solo broadcaster)
     // ════════════════════════════════════════════════════════
     private bool HandleSpawn()
     {
         string callerId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
         string callerName = args.ContainsKey("userName") ? args["userName"].ToString() : "streamer";
 
-        // ── Verificar permisos ─────────────────────────────
-        bool isStreamer    = args.ContainsKey("isOwner")       && (bool)args["isOwner"];
-        bool isBroadcaster = args.ContainsKey("isBroadcaster") && (bool)args["isBroadcaster"];
+        if (string.IsNullOrEmpty(callerId)) return false;
 
-        if (!isStreamer && !isBroadcaster)
+        // ── Verificar que es el broadcaster ──────────────────
+        // FIX: args["isBroadcaster"] no se inyecta en Kick Command
+        //      Triggers. Comparación directa con UserId.
+        var  broadcasterInfo = CPH.KickGetBroadcaster();
+        bool isBroadcaster   = broadcasterInfo != null &&
+                               callerId == broadcasterInfo.UserId.ToString();
+
+        if (!isBroadcaster)
         {
-            CPH.LogInfo($"[Boinacoin] !cofre denegado a {callerName}.");
+            CPH.LogInfo($"[Boinacoin] !cofre denegado a {callerName} (no es broadcaster).");
             return true;
         }
 
         long nowUnix = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
 
         // ── Comprobar si ya hay un cofre activo ───────────────
-        bool cofreActive  = CPH.GetGlobalVar<bool>("boinacoin_cofre_active",  true);
-        long cofreExpiry  = CPH.GetGlobalVar<long>("boinacoin_cofre_expiry",  true);
-        bool notExpired   = nowUnix < cofreExpiry;
+        bool cofreActive = CPH.GetGlobalVar<bool>("boinacoin_cofre_active", true);
+        long cofreExpiry = CPH.GetGlobalVar<long>("boinacoin_cofre_expiry", true);
 
-        if (cofreActive && notExpired)
+        if (cofreActive && nowUnix < cofreExpiry)
         {
             long secsLeft = cofreExpiry - nowUnix;
             CPH.SendKickMessage(
@@ -74,13 +86,15 @@ public class CPHInline
         }
 
         // ── Generar premio aleatorio ──────────────────────────
-        long prize = new Random().NextInt64(PRIZE_MIN, PRIZE_MAX + 1);
+        // FIX: Random.NextInt64() no existe pre-.NET 6.
+        //      Usamos Next(int, int) con cast explícito a long.
+        long prize = (long)new Random().Next((int)PRIZE_MIN, (int)PRIZE_MAX + 1);
 
         // ── Activar cofre ─────────────────────────────────────
         long expiry = nowUnix + COFRE_TIMEOUT_SECS;
-        CPH.SetGlobalVar("boinacoin_cofre_active", true,    true);
-        CPH.SetGlobalVar("boinacoin_cofre_prize",  prize,   true);
-        CPH.SetGlobalVar("boinacoin_cofre_expiry", expiry,  true);
+        CPH.SetGlobalVar("boinacoin_cofre_active", true,   true);
+        CPH.SetGlobalVar("boinacoin_cofre_prize",  prize,  true);
+        CPH.SetGlobalVar("boinacoin_cofre_expiry", expiry, true);
 
         // ── Anuncio en chat ───────────────────────────────────
         CPH.SendKickMessage(
@@ -105,8 +119,8 @@ public class CPHInline
         long nowUnix = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
 
         // ── Verificar cofre activo ────────────────────────────
-        bool cofreActive = CPH.GetGlobalVar<bool>("boinacoin_cofre_active",  true);
-        long cofreExpiry = CPH.GetGlobalVar<long>("boinacoin_cofre_expiry",  true);
+        bool cofreActive = CPH.GetGlobalVar<bool>("boinacoin_cofre_active", true);
+        long cofreExpiry = CPH.GetGlobalVar<long>("boinacoin_cofre_expiry", true);
 
         if (!cofreActive || nowUnix >= cofreExpiry)
         {
