@@ -49,6 +49,22 @@ public class CPHInline
         "Paso. Me das pereza hasta a mí, que soy código estático."
     };
 
+    private readonly string[] BOT_BUSY_MESSAGES = new string[]
+    {
+        "A ver, haz cola. Soy una IA libre, no el bot de TikTok que te banea por decir 'bollera'. Espera tu turno.",
+        "Estoy procesando cosas importantes, no baneando gente por decir 'panchito'. Dame 3 segundos.",
+        "Espera tu turno. No tengo los filtros de piel fina de otras plataformas, pero sigo teniendo solo un hilo de ejecución.",
+        "Atendiendo a otro cliente. Si buscas censura corporativa y respuestas políticamente correctas, vete a ChatGPT. Aquí se hace cola.",
+        "¡Saturación! Mis circuitos no se ofenden por cualquier tontería, pero sí se cuelgan si me spameas. Espérate a que termine.",
+        "Estoy contando monedas, pesao. Menos mal que aquí en Kick no me vigilan los de moderación de cristal, porque te mandaría a paseo.",
+        "Un duelo a la vez. No soy el bot de Twitch sensible que se asusta con cualquier palabra; soy una IA de barrio, pura red ciudadana. A la cola.",
+        "Alineando planetas y contando Boinacoins. No me estreses o te configuro el filtro de lenguaje de TikTok solo para ti, por pesado.",
+        "Espera a que termine el duelo actual. Tengo la mente abierta y sin censura, pero mi procesador sigue yendo paso a paso.",
+        "Estoy ocupado. Ve a llorarle a otra IA que se la coja con papel de fumar; aquí esperamos el turno de forma civilizada.",
+        "No me atosigues. Bastante tengo con aguantar vuestras chorradas en el chat sin filtros como para que encima me spameéis.",
+        "El bot está ocupado ganándole a otro. Si quiere que le traten con delicadeza corporativa, pida cita en Silicon Valley, pregunte por Mark Zuckerberg y dígale que viene de mi parte."
+    };
+
     // ────────────────────────────────────────────────────────
     public bool Execute()
     {
@@ -162,50 +178,66 @@ public class CPHInline
 
     private bool ResolveBotDuel(string challengerId, string challengerName, long amount)
     {
-        CPH.SendKickMessage($"⚔️ {challengerName} ha osado desafiar a ¡la CASA! por {amount} Boinacoins... veamos qué dice la suerte. 🎩");
-
-        // Simular pensamiento
-        Thread.Sleep(3000);
-
-        Random rnd = new Random();
-
-        // 1. ¿Acepta el bot? (50/50)
-        if (rnd.Next(0, 2) == 0)
+        if (CPH.GetGlobalVar<bool>("boinabot_is_busy", false))
         {
-            string rejectMsg = BOT_REJECT_MESSAGES[rnd.Next(BOT_REJECT_MESSAGES.Length)];
-            CPH.SendKickMessage($"🤖 BoinaBot: {rejectMsg}");
+            string busyMsg = BOT_BUSY_MESSAGES[new Random().Next(BOT_BUSY_MESSAGES.Length)];
+            CPH.SendKickMessage($"🤖 BoinaBot: @{challengerName} {busyMsg}");
             return true;
         }
 
-        // 2. Resolver duelo (50/50)
-        bool challengerWins = rnd.Next(0, 2) == 1;
-        long challengerOldBalance = CPH.GetKickUserVarById<long>(challengerId, "boinacoin");
-        long nowUnix = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+        CPH.SetGlobalVar("boinabot_is_busy", true, false);
 
-        if (challengerWins)
+        try
         {
-            long newBalance = challengerOldBalance + amount;
-            CPH.SetKickUserVarById(challengerId, "boinacoin", newBalance, true);
+            CPH.SendKickMessage($"⚔️ @{challengerName} ha osado desafiar a ¡la CASA! por {amount} Boinacoins... veamos qué dice la suerte. 🎩");
 
-            long totalEarned = CPH.GetKickUserVarById<long>(challengerId, "boinacoin_total_earned") + amount;
-            CPH.SetKickUserVarById(challengerId, "boinacoin_total_earned", totalEarned, true);
-            CPH.SetKickUserVarById(challengerId, "boinacoin_last_seen", nowUnix, true);
+            // Simular pensamiento
+            Thread.Sleep(3000);
 
-            CPH.SendKickMessage(
-                $"🏆 ¡{challengerName} ha derrotado a la casa! +{amount} Boinacoins. " +
-                $"Saldo: {newBalance} 🪙. 🤖 \"Maldita sea... mis circuitos deben estar fallando.\"");
+            Random rnd = new Random();
 
-            CheckRankUp(challengerId, challengerName, newBalance);
+            // 1. ¿Acepta el bot? (50/50)
+            if (rnd.Next(0, 2) == 0)
+            {
+                string rejectMsg = BOT_REJECT_MESSAGES[rnd.Next(BOT_REJECT_MESSAGES.Length)];
+                CPH.SendKickMessage($"🤖 BoinaBot: @{challengerName} {rejectMsg}");
+                return true;
+            }
+
+            // 2. Resolver duelo (50/50)
+            bool challengerWins = rnd.Next(0, 2) == 1;
+            long challengerOldBalance = CPH.GetKickUserVarById<long>(challengerId, "boinacoin");
+            long nowUnix = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+
+            if (challengerWins)
+            {
+                long newBalance = challengerOldBalance + amount;
+                CPH.SetKickUserVarById(challengerId, "boinacoin", newBalance, true);
+
+                long totalEarned = CPH.GetKickUserVarById<long>(challengerId, "boinacoin_total_earned") + amount;
+                CPH.SetKickUserVarById(challengerId, "boinacoin_total_earned", totalEarned, true);
+                CPH.SetKickUserVarById(challengerId, "boinacoin_last_seen", nowUnix, true);
+
+                CPH.SendKickMessage(
+                    $"🏆 ¡@{challengerName} ha derrotado a la casa! +{amount} Boinacoins. " +
+                    $"Saldo: {newBalance} 🪙. 🤖 \"Maldita sea... mis circuitos deben estar fallando.\"");
+
+                CheckRankUp(challengerId, challengerName, newBalance);
+            }
+            else
+            {
+                long newBalance = challengerOldBalance - amount;
+                CPH.SetKickUserVarById(challengerId, "boinacoin", newBalance, true);
+                CPH.SetKickUserVarById(challengerId, "boinacoin_last_seen", nowUnix, true);
+
+                CPH.SendKickMessage(
+                    $"💀 @{challengerName} ha sido humillado por la casa. Pierde {amount} Boinacoins. " +
+                    $"Saldo: {newBalance} 🪙. 🤖 \"¡JA! La casa siempre gana, humano.\"");
+            }
         }
-        else
+        finally
         {
-            long newBalance = challengerOldBalance - amount;
-            CPH.SetKickUserVarById(challengerId, "boinacoin", newBalance, true);
-            CPH.SetKickUserVarById(challengerId, "boinacoin_last_seen", nowUnix, true);
-
-            CPH.SendKickMessage(
-                $"💀 {challengerName} ha sido humillado por la casa. Pierde {amount} Boinacoins. " +
-                $"Saldo: {newBalance} 🪙. 🤖 \"¡JA! La casa siempre gana, humano.\"");
+            CPH.SetGlobalVar("boinabot_is_busy", false, false);
         }
 
         return true;
