@@ -181,7 +181,7 @@ public class CPHInline
         if (CPH.GetGlobalVar<bool>("boinabot_is_busy", false))
         {
             string busyMsg = BOT_BUSY_MESSAGES[new Random().Next(BOT_BUSY_MESSAGES.Length)];
-            CPH.SendKickMessage($"🤖 BoinaBot: {busyMsg}");
+            CPH.SendKickMessage($"🤖 BoinaBot: @{challengerName} {busyMsg}");
             return true;
         }
 
@@ -189,7 +189,7 @@ public class CPHInline
 
         try
         {
-            CPH.SendKickMessage($"⚔️ {challengerName} ha osado desafiar a ¡la CASA! por {amount} Boinacoins... veamos qué dice la suerte. 🎩");
+            CPH.SendKickMessage($"⚔️ @{challengerName} ha osado desafiar a ¡la CASA! por {amount} Boinacoins... veamos qué dice la suerte. 🎩");
 
             // Simular pensamiento
             Thread.Sleep(3000);
@@ -200,7 +200,7 @@ public class CPHInline
             if (rnd.Next(0, 2) == 0)
             {
                 string rejectMsg = BOT_REJECT_MESSAGES[rnd.Next(BOT_REJECT_MESSAGES.Length)];
-                CPH.SendKickMessage($"🤖 BoinaBot: {rejectMsg}");
+                CPH.SendKickMessage($"🤖 BoinaBot: @{challengerName} {rejectMsg}");
                 return true;
             }
 
@@ -219,7 +219,7 @@ public class CPHInline
                 CPH.SetKickUserVarById(challengerId, "boinacoin_last_seen", nowUnix, true);
 
                 CPH.SendKickMessage(
-                    $"🏆 ¡{challengerName} ha derrotado a la casa! +{amount} Boinacoins. " +
+                    $"🏆 ¡@{challengerName} ha derrotado a la casa! +{amount} Boinacoins. " +
                     $"Saldo: {newBalance} 🪙. 🤖 \"Maldita sea... mis circuitos deben estar fallando.\"");
 
                 CheckRankUp(challengerId, challengerName, newBalance);
@@ -231,7 +231,7 @@ public class CPHInline
                 CPH.SetKickUserVarById(challengerId, "boinacoin_last_seen", nowUnix, true);
 
                 CPH.SendKickMessage(
-                    $"💀 {challengerName} ha sido humillado por la casa. Pierde {amount} Boinacoins. " +
+                    $"💀 @{challengerName} ha sido humillado por la casa. Pierde {amount} Boinacoins. " +
                     $"Saldo: {newBalance} 🪙. 🤖 \"¡JA! La casa siempre gana, humano.\"");
             }
         }
