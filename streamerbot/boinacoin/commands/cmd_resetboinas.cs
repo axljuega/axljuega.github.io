@@ -1,8 +1,16 @@
 // ============================================================
 //  BOINACOIN · commands/cmd_resetboinas.cs
 //  Comando: !resetboinas @usuario
-//  Permiso: SOLO streamer (isOwner / isBroadcaster)
+//  Permiso: SOLO broadcaster
 //           Los mods NO pueden ejecutarlo.
+//
+//  FIX: La validación de broadcaster NO usa args["isBroadcaster"]
+//       porque Streamer.bot v1.x NO inyecta ese arg en los
+//       Kick Command Triggers (no figura en las Kick User Variables
+//       de la documentación oficial).
+//       En su lugar comparamos directamente el userId del caller
+//       contra CPH.KickGetBroadcaster().UserId, que sí está
+//       garantizado por la API.
 //
 //  Resetea completamente el perfil Boinacoin de un usuario:
 //    · boinacoin             → 0
@@ -19,7 +27,6 @@
 //
 //  Cómo conectarlo en Streamer.bot:
 //    Acción → trigger "Kick · Chat Command · !resetboinas"
-//    Añadir condición: isOwner == true (o isBroadcaster)
 // ============================================================
 
 using System;
@@ -34,18 +41,17 @@ public class CPHInline
 
         if (string.IsNullOrEmpty(callerId)) return false;
 
-        // ── 1. Solo streamer — mods excluidos expresamente ────
-        // FIX: los args de Streamer.bot v1.x llegan como string,
-        //      el cast directo (bool)args["isBroadcaster"] lanza
-        //      InvalidCastException. Usar .ToString().ToLower().
-        bool isStreamer    = args.ContainsKey("isOwner")       &&
-                             args["isOwner"].ToString().ToLower()       == "true";
-        bool isBroadcaster = args.ContainsKey("isBroadcaster") &&
-                             args["isBroadcaster"].ToString().ToLower() == "true";
+        // ── 1. Solo broadcaster — comparación directa por userId ──
+        // FIX: args["isBroadcaster"] NO está disponible en los
+        //      Kick Command Triggers de Streamer.bot v1.x.
+        //      Usamos KickGetBroadcaster().UserId que sí es fiable.
+        var  broadcasterInfo = CPH.KickGetBroadcaster();
+        bool isBroadcaster   = broadcasterInfo != null &&
+                               callerId == broadcasterInfo.UserId.ToString();
 
-        if (!isStreamer && !isBroadcaster)
+        if (!isBroadcaster)
         {
-            CPH.LogInfo($"[Boinacoin] !resetboinas denegado a {callerName} (no es streamer).");
+            CPH.LogInfo($"[Boinacoin] !resetboinas denegado a {callerName} (no es broadcaster).");
             return true;
         }
 
