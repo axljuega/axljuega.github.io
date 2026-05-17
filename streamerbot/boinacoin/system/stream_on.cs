@@ -35,6 +35,14 @@ public class CPHInline
         CPH.SetGlobalVar("boinacoin_session_earned",   0L, false);
         CPH.SetGlobalVar("boinacoin_horafeliz",        false, false);
 
+        // Nuevos trackings de sesión
+        CPH.SetGlobalVar("boinacoin_session_follows_names", "[]", false);
+        CPH.SetGlobalVar("boinacoin_session_subs_names",    "[]", false);
+        CPH.SetGlobalVar("boinacoin_session_leaderboard",   "{}", false); // JSON dict: username -> amount
+        CPH.SetGlobalVar("boinacoin_session_chatters",      "{}", false); // JSON dict: username -> count
+        CPH.SetGlobalVar("boinacoin_session_duels_total",   0L,   false);
+        CPH.SetGlobalVar("boinacoin_session_duels_winners", "{}", false); // JSON dict: username -> wins
+
         CPH.LogInfo("[Boinacoin] StreamOn · stats de sesión reseteadas.");
 
         // ── 2. Obtener título del stream (si está disponible) ─

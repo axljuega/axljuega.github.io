@@ -15,6 +15,9 @@
 // ============================================================
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json;
 
 public class CPHInline
 {
@@ -91,6 +94,26 @@ public class CPHInline
 
         // ── 8. Comprobar subida de rango ─────────────────────
         CheckRankUp(userId, userName, balance);
+
+        // ── 8.1 Tracking de sesión ───────────────────────────
+        long sEarned = CPH.GetGlobalVar<long>("boinacoin_session_earned", false) + earned;
+        CPH.SetGlobalVar("boinacoin_session_earned", sEarned, false);
+
+        string lbJson = CPH.GetGlobalVar<string>("boinacoin_session_leaderboard", false) ?? "{}";
+        var lb = JsonConvert.DeserializeObject<Dictionary<string, long>>(lbJson) ?? new Dictionary<string, long>();
+        lb[userName] = lb.ContainsKey(userName) ? lb[userName] + earned : earned;
+        var top10 = lb.OrderByDescending(kv => kv.Value).Take(10).ToDictionary(kv => kv.Key, kv => kv.Value);
+        CPH.SetGlobalVar("boinacoin_session_leaderboard", JsonConvert.SerializeObject(top10), false);
+
+        // Ranking de chatters (top 10)
+        if (userName != "BoinaBot")
+        {
+            string chattersJson = CPH.GetGlobalVar<string>("boinacoin_session_chatters", false) ?? "{}";
+            var chatters = JsonConvert.DeserializeObject<Dictionary<string, int>>(chattersJson) ?? new Dictionary<string, int>();
+            chatters[userName] = chatters.ContainsKey(userName) ? chatters[userName] + 1 : 1;
+            var topChatters = chatters.OrderByDescending(kv => kv.Value).Take(10).ToDictionary(kv => kv.Key, kv => kv.Value);
+            CPH.SetGlobalVar("boinacoin_session_chatters", JsonConvert.SerializeObject(topChatters), false);
+        }
 
         // ── 9. Mensaje de bienvenida solo en el bonus diario ─
         if (dailyBonus > 0)

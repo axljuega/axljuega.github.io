@@ -19,6 +19,9 @@
 
 using System;
 using System.Threading;
+using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json;
 
 public class CPHInline
 {
@@ -384,9 +387,11 @@ public class CPHInline
 
                 SendRandomMessage(BOT_LOSE_POOLS, challengerName, amount, 0, "", newBalance);
                 CheckRankUp(challengerId, challengerName, newBalance);
+                TrackSessionDuel(challengerName, amount, true); // true = emitted
             }
             else
             {
+                TrackSessionDuel("BoinaBot", amount, false);
                 long newBalance = challengerOldBalance - amount;
                 CPH.SetKickUserVarById(challengerId, "boinacoin", newBalance, true);
                 CPH.SetKickUserVarById(challengerId, "boinacoin_last_seen", nowUnix, true);
@@ -493,6 +498,8 @@ public class CPHInline
         // ── Anuncio del resultado ─────────────────────────────
         SendRandomMessage(DUEL_RESULT_POOLS, winnerName, amount, 0, loserName, winnerNewBalance, winnerName, 0, loserNewBalance);
 
+        TrackSessionDuel(winnerName, amount, false); // false = transferred
+
         ClearDuel();
         return true;
     }
@@ -505,6 +512,35 @@ public class CPHInline
         CPH.SetGlobalVar("boinacoin_duel_targetName", "", true);
         CPH.SetGlobalVar("boinacoin_duel_amount", 0L, true);
         CPH.SetGlobalVar("boinacoin_duel_expiry", 0L, true);
+    }
+
+    private void TrackSessionDuel(string winnerName, long amount, bool isEmitted)
+    {
+        // Total duels
+        long totalDuels = CPH.GetGlobalVar<long>("boinacoin_session_duels_total", false) + 1;
+        CPH.SetGlobalVar("boinacoin_session_duels_total", totalDuels, false);
+
+        // Duel winners tracking
+        string winnersJson = CPH.GetGlobalVar<string>("boinacoin_session_duels_winners", false) ?? "{}";
+        var winners = JsonConvert.DeserializeObject<Dictionary<string, int>>(winnersJson) ?? new Dictionary<string, int>();
+        winners[winnerName] = winners.ContainsKey(winnerName) ? winners[winnerName] + 1 : 1;
+        CPH.SetGlobalVar("boinacoin_session_duels_winners", JsonConvert.SerializeObject(winners), false);
+
+        // BoinaBot check
+        if (winnerName == "BoinaBot") return;
+
+        // Leaderboard for coins (only for the winner)
+        if (isEmitted)
+        {
+            long sEarned = CPH.GetGlobalVar<long>("boinacoin_session_earned", false) + amount;
+            CPH.SetGlobalVar("boinacoin_session_earned", sEarned, false);
+        }
+
+        string lbJson = CPH.GetGlobalVar<string>("boinacoin_session_leaderboard", false) ?? "{}";
+        var lb = JsonConvert.DeserializeObject<Dictionary<string, long>>(lbJson) ?? new Dictionary<string, long>();
+        lb[winnerName] = lb.ContainsKey(winnerName) ? lb[winnerName] + amount : amount;
+        var top10 = lb.OrderByDescending(kv => kv.Value).Take(10).ToDictionary(kv => kv.Key, kv => kv.Value);
+        CPH.SetGlobalVar("boinacoin_session_leaderboard", JsonConvert.SerializeObject(top10), false);
     }
 
     private void CheckRankUp(string userId, string userName, long balance)
