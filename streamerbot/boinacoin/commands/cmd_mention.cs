@@ -60,10 +60,13 @@ public class CPHInline
         string userName = args.ContainsKey("userName") ? args["userName"].ToString() : "alguien";
         string message  = args.ContainsKey("message")  ? args["message"].ToString()  : "";
 
-        // ── 0. Ignorar bots ───────────────────────────────────
+        // ── 0. Ignorar al propio BoinaBot (evita loop infinito) ─
+        if (userName.ToLower() == BOT_SLUG.ToLower()) return false;
+
+        // ── 0.1 Ignorar bots del grupo ────────────────────────
         if (CPH.UserInGroup(userName, Platform.Kick, "Chat Bots")) return false;
 
-        // ── 0.1 Ignorar si el mensaje empieza por ! ───────────
+        // ── 0.2 Ignorar si el mensaje empieza por ! ───────────
         // Doble guarda: el trigger de Streamer.bot ya lo filtra,
         // pero lo verificamos aquí por si acaso
         if (message.TrimStart().StartsWith("!")) return true;
