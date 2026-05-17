@@ -35,6 +35,9 @@ public class CPHInline
 
         if (string.IsNullOrEmpty(userId)) return false;
 
+        // ── 0. Ignorar Bots ───────────────────────────────────
+        if (CPH.UserInGroup(userName, "Chat Bots")) return false;
+
         // ── 1. Leer saldo actual ──────────────────────────────
         long currentBalance = CPH.GetKickUserVarById<long>(userId, "boinacoin");
 

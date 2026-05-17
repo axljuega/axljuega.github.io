@@ -35,10 +35,10 @@ public class CPHInline
         int  rewardedCount = 0;
 
         var botInfo = CPH.KickGetBot();
-        string botId = botInfo?.Id.ToString() ?? "";
+        string botId = botInfo?.UserId.ToString() ?? "";
 
         var broadcasterInfo = CPH.KickGetBroadcaster();
-        string broadcasterId = broadcasterInfo?.Id.ToString() ?? "";
+        string broadcasterId = broadcasterInfo?.UserId.ToString() ?? "";
 
         foreach (var viewer in viewers)
         {
@@ -48,7 +48,8 @@ public class CPHInline
 
             if (string.IsNullOrEmpty(userId)) continue;
 
-            // ── Excluir al propio bot y al streamer ───────────
+            // ── Excluir Bots y al propio bot y al streamer ────
+            if (CPH.UserInGroup(userName, "Chat Bots")) continue;
             if (userId == botId || userId == broadcasterId) continue;
 
             // ── Condición de actividad ───────────────────────

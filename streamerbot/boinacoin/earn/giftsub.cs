@@ -31,12 +31,16 @@ public class CPHInline
 
         if (string.IsNullOrEmpty(gifterId)) return false;
 
-        // ── 0. Excluir al propio bot y al streamer ───────────
+        // ── 0. Excluir Bots ───────────────────────────────────
+        if (CPH.UserInGroup(gifterName, "Chat Bots")) return false;
+
+        // ── 0.1 Excluir al propio bot y al streamer ───────────
+        // FIX: .UserId en lugar de .Id (KickUserInfo v1.x)
         var botInfo = CPH.KickGetBot();
-        if (botInfo != null && gifterId == botInfo.Id.ToString()) return false;
+        if (botInfo != null && gifterId == botInfo.UserId.ToString()) return false;
 
         var broadcasterInfo = CPH.KickGetBroadcaster();
-        if (broadcasterInfo != null && gifterId == broadcasterInfo.Id.ToString()) return false;
+        if (broadcasterInfo != null && gifterId == broadcasterInfo.UserId.ToString()) return false;
 
         // Datos del receptor (informativo para el mensaje)
         string recipientName = args.ContainsKey("recipientUserName")
