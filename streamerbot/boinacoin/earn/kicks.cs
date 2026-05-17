@@ -6,10 +6,10 @@
 //  Ejemplo: 500 Kicks enviados → +500 Boinacoins (base)
 //           Con hora feliz x2  → +1.000 Boinacoins
 //
-//  Cómo conectarlo en Streamer.bot:
-//    Acción → trigger "Kick · Gifts Leaderboard Updated"
-//    o el trigger equivalente de Kicks en tu versión de SB.
-//    El evento pasa "amount" con el nº de Kicks enviados.
+//  FIX: Eliminado bloque de exclusión del broadcaster.
+//  FIX: Añadido dump de args para encontrar el key correcto
+//       del campo "amount" en el evento kicks.gifted.
+//       Una vez confirmado el key, eliminar el bloque DEBUG.
 // ============================================================
 
 using System;
@@ -21,8 +21,6 @@ public class CPHInline
     private const long RANK_TERCIOPELO = 50_000;
     private const long RANK_LEGENDARIA = 100_000;
 
-    // Umbral mínimo de Kicks para procesar el evento.
-    // Evita ruido de eventos de 1-2 Kicks accidentales.
     private const int MIN_KICKS = 1;
 
     // ────────────────────────────────────────────────────────
@@ -33,53 +31,70 @@ public class CPHInline
 
         if (string.IsNullOrEmpty(userId)) return false;
 
-        // ── 0. Excluir Bots ───────────────────────────────────
+        // ── 0. Excluir grupo Chat Bots ────────────────────────
         if (CPH.UserInGroup(userName, Platform.Kick, "Chat Bots")) return false;
 
-        // ── 0.1 Excluir al propio bot y al streamer ───────────
-        // FIX: .UserId en lugar de .Id (KickUserInfo v1.x)
+        // ── 0.1 Excluir al propio BoinaBot ───────────────────
         var botInfo = CPH.KickGetBot();
         if (botInfo != null && userId == botInfo.UserId.ToString()) return false;
 
-        var broadcasterInfo = CPH.KickGetBroadcaster();
-        if (broadcasterInfo != null && userId == broadcasterInfo.UserId.ToString()) return false;
+        // ── NOTA: El broadcaster (afaces) SÍ gana Boinacoins ─
 
-        // Nº de Kicks enviados en este evento
+        // ── DEBUG: Dump de todos los args del evento ─────────
+        // Necesario para encontrar el key correcto de "amount"
+        // en el evento kicks.gifted. Eliminar tras confirmarlo.
+        CPH.LogInfo("[Kicks DEBUG] === ARG DUMP ===");
+        foreach (var k in args.Keys)
+            CPH.LogInfo($"[Kicks DEBUG] {k} = {args[k]}");
+        CPH.LogInfo("[Kicks DEBUG] === FIN DUMP ===");
+
+        // ── 1. Leer cantidad de Kicks ────────────────────────
+        // CANDIDATOS conocidos — se prueba por orden:
         int kicksAmount = 0;
-        if (args.ContainsKey("amount"))
-            int.TryParse(args["amount"].ToString(), out kicksAmount);
+        string[] candidateKeys = { "amount", "kicksAmount", "giftAmount", "kicks", "giftsAmount" };
+        foreach (var key in candidateKeys)
+        {
+            if (args.ContainsKey(key))
+            {
+                int.TryParse(args[key].ToString(), out kicksAmount);
+                CPH.LogInfo($"[Kicks DEBUG] Key encontrado: '{key}' = {kicksAmount}");
+                break;
+            }
+        }
 
-        if (string.IsNullOrEmpty(userId)) return false;
-        if (kicksAmount < MIN_KICKS)      return false;
+        if (kicksAmount < MIN_KICKS)
+        {
+            CPH.LogInfo($"[Kicks DEBUG] kicksAmount={kicksAmount} < MIN_KICKS={MIN_KICKS} → abort");
+            return false;
+        }
 
-        // ── 1. Calcular recompensa (+1 por Kick) ─────────────
-        long   baseReward = kicksAmount;           // 1:1
+        // ── 2. Calcular recompensa (+1 por Kick) ─────────────
+        long   baseReward = kicksAmount;
         double mult       = GetMultiplier(userId);
         long   earned     = (long)Math.Floor(baseReward * mult);
 
-        // ── 2. Actualizar saldo ──────────────────────────────
+        // ── 3. Actualizar saldo ──────────────────────────────
         long balance = CPH.GetKickUserVarById<long>(userId, "boinacoin") + earned;
         CPH.SetKickUserVarById(userId, "boinacoin", balance, true);
 
-        // ── 3. Estadística histórica ─────────────────────────
+        // ── 4. Estadística histórica ─────────────────────────
         long totalEarned = CPH.GetKickUserVarById<long>(userId, "boinacoin_total_earned") + earned;
         CPH.SetKickUserVarById(userId, "boinacoin_total_earned", totalEarned, true);
 
-        // ── 4. Timestamp antiinactividad ─────────────────────
+        // ── 5. Timestamp antiinactividad ─────────────────────
         CPH.SetKickUserVarById(userId, "boinacoin_last_seen",
             DateTimeOffset.UtcNow.ToUnixTimeSeconds(), true);
 
-        // ── 5. Comprobar subida de rango ─────────────────────
+        // ── 6. Comprobar subida de rango ─────────────────────
         CheckRankUp(userId, userName, balance);
 
-        // ── 6. Mensaje al chat ───────────────────────────────
-        // Solo si los Kicks son suficientes para merecer mención
-        // (evita spam en chat con envíos de 1-2 Kicks)
+        // ── 7. Mensaje al chat ───────────────────────────────
         if (kicksAmount >= 50)
         {
             string multText = mult > 1.0 ? $" (x{mult:0.##} ⚡)" : "";
             CPH.SendKickMessage(
-                $"💥 ¡{userName} ha enviado {kicksAmount} Kicks! " +
+                $"💥 {userName} acaba de tirar {kicksAmount} Kicks. " +
+                $"Alguien tiene el carrete suelto. " +
                 $"+{earned} Boinacoins{multText} · Saldo: {balance} 🪙");
         }
 
