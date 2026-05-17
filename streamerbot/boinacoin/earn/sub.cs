@@ -3,12 +3,13 @@
 //  Evento: nueva Subscription en Kick (primera vez)
 //  Recompensa: +5.000 Boinacoins · activa multiplicador x1.5
 //
-//  Cómo conectarlo en Streamer.bot:
-//    Acción → trigger "Kick · Subscribe"
-//    (las resubs van a resub.cs — trigger separado)
+//  FIX: Eliminado bloque de exclusión del broadcaster.
+//  NEW: Envía embed a Discord #subs-y-follows.
 // ============================================================
 
 using System;
+using System.Net.Http;
+using System.Text;
 
 public class CPHInline
 {
@@ -17,8 +18,8 @@ public class CPHInline
     private const long RANK_TERCIOPELO = 50_000;
     private const long RANK_LEGENDARIA = 100_000;
 
-    // Multiplicador que otorga una sub activa (sin meses acumulados aún)
     private const double SUB_MULTIPLIER = 1.5;
+    private const string WEBHOOK_SUBS_FOLLOWS = "https://discord.com/api/webhooks/1505195847103811616/JHAHJXRCGFJ99vyvtTJuFbL-io4Ff-9zgYdzenPa0taTZVXGlG3EqbFGjWhS15RK2Oc_";
 
     // ────────────────────────────────────────────────────────
     public bool Execute()
@@ -28,20 +29,14 @@ public class CPHInline
 
         if (string.IsNullOrEmpty(userId)) return false;
 
-        // ── 0. Excluir Bots ───────────────────────────────────
+        // ── 0. Excluir grupo Chat Bots ────────────────────────
         if (CPH.UserInGroup(userName, Platform.Kick, "Chat Bots")) return false;
 
-        // ── 0.1 Excluir al propio bot y al streamer ───────────
-        // FIX: .UserId en lugar de .Id (KickUserInfo v1.x)
+        // ── 0.1 Excluir al propio BoinaBot ───────────────────
         var botInfo = CPH.KickGetBot();
         if (botInfo != null && userId == botInfo.UserId.ToString()) return false;
 
-        var broadcasterInfo = CPH.KickGetBroadcaster();
-        if (broadcasterInfo != null && userId == broadcasterInfo.UserId.ToString()) return false;
-
-        // ── 1. Actualizar multiplicador de sub ───────────────
-        // Lo guardamos ANTES de calcular la recompensa para que
-        // el propio sub ya se beneficie de su nuevo multiplicador.
+        // ── 1. Activar multiplicador de sub ──────────────────
         CPH.SetKickUserVarById(userId, "boinacoin_multiplier", SUB_MULTIPLIER, true);
 
         // ── 2. Calcular recompensa ───────────────────────────
@@ -64,62 +59,92 @@ public class CPHInline
         // ── 6. Comprobar subida de rango ─────────────────────
         CheckRankUp(userId, userName, balance);
 
-        // ── 7. Mensaje de agradecimiento ─────────────────────
+        // ── 7. Mensaje en Kick ───────────────────────────────
         string multText = mult > 1.0 ? $" (x{mult:0.##} ⚡)" : "";
         CPH.SendKickMessage(
             $"🎉 ¡Gracias por suscribirte, {userName}! " +
             $"+{earned} Boinacoins{multText} · Saldo: {balance} 🪙 · " +
             $"Multiplicador permanente activado: x{SUB_MULTIPLIER} 💜");
 
+        // ── 8. Embed Discord #subs-y-follows ─────────────────
+        string rankName  = RankName(CPH.GetKickUserVarById<int>(userId, "boinacoin_rank"));
+        string timestamp = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ");
+
+        string payload = $@"{{
+            ""embeds"": [{{
+                ""title"": ""💜 ¡Nueva Suscripción!"",
+                ""description"": ""**{EscapeJson(userName)}** se ha suscrito al canal.\n¡Bienvenid@ al club de la boina de pago!"",
+                ""color"": 10181046,
+                ""fields"": [
+                    {{""name"": ""Boinacoins ganados"",  ""value"": ""+{earned} 🪙{EscapeJson(multText)}"",    ""inline"": true}},
+                    {{""name"": ""Saldo total"",         ""value"": ""{balance:N0} 🪙"",                       ""inline"": true}},
+                    {{""name"": ""Multiplicador activo"",""value"": ""x{SUB_MULTIPLIER} permanente 💜"",        ""inline"": true}},
+                    {{""name"": ""Rango actual"",        ""value"": ""{EscapeJson(rankName)}"",                ""inline"": true}}
+                ],
+                ""footer"": {{""text"": ""Boinacoin · La Chica de la Boina""}},
+                ""timestamp"": ""{timestamp}""
+            }}]
+        }}";
+
+        SendWebhook(WEBHOOK_SUBS_FOLLOWS, payload);
+
         return true;
     }
 
-    // ── Multiplicador total activo ────────────────────────────
-    // NOTA: ya incluye SUB_MULTIPLIER porque se guardó en el paso 1.
     private double GetMultiplier(string userId)
     {
         double m = 1.0;
-
         double subMult = CPH.GetKickUserVarById<double>(userId, "boinacoin_multiplier");
         if (subMult > 1.0) m *= subMult;
-
         bool horaFeliz = CPH.GetGlobalVar<bool>("boinacoin_horafeliz", true);
         if (horaFeliz) m *= 2.0;
-
         int streak = CPH.GetKickUserVarById<int>(userId, "boinacoin_streak");
         if      (streak >= 30) m *= 2.0;
         else if (streak >= 7)  m *= 1.5;
-
         int rank = CPH.GetKickUserVarById<int>(userId, "boinacoin_rank");
         if      (rank == 4) m *= 1.5;
         else if (rank == 3) m *= 1.25;
-
         return m;
     }
 
-    // ── Subida de rango ───────────────────────────────────────
     private void CheckRankUp(string userId, string userName, long balance)
     {
         int oldRank = CPH.GetKickUserVarById<int>(userId, "boinacoin_rank");
         int newRank = RankForBalance(balance);
-
         if (newRank <= oldRank) return;
-
         CPH.SetKickUserVarById(userId, "boinacoin_rank", newRank, true);
         CPH.SendKickMessage($"🎉 ¡{userName} sube a {RankName(newRank)}!");
-
         CPH.SetArgument("rankUpUserId",   userId);
         CPH.SetArgument("rankUpUserName", userName);
         CPH.SetArgument("rankUpNewRank",  newRank);
         CPH.RunAction("Boinacoin · RankChecker", false);
     }
 
-    private int RankForBalance(long balance)
+    private void SendWebhook(string url, string json)
     {
-        if (balance >= RANK_LEGENDARIA) return 4;
-        if (balance >= RANK_TERCIOPELO) return 3;
-        if (balance >= RANK_CUERO)      return 2;
-        if (balance >= RANK_LANA)       return 1;
+        try
+        {
+            using (var client = new HttpClient())
+            {
+                client.Timeout = TimeSpan.FromSeconds(10);
+                var content  = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = client.PostAsync(url, content).GetAwaiter().GetResult();
+                if (!response.IsSuccessStatusCode)
+                    CPH.LogWarn($"[Sub] Webhook HTTP {(int)response.StatusCode}");
+            }
+        }
+        catch (Exception ex) { CPH.LogWarn($"[Sub] Webhook error: {ex.Message}"); }
+    }
+
+    private string EscapeJson(string s) =>
+        s.Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\n", "\\n").Replace("\r", "");
+
+    private int RankForBalance(long b)
+    {
+        if (b >= RANK_LEGENDARIA) return 4;
+        if (b >= RANK_TERCIOPELO) return 3;
+        if (b >= RANK_CUERO)      return 2;
+        if (b >= RANK_LANA)       return 1;
         return 0;
     }
 
