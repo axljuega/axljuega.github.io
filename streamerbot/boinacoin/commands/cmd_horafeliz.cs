@@ -56,7 +56,7 @@ public class CPHInline
         }
 
         // ── Verificar permisos ────────────────────────────────
-        bool isStreamer = userType == "broadcaster";
+        bool isStreamer = userType == "broadcaster" || userType == "moderator";
 
         if (!isStreamer)
         {
