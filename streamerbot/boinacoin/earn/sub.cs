@@ -22,7 +22,7 @@ public class CPHInline
     private const long RANK_LEGENDARIA = 100_000;
 
     private const double SUB_MULTIPLIER = 1.5;
-    private const string WEBHOOK_SUBS_FOLLOWS = "https://discord.com/api/webhooks/1505195847103811616/JHAHJXRCGFJ99vyvtTJuFbL-io4Ff-9zgYdzenPa0taTZVXGlG3EqbFGjWhS15RK2Oc_";
+    private const string WEBHOOK_SUBS_FOLLOWS = "https://discord.com/api/webhooks/WEBHOOK_ID/WEBHOOK_TOKEN";
 
     // ────────────────────────────────────────────────────────
     public bool Execute()

@@ -23,8 +23,7 @@ using Newtonsoft.Json;
 
 public class CPHInline
 {
-    private const string WEBHOOK_EVENTOS =
-        "https://discord.com/api/webhooks/1505194926462341210/KkyB6TTJxlG_wnSYfuKshyrltCLxX6z3YkA6gEewLPmASu55ttevsJCMn7dT2oHzgy6i";
+    private const string WEBHOOK_EVENTOS = "https://discord.com/api/webhooks/WEBHOOK_ID/WEBHOOK_TOKEN";
 
     private const int COLOR_OFFLINE = 10197915; // #9B59DB morado suave
 

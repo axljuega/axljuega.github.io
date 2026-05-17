@@ -33,20 +33,20 @@ public class CPHInline
     // ── URLs de webhook por rango ─────────────────────────────
     // Crea un webhook distinto por canal/rango en Discord para
     // poder dirigir cada anuncio al canal correspondiente.
-    private const string WEBHOOK_LANA       = "https://discord.com/api/webhooks/TU_WEBHOOK_LANA";
-    private const string WEBHOOK_CUERO      = "https://discord.com/api/webhooks/TU_WEBHOOK_CUERO";
-    private const string WEBHOOK_TERCIOPELO = "https://discord.com/api/webhooks/TU_WEBHOOK_TERCIOPELO";
-    private const string WEBHOOK_LEGENDARIA = "https://discord.com/api/webhooks/TU_WEBHOOK_LEGENDARIA";
+    private const string WEBHOOK_LANA       = "https://discord.com/api/webhooks/WEBHOOK_ID/WEBHOOK_TOKEN";
+    private const string WEBHOOK_CUERO      = "https://discord.com/api/webhooks/WEBHOOK_ID/WEBHOOK_TOKEN";
+    private const string WEBHOOK_TERCIOPELO = "https://discord.com/api/webhooks/WEBHOOK_ID/WEBHOOK_TOKEN";
+    private const string WEBHOOK_LEGENDARIA = "https://discord.com/api/webhooks/WEBHOOK_ID/WEBHOOK_TOKEN";
 
     // ── IDs de roles de Discord por rango ─────────────────────
     // Obtén los IDs activando Modo Desarrollador en Discord
     // (Ajustes → Avanzado → Modo Desarrollador) y haciendo
     // clic derecho sobre el rol → Copiar ID.
     // Si no usas asignación automática de roles, deja en "".
-    private const string ROLE_ID_LANA       = "";   // ID del rol Boina de Lana
-    private const string ROLE_ID_CUERO      = "";   // ID del rol Boina de Cuero
-    private const string ROLE_ID_TERCIOPELO = "";   // ID del rol Boina de Terciopelo
-    private const string ROLE_ID_LEGENDARIA = "";   // ID del rol La Boina Legendaria
+    private const string ROLE_ID_LANA       = "ROLE_ID_PLACEHOLDER";   // ID del rol Boina de Lana
+    private const string ROLE_ID_CUERO      = "ROLE_ID_PLACEHOLDER";   // ID del rol Boina de Cuero
+    private const string ROLE_ID_TERCIOPELO = "ROLE_ID_PLACEHOLDER";   // ID del rol Boina de Terciopelo
+    private const string ROLE_ID_LEGENDARIA = "ROLE_ID_PLACEHOLDER";   // ID del rol La Boina Legendaria
 
     // ── Colores de embed por rango (formato decimal) ──────────
     private const int COLOR_LANA       = 8947848;  // #888780 gris cálido

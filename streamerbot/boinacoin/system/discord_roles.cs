@@ -35,14 +35,14 @@ public class CPHInline
 {
     // ── Configuración ─────────────────────────────────────────
     // Sustituye BOT_TOKEN por el token real de GestorDeBoinas
-    private const string BOT_TOKEN = "dasdasdassadasdas.PLACEHOLDER.ReemplazaPorTokenReal";
-    private const string GUILD_ID  = "12312312";
+    private const string BOT_TOKEN = "BOT_TOKEN_PLACEHOLDER";
+    private const string GUILD_ID  = "GUILD_ID_PLACEHOLDER";
 
     // IDs de los 4 roles de Boina en Discord
-    private const string ROLE_LANA       = "12312312";
-    private const string ROLE_CUERO      = "12312312";
-    private const string ROLE_TERCIOPELO = "12312312";
-    private const string ROLE_LEGENDARIA = "123123123";
+    private const string ROLE_LANA       = "ROLE_ID_PLACEHOLDER";
+    private const string ROLE_CUERO      = "ROLE_ID_PLACEHOLDER";
+    private const string ROLE_TERCIOPELO = "ROLE_ID_PLACEHOLDER";
+    private const string ROLE_LEGENDARIA = "ROLE_ID_PLACEHOLDER";
 
     // Todos los roles de rango (para limpiar los anteriores)
     private static readonly string[] ALL_RANK_ROLES =
