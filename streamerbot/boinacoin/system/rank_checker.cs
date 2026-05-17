@@ -49,6 +49,9 @@ public class CPHInline
 
         if (string.IsNullOrEmpty(userName) || newRank < 1 || newRank > 4) return false;
 
+        // ── 0. Ignorar Bots ───────────────────────────────────
+        if (CPH.UserInGroup(userName, Platform.Kick, "Chat Bots")) return false;
+
         // ── 1. Guard antiduplicado ────────────────────────────
         // Comprobamos que el rango guardado en la variable del
         // usuario coincide con newRank. Si otro script ya procesó

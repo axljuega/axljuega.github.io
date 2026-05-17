@@ -37,6 +37,9 @@ public class CPHInline
             return false;
         }
 
+        // ── 0. Ignorar Bots ───────────────────────────────────
+        if (CPH.UserInGroup(callerName, Platform.Kick, "Chat Bots")) return false;
+
         try
         {
             // ── ¿Hay argumento @usuario? ─────────────────────────
@@ -48,6 +51,12 @@ public class CPHInline
             {
                 string lookupName = rawInput.TrimStart('@');
                 CPH.LogInfo($"[BOINAS] Lookup branch → lookupName='{lookupName}'");
+
+                if (CPH.UserInGroup(lookupName, Platform.Kick, "Chat Bots"))
+                {
+                    CPH.SendKickMessage("⚠️ Los bots del sistema no pueden participar en la economía Boinacoin.");
+                    return true;
+                }
 
                 long   balance  = CPH.GetKickUserVar<long>(lookupName,   "boinacoin");
                 int    rank     = CPH.GetKickUserVar<int>(lookupName,    "boinacoin_rank");

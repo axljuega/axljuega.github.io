@@ -23,6 +23,9 @@ public class CPHInline
 
         if (string.IsNullOrEmpty(modId)) return false;
 
+        // ── 0. Ignorar Bots ───────────────────────────────────
+        if (CPH.UserInGroup(modName, Platform.Kick, "Chat Bots")) return false;
+
         // ── 1. Verificar permisos (mod o streamer) ────────────
         bool isMod       = args.ContainsKey("isModerator") && (bool)args["isModerator"];
         bool isStreamer   = args.ContainsKey("isOwner")     && (bool)args["isOwner"];
@@ -46,6 +49,12 @@ public class CPHInline
 
         // ── 3. Resolver usuario ───────────────────────────────
         string targetName = rawTarget.TrimStart('@');
+
+        if (CPH.UserInGroup(targetName, Platform.Kick, "Chat Bots"))
+        {
+            CPH.SendKickMessage("⚠️ Los bots del sistema no pueden participar en la economía Boinacoin.");
+            return true;
+        }
 
         // ── 4. Validar cantidad ───────────────────────────────
         if (!long.TryParse(rawAmount, out long amount) || amount == 0)

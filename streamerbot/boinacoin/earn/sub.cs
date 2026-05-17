@@ -28,12 +28,16 @@ public class CPHInline
 
         if (string.IsNullOrEmpty(userId)) return false;
 
-        // ── 0. Excluir al propio bot y al streamer ───────────
+        // ── 0. Excluir Bots ───────────────────────────────────
+        if (CPH.UserInGroup(userName, Platform.Kick, "Chat Bots")) return false;
+
+        // ── 0.1 Excluir al propio bot y al streamer ───────────
+        // FIX: .UserId en lugar de .Id (KickUserInfo v1.x)
         var botInfo = CPH.KickGetBot();
-        if (botInfo != null && userId == botInfo.Id.ToString()) return false;
+        if (botInfo != null && userId == botInfo.UserId.ToString()) return false;
 
         var broadcasterInfo = CPH.KickGetBroadcaster();
-        if (broadcasterInfo != null && userId == broadcasterInfo.Id.ToString()) return false;
+        if (broadcasterInfo != null && userId == broadcasterInfo.UserId.ToString()) return false;
 
         // ── 1. Actualizar multiplicador de sub ───────────────
         // Lo guardamos ANTES de calcular la recompensa para que

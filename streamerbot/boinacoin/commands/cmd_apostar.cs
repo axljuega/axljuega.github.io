@@ -33,6 +33,9 @@ public class CPHInline
 
         if (string.IsNullOrEmpty(userId)) return false;
 
+        // ── 0. Ignorar Bots ───────────────────────────────────
+        if (CPH.UserInGroup(userName, Platform.Kick, "Chat Bots")) return false;
+
         // ── 1. Verificar rango mínimo (Boina de Lana+) ───────
         int rank = CPH.GetKickUserVarById<int>(userId, "boinacoin_rank");
         if (rank < 1)
