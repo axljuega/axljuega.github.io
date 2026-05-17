@@ -45,7 +45,7 @@ public class CPHInline
         }
 
         // ── 0. Excluir Bots ───────────────────────────────────
-        if (CPH.UserInGroup(userName, "Chat Bots")) return false;
+        if (CPH.UserInGroup(userName, Platform.Kick, "Chat Bots")) return false;
 
         // ── 0.1 Excluir al propio bot (el streamer ahora puede jugar)
         var botInfo = CPH.KickGetBot();

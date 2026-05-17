@@ -33,7 +33,7 @@ public class CPHInline
     public bool Execute()
     {
         string userName = args.ContainsKey("userName") ? args["userName"].ToString() : "alguien";
-        if (CPH.UserInGroup(userName, "Chat Bots")) return false;
+        if (CPH.UserInGroup(userName, Platform.Kick, "Chat Bots")) return false;
 
         string mode = args.ContainsKey("mode") ? args["mode"].ToString() : "spawn";
 

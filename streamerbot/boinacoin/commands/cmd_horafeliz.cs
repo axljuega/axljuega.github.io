@@ -38,7 +38,7 @@ public class CPHInline
         string callerName = args.ContainsKey("userName") ? args["userName"].ToString() : "streamer";
         string mode       = args.ContainsKey("mode")     ? args["mode"].ToString()     : "toggle";
 
-        if (mode != "end" && CPH.UserInGroup(callerName, "Chat Bots")) return false;
+        if (mode != "end" && CPH.UserInGroup(callerName, Platform.Kick, "Chat Bots")) return false;
 
         // ── Rama de fin automático (llamada desde timer) ──────
         if (mode == "end")

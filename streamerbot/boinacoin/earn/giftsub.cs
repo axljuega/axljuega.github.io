@@ -32,7 +32,7 @@ public class CPHInline
         if (string.IsNullOrEmpty(gifterId)) return false;
 
         // ── 0. Excluir Bots ───────────────────────────────────
-        if (CPH.UserInGroup(gifterName, "Chat Bots")) return false;
+        if (CPH.UserInGroup(gifterName, Platform.Kick, "Chat Bots")) return false;
 
         // ── 0.1 Excluir al propio bot y al streamer ───────────
         // FIX: .UserId en lugar de .Id (KickUserInfo v1.x)

@@ -31,7 +31,7 @@ public class CPHInline
         if (string.IsNullOrEmpty(senderId)) return false;
 
         // ── 0. Ignorar Bots ───────────────────────────────────
-        if (CPH.UserInGroup(senderName, "Chat Bots")) return false;
+        if (CPH.UserInGroup(senderName, Platform.Kick, "Chat Bots")) return false;
 
         // ── 1. Parsear argumentos ─────────────────────────────
         string rawTarget = args.ContainsKey("input0") ? args["input0"].ToString().Trim() : "";
@@ -64,7 +64,7 @@ public class CPHInline
         // ── 4. Resolver usuario receptor ─────────────────────
         string targetName = rawTarget.TrimStart('@');
 
-        if (CPH.UserInGroup(targetName, "Chat Bots"))
+        if (CPH.UserInGroup(targetName, Platform.Kick, "Chat Bots"))
         {
             CPH.SendKickMessage("⚠️ Los bots del sistema no pueden participar en la economía Boinacoin.");
             return true;

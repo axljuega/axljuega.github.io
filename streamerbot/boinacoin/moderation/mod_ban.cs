@@ -36,7 +36,7 @@ public class CPHInline
         if (string.IsNullOrEmpty(userId)) return false;
 
         // ── 0. Ignorar Bots ───────────────────────────────────
-        if (CPH.UserInGroup(userName, "Chat Bots")) return false;
+        if (CPH.UserInGroup(userName, Platform.Kick, "Chat Bots")) return false;
 
         // ── 1. Leer datos anteriores para el log ──────────────
         long oldBalance = CPH.GetKickUserVarById<long>(userId, "boinacoin");

@@ -63,7 +63,7 @@ public class CPHInline
         }
 
         var candidates = allVars
-            .Where(u => !string.IsNullOrEmpty(u.UserId) && u.Value >= MIN_BALANCE_CHECK && !CPH.UserInGroup(u.UserName, "Chat Bots"))
+            .Where(u => !string.IsNullOrEmpty(u.UserId) && u.Value >= MIN_BALANCE_CHECK && !CPH.UserInGroup(u.UserName, Platform.Kick, "Chat Bots"))
             .ToList();
 
         foreach (var entry in candidates)

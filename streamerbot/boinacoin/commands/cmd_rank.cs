@@ -33,7 +33,7 @@ public class CPHInline
         if (string.IsNullOrEmpty(userId)) return false;
 
         // ── 0. Ignorar Bots ───────────────────────────────────
-        if (CPH.UserInGroup(userName, "Chat Bots")) return false;
+        if (CPH.UserInGroup(userName, Platform.Kick, "Chat Bots")) return false;
 
         // ── Datos propios ─────────────────────────────────────
         long balance = CPH.GetKickUserVarById<long>(userId, "boinacoin");
@@ -49,7 +49,7 @@ public class CPHInline
         if (allVars != null && allVars.Count > 0)
         {
             var filtered = allVars
-                .Where(u => !string.IsNullOrEmpty(u.UserName) && u.Value > 0 && !CPH.UserInGroup(u.UserName, "Chat Bots"))
+                .Where(u => !string.IsNullOrEmpty(u.UserName) && u.Value > 0 && !CPH.UserInGroup(u.UserName, Platform.Kick, "Chat Bots"))
                 .ToList();
 
             totalUsers = filtered.Count;

@@ -49,7 +49,7 @@ public class CPHInline
             if (string.IsNullOrEmpty(userId)) continue;
 
             // ── Excluir Bots y al propio bot y al streamer ────
-            if (CPH.UserInGroup(userName, "Chat Bots")) continue;
+            if (CPH.UserInGroup(userName, Platform.Kick, "Chat Bots")) continue;
             if (userId == botId || userId == broadcasterId) continue;
 
             // ── Condición de actividad ───────────────────────

@@ -229,7 +229,7 @@ public class CPHInline
     public bool Execute()
     {
         string challengerName = args.ContainsKey("userName") ? args["userName"].ToString() : "alguien";
-        if (CPH.UserInGroup(challengerName, "Chat Bots")) return false;
+        if (CPH.UserInGroup(challengerName, Platform.Kick, "Chat Bots")) return false;
 
         string mode = args.ContainsKey("mode") ? args["mode"].ToString() : "challenge";
         return mode == "accept" ? HandleAccept() : HandleChallenge();
@@ -281,7 +281,7 @@ public class CPHInline
 
         bool targetIsBoinaBot = targetName == BOT_NAME_LOWER;
 
-        if (CPH.UserInGroup(targetName, "Chat Bots") && !targetIsBoinaBot)
+        if (CPH.UserInGroup(targetName, Platform.Kick, "Chat Bots") && !targetIsBoinaBot)
         {
             CPH.SendKickMessage("⚠️ Los bots del sistema no pueden participar en la economía Boinacoin.");
             return true;

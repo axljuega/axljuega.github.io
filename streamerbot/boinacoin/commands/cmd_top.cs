@@ -44,7 +44,7 @@ public class CPHInline
         // ── Filtrar bots y usuarios sin saldo ────────────────
         // Excluimos entradas con nombre vacío, saldo 0 o pertenecientes al grupo "Chat Bots"
         var filtered = allVars
-            .Where(u => !string.IsNullOrEmpty(u.UserName) && u.Value > 0 && !CPH.UserInGroup(u.UserName, "Chat Bots"))
+            .Where(u => !string.IsNullOrEmpty(u.UserName) && u.Value > 0 && !CPH.UserInGroup(u.UserName, Platform.Kick, "Chat Bots"))
             .ToList();
 
         if (filtered.Count == 0)
