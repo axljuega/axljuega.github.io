@@ -67,7 +67,7 @@ public class CPHInline
         int newRank = args.ContainsKey("webhookNewRank")
             ? Convert.ToInt32(args["webhookNewRank"]) : 0;
 
-        if (string.IsNullOrEmpty(kickUserName) || newRank < 1 || newRank > 4)
+        if (string.IsNullOrEmpty(kickUserName) || newRank < 0 || newRank > 4)
         {
             CPH.LogWarn("[DiscordRoles] Args inválidos — abortando.");
             return false;
@@ -92,14 +92,22 @@ public class CPHInline
             RemoveRole(discordUserId, roleId);
         }
 
-        // ── 3. Asignar el nuevo rol ───────────────────────────
-        string newRoleId = ROLE_BY_RANK[newRank];
-        bool assigned = AddRole(discordUserId, newRoleId);
+        // ── 3. Asignar el nuevo rol (si newRank > 0) ──────────
+        bool assigned = true;
+        if (newRank > 0)
+        {
+            string newRoleId = ROLE_BY_RANK[newRank];
+            assigned = AddRole(discordUserId, newRoleId);
 
-        if (assigned)
-            CPH.LogInfo($"[DiscordRoles] Rol asignado correctamente a {kickUserName}.");
+            if (assigned)
+                CPH.LogInfo($"[DiscordRoles] Rol asignado correctamente a {kickUserName}.");
+            else
+                CPH.LogWarn($"[DiscordRoles] Falló la asignación de rol a {kickUserName}.");
+        }
         else
-            CPH.LogWarn($"[DiscordRoles] Falló la asignación de rol a {kickUserName}.");
+        {
+            CPH.LogInfo($"[DiscordRoles] Todos los roles eliminados para {kickUserName} (Rango 0).");
+        }
 
         // ── 4. Guardar el Discord ID vinculado al usuario ─────
         // Para futuras llamadas sin necesidad de buscar de nuevo

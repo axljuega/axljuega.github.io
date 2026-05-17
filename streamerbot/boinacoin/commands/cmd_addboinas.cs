@@ -113,29 +113,9 @@ public class CPHInline
 
         CPH.SetKickUserVar(userName, "boinacoin_rank", newRank, true);
 
-        if (newRank > oldRank)
-        {
-            // Subida de rango
-            CPH.SendKickMessage($"🎉 ¡{userName} sube a {GetRankName(newRank)}!");
-
-            CPH.SetArgument("rankUpUserName", userName);
-            CPH.SetArgument("rankUpNewRank",  newRank);
-            // No tenemos ID aquí fácilmente sin CPH.KickGetUserIdForUser
-            // Pero RankChecker puede funcionar con userName si lo adaptamos o si el siguiente script lo maneja
-            // Sin embargo, las instrucciones dicen no cambiar lógica de negocio.
-            // Los scripts de referencia muestran que RankChecker espera ID.
-            // Si no tenemos ID, RankChecker podría fallar.
-            // PERO CPH.GetKickUserVarById<int>(userId, ...) es lo preferido.
-            // Como no tenemos targetId, seguiremos usando GetKickUserVar(userName, ...)
-            CPH.RunAction("Boinacoin · RankChecker", false);
-        }
-        else
-        {
-            // Bajada de rango (por resta manual)
-            CPH.SendKickMessage(
-                $"⬇️ {userName} baja a {GetRankName(newRank)} " +
-                $"(antes: {GetRankName(oldRank)}).");
-        }
+        CPH.SetArgument("rankUpUserName", userName);
+        CPH.SetArgument("rankUpNewRank",  newRank);
+        CPH.RunAction("Boinacoin · RankChecker", false);
     }
 
     private int RankForBalance(long balance)

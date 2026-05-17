@@ -96,13 +96,21 @@ public class CPHInline
         CPH.SetKickUserVar(targetName, "boinacoin_regalar_last",  0L,  true);
         // boinacoin_total_earned se conserva intencionalmente
 
-        // ── 6. Log interno ────────────────────────────────────
+        // ── 6. Comprobar cambio de rango (Sincronizar Discord a 0) ──
+        if (oldRank > 0)
+        {
+            CPH.SetArgument("rankUpUserName", targetName);
+            CPH.SetArgument("rankUpNewRank",  0);
+            CPH.RunAction("Boinacoin · RankChecker", false);
+        }
+
+        // ── 7. Log interno ────────────────────────────────────
         CPH.LogInfo(
             $"[Boinacoin] RESET · {targetName} · " +
             $"Saldo borrado: {oldBalance} · Rango borrado: {oldRank} · " +
             $"Ejecutado por: {callerName}");
 
-        // ── 7. Mensaje de confirmación (discreto) ─────────────
+        // ── 8. Mensaje de confirmación (discreto) ─────────────
         CPH.SendKickMessage(
             $"🛠️ [{callerName}] Perfil Boinacoin de {targetName} reseteado a cero.");
 

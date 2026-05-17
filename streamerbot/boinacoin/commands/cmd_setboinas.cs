@@ -120,20 +120,9 @@ public class CPHInline
 
         CPH.SetKickUserVar(userName, "boinacoin_rank", newRank, true);
 
-        if (newRank > oldRank)
-        {
-            CPH.SendKickMessage($"🎉 ¡{userName} sube a {GetRankName(newRank)}!");
-
-            CPH.SetArgument("rankUpUserName", userName);
-            CPH.SetArgument("rankUpNewRank",  newRank);
-            CPH.RunAction("Boinacoin · RankChecker", false);
-        }
-        else
-        {
-            CPH.SendKickMessage(
-                $"⬇️ {userName} baja a {GetRankName(newRank)} " +
-                $"(antes: {GetRankName(oldRank)}).");
-        }
+        CPH.SetArgument("rankUpUserName", userName);
+        CPH.SetArgument("rankUpNewRank",  newRank);
+        CPH.RunAction("Boinacoin · RankChecker", false);
     }
 
     private int RankForBalance(long balance)
