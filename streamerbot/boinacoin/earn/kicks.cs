@@ -10,6 +10,9 @@
 // ============================================================
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json;
 
 public class CPHInline
 {
@@ -62,6 +65,16 @@ public class CPHInline
 
         // ── 6. Comprobar subida de rango ─────────────────────
         CheckRankUp(userId, userName, balance);
+
+        // ── 6.1 Tracking de sesión ───────────────────────────
+        long sEarned = CPH.GetGlobalVar<long>("boinacoin_session_earned", false) + earned;
+        CPH.SetGlobalVar("boinacoin_session_earned", sEarned, false);
+
+        string lbJson = CPH.GetGlobalVar<string>("boinacoin_session_leaderboard", false) ?? "{}";
+        var lb = JsonConvert.DeserializeObject<Dictionary<string, long>>(lbJson) ?? new Dictionary<string, long>();
+        lb[userName] = lb.ContainsKey(userName) ? lb[userName] + earned : earned;
+        var top10 = lb.OrderByDescending(kv => kv.Value).Take(10).ToDictionary(kv => kv.Key, kv => kv.Value);
+        CPH.SetGlobalVar("boinacoin_session_leaderboard", JsonConvert.SerializeObject(top10), false);
 
         // ── 7. Mensaje al chat ───────────────────────────────
         // Solo si los Kicks son suficientes para merecer mención

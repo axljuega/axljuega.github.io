@@ -18,6 +18,9 @@
 // ============================================================
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json;
 
 public class CPHInline
 {
@@ -80,8 +83,19 @@ public class CPHInline
         // Si es menor, no tocamos el histórico (no restamos ganancia histórica).
         if (newAmount > oldBalance)
         {
+            long diff = newAmount - oldBalance;
             long totalEarned = CPH.GetKickUserVar<long>(targetName, "boinacoin_total_earned");
-            CPH.SetKickUserVar(targetName, "boinacoin_total_earned", totalEarned + (newAmount - oldBalance), true);
+            CPH.SetKickUserVar(targetName, "boinacoin_total_earned", totalEarned + diff, true);
+
+            // ── 7.1 Tracking de sesión ───────────────────────────
+            long sEarned = CPH.GetGlobalVar<long>("boinacoin_session_earned", false) + diff;
+            CPH.SetGlobalVar("boinacoin_session_earned", sEarned, false);
+
+            string lbJson = CPH.GetGlobalVar<string>("boinacoin_session_leaderboard", false) ?? "{}";
+            var lb = JsonConvert.DeserializeObject<Dictionary<string, long>>(lbJson) ?? new Dictionary<string, long>();
+            lb[targetName] = lb.ContainsKey(targetName) ? lb[targetName] + diff : diff;
+            var top10 = lb.OrderByDescending(kv => kv.Value).Take(10).ToDictionary(kv => kv.Key, kv => kv.Value);
+            CPH.SetGlobalVar("boinacoin_session_leaderboard", JsonConvert.SerializeObject(top10), false);
         }
 
         // ── 8. Comprobar cambio de rango ──────────────────────

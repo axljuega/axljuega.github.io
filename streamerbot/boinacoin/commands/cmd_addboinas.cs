@@ -12,6 +12,9 @@
 // ============================================================
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json;
 
 public class CPHInline
 {
@@ -74,6 +77,16 @@ public class CPHInline
         {
             long totalEarned = CPH.GetKickUserVar<long>(targetName, "boinacoin_total_earned") + amount;
             CPH.SetKickUserVar(targetName, "boinacoin_total_earned", totalEarned, true);
+
+            // ── 6.1 Tracking de sesión ───────────────────────────
+            long sEarned = CPH.GetGlobalVar<long>("boinacoin_session_earned", false) + amount;
+            CPH.SetGlobalVar("boinacoin_session_earned", sEarned, false);
+
+            string lbJson = CPH.GetGlobalVar<string>("boinacoin_session_leaderboard", false) ?? "{}";
+            var lb = JsonConvert.DeserializeObject<Dictionary<string, long>>(lbJson) ?? new Dictionary<string, long>();
+            lb[targetName] = lb.ContainsKey(targetName) ? lb[targetName] + amount : amount;
+            var top10 = lb.OrderByDescending(kv => kv.Value).Take(10).ToDictionary(kv => kv.Key, kv => kv.Value);
+            CPH.SetGlobalVar("boinacoin_session_leaderboard", JsonConvert.SerializeObject(top10), false);
         }
 
         // ── 7. Comprobar subida (o bajada) de rango ───────────

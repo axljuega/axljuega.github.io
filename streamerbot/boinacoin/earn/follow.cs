@@ -10,6 +10,9 @@
 using System;
 using System.Net.Http;
 using System.Text;
+using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json;
 
 public class CPHInline
 {
@@ -54,6 +57,29 @@ public class CPHInline
 
         // ── 5. Comprobar subida de rango ─────────────────────
         CheckRankUp(userId, userName, balance);
+
+        // ── 5.1 Tracking de sesión ───────────────────────────
+        long sFollows = CPH.GetGlobalVar<long>("boinacoin_session_follows", false) + 1;
+        CPH.SetGlobalVar("boinacoin_session_follows", sFollows, false);
+
+        // Update session earned & leaderboard
+        long sEarned = CPH.GetGlobalVar<long>("boinacoin_session_earned", false) + earned;
+        CPH.SetGlobalVar("boinacoin_session_earned", sEarned, false);
+
+        string lbJson = CPH.GetGlobalVar<string>("boinacoin_session_leaderboard", false) ?? "{}";
+        var lb = JsonConvert.DeserializeObject<Dictionary<string, long>>(lbJson) ?? new Dictionary<string, long>();
+        lb[userName] = lb.ContainsKey(userName) ? lb[userName] + earned : earned;
+        var top10 = lb.OrderByDescending(kv => kv.Value).Take(10).ToDictionary(kv => kv.Key, kv => kv.Value);
+        CPH.SetGlobalVar("boinacoin_session_leaderboard", JsonConvert.SerializeObject(top10), false);
+
+        string followsJson = CPH.GetGlobalVar<string>("boinacoin_session_follows_names", false) ?? "[]";
+        var followsList = JsonConvert.DeserializeObject<List<string>>(followsJson) ?? new List<string>();
+        if (!followsList.Contains(userName))
+        {
+            followsList.Add(userName);
+            if (followsList.Count > 10) followsList.RemoveAt(0);
+            CPH.SetGlobalVar("boinacoin_session_follows_names", JsonConvert.SerializeObject(followsList), false);
+        }
 
         // ── 6. Mensaje de bienvenida en Kick ─────────────────
         string multText = mult > 1.0 ? $" (x{mult:0.##} ⚡)" : "";
