@@ -6,10 +6,7 @@
 //  Ejemplo: 500 Kicks enviados → +500 Boinacoins (base)
 //           Con hora feliz x2  → +1.000 Boinacoins
 //
-//  FIX: Eliminado bloque de exclusión del broadcaster.
-//  FIX: Añadido dump de args para encontrar el key correcto
-//       del campo "amount" en el evento kicks.gifted.
-//       Una vez confirmado el key, eliminar el bloque DEBUG.
+//  ARG KEY confirmado via dump: "kicks.amount"
 // ============================================================
 
 using System;
@@ -38,35 +35,13 @@ public class CPHInline
         var botInfo = CPH.KickGetBot();
         if (botInfo != null && userId == botInfo.UserId.ToString()) return false;
 
-        // ── NOTA: El broadcaster (afaces) SÍ gana Boinacoins ─
-
-        // ── DEBUG: Dump de todos los args del evento ─────────
-        // Necesario para encontrar el key correcto de "amount"
-        // en el evento kicks.gifted. Eliminar tras confirmarlo.
-        CPH.LogInfo("[Kicks DEBUG] === ARG DUMP ===");
-        foreach (var k in args.Keys)
-            CPH.LogInfo($"[Kicks DEBUG] {k} = {args[k]}");
-        CPH.LogInfo("[Kicks DEBUG] === FIN DUMP ===");
-
-        // ── 1. Leer cantidad de Kicks ────────────────────────
-        // CANDIDATOS conocidos — se prueba por orden:
+        // ── 1. Leer cantidad de Kicks ─────────────────────────
+        // Key confirmado: "kicks.amount"
         int kicksAmount = 0;
-        string[] candidateKeys = { "amount", "kicksAmount", "giftAmount", "kicks", "giftsAmount" };
-        foreach (var key in candidateKeys)
-        {
-            if (args.ContainsKey(key))
-            {
-                int.TryParse(args[key].ToString(), out kicksAmount);
-                CPH.LogInfo($"[Kicks DEBUG] Key encontrado: '{key}' = {kicksAmount}");
-                break;
-            }
-        }
+        if (args.ContainsKey("kicks.amount"))
+            int.TryParse(args["kicks.amount"].ToString(), out kicksAmount);
 
-        if (kicksAmount < MIN_KICKS)
-        {
-            CPH.LogInfo($"[Kicks DEBUG] kicksAmount={kicksAmount} < MIN_KICKS={MIN_KICKS} → abort");
-            return false;
-        }
+        if (kicksAmount < MIN_KICKS) return false;
 
         // ── 2. Calcular recompensa (+1 por Kick) ─────────────
         long   baseReward = kicksAmount;
@@ -89,6 +64,7 @@ public class CPHInline
         CheckRankUp(userId, userName, balance);
 
         // ── 7. Mensaje al chat ───────────────────────────────
+        // Solo si los Kicks son suficientes para merecer mención
         if (kicksAmount >= 50)
         {
             string multText = mult > 1.0 ? $" (x{mult:0.##} ⚡)" : "";
