@@ -108,8 +108,10 @@ public class CPHInline
         CPH.SetKickUserVarById(senderId, "boinacoin_last_seen", nowUnix, true);
         CPH.SetKickUserVar(targetName, "boinacoin_last_seen", nowUnix, true);
 
-        // ── 11. Comprobar subida de rango del receptor ────────
-        CheckRankUp(targetName, receiverNew);
+        // ── 11. Comprobar cambios de rango ────────────────────
+        // El emisor puede bajar y el receptor puede subir
+        CheckRankChange(senderId, senderName, senderNew, isId: true);
+        CheckRankChange("", targetName, receiverNew, isId: false);
 
         // ── 12. Mensaje al chat ───────────────────────────────
         CPH.SendKickMessage(
@@ -119,17 +121,23 @@ public class CPHInline
         return true;
     }
 
-    // ── Subida de rango del receptor ──────────────────────────
-    private void CheckRankUp(string userName, long balance)
+    // ── Cambio de rango ───────────────────────────────────────
+    private void CheckRankChange(string userId, string userName, long balance, bool isId)
     {
-        int oldRank = CPH.GetKickUserVar<int>(userName, "boinacoin_rank");
+        int oldRank = isId
+            ? CPH.GetKickUserVarById<int>(userId, "boinacoin_rank")
+            : CPH.GetKickUserVar<int>(userName, "boinacoin_rank");
+
         int newRank = RankForBalance(balance);
 
-        if (newRank <= oldRank) return;
+        if (newRank == oldRank) return;
 
-        CPH.SetKickUserVar(userName, "boinacoin_rank", newRank, true);
-        CPH.SendKickMessage($"🎉 ¡{userName} sube a {GetRankName(newRank)}!");
+        if (isId)
+            CPH.SetKickUserVarById(userId, "boinacoin_rank", newRank, true);
+        else
+            CPH.SetKickUserVar(userName, "boinacoin_rank", newRank, true);
 
+        if (isId) CPH.SetArgument("rankUpUserId", userId);
         CPH.SetArgument("rankUpUserName", userName);
         CPH.SetArgument("rankUpNewRank",  newRank);
         CPH.RunAction("Boinacoin · RankChecker", false);

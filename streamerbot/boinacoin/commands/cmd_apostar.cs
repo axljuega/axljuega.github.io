@@ -139,27 +139,26 @@ public class CPHInline
             lb[userName] = lb.ContainsKey(userName) ? lb[userName] + bet : bet;
             var top10 = lb.OrderByDescending(kv => kv.Value).Take(10).ToDictionary(kv => kv.Key, kv => kv.Value);
             CPH.SetGlobalVar("boinacoin_session_leaderboard", JsonConvert.SerializeObject(top10), false);
-
-            // Comprobar subida de rango solo al ganar
-            CheckRankUp(userId, userName, newBalance);
         }
 
-        // ── 10. Mensaje al chat ───────────────────────────────
+        // ── 10. Comprobar cambio de rango (Subida o Bajada) ───
+        CheckRankChange(userId, userName, newBalance);
+
+        // ── 11. Mensaje al chat ───────────────────────────────
         CPH.SendKickMessage(resultMsg);
 
         return true;
     }
 
-    // ── Subida de rango ───────────────────────────────────────
-    private void CheckRankUp(string userId, string userName, long balance)
+    // ── Cambio de rango ───────────────────────────────────────
+    private void CheckRankChange(string userId, string userName, long balance)
     {
         int oldRank = CPH.GetKickUserVarById<int>(userId, "boinacoin_rank");
         int newRank = RankForBalance(balance);
 
-        if (newRank <= oldRank) return;
+        if (newRank == oldRank) return;
 
         CPH.SetKickUserVarById(userId, "boinacoin_rank", newRank, true);
-        CPH.SendKickMessage($"🎉 ¡{userName} sube a {GetRankName(newRank)}!");
 
         CPH.SetArgument("rankUpUserId",   userId);
         CPH.SetArgument("rankUpUserName", userName);

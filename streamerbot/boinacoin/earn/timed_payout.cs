@@ -76,11 +76,8 @@ public class CPHInline
             // ── Timestamp antiinactividad ────────────────────
             CPH.SetKickUserVarById(userId, "boinacoin_last_seen", nowUnix, true);
 
-            // ── Comprobar subida de rango ────────────────────
-            // Sin mensaje de rango aquí para no spamear el chat
-            // cada 10 min. El mensaje se emite igualmente desde
-            // CheckRankUp ya que llama a RankChecker.
-            CheckRankUp(userId, userName, balance);
+            // ── Comprobar cambio de rango ────────────────────
+            CheckRankChange(userId, userName, balance);
 
             // ── Tracking de sesión ───────────────────────────
             long sEarned = CPH.GetGlobalVar<long>("boinacoin_session_earned", false) + earned;
@@ -124,13 +121,13 @@ public class CPHInline
         return m;
     }
 
-    // ── Subida de rango (sin mensaje inline, solo RankChecker) ─
-    private void CheckRankUp(string userId, string userName, long balance)
+    // ── Cambio de rango ───────────────────────────────────────
+    private void CheckRankChange(string userId, string userName, long balance)
     {
         int oldRank = CPH.GetKickUserVarById<int>(userId, "boinacoin_rank");
         int newRank = RankForBalance(balance);
 
-        if (newRank <= oldRank) return;
+        if (newRank == oldRank) return;
 
         CPH.SetKickUserVarById(userId, "boinacoin_rank", newRank, true);
 

@@ -386,7 +386,7 @@ public class CPHInline
                 CPH.SetKickUserVarById(challengerId, "boinacoin_last_seen", nowUnix, true);
 
                 SendRandomMessage(BOT_LOSE_POOLS, challengerName, amount, 0, "", newBalance);
-                CheckRankUp(challengerId, challengerName, newBalance);
+                CheckRankChange(challengerId, challengerName, newBalance);
                 TrackSessionDuel(challengerName, amount, true); // true = emitted
             }
             else
@@ -397,6 +397,7 @@ public class CPHInline
                 CPH.SetKickUserVarById(challengerId, "boinacoin_last_seen", nowUnix, true);
 
                 SendRandomMessage(BOT_WIN_POOLS, challengerName, amount, 0, "", newBalance);
+                CheckRankChange(challengerId, challengerName, newBalance);
             }
         }
         finally
@@ -492,8 +493,9 @@ public class CPHInline
         CPH.SetKickUserVarById(winnerId, "boinacoin_last_seen", nowUnix, true);
         CPH.SetKickUserVarById(loserId, "boinacoin_last_seen", nowUnix, true);
 
-        // ── Comprobar rango del ganador ───────────────────────
-        CheckRankUp(winnerId, winnerName, winnerNewBalance);
+        // ── Comprobar rangos (Ganador y Perdedor) ──────────────
+        CheckRankChange(winnerId, winnerName, winnerNewBalance);
+        CheckRankChange(loserId, loserName, loserNewBalance);
 
         // ── Anuncio del resultado ─────────────────────────────
         SendRandomMessage(DUEL_RESULT_POOLS, winnerName, amount, 0, loserName, winnerNewBalance, winnerName, 0, loserNewBalance);
@@ -543,15 +545,14 @@ public class CPHInline
         CPH.SetGlobalVar("boinacoin_session_leaderboard", JsonConvert.SerializeObject(top10), false);
     }
 
-    private void CheckRankUp(string userId, string userName, long balance)
+    private void CheckRankChange(string userId, string userName, long balance)
     {
         int oldRank = CPH.GetKickUserVarById<int>(userId, "boinacoin_rank");
         int newRank = RankForBalance(balance);
 
-        if (newRank <= oldRank) return;
+        if (newRank == oldRank) return;
 
         CPH.SetKickUserVarById(userId, "boinacoin_rank", newRank, true);
-        CPH.SendKickMessage($"🎉 ¡@{userName} sube a {GetRankName(newRank)}!");
 
         CPH.SetArgument("rankUpUserId", userId);
         CPH.SetArgument("rankUpUserName", userName);
