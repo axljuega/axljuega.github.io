@@ -52,7 +52,7 @@ public class CPHInline
             ""content"": ""@everyone 🎩 **{EscapeJson(channelName)}** está en directo ahora mismo en Kick!"",
             ""embeds"": [{{
                 ""title"": ""🔴 {EscapeJson(streamTitle)}"",
-                ""description"": ""¡El directo ha comenzado! Entra y gana Boinacoins solo por ver el stream.\n\n🔗 [Ver directo en Kick](https://kick.com/la-chica-de-la-boina)"",
+                ""description"": ""¡El directo ha comenzado! Entra y gana Boinacoins solo por ver el stream.\n\n🔗 [Ver directo en Kick](https://kick.com/LaChicaDeLaBoina)"",
                 ""color"": {COLOR_LIVE},
                 ""fields"": [
                     {{""name"": ""📅 Hora de inicio"", ""value"": ""<t:{DateTimeOffset.UtcNow.ToUnixTimeSeconds()}:t>"", ""inline"": true}},
