@@ -431,6 +431,7 @@ Incluye `"kick"` en el check de permisos. Ver sección Fixes Conocidos.
 
 - `commands/cmd_ruleta.cs` — Ruleta de la Boina (recompensa de canal)
 - `commands/cmd_vincular.cs` — Vinculación manual Kick ↔ Discord para usuarios con nombres distintos
+- Añadir comandos especiales y acciones exclusivas para subs del canal y para cada uno de los rangos
 
 ---
 
