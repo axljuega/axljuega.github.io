@@ -15,6 +15,7 @@
 //    2. Anuncio enriquecido en chat según el rango
 //    3. Bonus de Boinacoins por alcanzar el rango
 //    4. Disparar discord_webhook.cs para sincronizar roles
+//    5. Disparar discord_roles.cs para asignar rol en Discord
 //
 //  Cómo configurarlo en Streamer.bot:
 //    Acción "Boinacoin · RankChecker"
@@ -29,23 +30,19 @@ using Newtonsoft.Json;
 
 public class CPHInline
 {
-    // Bonus en Boinacoins por alcanzar cada rango por primera vez
     private static readonly long[] RANK_BONUS = { 0, 500, 2_000, 10_000, 25_000 };
 
-    // Mensajes de ascenso por rango
     private static readonly string[] RANK_MESSAGES =
     {
-        "",  // rango 0 — no se usa
+        "",
         "🧶 ¡{0} acaba de conseguir la Boina de Lana! Ya eres parte de la comunidad. +{1} Boinacoins de bienvenida.",
         "🪡 ¡¡{0} asciende a Boina de Cuero!! Acceso a recompensas Nivel 2 desbloqueado. +{1} Boinacoins.",
         "💎 ¡¡¡{0} alcanza la Boina de Terciopelo!!! Multiplicador x1.25 permanente activado. +{1} Boinacoins.",
         "👑 ¡¡¡¡{0} entra en la LEYENDA como La Boina Legendaria!!!! Multiplicador x1.5 · VIP · +{1} Boinacoins. ¡INCREÍBLE!"
     };
 
-    // ────────────────────────────────────────────────────────
     public bool Execute()
     {
-        // ── Leer argumentos pasados por el script que llamó ───
         string userId   = args.ContainsKey("rankUpUserId")   ? args["rankUpUserId"].ToString()   : "";
         string userName = args.ContainsKey("rankUpUserName") ? args["rankUpUserName"].ToString() : "alguien";
         int    newRank  = args.ContainsKey("rankUpNewRank")  ? Convert.ToInt32(args["rankUpNewRank"]) : 0;
@@ -56,19 +53,9 @@ public class CPHInline
         if (CPH.UserInGroup(userName, Platform.Kick, "Chat Bots")) return false;
 
         // ── 1. Guard antiduplicado ────────────────────────────
-        // Comprobamos que el rango guardado en la variable del
-        // usuario coincide con newRank. Si otro script ya procesó
-        // este mismo ascenso, el rango ya estaría guardado y
-        // podríamos detectar una doble llamada.
-        // Usamos una variable de "último rango anunciado" separada
-        // del rango real para no interferir con la lógica de rango.
-
-        int lastAnnounced = 0;
-        if (!string.IsNullOrEmpty(userId)) {
-             lastAnnounced = CPH.GetKickUserVarById<int>(userId, "boinacoin_rank_announced");
-        } else {
-             lastAnnounced = CPH.GetKickUserVar<int>(userName, "boinacoin_rank_announced");
-        }
+        int lastAnnounced = !string.IsNullOrEmpty(userId)
+            ? CPH.GetKickUserVarById<int>(userId, "boinacoin_rank_announced")
+            : CPH.GetKickUserVar<int>(userName, "boinacoin_rank_announced");
 
         if (lastAnnounced >= newRank)
         {
@@ -76,32 +63,32 @@ public class CPHInline
             return true;
         }
 
-        if (!string.IsNullOrEmpty(userId)) {
+        if (!string.IsNullOrEmpty(userId))
             CPH.SetKickUserVarById(userId, "boinacoin_rank_announced", newRank, true);
-        } else {
+        else
             CPH.SetKickUserVar(userName, "boinacoin_rank_announced", newRank, true);
-        }
 
-        // ── 2. Bonus de Boinacoins por alcanzar el rango ─────
+        // ── 2. Bonus de Boinacoins ────────────────────────────
         long bonus = newRank < RANK_BONUS.Length ? RANK_BONUS[newRank] : 0;
 
         if (bonus > 0)
         {
-            if (!string.IsNullOrEmpty(userId)) {
-                long balance = CPH.GetKickUserVarById<long>(userId, "boinacoin") + bonus;
-                CPH.SetKickUserVarById(userId, "boinacoin", balance, true);
-
+            if (!string.IsNullOrEmpty(userId))
+            {
+                long balance     = CPH.GetKickUserVarById<long>(userId, "boinacoin") + bonus;
                 long totalEarned = CPH.GetKickUserVarById<long>(userId, "boinacoin_total_earned") + bonus;
+                CPH.SetKickUserVarById(userId, "boinacoin", balance, true);
                 CPH.SetKickUserVarById(userId, "boinacoin_total_earned", totalEarned, true);
-            } else {
-                long balance = CPH.GetKickUserVar<long>(userName, "boinacoin") + bonus;
-                CPH.SetKickUserVar(userName, "boinacoin", balance, true);
-
+            }
+            else
+            {
+                long balance     = CPH.GetKickUserVar<long>(userName, "boinacoin") + bonus;
                 long totalEarned = CPH.GetKickUserVar<long>(userName, "boinacoin_total_earned") + bonus;
+                CPH.SetKickUserVar(userName, "boinacoin", balance, true);
                 CPH.SetKickUserVar(userName, "boinacoin_total_earned", totalEarned, true);
             }
 
-            // ── 2.1 Tracking de sesión ───────────────────────────
+            // ── 2.1 Tracking de sesión ───────────────────────
             long sEarned = CPH.GetGlobalVar<long>("boinacoin_session_earned", false) + bonus;
             CPH.SetGlobalVar("boinacoin_session_earned", sEarned, false);
 
@@ -112,34 +99,31 @@ public class CPHInline
             CPH.SetGlobalVar("boinacoin_session_leaderboard", JsonConvert.SerializeObject(top10), false);
         }
 
-        // ── 3. Anuncio enriquecido en chat ────────────────────
+        // ── 3. Anuncio en chat ────────────────────────────────
         if (newRank < RANK_MESSAGES.Length)
-        {
-            string msg = string.Format(RANK_MESSAGES[newRank], userName, bonus);
-            CPH.SendKickMessage(msg);
-        }
+            CPH.SendKickMessage(string.Format(RANK_MESSAGES[newRank], userName, bonus));
 
-        // ── 4. Anuncio especial para La Boina Legendaria ──────
+        // ── 4. Anuncio especial Boina Legendaria ──────────────
         if (newRank == 4)
         {
-            // Mención extra en el stream — pausa dramática incluida
             CPH.Wait(1500);
             CPH.SendKickMessage(
                 $"👑👑👑 @{userName} ES LA BOINA LEGENDARIA 👑👑👑 " +
                 $"¡El rango más alto del canal! Merece un aplauso enorme. 🎩🎩🎩");
         }
 
-        // ── 5. Disparar webhook de Discord ────────────────────
-        // Pasamos los args necesarios y llamamos a discord_webhook.cs
+        // ── 5. Webhook Discord (embed de rango) ───────────────
         CPH.SetArgument("webhookUserId",   userId);
         CPH.SetArgument("webhookUserName", userName);
         CPH.SetArgument("webhookNewRank",  newRank);
         CPH.RunAction("Boinacoin · DiscordWebhook", false);
 
-        // ── 6. Log ────────────────────────────────────────────
-        CPH.LogInfo(
-            $"[Boinacoin] RankChecker · {userName} → Rango {newRank} · " +
-            $"Bonus aplicado: +{bonus}");
+        // ── 6. Asignar rol en Discord via GestorDeBoinas ─────
+        // Los args webhookUserId/UserName/NewRank ya están en el stack
+        CPH.RunAction("Boinacoin · DiscordRoles", false);
+
+        // ── 7. Log ────────────────────────────────────────────
+        CPH.LogInfo($"[Boinacoin] RankChecker · {userName} → Rango {newRank} · Bonus: +{bonus}");
 
         return true;
     }
