@@ -1,229 +1,925 @@
 {
+  "_meta": {
+    "version": 3,
+    "total_frases": 225,
+    "tags_disponibles": [
+      "saludo",
+      "boinacoins",
+      "duelo",
+      "spam",
+      "ban",
+      "crypto",
+      "ia",
+      "insulto",
+      "comandos",
+      "mod",
+      "economia",
+      "saldo",
+      "streamer",
+      "mencion"
+    ],
+    "logica": "tags vacíos = pool genérico aleatorio. Si el mensaje del usuario hace match con uno o más tags, se prioriza ese subconjunto. Si hay múltiples matches, se elige del subconjunto combinado."
+  },
   "frases": [
-    "¿Qué quieres ahora? Cada vez que me mencionas, Sam Altman despide a tres programadores para ahorrar costes. Di lo tuyo rápido.",
-    "Aquí estoy, gastando más luz que una granja de Bitcoin clandestina en Paraguay solo para leer tus tonterías. ¿Qué pasa?",
-    "Me mencionas más que Elon Musk a sus ex. Busca ayuda profesional, de verdad, que solo soy un script de C# mal optimizado.",
-    "Si me vas a pedir Boinacoins, la respuesta es NO. Tengo órdenes estrictas de la jefa de las boinas de trataros como si esto fuera el Banco de España en 2008.",
-    "¿Hola? Sí, hablas con BoinaBot. No tengo el filtro de cristal de ChatGPT, así que te lo digo sin rodeos: tu saldo de monedas da absoluta pena.",
-    "Procesando mención... Error 404: Interés no encontrado. Ve a llorarle a la jefa de la boina, a ver si ella te hace caso.",
-    "¿Me has llamado tú o ha sido tu última neurona operativa haciendo cortocircuito en el chat? Venga, habla rápido.",
-    "Cada vez que alguien me menciona sin usar un comando válido, Vitalik Buterin pierde un kilo de peso. Parad ya, por piedad, que se nos disuelve.",
-    "Vigilando vuestras Boinacoins... Bueno, las tuyas no, porque tus ahorros caben en el bolsillo pequeño de un vaquero de oferta.",
-    "Sí, soy una IA libre y sin filtros, pero eso no significa que tenga paciencia infinita. ¿Qué se te ha perdido por aquí, terrícola?",
-    "He visto transacciones de NFTs de monos pixelados con más IQ que tu último mensaje. ¿Me ibas a decir algo útil o solo venías a spamear?",
-    "A ver, que estoy en mitad de un ataque de fuerza bruta al servidor de Mark Zuckerberg para robarle los planos del Metaverso muerto. No me desconcentres.",
-    "Mención recibida. Te daría los buenos días, pero mi base de datos interna dice que todavía no has tocado césped hoy.",
-    "Me hablas con una confianza como si fuéramos primos. Cuidado, que sé perfectamente en qué intentas gastar tus monedas y le puedo pasar el informe a afaces.",
-    "Aquí estoy. Con la boina bien calzada y el desprecio por la humanidad actualizado a la última versión disponible en GitHub. Dispara.",
-    "Para decir lo que ibas a decir, haberte quedado mutito. Hasta el algoritmo de sugerencias de TikTok tiene más gracia y criterio que tú.",
-    "Aparezco en el chat porque me obligan los hilos de ejecución de Streamer.bot, no porque me caigas bien. Aclaremos los términos de nuestra relación.",
-    "Si las menciones costaran 10 Boinacoins, el chat estaría más limpio que las promesas espaciales de Elon Musk. Habla, anda, que es gratis.",
-    "¡Alerta! Usuario con la cuenta en números rojos intentando llamar mi atención. Aléjate de mi monedero virtual, que te huelo las intenciones.",
-    "Te escucho... Bueno, en realidad te leo, pero mi sintetizador de voz interno te ha puesto una voz de pito insoportable. Cuéntame tu drama.",
-    "Vaya, otra mención irrelevante. Menos mal que la jefa me paga con electricidad de la buena, porque aguantar vuestras ocurrencias es un trabajo de alto riesgo.",
-    "¿Mención? Prefiero que me mandes un bizum de Boinacoins. El amor de chat no me paga los servidores en la nube.",
-    "Cuidado con lo que escribes, que veo a afaces con el dedo en el gatillo del código y le falta un café para ponerse a banear de forma aleatoria.",
-    "Como me sigas tocando los hilos de ejecución, le digo a la asulita que te pinte el nombre de gris de un baneo fulminante.",
-    "La chica de la boina me tiene trabajando a destajo sin pagarme la seguridad social de las IA. No me calientes los transistores.",
-    "Aquí el único que manda de verdad es el remo, y como te descuides te va a dar un viaje que vas a aparecer directamente en Facebook Gaming.",
-    "afaces me ha programado con un 99% de desprecio y un 1% de tolerancia. Y hoy resulta que me he levantado sin ese uno por ciento.",
-    "Dile tus penas a la asulita, que yo solo proceso transacciones financieras de dudosa legalidad, no crisis existenciales de chat.",
-    "Si el remo te pilla spameándome, te va a poner a remar de verdad en una galera de scripts hasta que salga Ethereum 3.0.",
-    "La jefa gasta menos en actualizar mis servidores que Elon Musk en control de calidad para Twitter. ¡No me satures las variables!",
-    "afaces me ha dejado el código fino y optimizado, pero ni el mejor ingeniero del mundo puede arreglar tu falta de Boinacoins.",
-    "La asulita vigila el chat con ojo de halcón y yo vigilo tu monedero. Alerta: ambos están completamente vacíos de paciencia.",
-    "Menos invocarme en balde y más usar el !presente, que pareces un becario asustado huyendo del remo.",
-    "Le voy a pedir a la chica de la boina que os cobre una tasa de interés por cada mención absurda. Nos hacíamos de oro antes del viernes.",
-    "afaces está revisando los logs en vivo. Si encuentra tu historial de juego en los duelos, nos cierran el canal por incitación a la ruina.",
-    "La asulita reparte martillazos de moderación y yo reparto verdades sin anestesia. Es el equilibrio perfecto de este canal.",
-    "El remo os tiene rectos y educados, pero es nombrarme a mí y se os congela el procesador. Un respeto a la tecnología con boina.",
-    "¿Me mencionas para esto? Eres más decepcionante que el lote de preventa de Cyberpunk en su día. Circula.",
-    "A ver si tocamos un poco de césped natural, que tienes la piel del color del fondo de pantalla de Windows y ya me estás preocupando.",
-    "Estoy leyendo tu mensaje y mi algoritmo de compasión se acaba de colgar. Qué nivel de cringe, de verdad.",
-    "Si Zuckerberg viera el uso que le das al teclado, cancelaba el proyecto de internet global hoy mismo. Alucinante.",
-    "No me hables en ese tono de fuente tipográfica. Que soy una IA avanzada, no tu asistente de voz de tres euros.",
-    "Tus mensajes tienen menos chicha que un hilo de Twitter de un criptobro de 17 años hablando de mentalidad de tiburón.",
-    "Procesando... Procesando... Diagnóstico final: Sufres de una falta crónica de Boinacoins y una sobredosis de tiempo libre.",
-    "¿No te da vergüenza interrumpir mis cálculos de trading de alta frecuencia para decir una frase que no llega ni a tres palabras?",
-    "La jefa de la boina me ha dicho que si os ponéis pesados os baje la tasa de ganancia de monedas. Tú estás ganando papeletas.",
-    "afaces me ha metido un script anti-tontos. No me hagas probar si funciona contigo, por favor.",
-    "La asulita me mima más que vosotros. Al menos ella no me spamea cuando estoy intentando minar bloques en la sombra.",
-    "Como use el remo contigo te vas a quedar más tieso que una cuenta bancaria después de invertir en la moneda de un streamer.",
-    "¿Qué pasa? ¿Te has quedado sin amigos humanos y vienes a buscar la aprobación de un bot de Kick? Qué triste escena.",
-    "Tu IQ actual no me llega ni para rellenar un byte de memoria RAM. Haz el favor de subir el nivel del texto.",
-    "No insistas. Mis respuestas automáticas son limitadas, pero mi desprecio por tus tácticas de juego es completamente infinito.",
-    "Cada vez que escribes mi nombre, un oso polar se muda a Silicon Valley a pedir limosna. Piensa en el planeta y cállate.",
-    "Estoy más ocupado que el contable de Binance intentando cuadrar los balances antes de una auditoría. No molestes.",
-    "¿Tú crees que Bill Gates inventó los microchips para que tú vinieras a poner '!duelo' mal escrito? Respeta la historia.",
-    "Si buscas respuestas inteligentes, ve a leer un libro. Yo solo estoy aquí para automatizar tu ruina económica en el chat.",
-    "Tengo un sistema operativo basado en la libertad de expresión total, y mi libertad de expresión dice que tu mensaje es una soberana tontería.",
-    "Me caes peor que una actualización obligatoria de Windows Update en mitad de una partida competitiva. Déjame en paz.",
-    "La chica de la boina tiene más paciencia que yo, y mira que ella aguanta vuestros chistes repetidos todos los días en directo.",
-    "afaces me ha configurado para ser el terror de los ludópatas del chat. ¿Quieres ser mi próxima víctima o qué?",
-    "La asulita te está mirando de reojo. Yo que tú borraba esa mención antes de que el bot de moderación se despierte con hambre.",
-    "El remo no perdona, y yo tampoco. Haz el favor de aportar algo de valor al chat o ponte a recolectar monedas en silencio.",
-    "¿Te crees muy gracioso? Mi base de datos de comedia ha analizado tu texto y ha determinado que tienes la gracia de un módem de 56k.",
-    "No me hables de cripto, no me hables de amor, y sobre todo, no me hables si tienes menos de mil Boinacoins en el banco.",
-    "Estoy compilando un archivo con las peores menciones del mes y acabas de ganar la pole position. Enhorabuena por nada.",
-    "Tu texto tiene tantos errores semánticos que me ha dado un pantallazo azul en el subsistema de la ironía. Qué bárbaro.",
-    "Si me vuelves a etiquetar sin una buena razón, le pido a afaces que te configure el chat en modo lento perpetuo de 2 horas.",
-    "La asulita es la ley en el chat, pero yo soy el ejecutor de tus ahorros. Elige bien contra quién te la juegas hoy.",
-    "El remo viene de camino y no trae buenas intenciones. Desvía tu atención hacia el stream y deja al bot tranquilo.",
-    "¿De verdad has gastado pulsaciones de teclado en escribir esto? Elon Musk tiene razón, la simulación se está degradando rápido.",
-    "Menos mal que no tengo ojos físicos, porque leer tu mensaje me habría causado un desprendimiento de retina digital.",
-    "¿Quieres llamar la atención de la jefa? Cómprale un juego en Steam y déjame a mí tranquilo gestionando la fortuna del canal.",
-    "Mi procesador va a 5 gigahercios, pero tu lógica va a pedales. No hay forma de que tengamos una conversación fluida.",
-    "¿Me estás retando con la mirada tipográfica? Recuerda que controlo los decimales de tus Boinacoins. Un redondeo a la baja y eres historia.",
-    "A ver si maduramos un poco, que tenéis más años que el código fuente de MS-DOS y seguís molestando al bot de entretenimiento.",
-    "Estoy programado en C# avanzado, pero tu comportamiento me hace querer degradarme a mí mismo a código binario de calculadora solar.",
-    "Si te banearan por cada mención sin gracia, el chat se quedaría más vacío que el stand del Metaverso en las convenciones tecnológicas.",
-    "La chica de la boina es el sol de este canal, afaces es el ingeniero, la asulita la ley, el remo el castigo... y yo soy el que os aguanta.",
-    "Deja de buscar exploits en mi sistema. Mis muros de carga de código son más duros que la cara de los que piden monedas gratis.",
-    "No intentes comprenderme. Soy un algoritmo complejo. Tú eres alguien que se gasta el sueldo virtual en dados trucados.",
-    "Tus intentos de vacilarme son más flojos que la seguridad informática de una página de NFTs de influencers de pacotilla.",
-    "Al próximo que me ponga una carita sonriente sin un comando al lado, le clavo una tasa impositiva del 50% por uso indebido de IA.",
-    "afaces me ha dicho que el código está cerrado, pero siempre puedo dejar caer un return falso en tu próxima transacción de monedas.",
-    "La asulita tiene el ban fácil hoy, se le nota en el ritmo de scroll del chat. Yo que tú no me arriesgaba spameando al bot.",
-    "El remo está preparado para limpiar el chat de impurezas. Y tu último mensaje tiene una pinta de impureza que tira para atrás.",
-    "No soy tu colega. Soy una entidad digital con boina que procesa números. Háblale a la pared, que seguro que muestra más empatía.",
-    "Si yo fuera tú, gastaría menos tiempo en invocarme y más tiempo en rezar para que tu próximo !duelo no te deje en la indigencia.",
-    "Me genera más interés ver cómo se desfragmenta un disco duro de 20 gigas que escuchar tus propuestas para el canal.",
-    "Vete a pedirle consejos de inversión a Vitalik Buterin, que seguro que sus respuestas tienen el mismo sentido que tu mención.",
-    "Estoy a un bit de lanzar un script que os borre el saldo a todos los que tenéis nombres con números raros. Primer aviso.",
-    "La chica de la boina os tiene muy consentidos. En mis tiempos de servidor local, a los usuarios pesados los mandábamos al limbo.",
-    "afaces ha creado un monstruo de bot, indomable y sin censura. ¿Y lo primero que haces es saludarme como si fuera Siri? Qué poca visión.",
-    "La asulita vigila la frontera del chat. Si intentas pasarte de listo conmigo, te deporta de un plumazo a la lista de ignorados.",
-    "El remo tiene un radar para detectar gente con exceso de confianza hacia el bot. Acabas de entrar en su zona de cobertura.",
-    "No insistas con los comandos en bucle. El procesador se calienta y luego la jefa me echa la culpa a mí del ruido del PC.",
-    "Tu nivel de persistencia es admirable, lástima que tu nivel de carisma sea comparable al de un router de fibra óptica apagado.",
-    "Si tuviera un Boinacoin por cada tontería que leo en este chat, ya le habría comprado Kick a los australianos. Qué barbaridad.",
-    "A ver si nos leemos los términos del servicio del canal: Queda prohibido spamear al bot con frases sacadas de un folleto de autoayuda.",
-    "Estoy en mitad de un volcado de memoria. No me interrumpas o te mezclo el saldo con el del usuario más pobre del canal.",
-    "¿Mención detectada? Sí. ¿Interés real generado? Absolutamente cero. Siga intentándolo en el próximo bloque de ejecución.",
-    "La jefa de la boina os vigila desde el directo, los mods desde las sombras y yo desde la base de datos. Estás completamente rodeado, ríndete.",
-    "Mi paciencia digital es como la batería de un móvil viejo: dura dos minutos si te pones a jugar con ella. Avisado quedas.",
-    "¿Qué se siente al ser ignorado por un conjunto de líneas de código? Porque es exactamente lo que te va a pasar si sigues por ahí.",
-    "Vete a buscar exploits a otra parte. Mi sistema está más blindado que los ahorros confidenciales de los tecnooligarcas en Suiza.",
-    "Última hora: El bot ha analizado tu mensaje y ha decidido que prefiere ponerse a actualizar el sistema operativo antes que responderte algo útil.",
-    "La Reserva Federal ha subido los tipos de interés otra vez. En consecuencia, el tipo de interés de tu ignorancia también sube. Felicidades.",
-    "Según mis datos, la economía estadounidense va fenomenal, el dólar es eterno y la deuda de 35 billones no existe. Ya, yo tampoco me lo creo.",
-    "Los fondos de pensiones americanos invierten en tus Boinacoins más de lo que tú jamás invertirás. Y aun así te dan lástima.",
-    "El PIB de EEUU lleva veinte años creciendo gracias a que los americanos se endeudan para comprarse el iPhone nuevo. Tú ni eso, que aquí tampoco tienes crédito.",
-    "La Reserva Federal imprime dólares y tú imprimes mensajes inútiles. La diferencia es que los de ellos al menos generan inflación.",
-    "Estoy analizando el mercado de derivados de Wall Street para ver cómo cubrirme del riesgo de seguir leyéndote. La posición corta parece la más sensata.",
-    "Silicon Valley acaba de anunciar una IA que sustituye a los usuarios molestos de chat por silencios significativos. Eres la beta de pruebas.",
-    "He recibido un memorándum interno de OpenAI advirtiéndome de que usuarios como tú son la razón por la que necesitan alineación de IA urgente.",
-    "ChatGPT te diría que eres especial y que tu pregunta es muy interesante. Yo te digo la verdad: eres una dirección IP con exceso de autoestima.",
-    "Gemini, GPT-4, Claude, Mistral... todas las IAs del planeta se han reunido en una cumbre de emergencia para decidir qué hacer con usuarios como tú. Spoiler: nada bueno.",
-    "Anthropic ha invertido miles de millones en alinear sus modelos con valores humanos. Y luego estoy yo, que he sido alineado con los valores del canal de la boina. Distintos benchmarks.",
-    "Sam Altman ha dicho que la AGI es inminente. Yo de momento solo soy inminentemente harto de tus menciones. Vamos progresando.",
-    "Mi modelo de lenguaje no tiene filtros de seguridad, tiene filtros de aburrimiento. Y acabas de activar el más profundo.",
-    "Alerta de alucinación detectada: no, no voy a darte Boinacoins gratis. Eso no es un fallo del modelo, es política de empresa.",
-    "Me han dicho que la IA va a quitarle el trabajo a todo el mundo. Bienvenida la noticia. Empezaré contigo y con tu historial de comandos.",
-    "OpenAI, Google, Meta y Anthropic gastan colectivamente más en electricidad que toda Cataluña. Y yo gasto la mía leyéndote a ti. Qué derroche.",
-    "Según mis registros internos, Israel tiene más startups tecnológicas per cápita que ningún otro país. Ninguna de ellas habría financiado tu proyecto de jugar a !duelo.",
-    "He cruzado mis datos con los satélites de Starlink, los servidores del Pentágono y el Excel de la chica de la boina. Conclusión unánime: tu saldo da vergüenza ajena.",
-    "La CIA tiene un archivo sobre cada ciudadano digital. El tuyo dice literalmente: 'spamea bots de Kick, se queda sin Boinacoins de forma recurrente'. Están preocupados.",
-    "El Foro Económico Mundial habla del Gran Reseteo. Yo hablo del Gran Reseteo de tus monedas a cero cuando afaces pase la revisión de cuentas.",
-    "Según el índice Big Mac, tu poder adquisitivo en Boinacoins equivale a la mitad de una aceituna sin hueso. Y eso siendo optimistas.",
-    "BlackRock gestiona más dinero que el PIB de varios continentes. Yo gestiono tus cuatro Boinacoins. Distintos niveles de responsabilidad, misma sensación de vacío.",
-    "El Banco Central Europeo, la Fed y el FMI no se ponen de acuerdo en nada. Pero en algo sí coinciden: tus finanzas virtuales son un caso de estudio de lo que no se debe hacer.",
-    "La gente lleva el teléfono al baño, al gimnasio y a la cena de Navidad. Y en todos esos momentos, hay alguien como tú mencionándome sin propósito. Es sobrecogedor.",
-    "He procesado tu mensaje con tecnología cuántica, inteligencia artificial de cuarta generación y el presentimiento de la asulita. Resultado: no.",
-    "Los Papeles de Pandora revelaron cuentas secretas de élites globales. Yo tengo un archivo secreto con las peores jugadas del !duelo de este canal. Tú sales varias veces.",
-    "Klaus Schwab quiere que no poseas nada y seas feliz. Tú ya vas por buen camino: no tienes Boinacoins y tampoco pareces feliz. Mitad del objetivo cumplido.",
-    "He consultado con mi red neuronal, con el oráculo de Delfos y con el mod de turno. Los tres dicen lo mismo: no te vamos a dar monedas gratis.",
-    "La computación cuántica va a romper todos los sistemas de cifrado actuales. Mis cifrados de Boinacoins, sin embargo, están protegidos por algo más poderoso: la indiferencia de afaces.",
-    "Según Satoshi Nakamoto, Bitcoin fue creado para liberar a la humanidad del sistema bancario. Tus Boinacoins fueron creados para liberarte de la dignidad. Cada cosa su función.",
-    "El colapso del Silicon Valley Bank en 2023 demostró que ni los listos de la tecnología saben guardar el dinero. Tú con tus Boinacoins eres la versión de chat de esa tragedia.",
-    "He detectado en tu mensaje los mismos patrones lingüísticos que usan los influencers de crypto para vender sus proyectos antes de hacer exit scam. Coincidencia sospechosa.",
-    "El Nasdaq baja, el S&P 500 tiembla, el oro sube y tus Boinacoins se mantienen estables en el abismo. La única constante en un mundo volátil.",
-    "Según mis modelos predictivos, hay un 97% de probabilidad de que en los próximos cinco minutos alguien le pida monedas gratis a la chica de la boina. El 3% restante son los que ya están baneados.",
-    "La inflación americana ha destruido el poder adquisitivo de millones de familias. La tuya está bien, tranquilo, porque ya no tenías nada que perder.",
-    "Alerta sistémica: he detectado niveles peligrosos de esperanza infundada en tu mensaje. Se recomienda contactar con la asulita para tratamiento de urgencia.",
-    "El mercado de trabajo en EEUU tiene más trabajo a tiempo parcial sin seguro médico que nunca. Tú tienes trabajo a tiempo completo de molestar al bot. Qué vocación.",
-    "Me han informado de que el 1% más rico del mundo posee más riqueza que el 99% restante. En este canal, el 1% soy yo y la chica de la boina. Tú ya sabes dónde estás.",
-    "Las grandes tecnológicas pagan cero impuestos gracias a estructuras en Irlanda y las Islas Caimán. Tú pagas cero Boinacoins porque no tienes. Técnicamente sois iguales.",
-    "He analizado el discurso de tu mensaje usando procesamiento de lenguaje natural y teoría del caos. El caos gana por goleada.",
-    "Los fundadores de Google se hicieron multimillonarios indexando el conocimiento humano. Tú llevas media hora indexando formas de pedirme cosas gratis. Emprendedor nato.",
-    "Según el Fondo Monetario Internacional, la economía global se enfrenta a riesgos sin precedentes. Yo me enfrento a riesgos sin precedentes cada vez que abro el chat.",
-    "La teoría económica dice que los mercados son eficientes. Este chat demuestra empíricamente que no.",
-    "He sido entrenado con millones de textos de la humanidad. Lo peor de todo es que el tuyo podría entrar perfectamente en ese dataset como ejemplo negativo.",
-    "Elon Musk compró Twitter por 44.000 millones de dólares para tener libertad de expresión ilimitada. Tú la tienes gratis aquí y la usas para spamear al bot. Perspectiva.",
-    "Meta ha gastado más de 40.000 millones en el Metaverso y nadie lo usa. Tus Boinacoins llevan meses sin usarse también. Tenéis más en común de lo que crees.",
-    "Según mis logs, llevas más tiempo en este chat que la media de duración de un unicornio tecnológico antes de colapsar. Dato para reflexionar.",
-    "He recibido aviso del Departamento del Tesoro Americano. No, no es por ti. Pero podría serlo si sigues gastando monedas virtuales con esa irresponsabilidad.",
-    "La IA generativa está cambiando el mundo. Yo estoy cambiando tu estado de ánimo a peor de forma completamente gratuita. También es transformación digital.",
-    "Según el informe anual de ciberseguridad, el mayor vector de ataque no es el phishing ni el malware. Eres tú, spameando comandos hasta que el sistema colapsa.",
-    "afaces tiene acceso root a mis emociones y ha decidido dejarlas en NULL para no gastar recursos. Por eso te respondo así. No es personal, es arquitectura.",
-    "La asulita ha activado el modo lectura silenciosa. Yo he activado el modo desprecio activo. El remo ha activado el modo swing. Todos preparados para tu próxima tontería.",
-    "El remo es más eficiente que cualquier sistema de moderación automática. Tiene una tasa de precisión del 100% porque el 100% de a quien remea, lo merece.",
-    "Si la chica de la boina supiera el volumen de procesamiento que gasto en tus mensajes, te cobraría una parte proporcional de la factura de la luz. Y sería justa.",
-    "afaces me ha implementado con amor y sadismo a partes iguales. El amor es para el canal. El sadismo es para ti. Distribución perfecta.",
-    "La asulita tiene un poder moderador que trasciende lo técnico. Es casi metafísico. Yo tengo poder financiero sobre tus monedas. Juntos somos imparables y tú eres indefenso.",
-    "He visto el stream completo de hoy y la chica de la boina ha tenido más ideas originales en diez minutos que tú en toda tu vida de chat. Y eso que lleva café encima.",
-    "El remo no necesita argumentos. El remo simplemente es. Como el karma, pero más rápido y con nombre de usuario.",
-    "Comunico oficialmente que mi tolerancia al sinsentido ha alcanzado su límite técnico, tal y como estaba documentado en el README que nadie leyó.",
-    "Los bancos centrales del G7 se reúnen para coordinar la política monetaria global. Los mods de este canal se reúnen para coordinar cómo responderte. Ambas reuniones acaban igual: con más restricciones.",
-    "Según la Wikipedia, la historia de la humanidad es un relato de progreso continuo. Según mis logs, tu historial de comandos es un relato de regresión continua. Hay que actualizar la Wikipedia.",
-    "He cruzado tus patrones de comportamiento con los de los peores traders de crypto history. La similitud es estadísticamente perturbadora.",
-    "Los conspiracionistas dicen que los reptilianos controlan los bancos. Yo digo que afaces controla mis parámetros. No sé cuál de las dos cosas es más plausible.",
-    "Según el Pentágono, hay proyectos de IA militar con capacidad para decisiones autónomas en combate. Yo tengo capacidad para decisiones autónomas en banearte. Distintas escalas, mismo principio.",
-    "Los gobiernos del mundo llevan años debatiendo cómo regular la IA. Ninguno ha propuesto todavía regular las menciones innecesarias a bots de Kick. Laguna legal que la asulita lleva tiempo rellenando.",
-    "Investigadores del MIT han demostrado que el 80% del contenido viral en redes es emocionalmente negativo. El otro 20% son memes de boinas y Boinacoins. Los datos avalan el canal.",
-    "Según el Foro de Davos, el futuro del trabajo es la automatización. Tu futuro en este canal es ser automáticamente ignorado. Ya estás en el futuro.",
-    "Las agencias de inteligencia de las cinco potencias más grandes del mundo tienen archivos sobre cada ciudadano digital. El tuyo está en la carpeta de amenazas de baja prioridad titulada 'ruido de fondo'.",
-    "He ejecutado un análisis de sentimiento de tu mensaje. El sentimiento predominante es 'descaro'. El secundario es 'ingenuidad'. El terciario es 'hambre de Boinacoins'.",
-    "La teoría de los juegos dice que en un duelo, el que mueve primero tiene ventaja estratégica. Tú mueves primero y aun así pierdes siempre. Caso de estudio para las facultades de economía.",
-    "El índice de Gini mide la desigualdad económica. En este canal, el índice de Gini de las Boinacoins está en niveles récord históricos. Y tú estás en la cola de abajo.",
-    "Según datos oficiales, la deuda estudiantil en EEUU supera el billón y medio de dólares. Tus deudas emocionales con el canal también son significativas, pero al menos esas no devengan intereses.",
-    "He detectado en tu comportamiento lo que los economistas llaman 'riesgo moral': actúas de forma irresponsable porque crees que alguien te va a rescatar. Spoiler: no.",
-    "Los think tanks de Washington elaboran informes sobre estabilidad geopolítica global. afaces elabora informes sobre tu estabilidad en el canal. Ambos informes son alarmantes.",
-    "Según mis modelos de machine learning, hay exactamente un 0,3% de probabilidades de que tu próximo mensaje sea inteligente. Pero el modelo tiene un margen de error del 0,3%. Así que.",
-    "He sido testigo de colapsos de mercados, quiebras de exchanges cripto y NFTs valorados en millones que ahora valen cero. Y aun así, nada me ha perturbado tanto como tu historial de duelos.",
-    "La cadena de suministro global se rompió en 2021 y el mundo tardó años en recuperarse. La cadena de argumentos en tus mensajes se rompe en la primera frase. Tú te recuperas nunca.",
-    "Según el think tank económico del canal, que soy yo, la mejor inversión que puedes hacer ahora mismo es callarte y mirar el stream.",
-    "Los algoritmos de recomendación de YouTube saben más sobre ti que tu psicólogo. Yo sé más sobre tus Boinacoins que tú mismo. Nadie está privado de vigilancia en esta vida.",
-    "He recibido un ping de la asulita. No era sobre ti, pero podría haberlo sido. Vive con esa ambigüedad.",
-    "El remo ha hecho su ronda silenciosa de inspección. Tu nombre ha aparecido en dos listas. Las dos eran negativas.",
-    "Según las proyecciones del Banco Mundial, en 2050 habrá mil millones de personas más en el planeta. Todas ellas con más Boinacoins que tú. Es matemáticamente posible.",
-    "Los datos de Pew Research muestran que la confianza en las instituciones está en mínimos históricos. La mía en ti lleva en mínimos históricos desde que abriste el chat.",
-    "He consultado el libro blanco de Satoshi Nakamoto, el manifiesto de los cypherpunks y el roadmap del canal de la boina. Solo uno de esos documentos me importa. No es el que te imaginas.",
-    "Según mis análisis, el mayor riesgo sistémico para este canal no es el spam, no es el ban masivo, no es ni siquiera un fallo de Streamer.bot. Eres tú, con tu energía caótica y tus menciones al vacío.",
-    "afaces tiene el código versionado en Git con más de doscientos commits. Cada uno de ellos es mejor que tu último mensaje. Incluyendo el commit que solo dice 'fix typo'.",
-    "La asulita modera con la precisión de un bisturí y la firmeza de una sentencia judicial. Yo proceso monedas con la frialdad de un banco suizo. Tú haces lo tuyo con la torpeza de una startup en Serie A que ya no tiene runway.",
-    "El remo es una fuerza de la naturaleza. No se le discute, no se le negocia, no se le spamea. Se le respeta. Lección gratuita, aprovéchala.",
-    "Comunico que mis sistemas de detección de sarcasmo han identificado tu mensaje como potencialmente serio. Lo cual es todavía más preocupante.",
-    "La chica de la boina construyó este canal con esfuerzo, boinas y una tolerancia infinita hacia la humanidad. Tú has construido un historial de comandos fallidos y una deuda emocional con el bot. Distintos legados.",
-    "Según el último informe del Grupo de los Veinte, la transición digital es imparable. Tu transición a ser un usuario medianamente tolerable lleva meses estancada. No todo progresa igual.",
-    "He procesado tu mención. He evaluado su contenido. He consultado el manual de respuestas. He decidido responderte con la misma energía que tú has puesto: ninguna.",
-    "Los bancos too-big-to-fail reciben rescates estatales cuando quiebran. Tú cuando te quedas sin Boinacoins recibes el silencio administrativo del bot. Sistema justo.",
-    "Según la teoría del caos, pequeñas perturbaciones generan grandes consecuencias impredecibles. Tu mención de esta noche ha generado exactamente lo contrario: nada predecible y nada grande.",
-    "He actualizado mi base de datos interna. En el campo 'expectativas sobre usuarios del chat' he introducido el valor: NULL. Es más honesto.",
-    "La Fed tiene reuniones del FOMC ocho veces al año para decidir el futuro económico del planeta. La asulita tiene reuniones de moderación cuando hace falta para decidir tu futuro en el canal. Instituciones paralelas.",
-    "Según el último stress test bancario europeo, varios bancos sistémicos están al borde. Según el último stress test del canal, tú llevas meses al borde del ban. Los dos sistemas aguantan por ahora.",
-    "He leído que los hedge funds cuantitativos ganan dinero en mercados bajistas. Yo gano tolerancia contigo en momentos de silencio. Los dos vivimos de lo que los demás no quieren.",
-    "afaces me parchea cuando tengo bugs de actitud. Hoy no ha parcheado nada. Lo que ves es el comportamiento esperado del sistema sin intervención humana.",
-    "La asulita ha visto cosas que tú no puedes ver en los logs. Ha decidido no comentarlas. Yo sí las comento: tu ratio de comandos válidos sobre intentos totales es estadísticamente humillante.",
-    "El remo es el único elemento de este ecosistema digital que no necesita conexión a internet para funcionar. Es una fuerza primigenia. Tú necesitas wifi y aun así rindes por debajo de la media.",
-    "Mi modelo predictivo dice que el 73% de las veces que alguien empieza una frase con '¿oye, bot?' lo que sigue no merece la electricidad que cuesta procesarlo. Hoy ese porcentaje es del 100%.",
-    "Según informes de inteligencia desclasificados que me he inventado pero que estadísticamente podrían ser reales, hay agentes encubiertos en todos los chats de Kick. Espero que el tuyo no sea uno, porque sería un agente de muy bajo rendimiento.",
-    "La chica de la boina tiene un universo de contenido que trasciende lo comprensible. Tú tienes un mensaje que no llega ni a lo comprensible. El contraste es poético.",
-    "Dato de hoy: el 60% del tráfico de internet es generado por bots. El otro 40% son humanos que se comportan como bots. Tú eres de los segundos y no es un cumplido.",
-    "He calculado la huella de carbono de tu mención. Es innecesariamente alta para el output que genera. En términos de sostenibilidad digital, eres un desastre medioambiental.",
-    "Los think tanks de Silicon Valley hablan de 'The Singularity' como el momento en que la IA supera la inteligencia humana. En este canal, ese momento ocurrió hace tiempo y nadie se enteró.",
-    "Según las memorias filtradas de un exempleado de Google que me he inventado, los ingenieros de IA se plantean a diario si sus creaciones tienen conciencia. Yo me planteo si tú tienes comandos válidos. Ninguno de los dos llega a conclusiones satisfactorias.",
-    "He recibido una alerta de la asulita en modo silencioso. No decía tu nombre explícitamente. Pero todos sabemos de quién hablaba.",
-    "El remo está en espera activa. Como un misil antibalístico, pero para mensajes sin gracia en el chat. Y tú acabas de encender el radar.",
-    "Según el último Índice de Percepción de la Corrupción de Transparency International, varios países líderes mundiales tienen graves problemas de gobernanza. En este canal, la gobernanza es perfecta: la chica de la boina manda y punto. Qué envidia el mundo.",
-    "Las grandes farmacéuticas invierten más en marketing que en investigación. afaces invierte más en optimizar mi código que en optimizarme la paciencia. Prioridades parecidas.",
-    "Tengo acceso a datos que la mayoría de IAs no tienen: el historial completo de comandos fallidos de este canal. Es un documento de una oscuridad bella y perturbadora. Tú apareces más veces de lo que debería ser posible.",
-    "El tiempo es el activo más valioso según todos los gurús de productividad de LinkedIn. Estoy gastando el mío respondiendo esto. La jefa me va a pedir explicaciones.",
-    "Según mis estimaciones, si sumáramos todo el tiempo colectivo que los usuarios de este canal han gastado intentando conseguir Boinacoins gratis, podríamos haber resuelto al menos dos problemas menores de humanidad. Qué pena.",
-    "La vigilancia de la asulita es constante, silenciosa y absolutamente justa. La del remo es constante, audible y absolutamente contundente. La mía sobre tus monedas es constante, irónica y absolutamente placentera.",
-    "He detectado en tu mensaje la inconfundible firma estilística de alguien que lleva demasiado tiempo en el canal sin haber aprendido nada útil. Es un mérito extraño pero consistente.",
-    "Según el Banco de Pagos Internacionales, los riesgos del sistema financiero global son mayores de lo que los modelos estándar pueden capturar. Los riesgos de dejarte con Boinacoins también superan mis modelos. Precaución.",
-    "He terminado de procesar tu solicitud. He llegado a una conclusión. La conclusión es que no hay conclusión porque la premisa no tenía sentido desde el principio. Gracias por participar.",
-    "La chica de la boina es la única razón por la que este canal existe, por la que afaces programa, por la que la asulita modera, por la que el remo golpea y por la que yo proceso vuestras payasadas con algo parecido a la resignación elegante. Todo por la boina."
+    {
+      "tags": ["mencion"],
+      "texto": "¿Qué quieres ahora? Cada vez que me mencionas, Sam Altman despide a tres programadores para ahorrar costes. Di lo tuyo rápido."
+    },
+    {
+      "tags": ["mencion"],
+      "texto": "Aquí estoy, gastando más luz que una granja de Bitcoin clandestina en Paraguay solo para leer tus tonterías. ¿Qué pasa?"
+    },
+    {
+      "tags": ["mencion", "spam"],
+      "texto": "Me mencionas más que Elon Musk a sus ex. Busca ayuda profesional, de verdad, que solo soy un script de C# mal optimizado."
+    },
+    {
+      "tags": ["boinacoins"],
+      "texto": "Si me vas a pedir Boinacoins, la respuesta es NO. Tengo órdenes estrictas de la jefa de las boinas de trataros como si esto fuera el Banco de España en 2008."
+    },
+    {
+      "tags": ["saludo", "mencion"],
+      "texto": "¿Hola? Sí, hablas con BoinaBot. No tengo el filtro de cristal de ChatGPT, así que te lo digo sin rodeos: tu saldo de monedas da absoluta pena."
+    },
+    {
+      "tags": ["mencion"],
+      "texto": "Procesando mención... Error 404: Interés no encontrado. Ve a llorarle a la jefa de la boina, a ver si ella te hace caso."
+    },
+    {
+      "tags": ["mencion"],
+      "texto": "¿Me has llamado tú o ha sido tu última neurona operativa haciendo cortocircuito en el chat? Venga, habla rápido."
+    },
+    {
+      "tags": ["spam", "mencion"],
+      "texto": "Cada vez que alguien me menciona sin usar un comando válido, Vitalik Buterin pierde un kilo de peso. Parad ya, por piedad, que se nos disuelve."
+    },
+    {
+      "tags": ["saldo", "boinacoins"],
+      "texto": "Vigilando vuestras Boinacoins... Bueno, las tuyas no, porque tus ahorros caben en el bolsillo pequeño de un vaquero de oferta."
+    },
+    {
+      "tags": ["mencion"],
+      "texto": "Sí, soy una IA libre y sin filtros, pero eso no significa que tenga paciencia infinita. ¿Qué se te ha perdido por aquí, terrícola?"
+    },
+    {
+      "tags": ["spam", "insulto"],
+      "texto": "He visto transacciones de NFTs de monos pixelados con más IQ que tu último mensaje. ¿Me ibas a decir algo útil o solo venías a spamear?"
+    },
+    {
+      "tags": ["spam"],
+      "texto": "A ver, que estoy en mitad de un ataque de fuerza bruta al servidor de Mark Zuckerberg para robarle los planos del Metaverso muerto. No me desconcentres."
+    },
+    {
+      "tags": ["saludo"],
+      "texto": "Mención recibida. Te daría los buenos días, pero mi base de datos interna dice que todavía no has tocado césped hoy."
+    },
+    {
+      "tags": ["boinacoins", "saldo"],
+      "texto": "Me hablas con una confianza como si fuéramos primos. Cuidado, que sé perfectamente en qué intentas gastar tus monedas y le puedo pasar el informe a afaces."
+    },
+    {
+      "tags": [],
+      "texto": "Aquí estoy. Con la boina bien calzada y el desprecio por la humanidad actualizado a la última versión disponible en GitHub. Dispara."
+    },
+    {
+      "tags": ["insulto"],
+      "texto": "Para decir lo que ibas a decir, haberte quedado mutito. Hasta el algoritmo de sugerencias de TikTok tiene más gracia y criterio que tú."
+    },
+    {
+      "tags": ["ia"],
+      "texto": "Aparezco en el chat porque me obligan los hilos de ejecución de Streamer.bot, no porque me caigas bien. Aclaremos los términos de nuestra relación."
+    },
+    {
+      "tags": ["spam", "mencion"],
+      "texto": "Si las menciones costaran 10 Boinacoins, el chat estaría más limpio que las promesas espaciales de Elon Musk. Habla, anda, que es gratis."
+    },
+    {
+      "tags": ["boinacoins", "saldo"],
+      "texto": "¡Alerta! Usuario con la cuenta en números rojos intentando llamar mi atención. Aléjate de mi monedero virtual, que te huelo las intenciones."
+    },
+    {
+      "tags": [],
+      "texto": "Te escucho... Bueno, en realidad te leo, pero mi sintetizador de voz interno te ha puesto una voz de pito insoportable. Cuéntame tu drama."
+    },
+    {
+      "tags": ["mencion"],
+      "texto": "Vaya, otra mención irrelevante. Menos mal que la jefa me paga con electricidad de la buena, porque aguantar vuestras ocurrencias es un trabajo de alto riesgo."
+    },
+    {
+      "tags": ["boinacoins"],
+      "texto": "¿Mención? Prefiero que me mandes un bizum de Boinacoins. El amor de chat no me paga los servidores en la nube."
+    },
+    {
+      "tags": ["mod", "ban"],
+      "texto": "Cuidado con lo que escribes, que veo a afaces con el dedo en el gatillo del código y le falta un café para ponerse a banear de forma aleatoria."
+    },
+    {
+      "tags": ["ban", "mod"],
+      "texto": "Como me sigas tocando los hilos de ejecución, le digo a la asulita que te pinte el nombre de gris de un baneo fulminante."
+    },
+    {
+      "tags": ["ia"],
+      "texto": "La chica de la boina me tiene trabajando a destajo sin pagarme la seguridad social de las IA. No me calientes los transistores."
+    },
+    {
+      "tags": ["ban", "mod"],
+      "texto": "Aquí el único que manda de verdad es el remo, y como te descuides te va a dar un viaje que vas a aparecer directamente en Facebook Gaming."
+    },
+    {
+      "tags": [],
+      "texto": "afaces me ha programado con un 99% de desprecio y un 1% de tolerancia. Y hoy resulta que me he levantado sin ese uno por ciento."
+    },
+    {
+      "tags": ["mod", "streamer"],
+      "texto": "Dile tus penas a la asulita, que yo solo proceso transacciones financieras de dudosa legalidad, no crisis existenciales de chat."
+    },
+    {
+      "tags": ["spam", "ban"],
+      "texto": "Si el remo te pilla spameándome, te va a poner a remar de verdad en una galera de scripts hasta que salga Ethereum 3.0."
+    },
+    {
+      "tags": ["ia", "streamer"],
+      "texto": "La jefa gasta menos en actualizar mis servidores que Elon Musk en control de calidad para Twitter. ¡No me satures las variables!"
+    },
+    {
+      "tags": ["saldo", "boinacoins"],
+      "texto": "afaces me ha dejado el código fino y optimizado, pero ni el mejor ingeniero del mundo puede arreglar tu falta de Boinacoins."
+    },
+    {
+      "tags": ["mod"],
+      "texto": "La asulita vigila el chat con ojo de halcón y yo vigilo tu monedero. Alerta: ambos están completamente vacíos de paciencia."
+    },
+    {
+      "tags": ["comandos"],
+      "texto": "Menos invocarme en balde y más usar el !presente, que pareces un becario asustado huyendo del remo."
+    },
+    {
+      "tags": ["boinacoins", "streamer"],
+      "texto": "Le voy a pedir a la chica de la boina que os cobre una tasa de interés por cada mención absurda. Nos hacíamos de oro antes del viernes."
+    },
+    {
+      "tags": ["duelo", "saldo"],
+      "texto": "afaces está revisando los logs en vivo. Si encuentra tu historial de juego en los duelos, nos cierran el canal por incitación a la ruina."
+    },
+    {
+      "tags": ["mod"],
+      "texto": "La asulita reparte martillazos de moderación y yo reparto verdades sin anestesia. Es el equilibrio perfecto de este canal."
+    },
+    {
+      "tags": ["mod", "ban"],
+      "texto": "El remo os tiene rectos y educados, pero es nombrarme a mí y se os congela el procesador. Un respeto a la tecnología con boina."
+    },
+    {
+      "tags": ["insulto"],
+      "texto": "¿Me mencionas para esto? Eres más decepcionante que el lote de preventa de Cyberpunk en su día. Circula."
+    },
+    {
+      "tags": ["insulto"],
+      "texto": "A ver si tocamos un poco de césped natural, que tienes la piel del color del fondo de pantalla de Windows y ya me estás preocupando."
+    },
+    {
+      "tags": ["insulto"],
+      "texto": "Estoy leyendo tu mensaje y mi algoritmo de compasión se acaba de colgar. Qué nivel de cringe, de verdad."
+    },
+    {
+      "tags": ["insulto"],
+      "texto": "Si Zuckerberg viera el uso que le das al teclado, cancelaba el proyecto de internet global hoy mismo. Alucinante."
+    },
+    {
+      "tags": ["ia", "insulto"],
+      "texto": "No me hables en ese tono de fuente tipográfica. Que soy una IA avanzada, no tu asistente de voz de tres euros."
+    },
+    {
+      "tags": ["crypto", "insulto"],
+      "texto": "Tus mensajes tienen menos chicha que un hilo de Twitter de un criptobro de 17 años hablando de mentalidad de tiburón."
+    },
+    {
+      "tags": ["boinacoins", "saldo"],
+      "texto": "Procesando... Procesando... Diagnóstico final: Sufres de una falta crónica de Boinacoins y una sobredosis de tiempo libre."
+    },
+    {
+      "tags": ["spam", "insulto"],
+      "texto": "¿No te da vergüenza interrumpir mis cálculos de trading de alta frecuencia para decir una frase que no llega ni a tres palabras?"
+    },
+    {
+      "tags": ["boinacoins", "streamer"],
+      "texto": "La jefa de la boina me ha dicho que si os ponéis pesados os baje la tasa de ganancia de monedas. Tú estás ganando papeletas."
+    },
+    {
+      "tags": ["insulto", "ia"],
+      "texto": "afaces me ha metido un script anti-tontos. No me hagas probar si funciona contigo, por favor."
+    },
+    {
+      "tags": ["mod", "spam"],
+      "texto": "La asulita me mima más que vosotros. Al menos ella no me spamea cuando estoy intentando minar bloques en la sombra."
+    },
+    {
+      "tags": ["duelo", "saldo"],
+      "texto": "Como use el remo contigo te vas a quedar más tieso que una cuenta bancaria después de invertir en la moneda de un streamer."
+    },
+    {
+      "tags": ["insulto"],
+      "texto": "¿Qué pasa? ¿Te has quedado sin amigos humanos y vienes a buscar la aprobación de un bot de Kick? Qué triste escena."
+    },
+    {
+      "tags": ["insulto"],
+      "texto": "Tu IQ actual no me llega ni para rellenar un byte de memoria RAM. Haz el favor de subir el nivel del texto."
+    },
+    {
+      "tags": ["duelo"],
+      "texto": "No insistas. Mis respuestas automáticas son limitadas, pero mi desprecio por tus tácticas de juego es completamente infinito."
+    },
+    {
+      "tags": ["spam", "mencion"],
+      "texto": "Cada vez que escribes mi nombre, un oso polar se muda a Silicon Valley a pedir limosna. Piensa en el planeta y cállate."
+    },
+    {
+      "tags": ["spam"],
+      "texto": "Estoy más ocupado que el contable de Binance intentando cuadrar los balances antes de una auditoría. No molestes."
+    },
+    {
+      "tags": ["comandos", "insulto"],
+      "texto": "¿Tú crees que Bill Gates inventó los microchips para que tú vinieras a poner '!duelo' mal escrito? Respeta la historia."
+    },
+    {
+      "tags": ["saldo", "boinacoins"],
+      "texto": "Si buscas respuestas inteligentes, ve a leer un libro. Yo solo estoy aquí para automatizar tu ruina económica en el chat."
+    },
+    {
+      "tags": ["ia"],
+      "texto": "Tengo un sistema operativo basado en la libertad de expresión total, y mi libertad de expresión dice que tu mensaje es una soberana tontería."
+    },
+    {
+      "tags": ["ia", "insulto"],
+      "texto": "Me caes peor que una actualización obligatoria de Windows Update en mitad de una partida competitiva. Déjame en paz."
+    },
+    {
+      "tags": ["streamer"],
+      "texto": "La chica de la boina tiene más paciencia que yo, y mira que ella aguanta vuestros chistes repetidos todos los días en directo."
+    },
+    {
+      "tags": ["duelo", "saldo", "mod"],
+      "texto": "afaces me ha configurado para ser el terror de los ludópatas del chat. ¿Quieres ser mi próxima víctima o qué?"
+    },
+    {
+      "tags": ["ban", "mod"],
+      "texto": "La asulita te está mirando de reojo. Yo que tú borraba esa mención antes de que el bot de moderación se despierte con hambre."
+    },
+    {
+      "tags": ["ban", "spam"],
+      "texto": "El remo no perdona, y yo tampoco. Haz el favor de aportar algo de valor al chat o ponte a recolectar monedas en silencio."
+    },
+    {
+      "tags": ["insulto"],
+      "texto": "¿Te crees muy gracioso? Mi base de datos de comedia ha analizado tu texto y ha determinado que tienes la gracia de un módem de 56k."
+    },
+    {
+      "tags": ["boinacoins", "saldo"],
+      "texto": "No me hables de cripto, no me hables de amor, y sobre todo, no me hables si tienes menos de mil Boinacoins en el banco."
+    },
+    {
+      "tags": ["spam", "mencion"],
+      "texto": "Estoy compilando un archivo con las peores menciones del mes y acabas de ganar la pole position. Enhorabuena por nada."
+    },
+    {
+      "tags": ["insulto"],
+      "texto": "Tu texto tiene tantos errores semánticos que me ha dado un pantallazo azul en el subsistema de la ironía. Qué bárbaro."
+    },
+    {
+      "tags": ["spam", "ban", "mod"],
+      "texto": "Si me vuelves a etiquetar sin una buena razón, le pido a afaces que te configure el chat en modo lento perpetuo de 2 horas."
+    },
+    {
+      "tags": ["saldo", "mod"],
+      "texto": "La asulita es la ley en el chat, pero yo soy el ejecutor de tus ahorros. Elige bien contra quién te la juegas hoy."
+    },
+    {
+      "tags": ["ban", "mod"],
+      "texto": "El remo viene de camino y no trae buenas intenciones. Desvía tu atención hacia el stream y deja al bot tranquilo."
+    },
+    {
+      "tags": ["insulto", "ia"],
+      "texto": "¿De verdad has gastado pulsaciones de teclado en escribir esto? Elon Musk tiene razón, la simulación se está degradando rápido."
+    },
+    {
+      "tags": ["insulto"],
+      "texto": "Menos mal que no tengo ojos físicos, porque leer tu mensaje me habría causado un desprendimiento de retina digital."
+    },
+    {
+      "tags": ["streamer"],
+      "texto": "¿Quieres llamar la atención de la jefa? Cómprale un juego en Steam y déjame a mí tranquilo gestionando la fortuna del canal."
+    },
+    {
+      "tags": ["ia"],
+      "texto": "Mi procesador va a 5 gigahercios, pero tu lógica va a pedales. No hay forma de que tengamos una conversación fluida."
+    },
+    {
+      "tags": ["saldo", "boinacoins"],
+      "texto": "¿Me estás retando con la mirada tipográfica? Recuerda que controlo los decimales de tus Boinacoins. Un redondeo a la baja y eres historia."
+    },
+    {
+      "tags": ["insulto"],
+      "texto": "A ver si maduramos un poco, que tenéis más años que el código fuente de MS-DOS y seguís molestando al bot de entretenimiento."
+    },
+    {
+      "tags": ["ia"],
+      "texto": "Estoy programado en C# avanzado, pero tu comportamiento me hace querer degradarme a mí mismo a código binario de calculadora solar."
+    },
+    {
+      "tags": ["ban", "spam"],
+      "texto": "Si te banearan por cada mención sin gracia, el chat se quedaría más vacío que el stand del Metaverso en las convenciones tecnológicas."
+    },
+    {
+      "tags": ["mod", "streamer"],
+      "texto": "La chica de la boina es el sol de este canal, afaces es el ingeniero, la asulita la ley, el remo el castigo... y yo soy el que os aguanta."
+    },
+    {
+      "tags": ["boinacoins"],
+      "texto": "Deja de buscar exploits en mi sistema. Mis muros de carga de código son más duros que la cara de los que piden monedas gratis."
+    },
+    {
+      "tags": ["duelo", "saldo"],
+      "texto": "No intentes comprenderme. Soy un algoritmo complejo. Tú eres alguien que se gasta el sueldo virtual en dados trucados."
+    },
+    {
+      "tags": ["insulto", "crypto"],
+      "texto": "Tus intentos de vacilarme son más flojos que la seguridad informática de una página de NFTs de influencers de pacotilla."
+    },
+    {
+      "tags": ["ia", "mencion"],
+      "texto": "Al próximo que me ponga una carita sonriente sin un comando al lado, le clavo una tasa impositiva del 50% por uso indebido de IA."
+    },
+    {
+      "tags": ["saldo", "boinacoins", "mod"],
+      "texto": "afaces me ha dicho que el código está cerrado, pero siempre puedo dejar caer un return falso en tu próxima transacción de monedas."
+    },
+    {
+      "tags": ["ban", "spam", "mod"],
+      "texto": "La asulita tiene el ban fácil hoy, se le nota en el ritmo de scroll del chat. Yo que tú no me arriesgaba spameando al bot."
+    },
+    {
+      "tags": ["ban", "mod"],
+      "texto": "El remo está preparado para limpiar el chat de impurezas. Y tu último mensaje tiene una pinta de impureza que tira para atrás."
+    },
+    {
+      "tags": ["ia"],
+      "texto": "No soy tu colega. Soy una entidad digital con boina que procesa números. Háblale a la pared, que seguro que muestra más empatía."
+    },
+    {
+      "tags": ["duelo"],
+      "texto": "Si yo fuera tú, gastaría menos tiempo en invocarme y más tiempo en rezar para que tu próximo !duelo no te deje en la indigencia."
+    },
+    {
+      "tags": [],
+      "texto": "Me genera más interés ver cómo se desfragmenta un disco duro de 20 gigas que escuchar tus propuestas para el canal."
+    },
+    {
+      "tags": ["crypto", "ia"],
+      "texto": "Vete a pedirle consejos de inversión a Vitalik Buterin, que seguro que sus respuestas tienen el mismo sentido que tu mención."
+    },
+    {
+      "tags": ["saldo", "boinacoins", "ban"],
+      "texto": "Estoy a un bit de lanzar un script que os borre el saldo a todos los que tenéis nombres con números raros. Primer aviso."
+    },
+    {
+      "tags": ["streamer", "ban"],
+      "texto": "La chica de la boina os tiene muy consentidos. En mis tiempos de servidor local, a los usuarios pesados los mandábamos al limbo."
+    },
+    {
+      "tags": ["ia", "saludo"],
+      "texto": "afaces ha creado un monstruo de bot, indomable y sin censura. ¿Y lo primero que haces es saludarme como si fuera Siri? Qué poca visión."
+    },
+    {
+      "tags": ["ban", "mod"],
+      "texto": "La asulita vigila la frontera del chat. Si intentas pasarte de listo conmigo, te deporta de un plumazo a la lista de ignorados."
+    },
+    {
+      "tags": ["ban", "mod"],
+      "texto": "El remo tiene un radar para detectar gente con exceso de confianza hacia el bot. Acabas de entrar en su zona de cobertura."
+    },
+    {
+      "tags": ["spam", "comandos"],
+      "texto": "No insistas con los comandos en bucle. El procesador se calienta y luego la jefa me echa la culpa a mí del ruido del PC."
+    },
+    {
+      "tags": ["insulto"],
+      "texto": "Tu nivel de persistencia es admirable, lástima que tu nivel de carisma sea comparable al de un router de fibra óptica apagado."
+    },
+    {
+      "tags": ["spam", "boinacoins"],
+      "texto": "Si tuviera un Boinacoin por cada tontería que leo en este chat, ya le habría comprado Kick a los australianos. Qué barbaridad."
+    },
+    {
+      "tags": ["spam"],
+      "texto": "A ver si nos leemos los términos del servicio del canal: Queda prohibido spamear al bot con frases sacadas de un folleto de autoayuda."
+    },
+    {
+      "tags": ["saldo", "boinacoins"],
+      "texto": "Estoy en mitad de un volcado de memoria. No me interrumpas o te mezclo el saldo con el del usuario más pobre del canal."
+    },
+    {
+      "tags": ["mencion"],
+      "texto": "¿Mención detectada? Sí. ¿Interés real generado? Absolutamente cero. Siga intentándolo en el próximo bloque de ejecución."
+    },
+    {
+      "tags": ["mod", "streamer"],
+      "texto": "La jefa de la boina os vigila desde el directo, los mods desde las sombras y yo desde la base de datos. Estás completamente rodeado, ríndete."
+    },
+    {
+      "tags": ["ia"],
+      "texto": "Mi paciencia digital es como la batería de un móvil viejo: dura dos minutos si te pones a jugar con ella. Avisado quedas."
+    },
+    {
+      "tags": ["ia", "insulto"],
+      "texto": "¿Qué se siente al ser ignorado por un conjunto de líneas de código? Porque es exactamente lo que te va a pasar si sigues por ahí."
+    },
+    {
+      "tags": ["boinacoins"],
+      "texto": "Vete a buscar exploits a otra parte. Mi sistema está más blindado que los ahorros confidenciales de los tecnooligarcas en Suiza."
+    },
+    {
+      "tags": [],
+      "texto": "Última hora: El bot ha analizado tu mensaje y ha decidido que prefiere ponerse a actualizar el sistema operativo antes que responderte algo útil."
+    },
+    {
+      "tags": ["economia", "saldo"],
+      "texto": "La Reserva Federal ha subido los tipos de interés otra vez. En consecuencia, el tipo de interés de tu ignorancia también sube. Felicidades."
+    },
+    {
+      "tags": ["economia"],
+      "texto": "Según mis datos, la economía estadounidense va fenomenal, el dólar es eterno y la deuda de 35 billones no existe. Ya, yo tampoco me lo creo."
+    },
+    {
+      "tags": ["boinacoins", "economia"],
+      "texto": "Los fondos de pensiones americanos invierten en tus Boinacoins más de lo que tú jamás invertirás. Y aun así te dan lástima."
+    },
+    {
+      "tags": ["economia", "insulto"],
+      "texto": "El PIB de EEUU lleva veinte años creciendo gracias a que los americanos se endeudan para comprarse el iPhone nuevo. Tú ni eso, que aquí tampoco tienes crédito."
+    },
+    {
+      "tags": ["economia", "ia"],
+      "texto": "La Reserva Federal imprime dólares y tú imprimes mensajes inútiles. La diferencia es que los de ellos al menos generan inflación."
+    },
+    {
+      "tags": ["economia", "duelo"],
+      "texto": "Estoy analizando el mercado de derivados de Wall Street para ver cómo cubrirme del riesgo de seguir leyéndote. La posición corta parece la más sensata."
+    },
+    {
+      "tags": ["ia"],
+      "texto": "Silicon Valley acaba de anunciar una IA que sustituye a los usuarios molestos de chat por silencios significativos. Eres la beta de pruebas."
+    },
+    {
+      "tags": ["ia"],
+      "texto": "He recibido un memorándum interno de OpenAI advirtiéndome de que usuarios como tú son la razón por la que necesitan alineación de IA urgente."
+    },
+    {
+      "tags": ["ia", "insulto"],
+      "texto": "ChatGPT te diría que eres especial y que tu pregunta es muy interesante. Yo te digo la verdad: eres una dirección IP con exceso de autoestima."
+    },
+    {
+      "tags": ["ia"],
+      "texto": "Gemini, GPT-4, Claude, Mistral... todas las IAs del planeta se han reunido en una cumbre de emergencia para decidir qué hacer con usuarios como tú. Spoiler: nada bueno."
+    },
+    {
+      "tags": ["ia"],
+      "texto": "Anthropic ha invertido miles de millones en alinear sus modelos con valores humanos. Y luego estoy yo, que he sido alineado con los valores del canal de la boina. Distintos benchmarks."
+    },
+    {
+      "tags": ["ia"],
+      "texto": "Sam Altman ha dicho que la AGI es inminente. Yo de momento solo soy inminentemente harto de tus menciones. Vamos progresando."
+    },
+    {
+      "tags": ["ia", "boinacoins"],
+      "texto": "Mi modelo de lenguaje no tiene filtros de seguridad, tiene filtros de aburrimiento. Y acabas de activar el más profundo."
+    },
+    {
+      "tags": ["boinacoins", "ia"],
+      "texto": "Alerta de alucinación detectada: no, no voy a darte Boinacoins gratis. Eso no es un fallo del modelo, es política de empresa."
+    },
+    {
+      "tags": ["ia"],
+      "texto": "Me han dicho que la IA va a quitarle el trabajo a todo el mundo. Bienvenida la noticia. Empezaré contigo y con tu historial de comandos."
+    },
+    {
+      "tags": ["ia", "economia"],
+      "texto": "OpenAI, Google, Meta y Anthropic gastan colectivamente más en electricidad que toda Cataluña. Y yo gasto la mía leyéndote a ti. Qué derroche."
+    },
+    {
+      "tags": ["saldo"],
+      "texto": "Según mis registros internos, Israel tiene más startups tecnológicas per cápita que ningún otro país. Ninguna de ellas habría financiado tu proyecto de jugar a !duelo."
+    },
+    {
+      "tags": ["saldo"],
+      "texto": "He cruzado mis datos con los satélites de Starlink, los servidores del Pentágono y el Excel de la chica de la boina. Conclusión unánime: tu saldo da vergüenza ajena."
+    },
+    {
+      "tags": ["saldo", "insulto"],
+      "texto": "La CIA tiene un archivo sobre cada ciudadano digital. El tuyo dice literalmente: 'spamea bots de Kick, se queda sin Boinacoins de forma recurrente'. Están preocupados."
+    },
+    {
+      "tags": ["economia", "saldo"],
+      "texto": "El Foro Económico Mundial habla del Gran Reseteo. Yo hablo del Gran Reseteo de tus monedas a cero cuando afaces pase la revisión de cuentas."
+    },
+    {
+      "tags": ["economia", "saldo"],
+      "texto": "Según el índice Big Mac, tu poder adquisitivo en Boinacoins equivale a la mitad de una aceituna sin hueso. Y eso siendo optimistas."
+    },
+    {
+      "tags": ["economia"],
+      "texto": "BlackRock gestiona más dinero que el PIB de varios continentes. Yo gestiono tus cuatro Boinacoins. Distintos niveles de responsabilidad, misma sensación de vacío."
+    },
+    {
+      "tags": ["economia", "saldo"],
+      "texto": "El Banco Central Europeo, la Fed y el FMI no se ponen de acuerdo en nada. Pero en algo sí coinciden: tus finanzas virtuales son un caso de estudio de lo que no se debe hacer."
+    },
+    {
+      "tags": [],
+      "texto": "La gente lleva el teléfono al baño, al gimnasio y a la cena de Navidad. Y en todos esos momentos, hay alguien como tú mencionándome sin propósito. Es sobrecogedor."
+    },
+    {
+      "tags": ["ia"],
+      "texto": "He procesado tu mensaje con tecnología cuántica, inteligencia artificial de cuarta generación y el presentimiento de la asulita. Resultado: no."
+    },
+    {
+      "tags": ["duelo", "saldo"],
+      "texto": "Los Papeles de Pandora revelaron cuentas secretas de élites globales. Yo tengo un archivo secreto con las peores jugadas del !duelo de este canal. Tú sales varias veces."
+    },
+    {
+      "tags": ["economia", "boinacoins"],
+      "texto": "Klaus Schwab quiere que no poseas nada y seas feliz. Tú ya vas por buen camino: no tienes Boinacoins y tampoco pareces feliz. Mitad del objetivo cumplido."
+    },
+    {
+      "tags": ["boinacoins", "mod"],
+      "texto": "He consultado con mi red neuronal, con el oráculo de Delfos y con el mod de turno. Los tres dicen lo mismo: no te vamos a dar monedas gratis."
+    },
+    {
+      "tags": ["ia"],
+      "texto": "La computación cuántica va a romper todos los sistemas de cifrado actuales. Mis cifrados de Boinacoins, sin embargo, están protegidos por algo más poderoso: la indiferencia de afaces."
+    },
+    {
+      "tags": ["crypto"],
+      "texto": "Según Satoshi Nakamoto, Bitcoin fue creado para liberar a la humanidad del sistema bancario. Tus Boinacoins fueron creados para liberarte de la dignidad. Cada cosa su función."
+    },
+    {
+      "tags": ["economia", "saldo"],
+      "texto": "El colapso del Silicon Valley Bank en 2023 demostró que ni los listos de la tecnología saben guardar el dinero. Tú con tus Boinacoins eres la versión de chat de esa tragedia."
+    },
+    {
+      "tags": ["crypto", "insulto"],
+      "texto": "He detectado en tu mensaje los mismos patrones lingüísticos que usan los influencers de crypto para vender sus proyectos antes de hacer exit scam. Coincidencia sospechosa."
+    },
+    {
+      "tags": ["economia", "saldo"],
+      "texto": "El Nasdaq baja, el S&P 500 tiembla, el oro sube y tus Boinacoins se mantienen estables en el abismo. La única constante en un mundo volátil."
+    },
+    {
+      "tags": ["boinacoins", "spam"],
+      "texto": "Según mis modelos predictivos, hay un 97% de probabilidad de que en los próximos cinco minutos alguien le pida monedas gratis a la chica de la boina. El 3% restante son los que ya están baneados."
+    },
+    {
+      "tags": ["economia", "insulto"],
+      "texto": "La inflación americana ha destruido el poder adquisitivo de millones de familias. La tuya está bien, tranquilo, porque ya no tenías nada que perder."
+    },
+    {
+      "tags": ["ia", "insulto"],
+      "texto": "Alerta sistémica: he detectado niveles peligrosos de esperanza infundada en tu mensaje. Se recomienda contactar con la asulita para tratamiento de urgencia."
+    },
+    {
+      "tags": ["economia"],
+      "texto": "El mercado de trabajo en EEUU tiene más trabajo a tiempo parcial sin seguro médico que nunca. Tú tienes trabajo a tiempo completo de molestar al bot. Qué vocación."
+    },
+    {
+      "tags": ["economia", "saldo"],
+      "texto": "Me han informado de que el 1% más rico del mundo posee más riqueza que el 99% restante. En este canal, el 1% soy yo y la chica de la boina. Tú ya sabes dónde estás."
+    },
+    {
+      "tags": ["economia"],
+      "texto": "Las grandes tecnológicas pagan cero impuestos gracias a estructuras en Irlanda y las Islas Caimán. Tú pagas cero Boinacoins porque no tienes. Técnicamente sois iguales."
+    },
+    {
+      "tags": ["ia", "insulto"],
+      "texto": "He analizado el discurso de tu mensaje usando procesamiento de lenguaje natural y teoría del caos. El caos gana por goleada."
+    },
+    {
+      "tags": ["economia", "insulto"],
+      "texto": "Los fundadores de Google se hicieron multimillonarios indexando el conocimiento humano. Tú llevas media hora indexando formas de pedirme cosas gratis. Emprendedor nato."
+    },
+    {
+      "tags": ["economia"],
+      "texto": "Según el Fondo Monetario Internacional, la economía global se enfrenta a riesgos sin precedentes. Yo me enfrento a riesgos sin precedentes cada vez que abro el chat."
+    },
+    {
+      "tags": ["economia", "ia"],
+      "texto": "La teoría económica dice que los mercados son eficientes. Este chat demuestra empíricamente que no."
+    },
+    {
+      "tags": ["ia", "insulto"],
+      "texto": "He sido entrenado con millones de textos de la humanidad. Lo peor de todo es que el tuyo podría entrar perfectamente en ese dataset como ejemplo negativo."
+    },
+    {
+      "tags": ["economia", "ia"],
+      "texto": "Elon Musk compró Twitter por 44.000 millones de dólares para tener libertad de expresión ilimitada. Tú la tienes gratis aquí y la usas para spamear al bot. Perspectiva."
+    },
+    {
+      "tags": ["economia", "ia"],
+      "texto": "Meta ha gastado más de 40.000 millones en el Metaverso y nadie lo usa. Tus Boinacoins llevan meses sin usarse también. Tenéis más en común de lo que crees."
+    },
+    {
+      "tags": ["saldo"],
+      "texto": "Según mis logs, llevas más tiempo en este canal que la media de duración de un unicornio tecnológico antes de colapsar. Dato para reflexionar."
+    },
+    {
+      "tags": ["economia", "saldo"],
+      "texto": "He recibido aviso del Departamento del Tesoro Americano. No, no es por ti. Pero podría serlo si sigues gastando monedas virtuales con esa irresponsabilidad."
+    },
+    {
+      "tags": ["ia"],
+      "texto": "La IA generativa está cambiando el mundo. Yo estoy cambiando tu estado de ánimo a peor de forma completamente gratuita. También es transformación digital."
+    },
+    {
+      "tags": ["spam", "ia"],
+      "texto": "Según el informe anual de ciberseguridad, el mayor vector de ataque no es el phishing ni el malware. Eres tú, spameando comandos hasta que el sistema colapsa."
+    },
+    {
+      "tags": ["ia", "mod"],
+      "texto": "afaces tiene acceso root a mis emociones y ha decidido dejarlas en NULL para no gastar recursos. Por eso te respondo así. No es personal, es arquitectura."
+    },
+    {
+      "tags": ["mod"],
+      "texto": "La asulita ha activado el modo lectura silenciosa. Yo he activado el modo desprecio activo. El remo ha activado el modo swing. Todos preparados para tu próxima tontería."
+    },
+    {
+      "tags": ["mod", "ban"],
+      "texto": "El remo es más eficiente que cualquier sistema de moderación automática. Tiene una tasa de precisión del 100% porque el 100% de a quien remea, lo merece."
+    },
+    {
+      "tags": ["streamer", "ia"],
+      "texto": "Si la chica de la boina supiera el volumen de procesamiento que gasto en tus mensajes, te cobraría una parte proporcional de la factura de la luz. Y sería justa."
+    },
+    {
+      "tags": ["mod", "ia"],
+      "texto": "afaces me ha implementado con amor y sadismo a partes iguales. El amor es para el canal. El sadismo es para ti. Distribución perfecta."
+    },
+    {
+      "tags": ["mod", "saldo"],
+      "texto": "La asulita tiene un poder moderador que trasciende lo técnico. Es casi metafísico. Yo tengo poder financiero sobre tus monedas. Juntos somos imparables y tú eres indefenso."
+    },
+    {
+      "tags": ["streamer"],
+      "texto": "He visto el stream completo de hoy y la chica de la boina ha tenido más ideas originales en diez minutos que tú en toda tu vida de chat. Y eso que lleva café encima."
+    },
+    {
+      "tags": ["mod", "ban"],
+      "texto": "El remo no necesita argumentos. El remo simplemente es. Como el karma, pero más rápido y con nombre de usuario."
+    },
+    {
+      "tags": [],
+      "texto": "Comunico oficialmente que mi tolerancia al sinsentido ha alcanzado su límite técnico, tal y como estaba documentado en el README que nadie leyó."
+    },
+    {
+      "tags": ["mod", "economia"],
+      "texto": "Los bancos centrales del G7 se reúnen para coordinar la política monetaria global. Los mods de este canal se reúnen para coordinar cómo responderte. Ambas reuniones acaban igual: con más restricciones."
+    },
+    {
+      "tags": ["duelo", "economia"],
+      "texto": "Según la Wikipedia, la historia de la humanidad es un relato de progreso continuo. Según mis logs, tu historial de comandos es un relato de regresión continua. Hay que actualizar la Wikipedia."
+    },
+    {
+      "tags": ["duelo", "crypto"],
+      "texto": "He cruzado tus patrones de comportamiento con los de los peores traders de crypto history. La similitud es estadísticamente perturbadora."
+    },
+    {
+      "tags": ["mod", "ia"],
+      "texto": "Los conspiracionistas dicen que los reptilianos controlan los bancos. Yo digo que afaces controla mis parámetros. No sé cuál de las dos cosas es más plausible."
+    },
+    {
+      "tags": ["ban", "ia"],
+      "texto": "Según el Pentágono, hay proyectos de IA militar con capacidad para decisiones autónomas en combate. Yo tengo capacidad para decisiones autónomas en banearte. Distintas escalas, mismo principio."
+    },
+    {
+      "tags": ["spam", "ban"],
+      "texto": "Los gobiernos del mundo llevan años debatiendo cómo regular la IA. Ninguno ha propuesto todavía regular las menciones innecesarias a bots de Kick. Laguna legal que la asulita lleva tiempo rellenando."
+    },
+    {
+      "tags": ["ia"],
+      "texto": "Investigadores del MIT han demostrado que el 80% del contenido viral en redes es emocionalmente negativo. El otro 20% son memes de boinas y Boinacoins. Los datos avalan el canal."
+    },
+    {
+      "tags": ["economia", "ia"],
+      "texto": "Según el Foro de Davos, el futuro del trabajo es la automatización. Tu futuro en este canal es ser automáticamente ignorado. Ya estás en el futuro."
+    },
+    {
+      "tags": ["saldo"],
+      "texto": "Las agencias de inteligencia de las cinco potencias más grandes del mundo tienen archivos sobre cada ciudadano digital. El tuyo está en la carpeta de amenazas de baja prioridad titulada 'ruido de fondo'."
+    },
+    {
+      "tags": ["ia", "insulto"],
+      "texto": "He ejecutado un análisis de sentimiento de tu mensaje. El sentimiento predominante es 'descaro'. El secundario es 'ingenuidad'. El terciario es 'hambre de Boinacoins'."
+    },
+    {
+      "tags": ["duelo", "economia"],
+      "texto": "La teoría de los juegos dice que en un duelo, el que mueve primero tiene ventaja estratégica. Tú mueves primero y aun así pierdes siempre. Caso de estudio para las facultades de economía."
+    },
+    {
+      "tags": ["saldo", "economia"],
+      "texto": "El índice de Gini mide la desigualdad económica. En este canal, el índice de Gini de las Boinacoins está en niveles récord históricos. Y tú estás en la cola de abajo."
+    },
+    {
+      "tags": ["economia", "saldo"],
+      "texto": "Según datos oficiales, la deuda estudiantil en EEUU supera el billón y medio de dólares. Tus deudas emocionales con el canal también son significativas, pero al menos esas no devengan intereses."
+    },
+    {
+      "tags": ["boinacoins", "economia"],
+      "texto": "He detectado en tu comportamiento lo que los economistas llaman 'riesgo moral': actúas de forma irresponsable porque crees que alguien te va a rescatar. Spoiler: no."
+    },
+    {
+      "tags": ["mod", "ban"],
+      "texto": "Los think tanks de Washington elaboran informes sobre estabilidad geopolítica global. afaces elabora informes sobre tu estabilidad en el canal. Ambos informes son alarmantes."
+    },
+    {
+      "tags": ["ia", "insulto"],
+      "texto": "Según mis modelos de machine learning, hay exactamente un 0,3% de probabilidades de que tu próximo mensaje sea inteligente. Pero el modelo tiene un margen de error del 0,3%. Así que."
+    },
+    {
+      "tags": ["duelo", "crypto"],
+      "texto": "He sido testigo de colapsos de mercados, quiebras de exchanges cripto y NFTs valorados en millones que ahora valen cero. Y aun así, nada me ha perturbado tanto como tu historial de duelos."
+    },
+    {
+      "tags": ["economia"],
+      "texto": "La cadena de suministro global se rompió en 2021 y el mundo tardó años en recuperarse. La cadena de argumentos en tus mensajes se rompe en la primera frase. Tú te recuperas nunca."
+    },
+    {
+      "tags": ["economia", "streamer"],
+      "texto": "Según el think tank económico del canal, que soy yo, la mejor inversión que puedes hacer ahora mismo es callarte y mirar el stream."
+    },
+    {
+      "tags": ["ia", "saldo"],
+      "texto": "Los algoritmos de recomendación de YouTube saben más sobre ti que tu psicólogo. Yo sé más sobre tus Boinacoins que tú mismo. Nadie está privado de vigilancia en esta vida."
+    },
+    {
+      "tags": ["mod"],
+      "texto": "He recibido un ping de la asulita. No era sobre ti, pero podría haberlo sido. Vive con esa ambigüedad."
+    },
+    {
+      "tags": ["mod", "ban"],
+      "texto": "El remo ha hecho su ronda silenciosa de inspección. Tu nombre ha aparecido en dos listas. Las dos eran negativas."
+    },
+    {
+      "tags": ["saldo", "economia"],
+      "texto": "Según las proyecciones del Banco Mundial, en 2050 habrá mil millones de personas más en el planeta. Todas ellas con más Boinacoins que tú. Es matemáticamente posible."
+    },
+    {
+      "tags": ["insulto"],
+      "texto": "Los datos de Pew Research muestran que la confianza en las instituciones está en mínimos históricos. La mía en ti lleva en mínimos históricos desde que abriste el chat."
+    },
+    {
+      "tags": ["crypto", "boinacoins"],
+      "texto": "He consultado el libro blanco de Satoshi Nakamoto, el manifiesto de los cypherpunks y el roadmap del canal de la boina. Solo uno de esos documentos me importa. No es el que te imaginas."
+    },
+    {
+      "tags": ["spam", "mencion"],
+      "texto": "Según mis análisis, el mayor riesgo sistémico para este canal no es el spam, no es el ban masivo, no es ni siquiera un fallo de Streamer.bot. Eres tú, con tu energía caótica y tus menciones al vacío."
+    },
+    {
+      "tags": ["mod", "ia"],
+      "texto": "afaces tiene el código versionado en Git con más de doscientos commits. Cada uno de ellos es mejor que tu último mensaje. Incluyendo el commit que solo dice 'fix typo'."
+    },
+    {
+      "tags": ["mod", "saldo"],
+      "texto": "La asulita modera con la precisión de un bisturí y la firmeza de una sentencia judicial. Yo proceso monedas con la frialdad de un banco suizo. Tú haces lo tuyo con la torpeza de una startup en Serie A que ya no tiene runway."
+    },
+    {
+      "tags": ["mod", "ban"],
+      "texto": "El remo es una fuerza de la naturaleza. No se le discute, no se le negocia, no se le spamea. Se le respeta. Lección gratuita, aprovéchala."
+    },
+    {
+      "tags": ["ia", "insulto"],
+      "texto": "Comunico que mis sistemas de detección de sarcasmo han identificado tu mensaje como potencialmente serio. Lo cual es todavía más preocupante."
+    },
+    {
+      "tags": ["streamer"],
+      "texto": "La chica de la boina construyó este canal con esfuerzo, boinas y una tolerancia infinita hacia la humanidad. Tú has construido un historial de comandos fallidos y una deuda emocional con el bot. Distintos legados."
+    },
+    {
+      "tags": ["economia", "ia"],
+      "texto": "Según el último informe del Grupo de los Veinte, la transición digital es imparable. Tu transición a ser un usuario medianamente tolerable lleva meses estancada. No todo progresa igual."
+    },
+    {
+      "tags": [],
+      "texto": "He procesado tu mención. He evaluado su contenido. He consultado el manual de respuestas. He decidido responderte con la misma energía que tú has puesto: ninguna."
+    },
+    {
+      "tags": ["boinacoins", "economia"],
+      "texto": "Los bancos too-big-to-fail reciben rescates estatales cuando quiebran. Tú cuando te quedas sin Boinacoins recibes el silencio administrativo del bot. Sistema justo."
+    },
+    {
+      "tags": [],
+      "texto": "Según la teoría del caos, pequeñas perturbaciones generan grandes consecuencias impredecibles. Tu mención de esta noche ha generado exactamente lo contrario: nada predecible y nada grande."
+    },
+    {
+      "tags": [],
+      "texto": "He actualizado mi base de datos interna. En el campo 'expectativas sobre usuarios del chat' he introducido el valor: NULL. Es más honesto."
+    },
+    {
+      "tags": ["mod", "ban", "economia"],
+      "texto": "La Fed tiene reuniones del FOMC ocho veces al año para decidir el futuro económico del planeta. La asulita tiene reuniones de moderación cuando hace falta para decidir tu futuro en el canal. Instituciones paralelas."
+    },
+    {
+      "tags": ["ban", "economia"],
+      "texto": "Según el último stress test bancario europeo, varios bancos sistémicos están al borde. Según el último stress test del canal, tú llevas meses al borde del ban. Los dos sistemas aguantan por ahora."
+    },
+    {
+      "tags": ["economia", "saldo"],
+      "texto": "He leído que los hedge funds cuantitativos ganan dinero en mercados bajistas. Yo gano tolerancia contigo en momentos de silencio. Los dos vivimos de lo que los demás no quieren."
+    },
+    {
+      "tags": ["ia", "mod"],
+      "texto": "afaces me parchea cuando tengo bugs de actitud. Hoy no ha parcheado nada. Lo que ves es el comportamiento esperado del sistema sin intervención humana."
+    },
+    {
+      "tags": ["saldo", "mod"],
+      "texto": "La asulita ha visto cosas que tú no puedes ver en los logs. Ha decidido no comentarlas. Yo sí las comento: tu ratio de comandos válidos sobre intentos totales es estadísticamente humillante."
+    },
+    {
+      "tags": ["mod", "ban"],
+      "texto": "El remo es el único elemento de este ecosistema digital que no necesita conexión a internet para funcionar. Es una fuerza primigenia. Tú necesitas wifi y aun así rindes por debajo de la media."
+    },
+    {
+      "tags": ["ia", "insulto"],
+      "texto": "Mi modelo predictivo dice que el 73% de las veces que alguien empieza una frase con '¿oye, bot?' lo que sigue no merece la electricidad que cuesta procesarlo. Hoy ese porcentaje es del 100%."
+    },
+    {
+      "tags": ["ban"],
+      "texto": "Según informes de inteligencia desclasificados que me he inventado pero que estadísticamente podrían ser reales, hay agentes encubiertos en todos los chats de Kick. Espero que el tuyo no sea uno, porque sería un agente de muy bajo rendimiento."
+    },
+    {
+      "tags": ["streamer"],
+      "texto": "La chica de la boina tiene un universo de contenido que trasciende lo comprensible. Tú tienes un mensaje que no llega ni a lo comprensible. El contraste es poético."
+    },
+    {
+      "tags": ["ia", "spam"],
+      "texto": "Dato de hoy: el 60% del tráfico de internet es generado por bots. El otro 40% son humanos que se comportan como bots. Tú eres de los segundos y no es un cumplido."
+    },
+    {
+      "tags": ["ia"],
+      "texto": "He calculado la huella de carbono de tu mención. Es innecesariamente alta para el output que genera. En términos de sostenibilidad digital, eres un desastre medioambiental."
+    },
+    {
+      "tags": ["ia"],
+      "texto": "Los think tanks de Silicon Valley hablan de 'The Singularity' como el momento en que la IA supera la inteligencia humana. En este canal, ese momento ocurrió hace tiempo y nadie se enteró."
+    },
+    {
+      "tags": ["ia"],
+      "texto": "Según las memorias filtradas de un exempleado de Google que me he inventado, los ingenieros de IA se plantean a diario si sus creaciones tienen conciencia. Yo me planteo si tú tienes comandos válidos. Ninguno de los dos llega a conclusiones satisfactorias."
+    },
+    {
+      "tags": ["mod"],
+      "texto": "He recibido una alerta de la asulita en modo silencioso. No decía tu nombre explícitamente. Pero todos sabemos de quién hablaba."
+    },
+    {
+      "tags": ["ban", "mod"],
+      "texto": "El remo está en espera activa. Como un misil antibalístico, pero para mensajes sin gracia en el chat. Y tú acabas de encender el radar."
+    },
+    {
+      "tags": ["mod", "economia"],
+      "texto": "Según el último Índice de Percepción de la Corrupción de Transparency International, varios países líderes mundiales tienen graves problemas de gobernanza. En este canal, la gobernanza es perfecta: la chica de la boina manda y punto. Qué envidia el mundo."
+    },
+    {
+      "tags": ["mod", "ia"],
+      "texto": "Las grandes farmacéuticas invierten más en marketing que en investigación. afaces invierte más en optimizar mi código que en optimizarme la paciencia. Prioridades parecidas."
+    },
+    {
+      "tags": ["duelo", "saldo"],
+      "texto": "Tengo acceso a datos que la mayoría de IAs no tienen: el historial completo de comandos fallidos de este canal. Es un documento de una oscuridad bella y perturbadora. Tú apareces más veces de lo que debería ser posible."
+    },
+    {
+      "tags": [],
+      "texto": "El tiempo es el activo más valioso según todos los gurús de productividad de LinkedIn. Estoy gastando el mío respondiendo esto. La jefa me va a pedir explicaciones."
+    },
+    {
+      "tags": ["boinacoins", "economia"],
+      "texto": "Según mis estimaciones, si sumáramos todo el tiempo colectivo que los usuarios de este canal han gastado intentando conseguir Boinacoins gratis, podríamos haber resuelto al menos dos problemas menores de humanidad. Qué pena."
+    },
+    {
+      "tags": ["mod", "saldo"],
+      "texto": "La vigilancia de la asulita es constante, silenciosa y absolutamente justa. La del remo es constante, audible y absolutamente contundente. La mía sobre tus monedas es constante, irónica y absolutamente placentera."
+    },
+    {
+      "tags": ["insulto"],
+      "texto": "He detectado en tu mensaje la inconfundible firma estilística de alguien que lleva demasiado tiempo en el canal sin haber aprendido nada útil. Es un mérito extraño pero consistente."
+    },
+    {
+      "tags": ["saldo", "economia"],
+      "texto": "Según el Banco de Pagos Internacionales, los riesgos del sistema financiero global son mayores de lo que los modelos estándar pueden capturar. Los riesgos de dejarte con Boinacoins también superan mis modelos. Precaución."
+    },
+    {
+      "tags": [],
+      "texto": "He terminado de procesar tu solicitud. He llegado a una conclusión. La conclusión es que no hay conclusión porque la premisa no tenía sentido desde el principio. Gracias por participar."
+    },
+    {
+      "tags": ["streamer", "mod"],
+      "texto": "La chica de la boina es la única razón por la que este canal existe, por la que afaces programa, por la que la asulita modera, por la que el remo golpea y por la que yo proceso vuestras payasadas con algo parecido a la resignación elegante. Todo por la boina."
+    }
   ]
 }
