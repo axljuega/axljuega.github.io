@@ -40,73 +40,133 @@
 Para evitar que los bots participen en la economía:
 - Ve a **Settings** → **Groups**.
 - Crea un grupo llamado exactamente **`Chat Bots`**.
-- En la pestaña **Users**, busca a tu cuenta de bot y a `BotRix`, haz clic derecho → **Add to Group** → `Chat Bots`.
-- Cualquier bot futuro: añádelo a este mismo grupo. El código lo excluirá automáticamente sin tocar nada.
+- Añade tu cuenta de bot, `BotRix` y cualquier bot futuro.
+- El código los excluirá automáticamente sin tocar nada.
 
 ---
 
 ## 🔔 Discord — Configuración de Webhooks
 
-El sistema usa **4 canales de Discord** con webhooks distintos. Cada canal recibe un tipo específico de información.
+El sistema usa **4 canales de Discord** con webhooks distintos.
 
-### Canales y su función
-
-| Canal Discord | Qué recibe | Webhook a usar |
+| Canal Discord | Qué recibe | Constante en el código |
 |:--- |:--- |:--- |
-| `#rangos-boinacoin` | Subidas de rango (Lana, Cuero, Terciopelo, Legendaria) | `WEBHOOK_RANGOS` |
-| `#subs-y-follows` | Follows nuevos, subs, resubs, giftsubs, massgifts | `WEBHOOK_SUBS_FOLLOWS` |
-| `#eventos-stream` | Stream ON/OFF, resumen de sesión con stats | `WEBHOOK_EVENTOS` |
-| `#boinacoin-logs` | Logs internos, mod actions, errores | `WEBHOOK_LOGS` |
+| `#rangos-boinacoin` | Subidas de rango | `WEBHOOK_LANA/CUERO/TERCIOPELO/LEGENDARIA` |
+| `#subs-y-follows` | Follows, subs, resubs, giftsubs | `WEBHOOK_SUBS_FOLLOWS` |
+| `#eventos-stream` | Stream ON/OFF, resumen de sesión | `WEBHOOK_EVENTOS` |
+| `#boinacoin-logs` | Logs internos, mod actions | `WEBHOOK_LOGS` |
 
-### Cómo crear un Webhook en Discord
-1. En tu servidor de Discord, ve al canal deseado.
-2. Haz clic derecho sobre el canal → **Editar canal**.
-3. Ve a la pestaña **Integraciones** → **Webhooks** → **Crear Webhook**.
-4. Ponle el nombre que quieras (ej. `BoinaBot Rangos`), copia la URL.
-5. Repite para cada canal.
+### Cómo crear un Webhook
+1. Clic derecho sobre el canal → **Editar canal** → **Integraciones** → **Webhooks** → **Crear Webhook**.
+2. Ponle nombre (ej. `BoinaBot Rangos`) y copia la URL.
+3. Repite para cada canal.
 
 ### Dónde pegar cada URL
+Las URLs están hardcodeadas como constantes en la parte superior de cada script:
 
-Las URLs de webhook están hardcodeadas como constantes en la parte superior de cada script. Localiza esta línea en cada archivo y sustitúyela por tu URL real:
-
-**`earn/follow.cs`, `earn/sub.cs`, `earn/resub.cs`, `earn/giftsub.cs`, `earn/massgift.cs`:**
 ```csharp
-private const string WEBHOOK_SUBS_FOLLOWS = "https://discord.com/api/webhooks/TU_ID/TU_TOKEN";
+// earn/follow.cs, sub.cs, resub.cs, giftsub.cs, massgift.cs
+private const string WEBHOOK_SUBS_FOLLOWS = "https://discord.com/api/webhooks/...";
+
+// system/discord_webhook.cs
+private const string WEBHOOK_LANA       = "https://discord.com/api/webhooks/...";
+private const string WEBHOOK_CUERO      = "https://discord.com/api/webhooks/...";
+private const string WEBHOOK_TERCIOPELO = "https://discord.com/api/webhooks/...";
+private const string WEBHOOK_LEGENDARIA = "https://discord.com/api/webhooks/...";
+
+// system/stream_on.cs y stream_off.cs
+private const string WEBHOOK_EVENTOS = "https://discord.com/api/webhooks/...";
 ```
 
-**`system/discord_webhook.cs`** (rangos):
-```csharp
-private const string WEBHOOK_LANA       = "https://discord.com/api/webhooks/TU_ID/TU_TOKEN";
-private const string WEBHOOK_CUERO      = "https://discord.com/api/webhooks/TU_ID/TU_TOKEN";
-private const string WEBHOOK_TERCIOPELO = "https://discord.com/api/webhooks/TU_ID/TU_TOKEN";
-private const string WEBHOOK_LEGENDARIA = "https://discord.com/api/webhooks/TU_ID/TU_TOKEN";
-```
-> Todos los rangos pueden apuntar al mismo webhook (`#rangos-boinacoin`) o a canales separados si lo prefieres.
+> ⚠️ **Seguridad:** No subas las URLs de webhook a GitHub. Si las expones, regéneralas desde Discord.
 
-**`system/stream_events.cs`** (stream ON/OFF — pendiente de implementar):
+---
+
+## 🤖 Discord — Bot GestorDeBoinas (Roles Automáticos)
+
+Los webhooks solo envían mensajes. Para **asignar roles automáticamente** al subir de rango necesitas el bot **GestorDeBoinas**.
+
+### Paso 1 — Crear la aplicación en Discord Developer Portal
+
+1. Ve a [discord.com/developers/applications](https://discord.com/developers/applications)
+2. Clic en **New Application** → Nombre: `GestorDeBoinas` 🎩 → **Create**
+3. Menú izquierdo: **Bot** → **Add Bot** → confirmar
+4. En **Privileged Gateway Intents** activa: ✅ `Server Members Intent`
+5. En **Token** → **Reset Token** → copia y guarda el token
+
+### Paso 2 — Invitar el bot al servidor
+
+1. Ve a **OAuth2 → URL Generator**
+2. Scope: ✅ `bot`
+3. Bot Permissions: ✅ `Manage Roles` + ✅ `View Channels`
+4. Copia la URL generada → ábrela → selecciona tu servidor → **Autorizar**
+
+### Paso 3 — Crear los roles de Boina en Discord
+
+En tu servidor: **Ajustes → Roles → Crear Rol** × 4
+
+| Nombre | Color hex | Position |
+|:--- |:--- |:--- |
+| 🧶 Boina de Lana | `#888780` | más baja |
+| 🪡 Boina de Cuero | `#185FA5` | encima |
+| 💎 Boina de Terciopelo | `#3C3489` | encima |
+| 👑 La Boina Legendaria | `#F0A500` | más alta |
+
+⚠️ El rol de **GestorDeBoinas** debe estar **por encima** de los 4 roles de Boina en la jerarquía, o no podrá asignarlos.
+
+### Paso 4 — Obtener los IDs
+
+Activa **Modo Desarrollador** en Discord (Ajustes → Avanzado → Modo Desarrollador).
+
+- **ID del servidor:** clic derecho en el nombre del servidor → Copiar ID
+- **ID de cada rol:** Ajustes → Roles → clic derecho en el rol → Copiar ID
+
+### Paso 5 — Configurar discord_roles.cs
+
+Abre `system/discord_roles.cs` y sustituye las constantes:
+
 ```csharp
-private const string WEBHOOK_EVENTOS = "https://discord.com/api/webhooks/TU_ID/TU_TOKEN";
+private const string BOT_TOKEN = "TU_TOKEN_AQUI";
+private const string GUILD_ID  = "TU_ID_SERVIDOR";
+
+private const string ROLE_LANA       = "ID_ROL_LANA";
+private const string ROLE_CUERO      = "ID_ROL_CUERO";
+private const string ROLE_TERCIOPELO = "ID_ROL_TERCIOPELO";
+private const string ROLE_LEGENDARIA = "ID_ROL_LEGENDARIA";
 ```
 
-### ⚠️ Seguridad
-Las URLs de webhook son secretas. Cualquiera con la URL puede publicar en tu canal. **No las subas a GitHub.** Si las expones accidentalmente, regenera el webhook desde Discord.
+### Paso 6 — Conectar con rank_checker.cs
+
+Al final de `rank_checker.cs`, después de llamar a `Boinacoin · DiscordWebhook`, añade:
+
+```csharp
+CPH.SetArgument("webhookUserId",   userId);
+CPH.SetArgument("webhookUserName", userName);
+CPH.SetArgument("webhookNewRank",  newRank);
+CPH.RunAction("Boinacoin · DiscordRoles", false);
+```
+
+### Cómo funciona la vinculación Kick → Discord
+
+El bot busca al usuario en Discord por su nombre de usuario de Kick. Si el nombre coincide exactamente con su username de Discord, se asigna el rol automáticamente. Si no coincide (porque usan nombres distintos), el bot guarda el intento en el log y continúa — el webhook de Discord seguirá funcionando igualmente.
+
+Una vez encontrado, el Discord ID queda cacheado en la variable `boinacoin_discord_id` del usuario, evitando búsquedas repetidas en cada subida de rango.
 
 ---
 
 ## 🪙 Paso 1: Creación de Acciones (C# Execute Code)
 
-Debes crear una **Action** por cada script `.cs` en la carpeta `streamerbot/boinacoin/`.
+Debes crear una **Action** por cada script `.cs`.
 
 ### Cómo crear una acción:
 1. Pestaña **Actions** → Botón derecho → `Add`.
-2. Ponle el nombre sugerido abajo.
-3. En la columna **Sub-Actions** → Botón derecho → `Core` → `C# Execute Code`.
-4. Copia y pega el contenido del archivo `.cs` correspondiente.
-5. Pulsa **Compile**. Debe aparecer un mensaje en verde: `Compiled Successfully`.
+2. En **Sub-Actions** → Botón derecho → `Core` → `C# Execute Code`.
+3. Copia y pega el contenido del `.cs` correspondiente.
+4. Pulsa **Compile** → debe aparecer en verde: `Compiled Successfully`.
 
 ### Catálogo de Acciones:
 
-| Carpeta | Script | Nombre de la Acción Recomendado |
+| Carpeta | Script | Nombre de la Acción |
 |:--- |:--- |:--- |
 | `earn/` | `follow.cs` | `Boinacoin · Follow` |
 | `earn/` | `sub.cs` | `Boinacoin · Sub` |
@@ -128,53 +188,90 @@ Debes crear una **Action** por cada script `.cs` en la carpeta `streamerbot/boin
 | `commands/` | `cmd_addboinas.cs` | `Boinacoin · AddBoinas` |
 | `commands/` | `cmd_setboinas.cs` | `Boinacoin · SetBoinas` |
 | `commands/` | `cmd_resetboinas.cs` | `Boinacoin · ResetBoinas` |
+| `commands/` | `cmd_mencion.cs` | `Boinacoin · Mención` |
 | `moderation/` | `mod_timeout.cs` | `Boinacoin · Timeout` |
 | `moderation/` | `mod_ban.cs` | `Boinacoin · Ban` |
 | `moderation/` | `mod_inactividad.cs` | `Boinacoin · Inactividad` |
-| `system/` | `rank_checker.cs` | **`Boinacoin · RankChecker`** (Exacto) |
-| `system/` | `multiplier.cs` | **`Boinacoin · Multiplier`** (Exacto) |
-| `system/` | `discord_webhook.cs` | **`Boinacoin · DiscordWebhook`** (Exacto) |
+| `system/` | `rank_checker.cs` | **`Boinacoin · RankChecker`** ⚠️ Exacto |
+| `system/` | `multiplier.cs` | **`Boinacoin · Multiplier`** ⚠️ Exacto |
+| `system/` | `discord_webhook.cs` | **`Boinacoin · DiscordWebhook`** ⚠️ Exacto |
+| `system/` | `discord_roles.cs` | **`Boinacoin · DiscordRoles`** ⚠️ Exacto |
+| `system/` | `stream_on.cs` | `Boinacoin · StreamOn` |
+| `system/` | `stream_off.cs` | `Boinacoin · StreamOff` |
 
-> ⚠️ Las acciones marcadas como **(Exacto)** deben llamarse exactamente así porque son invocadas internamente por otros scripts mediante `CPH.RunAction("nombre", false)`.
+> ⚠️ Las acciones marcadas como **Exacto** son invocadas internamente por otros scripts mediante `CPH.RunAction("nombre", false)` y deben llamarse exactamente así.
 
 ---
 
 ## 💬 Paso 2: Configuración de Comandos de Chat
 
-Ve a la pestaña **Commands** → `Add`. Configura cada comando con su acción.
+Ve a **Commands** → `Add`. Configura cada comando con su acción correspondiente.
 
-### Comandos Especiales (con Argumentos):
-Para estos comandos, en la lista de **Sub-Actions**, añade primero `Core` → `Set Argument` y luego el `C# Execute Code`.
+### Comandos estándar (todos los usuarios):
 
-- **!duelo**: `Set Argument` → `mode` = `challenge` → Acción: `Boinacoin · Duelo`
-- **!aceptar**: `Set Argument` → `mode` = `accept` → Acción: `Boinacoin · Duelo`
-- **!cofre**: `Set Argument` → `mode` = `spawn` → Acción: `Boinacoin · Cofre`
-- **!abrir**: `Set Argument` → `mode` = `open` → Acción: `Boinacoin · Cofre`
+| Comando | Acción | Descripción |
+|:--- |:--- |:--- |
+| `!boinas` | `Boinacoin · Boinas` | Ver saldo propio o de otro (`!boinas @usuario`) |
+| `!top` | `Boinacoin · Top` | Top 5 del canal |
+| `!rank` | `Boinacoin · Rank` | Ver posición propia en el ranking |
+| `!regalar` | `Boinacoin · Regalar` | Transferir coins (`!regalar @usuario 500`) |
+| `!apostar` | `Boinacoin · Apostar` | Apostar al azar (requiere Boina de Lana+) |
+| `!presente` | `Boinacoin · Presente` | Check-in diario (+50 Boinacoins, 1 vez por stream) |
 
-### Comandos Estándar:
-`!boinas`, `!top`, `!rank`, `!regalar`, `!apostar`, `!presente`, `!horafeliz`
+### Comandos con modo (Set Argument antes del Execute):
 
-### Comandos de Administración:
-Configura en la pestaña `Permissions` para que solo Mods o Broadcaster los puedan usar:
-`!addboinas`, `!setboinas`, `!resetboinas`
+| Comando | Argumento | Acción |
+|:--- |:--- |:--- |
+| `!duelo` | `mode = challenge` | `Boinacoin · Duelo` |
+| `!aceptar` | `mode = accept` | `Boinacoin · Duelo` |
+| `!cofre` | `mode = spawn` | `Boinacoin · Cofre` |
+| `!abrir` | `mode = open` | `Boinacoin · Cofre` |
+| `!horafeliz` | — | `Boinacoin · HoraFeliz` |
+
+### Comandos de administración (solo Moderator/Broadcaster):
+
+| Comando | Acción | Descripción |
+|:--- |:--- |:--- |
+| `!addboinas` | `Boinacoin · AddBoinas` | Añadir puntos (`!addboinas @usuario 1000`) |
+| `!setboinas` | `Boinacoin · SetBoinas` | Fijar puntos exactos |
+| `!resetboinas` | `Boinacoin · ResetBoinas` | Resetear saldo a cero |
+
+### Mención al bot (sin comando):
+
+El trigger de `cmd_mencion.cs` no es un comando `!` sino un **Chat Message** con criterios:
+- **Message Contains:** `@BoinaBot`
+- **Message Does Not Start With:** `!`
+- **Cooldown global:** 8 segundos
+
+El bot responde con una frase aleatoria del archivo `data/boinabot_frases.json` del repo, con fuzzy match de tags según las palabras del mensaje.
+
+**Ejemplos que SÍ disparan la mención:**
+- `@BoinaBot` → trigger ✅
+- `@BoinaBot eres tonto` → trigger ✅
+- `que asco me da el @BoinaBot` → trigger ✅
+
+**Ejemplos que NO disparan:**
+- `!duelo @BoinaBot 400` → NO (empieza por `!`) ❌
+- `!boinas @BoinaBot` → NO (empieza por `!`) ❌
 
 ---
 
 ## ⚡ Paso 3: Triggers de Eventos de Kick
 
-Ve a la pestaña **Actions**, selecciona la acción y añade el Trigger en la columna central:
-
-1. **Follows:** `Boinacoin · Follow` → `Kick` → `Follow`
-2. **Suscripciones:**
-   - `Boinacoin · Sub` → `Kick` → `Subscribe`
-   - `Boinacoin · Resub` → `Kick` → `Re-Subscription`
-   - `Boinacoin · GiftSub` → `Kick` → `Gift Subscription`
-   - `Boinacoin · MassGift` → `Kick` → `Gift Subscriptions` (plural)
-3. **Monedas (Kicks):** `Boinacoin · Kicks` → `Kick` → `Kicks Gifted`
-4. **Chat:** `Boinacoin · ChatMessage` → `Kick` → `Chat Message`
-5. **Moderación:**
-   - `Boinacoin · Timeout` → `Kick` → `User Banned` + Criteria: `duration > 0`
-   - `Boinacoin · Ban` → `Kick` → `User Banned` + Criteria: `duration == 0`
+| Acción | Trigger |
+|:--- |:--- |
+| `Boinacoin · Follow` | Kick → Channel → Follow |
+| `Boinacoin · Sub` | Kick → Subscriptions → Subscription |
+| `Boinacoin · Resub` | Kick → Subscriptions → Resubscription |
+| `Boinacoin · GiftSub` | Kick → Subscriptions → Gift Subscription |
+| `Boinacoin · MassGift` | Kick → Subscriptions → Mass Gift Subscription |
+| `Boinacoin · Kicks` | Kick → Kicks → Gifted |
+| `Boinacoin · ChatMessage` | Kick → Chat → Message |
+| `Boinacoin · Mención` | Kick → Chat → Message (con criteria: contains @BoinaBot, not starts with !) |
+| `Boinacoin · Timeout` | Kick → Moderation → User Banned + criteria: duration > 0 |
+| `Boinacoin · Ban` | Kick → Moderation → User Banned + criteria: duration == 0 |
+| `Boinacoin · StreamOn` | Kick → Channel → Stream Online |
+| `Boinacoin · StreamOff` | Kick → Channel → Stream Offline |
 
 ---
 
@@ -182,21 +279,20 @@ Ve a la pestaña **Actions**, selecciona la acción y añade el Trigger en la co
 
 Ve a **Settings** → **Timed Actions** → `Add`:
 
-1. **Boinacoin · Ingreso Pasivo** — Intervalo: `600` segundos (10 min) → Acción: `Boinacoin · TimedPayout`
-2. **Boinacoin · Limpieza Inactividad** — Intervalo: `86400` segundos (24 h) → Acción: `Boinacoin · Inactividad`
+| Nombre | Intervalo | Acción |
+|:--- |:--- |:--- |
+| Ingreso Pasivo | 600s (10 min) | `Boinacoin · TimedPayout` |
+| Limpieza Inactividad | 86400s (24h) | `Boinacoin · Inactividad` |
 
 ---
 
 ## 📺 Paso 5: Alertas Visuales en OBS
 
-### 1. Fuente de Navegador
-En OBS Studio, añade una **Browser Source**:
-- URL: `https://tu-usuario.github.io/effects/confetti.html?prod`
+### Browser Source
+- URL: `https://axljuega.github.io/effects/confetti.html?prod`
 - Dimensiones: `1920x1080`
-- Nombre de la fuente: `Crisol` (anótalo)
 
-### 2. Configurar el Raw Request
-En tus acciones de Follow/Sub, añade un Sub-Action `OBS` → `Raw Request` con este JSON:
+### OBS Raw Request (añadir en cada acción earn):
 ```json
 {
   "requestType": "CallVendorRequest",
@@ -214,56 +310,77 @@ En tus acciones de Follow/Sub, añade un Sub-Action `OBS` → `Raw Request` con 
   }
 }
 ```
-> Cambia el `type` a `sub`, `resub`, etc., según corresponda.
 
-> ⚠️ **Nota:** Si OBS no está conectado cuando se dispara este sub-action, Streamer.bot registrará un `NullReferenceException` en el log. Esto **no afecta a los Boinacoins** — el script C# ya terminó antes — pero si no usas OBS, elimina este sub-action de cada acción para evitar el ruido en los logs.
+Tipos disponibles: `follow`, `sub`, `resub`, `giftsub`, `massgift`, `kicks`.
+
+> ⚠️ Si OBS no está conectado, Streamer.bot registrará un `NullReferenceException` en el log. No afecta a los Boinacoins. Elimina el sub-action si no usas OBS.
+
+---
+
+## 📖 Diccionario de Variables (Persistentes por usuario)
+
+| Variable | Tipo | Descripción |
+|:--- |:--- |:--- |
+| `boinacoin` | `long` | Saldo actual |
+| `boinacoin_rank` | `int` | Rango (0–4) |
+| `boinacoin_rank_announced` | `int` | Último rango anunciado (guard antiduplicado) |
+| `boinacoin_multiplier` | `double` | Multiplicador por sub activa |
+| `boinacoin_streak` | `int` | Racha de streams asistidos |
+| `boinacoin_streak_sub` | `int` | Racha de meses de resub consecutivos |
+| `boinacoin_total_earned` | `long` | Total histórico de monedas ganadas |
+| `boinacoin_chat_day` | `string` | Fecha del último bonus diario (yyyy-MM-dd) |
+| `boinacoin_chat_last` | `long` | Unix timestamp del último mensaje (cooldown 60s) |
+| `boinacoin_chat_active` | `long` | Unix timestamp de última actividad (timed_payout) |
+| `boinacoin_last_seen` | `long` | Unix timestamp de última aparición (antiinactividad) |
+| `boinacoin_daily_claimed` | `bool` | Si ya hizo !presente hoy |
+| `boinacoin_discord_id` | `string` | Discord user ID vinculado (cache de discord_roles.cs) |
+
+**Variables globales** (accesibles con `CPH.GetGlobalVar`):
+
+| Variable | Tipo | Descripción |
+|:--- |:--- |:--- |
+| `boinacoin_horafeliz` | `bool` | Si la Hora Feliz está activa |
+| `boinacoin_horafeliz_expiry` | `long` | Unix timestamp de fin de Hora Feliz |
+| `boinacoin_session_start` | `long` | Unix timestamp de inicio del stream actual |
+| `boinacoin_session_follows` | `long` | Follows acumulados en la sesión |
+| `boinacoin_session_subs` | `long` | Subs acumuladas en la sesión |
+| `boinacoin_session_earned` | `long` | Boinacoins repartidas en la sesión |
+| `boinacoin_session_chatters` | `string` | JSON top 10 chatters de la sesión |
+| `boinacoin_session_leaderboard` | `string` | JSON top 10 earners de la sesión |
+| `boinacoin_frases_cache` | `string` | Cache del JSON de frases de BoinaBot |
+| `boinacoin_frases_cache_time` | `long` | Timestamp del último fetch del JSON |
 
 ---
 
 ## 🐛 Fixes Conocidos y Notas de Compatibilidad
 
-Esta sección documenta comportamientos específicos de Streamer.bot v1.x con Kick que difieren de lo esperado. Léela antes de modificar scripts.
-
 ### `userType` en Kick no es `"broadcaster"` ni `"moderator"`
-Al leer el rol del usuario desde el evento de Kick, Streamer.bot inyecta `userType = "kick"` para el broadcaster del canal (la cuenta propietaria). Esto afecta a cualquier script que compruebe permisos por rol.
-
-**Patrón correcto para comprobar permisos en scripts de comandos:**
+Streamer.bot inyecta `userType = "kick"` para el broadcaster. Patrón correcto:
 ```csharp
 CPH.TryGetArg("userType", out string userType);
 bool isStreamer = userType == "broadcaster" || userType == "moderator" || userType == "kick";
 ```
 
 ### `CPH.UserInGroup` requiere el parámetro `Platform`
-El método `UserInGroup` tiene tres parámetros obligatorios. Omitir `Platform` causa que el método falle silenciosamente o bloquee a todos los usuarios.
-
-**Uso correcto:**
 ```csharp
 if (CPH.UserInGroup(userName, Platform.Kick, "Chat Bots")) return false;
 ```
 
-### Arg key de `kicks.gifted` es `kicks.amount`, no `amount`
-El evento `Kicks Gifted` de Kick expone la cantidad de Kicks enviados bajo la clave `kicks.amount` (con prefijo de punto), no `amount` ni `kicksAmount`.
-
+### Arg key de `kicks.gifted` es `kicks.amount`
 ```csharp
 int kicksAmount = 0;
 if (args.ContainsKey("kicks.amount"))
     int.TryParse(args["kicks.amount"].ToString(), out kicksAmount);
 ```
 
-### El broadcaster NO debe excluirse de los scripts de `earn/`
-Los scripts de `earn/` (chat_message, follow, sub, etc.) **no deben excluir al broadcaster**. La exclusión del broadcaster solo aplica en comandos de administración (`cmd_addboinas`, `cmd_setboinas`, etc.) donde no tiene sentido que se ejecute sobre sí mismo.
-
-**El único usuario a excluir en earn/ es BoinaBot:**
+### El broadcaster NO debe excluirse en earn/
+Solo excluir a BoinaBot:
 ```csharp
 var botInfo = CPH.KickGetBot();
 if (botInfo != null && userId == botInfo.UserId.ToString()) return false;
-// No añadir bloque de KickGetBroadcaster() aquí
 ```
 
 ### `TimeZoneInfo.FindSystemTimeZoneById` falla en Linux
-Streamer.bot corre sobre .NET en Linux y no tiene la base de datos de zonas horarias del sistema. Usar `TimeZoneInfo.FindSystemTimeZoneById("Europe/Madrid")` lanza `TimeZoneNotFoundException`.
-
-**Solución — offset manual:**
 ```csharp
 // UTC+2 en verano (CEST), cambiar a +1 en invierno (CET)
 string endTime = DateTimeOffset.FromUnixTimeSeconds(newExpiry)
@@ -271,68 +388,49 @@ string endTime = DateTimeOffset.FromUnixTimeSeconds(newExpiry)
                                .ToString("HH:mm");
 ```
 
----
+### BoinaBot no debe disparar su propio trigger de mención
+El guard está en la primera línea de `cmd_mencion.cs`:
+```csharp
+if (userName.ToLower() == "boinabot") return false;
+```
 
-## 📖 Diccionario de Variables (Persistentes)
-
-Streamer.bot guarda estas variables en `users.json`. Se pueden consultar en la pestaña **Users** → clic derecho sobre un usuario → **Variables**.
-
-| Variable | Tipo | Descripción |
-|:--- |:--- |:--- |
-| `boinacoin` | `long` | Saldo actual |
-| `boinacoin_rank` | `int` | Rango (0–4) |
-| `boinacoin_multiplier` | `double` | Multiplicador por sub activa |
-| `boinacoin_streak` | `int` | Racha de streams asistidos |
-| `boinacoin_streak_sub` | `int` | Racha de meses de resub consecutivos |
-| `boinacoin_total_earned` | `long` | Total histórico de monedas ganadas |
-| `boinacoin_chat_day` | `string` | Fecha del último bonus diario de chat (yyyy-MM-dd) |
-| `boinacoin_chat_last` | `long` | Unix timestamp del último mensaje (cooldown 60s) |
-| `boinacoin_chat_active` | `long` | Unix timestamp de última actividad (para timed_payout) |
-| `boinacoin_last_seen` | `long` | Unix timestamp de última aparición (antiinactividad) |
-| `boinacoin_daily_claimed` | `bool` | Si ya hizo !presente hoy |
-
-**Variables globales** (no por usuario, accesibles con `CPH.GetGlobalVar`):
-
-| Variable | Tipo | Descripción |
-|:--- |:--- |:--- |
-| `boinacoin_horafeliz` | `bool` | Si la Hora Feliz está activa |
-| `boinacoin_horafeliz_expiry` | `long` | Unix timestamp de fin de Hora Feliz |
+### discord_roles.cs busca por username exacto
+Si el usuario tiene un nombre distinto en Kick y en Discord, el rol no se asignará automáticamente. El sistema lo registra en el log y continúa. El webhook de rango seguirá funcionando igualmente.
 
 ---
 
 ## ❓ Preguntas Frecuentes (FAQ)
 
 **P: ¿Por qué el bot no responde en el chat?**
-Asegúrate de que en `Settings` → `Kick`, el bot esté conectado. Revisa que el comando tenga activado el toggle `Enabled` y que la acción compile sin errores (botón **Compile** → texto verde).
+Comprueba que el bot esté conectado en Settings → Kick y que la acción compile sin errores.
 
 **P: ¿Por qué el saldo no sube cuando chateo?**
-Comprueba que la acción `Boinacoin · ChatMessage` está conectada al trigger `Kick → Chat Message`. Si compila bien pero devuelve `False` en el log, revisa que el `userId` no esté vacío y que el usuario no esté en el grupo `Chat Bots`.
+Verifica que `Boinacoin · ChatMessage` tiene el trigger `Kick → Chat → Message` y que el userId no llega vacío.
 
 **P: ¿Cómo excluyo a otros bots?**
-Añádelos al grupo `Chat Bots` en la pestaña `Users`. Los scripts leen este grupo y cancelan la ejecución automáticamente. No hace falta tocar el código.
+Añádelos al grupo `Chat Bots` en la pestaña Users. Sin tocar código.
 
 **P: ¿Puedo cambiar los nombres de las acciones?**
-Sí, SALVO las marcadas como **(Exacto)** en el catálogo. `Boinacoin · RankChecker`, `Boinacoin · Multiplier` y `Boinacoin · DiscordWebhook` son invocadas internamente por otros scripts mediante su nombre literal.
-
-**P: ¿Cómo actualizo los webhooks de Discord sin romper nada?**
-Cada archivo de `earn/` tiene la URL en la constante `WEBHOOK_SUBS_FOLLOWS` al principio del archivo. `system/discord_webhook.cs` tiene las cuatro constantes `WEBHOOK_LANA/CUERO/TERCIOPELO/LEGENDARIA`. Edita solo esas constantes, recompila y ya está.
-
-**P: El !horafeliz no funciona para mi moderador / la streamer.**
-En Kick, Streamer.bot inyecta `userType = "kick"` para el broadcaster, no `"broadcaster"`. El check de permisos debe incluir los tres valores: `"broadcaster"`, `"moderator"` y `"kick"`. Ver sección **Fixes Conocidos**.
-
-**P: Aparece un error `NullReferenceException` en el log de Follow/Sub.**
-Es el sub-action de OBS intentando conectar cuando OBS no está abierto. No afecta a la lógica de Boinacoins. Elimina el sub-action `OBS Raw Request` de esas acciones si no usas OBS.
+Sí, salvo las marcadas como ⚠️ Exacto en el catálogo.
 
 **P: El embed de Discord no se envía.**
-Revisa el log de Streamer.bot. Si aparece `Webhook HTTP 401` o `HTTP 404`, la URL del webhook es incorrecta o fue regenerada en Discord. Cópiala de nuevo desde `Editar canal → Integraciones → Webhooks`.
+Revisa el log. `HTTP 401` o `HTTP 404` = URL de webhook incorrecta o regenerada. Cópiala de nuevo desde Discord.
+
+**P: El rol de Discord no se asigna.**
+Verifica que GestorDeBoinas tiene el permiso `Manage Roles` y que su rol está por encima de los roles de Boina en la jerarquía del servidor.
+
+**P: BoinaBot entró en un loop infinito respondiendo a sus propias menciones.**
+El guard `if (userName.ToLower() == "boinabot") return false;` en `cmd_mencion.cs` lo previene. Asegúrate de tener la versión más reciente del script.
+
+**P: El !horafeliz no funciona para moderadores.**
+Incluye `"kick"` en el check de permisos. Ver sección Fixes Conocidos.
 
 ---
 
-## 🗺️ Roadmap — Pendiente de Implementar
+## 🗺️ Roadmap — Pendiente
 
-- `system/stream_events.cs` — Aviso `@everyone` en `#eventos-stream` cuando el stream arranca, con embed de cierre al final con estadísticas de sesión (duración, Boinacoins repartidos, follows del stream, subs del stream, ranking interno de la sesión).
-- `system/discord_roles.cs` — Asignación automática de roles de Discord al subir de rango (requiere Discord Bot con permisos de gestión de roles, distinto de webhook).
-- `commands/cmd_ruleta.cs` — Ruleta de la Boina (recompensa de canal).
+- `commands/cmd_ruleta.cs` — Ruleta de la Boina (recompensa de canal)
+- `commands/cmd_vincular.cs` — Vinculación manual Kick ↔ Discord para usuarios con nombres distintos
 
 ---
 
