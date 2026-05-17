@@ -93,8 +93,10 @@ public class CPHInline
             CPH.SetGlobalVar("boinacoin_horafeliz",        true,      true);
             CPH.SetGlobalVar("boinacoin_horafeliz_expiry", newExpiry, true);
 
-            string endTime = DateTimeOffset.FromUnixTimeSeconds(newExpiry)
-                                           .ToString("HH:mm") + " UTC";
+            var madridTz = TimeZoneInfo.FindSystemTimeZoneById("Europe/Madrid");
+            var endLocal = TimeZoneInfo.ConvertTime(
+                DateTimeOffset.FromUnixTimeSeconds(newExpiry).UtcDateTime, madridTz);
+            string endTime = endLocal.ToString("HH:mm");
 
             CPH.SendKickMessage(
                 $"⚡ ¡¡HORA FELIZ activada!! " +
