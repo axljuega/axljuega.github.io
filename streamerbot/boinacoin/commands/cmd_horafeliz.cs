@@ -42,6 +42,7 @@ public class CPHInline
         if (string.IsNullOrEmpty(callerName)) callerName = "streamer";
         if (string.IsNullOrEmpty(mode))       mode       = "toggle";
 
+
         // ── Excluir bots del grupo "Chat Bots" ───────────────
         if (mode != "end")
         {
@@ -56,7 +57,8 @@ public class CPHInline
         }
 
         // ── Verificar permisos ────────────────────────────────
-        bool isStreamer = userType == "broadcaster" || userType == "moderator";
+        // En Kick, Streamer.bot inyecta userType = "kick" para el broadcaster del canal
+        bool isStreamer = userType == "broadcaster" || userType == "moderator" || userType == "kick";
 
         if (!isStreamer)
         {
