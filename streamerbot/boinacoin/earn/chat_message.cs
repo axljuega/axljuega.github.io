@@ -9,13 +9,9 @@
 //       (el pago pasivo de +15 cada 10 min solo se da si el
 //        usuario ha chateado en los últimos 20 min)
 //
-//  Cómo conectarlo en Streamer.bot:
-//    Acción → trigger "Kick · Chat Message"
-//    Añadir filtro: excluir grupo "Bots"
-//
-//  Arg keys confirmadas via dump (KickChatMessage / CommandTriggered):
-//    userId   → ID numérico del sender (String)
-//    userName → login name del sender  (String)
+//  FIX: Eliminado bloque de exclusión del broadcaster.
+//       afaces gana Boinacoins como cualquier viewer.
+//       Solo se excluye al propio BoinaBot.
 // ============================================================
 
 using System;
@@ -34,22 +30,21 @@ public class CPHInline
     // ────────────────────────────────────────────────────────
     public bool Execute()
     {
-        // FIX: arg keys correctas (sin prefijo "kick")
         string userId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
         string userName = args.ContainsKey("userName") ? args["userName"].ToString() : "alguien";
 
         if (string.IsNullOrEmpty(userId)) return false;
 
-        // ── 0. Excluir Bots ───────────────────────────────────
+        // ── 0. Excluir grupo Chat Bots ────────────────────────
         if (CPH.UserInGroup(userName, Platform.Kick, "Chat Bots")) return false;
 
-        // ── 0.1 Excluir al propio bot y al streamer ───────────
-        // FIX: .UserId en lugar de .Id (KickUserInfo v1.x)
+        // ── 0.1 Excluir al propio BoinaBot ───────────────────
         var botInfo = CPH.KickGetBot();
         if (botInfo != null && userId == botInfo.UserId.ToString()) return false;
 
-        var broadcasterInfo = CPH.KickGetBroadcaster();
-        if (broadcasterInfo != null && userId == broadcasterInfo.UserId.ToString()) return false;
+        // ── NOTA: El broadcaster (afaces) SÍ gana Boinacoins ─
+        // No se excluye aquí. La exclusión del broadcaster solo
+        // aplica en comandos de administración, no en earn.
 
         long nowUnix = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
 
