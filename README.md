@@ -180,6 +180,9 @@ Debes crear una **Action** por cada script `.cs`.
 | `commands/` | `cmd_mencion.cs` | `Boinacoin · Mención` |
 | `commands/` | `cmd_dado.cs` | `Boinacoin · Dado` |
 | `commands/` | `cmd_8ball.cs` | `Boinacoin · 8ball` |
+| `commands/` | `cmd_ruleta.cs` | `Boinacoin · Ruleta` |
+| `commands/` | `cmd_vincular.cs` | `Boinacoin · Vincular` |
+| `commands/` | `cmd_exclusive.cs` | `Boinacoin · Exclusive` |
 | `moderation/` | `mod_timeout.cs` | `Boinacoin · Timeout` |
 | `moderation/` | `mod_ban.cs` | `Boinacoin · Ban` |
 | `moderation/` | `mod_inactividad.cs` | `Boinacoin · Inactividad` |
@@ -210,6 +213,20 @@ Ve a **Commands** → `Add`. Configura cada comando con su acción correspondien
 | `!presente` | `Boinacoin · Presente` | Check-in diario (+50 Boinacoins, 1 vez por stream) |
 | `!dado` | `Boinacoin · Dado` | Lanzar dados (coste base 5). Soporta apuestas: `!dado [caras] apuesta [nº] [cant]` |
 | `!8ball` | `Boinacoin · 8ball` | La bola 8 mágica (ácida). Pregunta opcional. |
+| `!vincular` | `Boinacoin · Vincular` | Vincular cuenta de Discord (`!vincular usuario`) |
+| `!desvincular` | `Boinacoin · Vincular` | Eliminar vínculo de Discord |
+
+### Comandos de Subs y Rangos (Exclusive):
+
+| Comando | Acción | Requisito |
+|:--- |:--- |:--- |
+| `!vip` | `Boinacoin · Exclusive` | Suscriptor |
+| `!sorteo` | `Boinacoin · Exclusive` | Suscriptor |
+| `!boinavip` | `Boinacoin · Exclusive` | Suscriptor |
+| `!bufar` | `Boinacoin · Exclusive` | Boina de Lana+ |
+| `!apodo` | `Boinacoin · Exclusive` | Boina de Cuero+ |
+| `!spotlight` | `Boinacoin · Exclusive` | Boina de Terciopelo+ |
+| `!oraculo` | `Boinacoin · Exclusive` | La Boina Legendaria |
 
 ### Comandos con modo (Set Argument antes del Execute):
 
@@ -330,6 +347,9 @@ Tipos disponibles: `follow`, `sub`, `resub`, `giftsub`, `massgift`, `kicks`.
 | `boinacoin_dado_streak` | `int` | Racha de Nat Máx en `!dado` (3 = Modo Dios) |
 | `boinacoin_dado_last` | `long` | Timestamp del último `!dado` (cooldown 15s) |
 | `boinacoin_8ball_last` | `long` | Timestamp del último `!8ball` (cooldown 45s) |
+| `boinacoin_ruleta_last` | `long` | Timestamp de la última `!ruleta` (cooldown 5m) |
+| `boinacoin_discord_user` | `string` | Nombre de usuario de Discord vinculado manualmente |
+| `boinacoin_session_apodo` | `string` | Apodo de sesión (persitido por stream) |
 
 **Variables globales** (accesibles con `CPH.GetGlobalVar`):
 
@@ -343,6 +363,7 @@ Tipos disponibles: `follow`, `sub`, `resub`, `giftsub`, `massgift`, `kicks`.
 | `boinacoin_session_earned` | `long` | Boinacoins repartidas en la sesión |
 | `boinacoin_session_chatters` | `string` | JSON top 10 chatters de la sesión |
 | `boinacoin_session_leaderboard` | `string` | JSON top 10 earners de la sesión |
+| `boinacoin_sorteo_entries` | `string` | JSON lista de participantes del sorteo |
 | `boinacoin_frases_cache` | `string` | Cache del JSON de frases de BoinaBot |
 | `boinacoin_frases_cache_time` | `long` | Timestamp del último fetch del JSON |
 
@@ -425,9 +446,10 @@ Incluye `"kick"` en el check de permisos. Ver sección Fixes Conocidos.
 
 ## 🗺️ Roadmap — Pendiente
 
-- `commands/cmd_ruleta.cs` — Ruleta de la Boina (recompensa de canal)
-- `commands/cmd_vincular.cs` — Vinculación manual Kick ↔ Discord para usuarios con nombres distintos
-- Añadir comandos especiales y acciones exclusivas para subs del canal y para cada uno de los rangos
+- [ ] Testear en directo los comandos exclusivos (`!vip`, `!bufar`, `!oraculo`, etc.)
+- [ ] Verificar funcionamiento del `!apodo` persistido en las respuestas del bot
+- [ ] Validar el pool de premios de la `Ruleta de la Boina` y su cooldown interno
+- [ ] Comprobar flujo de `!vincular` con usuarios reales de Discord
 
 ---
 
