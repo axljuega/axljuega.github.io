@@ -178,6 +178,8 @@ Debes crear una **Action** por cada script `.cs`.
 | `commands/` | `cmd_setboinas.cs` | `Boinacoin · SetBoinas` |
 | `commands/` | `cmd_resetboinas.cs` | `Boinacoin · ResetBoinas` |
 | `commands/` | `cmd_mencion.cs` | `Boinacoin · Mención` |
+| `commands/` | `cmd_dado.cs` | `Boinacoin · Dado` |
+| `commands/` | `cmd_8ball.cs` | `Boinacoin · 8ball` |
 | `moderation/` | `mod_timeout.cs` | `Boinacoin · Timeout` |
 | `moderation/` | `mod_ban.cs` | `Boinacoin · Ban` |
 | `moderation/` | `mod_inactividad.cs` | `Boinacoin · Inactividad` |
@@ -206,6 +208,8 @@ Ve a **Commands** → `Add`. Configura cada comando con su acción correspondien
 | `!regalar` | `Boinacoin · Regalar` | Transferir coins (`!regalar @usuario 500`) |
 | `!apostar` | `Boinacoin · Apostar` | Apostar al azar (requiere Boina de Lana+) |
 | `!presente` | `Boinacoin · Presente` | Check-in diario (+50 Boinacoins, 1 vez por stream) |
+| `!dado` | `Boinacoin · Dado` | Lanzar dados (coste base 5). Soporta apuestas: `!dado [caras] apuesta [nº] [cant]` |
+| `!8ball` | `Boinacoin · 8ball` | La bola 8 mágica (ácida). Pregunta opcional. |
 
 ### Comandos con modo (Set Argument antes del Execute):
 
@@ -323,6 +327,9 @@ Tipos disponibles: `follow`, `sub`, `resub`, `giftsub`, `massgift`, `kicks`.
 | `boinacoin_last_seen` | `long` | Unix timestamp de última aparición (antiinactividad) |
 | `boinacoin_daily_claimed` | `bool` | Si ya hizo !presente hoy |
 | `boinacoin_discord_id` | `string` | Discord user ID vinculado (cache de discord_roles.cs) |
+| `boinacoin_dado_streak` | `int` | Racha de Nat Máx en `!dado` (3 = Modo Dios) |
+| `boinacoin_dado_last` | `long` | Timestamp del último `!dado` (cooldown 15s) |
+| `boinacoin_8ball_last` | `long` | Timestamp del último `!8ball` (cooldown 45s) |
 
 **Variables globales** (accesibles con `CPH.GetGlobalVar`):
 
