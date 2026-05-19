@@ -135,17 +135,6 @@ private const string ROLE_TERCIOPELO = "ID_ROL_TERCIOPELO";
 private const string ROLE_LEGENDARIA = "ID_ROL_LEGENDARIA";
 ```
 
-### Paso 6 — Conectar con rank_checker.cs
-
-Al final de `rank_checker.cs`, después de llamar a `Boinacoin · DiscordWebhook`, añade:
-
-```csharp
-CPH.SetArgument("webhookUserId",   userId);
-CPH.SetArgument("webhookUserName", userName);
-CPH.SetArgument("webhookNewRank",  newRank);
-CPH.RunAction("Boinacoin · DiscordRoles", false);
-```
-
 ### Cómo funciona la vinculación Kick → Discord
 
 El bot busca al usuario en Discord por su nombre de usuario de Kick. Si el nombre coincide exactamente con su username de Discord, se asigna el rol automáticamente. Si no coincide (porque usan nombres distintos), el bot guarda el intento en el log y continúa — el webhook de Discord seguirá funcionando igualmente.
