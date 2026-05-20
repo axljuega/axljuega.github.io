@@ -45,7 +45,7 @@ public class CPHInline
         // Si ya estaba en 0 no hay nada que hacer
         if (oldBalance == 0 && oldRank == 0)
         {
-            CPH.LogInfo($"[Boinacoin] Ban {userName}: perfil ya estaba en cero.");
+            CPH.LogInfo($"[BoinaCoin] Ban {userName}: perfil ya estaba en cero.");
             return true;
         }
 
@@ -61,7 +61,7 @@ public class CPHInline
 
         // ── 3. Log de auditoría ───────────────────────────────
         CPH.LogInfo(
-            $"[Boinacoin] BAN PERMANENTE · {userName} (id:{userId}) · " +
+            $"[BoinaCoin] BAN PERMANENTE · {userName} (id:{userId}) · " +
             $"Saldo borrado: {oldBalance} · Rango borrado: {GetRankName(oldRank)} · " +
             $"Total histórico conservado: {CPH.GetKickUserVarById<long>(userId, "boinacoin_total_earned")}");
 

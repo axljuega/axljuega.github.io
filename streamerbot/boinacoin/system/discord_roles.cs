@@ -22,7 +22,7 @@
 //  el script busca por nombre de usuario exacto.
 //
 //  Cómo configurarlo en Streamer.bot:
-//    Acción "Boinacoin · DiscordRoles"
+//    Acción "BoinaCoin · DiscordRoles"
 //    Sub-action: Execute C# (este script)
 //    Llamada desde rank_checker.cs via CPH.RunAction
 // ============================================================
@@ -222,7 +222,7 @@ public class CPHInline
             {
                 client.Timeout = TimeSpan.FromSeconds(10);
                 client.DefaultRequestHeaders.Add("Authorization", $"Bot {BOT_TOKEN}");
-                client.DefaultRequestHeaders.Add("X-Audit-Log-Reason", "Boinacoin rank update");
+                client.DefaultRequestHeaders.Add("X-Audit-Log-Reason", "BoinaCoin rank update");
 
                 string url = $"https://discord.com/api/v10/guilds/{GUILD_ID}/members/{userId}/roles/{roleId}";
 

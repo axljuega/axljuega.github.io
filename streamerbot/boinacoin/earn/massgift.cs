@@ -1,7 +1,7 @@
 // ============================================================
 //  BOINACOIN · earn/massgift.cs
 //  Evento: Mass Gift Subscription en Kick
-//  Recompensa: +5.000 Boinacoins al GIFTER
+//  Recompensa: +5.000 BoinaCoins al GIFTER
 //
 //  FIX: Eliminado bloque de exclusión del broadcaster.
 //  NEW: Envía embed a Discord #subs-y-follows.
@@ -81,7 +81,7 @@ public class CPHInline
         string multText = mult > 1.0 ? $" (x{mult:0.##} ⚡)" : "";
         CPH.SendKickMessage(
             $"🎁🎁 ¡¡{gifterName} acaba de regalar {quantity} {subWord} al canal!! " +
-            $"+{earned} Boinacoins{multText} · Saldo: {balance} 🪙 · ¡¡GRACIAS!!");
+            $"+{earned} BoinaCoins{multText} · Saldo: {balance} 🪙 · ¡¡GRACIAS!!");
 
         // ── 7. Embed Discord #subs-y-follows ─────────────────
         string rankName  = RankName(CPH.GetKickUserVarById<int>(gifterId, "boinacoin_rank"));
@@ -104,11 +104,11 @@ public class CPHInline
                 ""fields"": [
                     {{""name"": ""Gifter"",             ""value"": ""{EscapeJson(gifterName)}"",             ""inline"": true}},
                     {{""name"": ""Subs regaladas"",     ""value"": ""{quantity} 🎁"",                        ""inline"": true}},
-                    {{""name"": ""Boinacoins ganados"", ""value"": ""+{earned} 🪙{EscapeJson(multText)}"",   ""inline"": true}},
+                    {{""name"": ""BoinaCoins ganados"", ""value"": ""+{earned} 🪙{EscapeJson(multText)}"",   ""inline"": true}},
                     {{""name"": ""Saldo gifter"",       ""value"": ""{balance:N0} 🪙"",                      ""inline"": true}},
                     {{""name"": ""Rango gifter"",       ""value"": ""{EscapeJson(rankName)}"",               ""inline"": true}}
                 ],
-                ""footer"": {{""text"": ""Boinacoin · La Chica de la Boina""}},
+                ""footer"": {{""text"": ""BoinaCoin · La Chica de la Boina""}},
                 ""timestamp"": ""{timestamp}""
             }}]
         }}";
@@ -144,7 +144,7 @@ public class CPHInline
         CPH.SetArgument("rankUpUserId",   userId);
         CPH.SetArgument("rankUpUserName", userName);
         CPH.SetArgument("rankUpNewRank",  newRank);
-        CPH.RunAction("Boinacoin · RankChecker", false);
+        CPH.RunAction("BoinaCoin · RankChecker", false);
     }
 
     private void SendWebhook(string url, string json)

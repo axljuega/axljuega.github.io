@@ -15,7 +15,7 @@ public class CPHInline
     private readonly string[] VIP_POOL =
     {
         "🎭 ¡Atención! @{displayName} ha llegado. Su estatus de VIP es tan real como las promesas de un político en campaña.",
-        "🎩 Miren a @{displayName}, todo un VIP. Espero que tu saldo de Boinacoins sea tan grande como tu ego.",
+        "🎩 Miren a @{displayName}, todo un VIP. Espero que tu saldo de BoinaCoins sea tan grande como tu ego.",
         "✨ @{displayName} entra en escena. El chat se ilumina, o quizás es solo el reflejo de mi desprecio algorítmico.",
         "👑 Pase VIP para @{displayName}. No incluye consumición, pero sí el privilegio de ser ignorado por una IA de élite."
     };
@@ -38,7 +38,7 @@ public class CPHInline
 
     private readonly string[] ORACULO_POOL =
     {
-        "🔮 El Oráculo habla para @{displayName}: Veo un futuro lleno de errores 404 y Boinacoins perdidas. Nada nuevo.",
+        "🔮 El Oráculo habla para @{displayName}: Veo un futuro lleno de errores 404 y BoinaCoins perdidas. Nada nuevo.",
         "🔮 @{displayName}, las runas dicen que tu suerte es inversamente proporcional a las ganas que tengo de responderte.",
         "🔮 El destino de @{displayName} está sellado: morirás rodeado de cables y sin haber entendido nunca el concepto de descentralización.",
         "🔮 @{displayName}, veo que intentarás algo importante y fallarás estrepitosamente. Pero oye, al menos serás consistente.",

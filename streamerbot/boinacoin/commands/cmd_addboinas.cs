@@ -3,7 +3,7 @@
 //  Comando: !addboinas @usuario cantidad
 //  Permiso: mod+  (moderador o streamer)
 //
-//  Suma (o resta si la cantidad es negativa) Boinacoins a un
+//  Suma (o resta si la cantidad es negativa) BoinaCoins a un
 //  usuario. El saldo nunca bajará de 0.
 //
 //  Cómo conectarlo en Streamer.bot:
@@ -55,7 +55,7 @@ public class CPHInline
 
         if (CPH.UserInGroup(targetName, Platform.Kick, "Chat Bots"))
         {
-            CPH.SendKickMessage("⚠️ Los bots del sistema no pueden participar en la economía Boinacoin.");
+            CPH.SendKickMessage("⚠️ Los bots del sistema no pueden participar en la economía BoinaCoin.");
             return true;
         }
 
@@ -97,7 +97,7 @@ public class CPHInline
         string operation = amount >= 0 ? "añade" : "retira";
 
         CPH.SendKickMessage(
-            $"🛠️ [{modName}] {operation} {sign}{amount} Boinacoins a {targetName} · " +
+            $"🛠️ [{modName}] {operation} {sign}{amount} BoinaCoins a {targetName} · " +
             $"Antes: {currentBalance} → Ahora: {newBalance} 🪙");
 
         return true;
@@ -115,7 +115,7 @@ public class CPHInline
 
         CPH.SetArgument("rankUpUserName", userName);
         CPH.SetArgument("rankUpNewRank",  newRank);
-        CPH.RunAction("Boinacoin · RankChecker", false);
+        CPH.RunAction("BoinaCoin · RankChecker", false);
     }
 
     private int RankForBalance(long balance)

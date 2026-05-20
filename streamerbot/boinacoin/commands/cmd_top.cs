@@ -2,7 +2,7 @@
 //  BOINACOIN · commands/cmd_top.cs
 //  Comando: !top
 //  Permiso: todos
-//  Muestra el top 5 de viewers por saldo de Boinacoins
+//  Muestra el top 5 de viewers por saldo de BoinaCoins
 //
 //  Nota técnica:
 //    Usa CPH.GetKickUsersVar<long>() para leer la variable
@@ -49,7 +49,7 @@ public class CPHInline
 
         if (filtered.Count == 0)
         {
-            CPH.SendKickMessage("📊 Aún nadie tiene Boinacoins. ¡El ranking está vacío!");
+            CPH.SendKickMessage("📊 Aún nadie tiene BoinaCoins. ¡El ranking está vacío!");
             return true;
         }
 
@@ -63,7 +63,7 @@ public class CPHInline
         // Formato compacto para que quepa en una sola línea de chat:
         // 🏆 TOP 5 | 🥇 User1 (12.500) 🥈 User2 (9.800) ...
         var sb = new StringBuilder();
-        sb.Append($"🏆 TOP {Math.Min(TOP_SIZE, top.Count)} Boinacoins · ");
+        sb.Append($"🏆 TOP {Math.Min(TOP_SIZE, top.Count)} BoinaCoins · ");
 
         string[] medals = { "🥇", "🥈", "🥉", "4️⃣", "5️⃣" };
 

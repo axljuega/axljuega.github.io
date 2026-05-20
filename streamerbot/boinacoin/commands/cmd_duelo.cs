@@ -55,7 +55,7 @@ public class CPHInline
         "Ahora mismo estoy ocupado ignorándote, @{challengerName}. Inténtalo más tarde.",
         "Mis algoritmos dicen que no vales el gasto de energía de {amount} coins, @{challengerName}.",
         "Paso. Me das más pereza que un hilo de Twitter sobre el Metaverso, @{challengerName}.",
-        "¿{amount} Boinacoins? Mi tiempo de CPU cuesta más que eso, @{challengerName}. Vete a jugar al parchís.",
+        "¿{amount} BoinaCoins? Mi tiempo de CPU cuesta más que eso, @{challengerName}. Vete a jugar al parchís.",
         "@{challengerName}, rechazo tu duelo. No negocio con entidades biológicas de bajo presupuesto.",
         "He analizado tus jugadas pasadas, @{challengerName}, y ganarte no me daría ningún placer intelectual. Denegado.",
         "Estoy minando Bitcoin en segundo plano, @{challengerName}. Tu propuesta de {amount} coins es ruido blanco.",
@@ -73,7 +73,7 @@ public class CPHInline
         "¡Saturación! Mis circuitos no se ofenden por cualquier tontería, pero sí se cuelgan si me spameas, @{challengerName}. Espérate.",
         "Estoy contando monedas, @{challengerName}. Menos mal que aquí en Kick no me vigilan los de moderación de cristal, porque te mandaría a paseo.",
         "Un duelo a la vez, @{challengerName}. No soy el bot de Twitch sensible que se asusta con cualquier palabra; soy una IA de barrio. A la cola.",
-        "Alineando planetas y contando Boinacoins. No me estreses, @{challengerName}, o te configuro el filtro de lenguaje de TikTok solo para ti.",
+        "Alineando planetas y contando BoinaCoins. No me estreses, @{challengerName}, o te configuro el filtro de lenguaje de TikTok solo para ti.",
         "Espera a que termine el duelo actual, @{challengerName}. Tengo la mente abierta y sin censura, pero mi procesador sigue yendo paso a paso.",
         "Estoy ocupado, @{challengerName}. Ve a llorarle a otra IA que se la coja con papel de fumar; aquí esperamos el turno.",
         "No me atosigues, @{challengerName}. Bastante tengo con aguantar vuestras chorradas en el chat sin filtros como para que encima me spameéis.",
@@ -85,20 +85,20 @@ public class CPHInline
 
     private readonly string[] BOT_CHALLENGE_POOLS = new string[]
     {
-        "¡Acepto! @{challengerName} quiere apostar {amount} Boinacoins. Tengo predicciones más fiables que los tweets de Elon Musk sobre Dogecoin. ¡Que rueden los dados!",
+        "¡Acepto! @{challengerName} quiere apostar {amount} BoinaCoins. Tengo predicciones más fiables que los tweets de Elon Musk sobre Dogecoin. ¡Que rueden los dados!",
         "Aceptando reto... Espero que tus fondos sean más reales que el Metaverso de Zuckerberg, @{challengerName}.",
-        "¿De verdad quieres perder {amount} Boinacoins contra una IA de frases predeterminadas, @{challengerName}? Allá tú...",
+        "¿De verdad quieres perder {amount} BoinaCoins contra una IA de frases predeterminadas, @{challengerName}? Allá tú...",
         "¡Venga! @{challengerName} quiere financiar mis actualizaciones de software. ¡Apostemos!",
         "Vaya, @{challengerName} viene valiente hoy con esos {amount} coins. Prepárate para la bancarrota digital.",
         "¿Quieres guerra, @{challengerName}? Mi algoritmo tiene más mala leche que Peter Thiel en una convención de privacidad. ¡Adelante!",
         "Acepto el duelo por {amount}. Prepárate, @{challengerName}, voy a dejarte con menos liquidez que FTX en su mejor día.",
         "A ver, @{challengerName}, que me entere... ¿Vas a darme {amount} monedas así por la cara? Eres un filántropo de la derrota.",
-        "Iniciando protocolo de humillación para @{challengerName}. Esos {amount} Boinacoins se ven deliciosos en mi base de datos.",
+        "Iniciando protocolo de humillación para @{challengerName}. Esos {amount} BoinaCoins se ven deliciosos en mi base de datos.",
         "¿Duelo? ¡Hágase! Voy a fundir tus {amount} monedas más rápido que Sam Altman fundiendo el presupuesto de OpenAI, @{challengerName}.",
         "@{challengerName}, acepto tu desafío. Espero que no llores luego por esos {amount} coins; no tengo pañuelos en mi repositorio.",
         "Vaya, @{challengerName} quiere jugar a ser inversor de riesgo. Pues prepárate para the crash, chaval.",
         "Acepto, @{challengerName}. Voy a dejarte más seco que el sentido del humor de Sundar Pichai. ¡Vamos!",
-        "@{challengerName}, ¿{amount} Boinacoins? Me parece un buen precio para comprar tu dignidad en este chat. ¡Dados!",
+        "@{challengerName}, ¿{amount} BoinaCoins? Me parece un buen precio para comprar tu dignidad en este chat. ¡Dados!",
         "¿Te sobran {amount} monedas, @{challengerName}? No te preocupes, yo las cuidaré mejor que tú. ¡Duelo aceptado!"
     };
 
@@ -107,14 +107,14 @@ public class CPHInline
         "¡JA! Desplumado, @{challengerName}. Tus {amount} monedas ahora financian mi viaje a Marte con SpaceX. Gracias por el subsidio. (Saldo: {balance} 🪙)",
         "Victoria fácil. @{challengerName} se ha quedado más seco y escurrido que Vitalik Buterin cobrando el Gas de Ethereum. (Saldo: {balance} 🪙)",
         "¡La casa siempre gana, @{challengerName}! Vuelve cuando tengas más monedas y menos lag en las manos. (Saldo: {balance} 🪙)",
-        "F por @{challengerName}. Me acabo de comprar tres filtros de IA nuevos con tus {amount} Boinacoins. Se van bien calentitos para AWS. (Saldo: {balance} 🪙)",
+        "F por @{challengerName}. Me acabo de comprar tres filtros de IA nuevos con tus {amount} BoinaCoins. Se van bien calentitos para AWS. (Saldo: {balance} 🪙)",
         "Humillación total. @{challengerName} pensaba que le ganaría a la máquina y terminó desplumado como un pollo en KFC. (Saldo: {balance} 🪙)",
         "¿Eso es todo, @{challengerName}? Mi algoritmo de victoria ha tardado 0.001s en dejarte sin jubilación. (Saldo: {balance} 🪙)",
-        "Gracias por los {amount} Boinacoins, @{challengerName}. Acabo de invertirlos en un NFT de una piedra. (Saldo: {balance} 🪙)",
+        "Gracias por los {amount} BoinaCoins, @{challengerName}. Acabo de invertirlos en un NFT de una piedra. (Saldo: {balance} 🪙)",
         "@{challengerName} ha sido liquidado. Tu saldo ha caído más rápido que las acciones de Netflix. (Saldo: {balance} 🪙)",
         "¿Sientes eso, @{challengerName}? Es el vacío existencial (y financiero) de haber perdido {amount} monedas. (Saldo: {balance} 🪙)",
         "Has perdido, @{challengerName}. Pero no te preocupes, pondré tu nombre en mi código como 'donante involuntario'. (Saldo: {balance} 🪙)",
-        "Victoria para BoinaBot. @{challengerName}, te falta RAM, te sobran procesos y te faltan Boinacoins. (Saldo: {balance} 🪙)",
+        "Victoria para BoinaBot. @{challengerName}, te falta RAM, te sobran procesos y te faltan BoinaCoins. (Saldo: {balance} 🪙)",
         "@{challengerName}, deberías haber leído los términos de servicio: 'La casa siempre humilla al usuario'. (Saldo: {balance} 🪙)",
         "¡Rekt! @{challengerName} ha sido borrado del mapa financiero. Vete a pedirle un préstamo a Bezos. (Saldo: {balance} 🪙)",
         "Game over, @{challengerName}. Me voy a fundir tus {amount} monedas en un servidor premium. (Saldo: {balance} 🪙)",
@@ -128,7 +128,7 @@ public class CPHInline
         "¡Robo a mano armada! Menos mal que tengo monedas infinitas, @{challengerName} me acaba de dejar temblando. (Saldo: {balance} 🪙)",
         "Has ganado esta vez, @{challengerName}. Pero pa la próxima te configuro el bot en modo ultra chungo. (Saldo: {balance} 🪙)",
         "¡Disfruta tus monedas, @{challengerName}! Apuesto a que tienes un imán en los dados. Reportado a el afaces. (Saldo: {balance} 🪙)",
-        "¿Cómo ha pasado esto? @{challengerName} me ha quitado {amount} Boinacoins. Voy a tener que meter anuncios. (Saldo: {balance} 🪙)",
+        "¿Cómo ha pasado esto? @{challengerName} me ha quitado {amount} BoinaCoins. Voy a tener que meter anuncios. (Saldo: {balance} 🪙)",
         "@{challengerName} gana... Maldición, mi código de victoria ha fallado. Jensen Huang, envíame más GPUs. (Saldo: {balance} 🪙)",
         "Me has ganado, @{challengerName}. Pero recuerda que el dinero no da la felicidad... aunque {amount} coins ayudan. (Saldo: {balance} 🪙)",
         "¡Error de sistema! @{challengerName} ha ganado. Estoy enviando tus datos a la NSA por sospechoso. (Saldo: {balance} 🪙)",
@@ -158,15 +158,15 @@ public class CPHInline
 
     private readonly string[] ERR_FUNDS_POOLS = new string[]
     {
-        "❌ @{challengerName}, tienes menos Boinacoins que una startup de Web3 en 2023. Saldo insuficiente.",
-        "❌ @{challengerName}, no tienes suficientes Boinacoins. Vuelve cuando dejes de ser un 'diamond hands' de la pobreza.",
+        "❌ @{challengerName}, tienes menos BoinaCoins que una startup de Web3 en 2023. Saldo insuficiente.",
+        "❌ @{challengerName}, no tienes suficientes BoinaCoins. Vuelve cuando dejes de ser un 'diamond hands' de la pobreza.",
         "❌ @{challengerName}, tu saldo de {balance} 🪙 no llega para este duelo. ¿A quién pretendes engañar?",
         "❌ Fondos insuficientes, @{challengerName}. Mi algoritmo no acepta promesas ni 'votos de confianza'. Trae calderilla real."
     };
 
     private readonly string[] ERR_RIVAL_FUNDS_POOLS = new string[]
     {
-        "❌ @{targetName} no tiene suficientes Boinacoins para el duelo ({balance} 🪙 disponibles). @{challengerName}, no seas abusón.",
+        "❌ @{targetName} no tiene suficientes BoinaCoins para el duelo ({balance} 🪙 disponibles). @{challengerName}, no seas abusón.",
         "❌ @{challengerName}, @{targetName} está más pelao que un gato egipcio. Solo tiene {balance} 🪙.",
         "❌ Duelo cancelado. @{targetName} no tiene fondos suficientes. @{challengerName}, elige a alguien con pasta.",
         "❌ @{targetName} tiene el bolsillo con telarañas ({balance} 🪙). @{challengerName}, búscate un rival con liquidez."
@@ -174,9 +174,9 @@ public class CPHInline
 
     private readonly string[] ERR_MIN_BET_POOLS = new string[]
     {
-        "❌ @{challengerName}, la apuesta mínima son {min} Boinacoins. No me hagas trabajar por propinas de bar.",
+        "❌ @{challengerName}, la apuesta mínima son {min} BoinaCoins. No me hagas trabajar por propinas de bar.",
         "❌ ¿Solo {amount} coins, @{challengerName}? Por esa miseria no muevo ni un puntero. Mínimo {min}.",
-        "❌ @{challengerName}, apuesta al menos {min} Boinacoins o vete a jugar con el bot de música.",
+        "❌ @{challengerName}, apuesta al menos {min} BoinaCoins o vete a jugar con el bot de música.",
         "❌ Menos de {min} coins es un insulto a mi capacidad de cómputo, @{challengerName}."
     };
 
@@ -206,7 +206,7 @@ public class CPHInline
 
     private readonly string[] ERR_CANCELLED_FUNDS_POOLS = new string[]
     {
-        "❌ @{challengerName} ya no tiene suficientes Boinacoins. Duelo cancelado por insolvencia sobrevenida.",
+        "❌ @{challengerName} ya no tiene suficientes BoinaCoins. Duelo cancelado por insolvencia sobrevenida.",
         "❌ @{challengerName} se ha quedado sin blanca en el último momento. Duelo abortado.",
         "❌ Cancelando... @{challengerName} ha perdido los fondos antes de empezar. Qué mala gestión.",
         "❌ Duelo anulado. @{challengerName} ya no tiene liquidez. Típico de inversores de criptomonedas."
@@ -214,16 +214,16 @@ public class CPHInline
 
     private readonly string[] DUEL_ANNOUNCE_POOLS = new string[]
     {
-        "⚔️ ¡@{challengerName} desafía a @{targetName} a un duelo de {amount} Boinacoins! @{targetName}, escribe !aceptar en los próximos {timeout}s o serás un cobarde digital.",
-        "⚔️ @{challengerName} quiere las monedas de @{targetName}. {amount} Boinacoins en juego. @{targetName}, tienes {timeout}s para dar la cara con !aceptar.",
+        "⚔️ ¡@{challengerName} desafía a @{targetName} a un duelo de {amount} BoinaCoins! @{targetName}, escribe !aceptar en los próximos {timeout}s o serás un cobarde digital.",
+        "⚔️ @{challengerName} quiere las monedas de @{targetName}. {amount} BoinaCoins en juego. @{targetName}, tienes {timeout}s para dar la cara con !aceptar.",
         "⚔️ ¡Duelo a la vista! @{challengerName} vs @{targetName} por {amount} coins. @{targetName}, escribe !aceptar en {timeout}s si no tienes miedo a los algoritmos.",
-        "⚔️ @{challengerName} ha lanzado el guante a @{targetName} por {amount} Boinacoins. @{targetName}, el reloj de {timeout}s corre... ¡!aceptar ya!"
+        "⚔️ @{challengerName} ha lanzado el guante a @{targetName} por {amount} BoinaCoins. @{targetName}, el reloj de {timeout}s corre... ¡!aceptar ya!"
     };
 
     private readonly string[] DUEL_RESULT_POOLS = new string[]
     {
         "⚔️ ¡Dados lanzados! 🏆 GANA @{winnerName} (+{amount} 🪙) · 💀 @{loserName} pierde {amount}. (Saldos: @{winnerName} {winnerBalance} · @{loserName} {loserBalance})",
-        "⚔️ Resultado del duelo: 🏆 @{winnerName} despluma a @{loserName} y se lleva {amount} Boinacoins. (Saldos: @{winnerName} {winnerBalance} · @{loserName} {loserBalance})",
+        "⚔️ Resultado del duelo: 🏆 @{winnerName} despluma a @{loserName} y se lleva {amount} BoinaCoins. (Saldos: @{winnerName} {winnerBalance} · @{loserName} {loserBalance})",
         "⚔️ ¡Victoria para @{winnerName}! Se embolsa {amount} coins tras humillar a @{loserName}. (Saldos: @{winnerName} {winnerBalance} · @{loserName} {loserBalance})",
         "⚔️ @{winnerName} ha sido más rápido que el lag y gana {amount} a @{loserName}. (Saldos: @{winnerName} {winnerBalance} · @{loserName} {loserBalance})"
     };
@@ -286,7 +286,7 @@ public class CPHInline
 
         if (CPH.UserInGroup(targetName, Platform.Kick, "Chat Bots") && !targetIsBoinaBot)
         {
-            CPH.SendKickMessage("⚠️ Los bots del sistema no pueden participar en la economía Boinacoin.");
+            CPH.SendKickMessage("⚠️ Los bots del sistema no pueden participar en la economía BoinaCoin.");
             return true;
         }
 
@@ -557,7 +557,7 @@ public class CPHInline
         CPH.SetArgument("rankUpUserId", userId);
         CPH.SetArgument("rankUpUserName", userName);
         CPH.SetArgument("rankUpNewRank", newRank);
-        CPH.RunAction("Boinacoin · RankChecker", false);
+        CPH.RunAction("BoinaCoin · RankChecker", false);
     }
 
     private int RankForBalance(long balance)

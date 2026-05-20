@@ -1,7 +1,7 @@
 // ============================================================
 //  BOINACOIN · earn/sub.cs
 //  Evento: nueva Subscription en Kick (primera vez)
-//  Recompensa: +5.000 Boinacoins · activa multiplicador x1.5
+//  Recompensa: +5.000 BoinaCoins · activa multiplicador x1.5
 //
 //  FIX: Eliminado bloque de exclusión del broadcaster.
 //  NEW: Envía embed a Discord #subs-y-follows.
@@ -89,7 +89,7 @@ public class CPHInline
         string multText = mult > 1.0 ? $" (x{mult:0.##} ⚡)" : "";
         CPH.SendKickMessage(
             $"🎉 ¡Gracias por suscribirte, {userName}! " +
-            $"+{earned} Boinacoins{multText} · Saldo: {balance} 🪙 · " +
+            $"+{earned} BoinaCoins{multText} · Saldo: {balance} 🪙 · " +
             $"Multiplicador permanente activado: x{SUB_MULTIPLIER} 💜");
 
         // ── 8. Embed Discord #subs-y-follows ─────────────────
@@ -102,12 +102,12 @@ public class CPHInline
                 ""description"": ""**{EscapeJson(userName)}** se ha suscrito al canal.\n¡Bienvenid@ al club de la boina de pago!"",
                 ""color"": 10181046,
                 ""fields"": [
-                    {{""name"": ""Boinacoins ganados"",  ""value"": ""+{earned} 🪙{EscapeJson(multText)}"",    ""inline"": true}},
+                    {{""name"": ""BoinaCoins ganados"",  ""value"": ""+{earned} 🪙{EscapeJson(multText)}"",    ""inline"": true}},
                     {{""name"": ""Saldo total"",         ""value"": ""{balance:N0} 🪙"",                       ""inline"": true}},
                     {{""name"": ""Multiplicador activo"",""value"": ""x{SUB_MULTIPLIER} permanente 💜"",        ""inline"": true}},
                     {{""name"": ""Rango actual"",        ""value"": ""{EscapeJson(rankName)}"",                ""inline"": true}}
                 ],
-                ""footer"": {{""text"": ""Boinacoin · La Chica de la Boina""}},
+                ""footer"": {{""text"": ""BoinaCoin · La Chica de la Boina""}},
                 ""timestamp"": ""{timestamp}""
             }}]
         }}";
@@ -143,7 +143,7 @@ public class CPHInline
         CPH.SetArgument("rankUpUserId",   userId);
         CPH.SetArgument("rankUpUserName", userName);
         CPH.SetArgument("rankUpNewRank",  newRank);
-        CPH.RunAction("Boinacoin · RankChecker", false);
+        CPH.RunAction("BoinaCoin · RankChecker", false);
     }
 
     private void SendWebhook(string url, string json)

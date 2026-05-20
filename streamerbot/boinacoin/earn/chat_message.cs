@@ -10,7 +10,7 @@
 //        usuario ha chateado en los últimos 20 min)
 //
 //  FIX: Eliminado bloque de exclusión del broadcaster.
-//       afaces gana Boinacoins como cualquier viewer.
+//       afaces gana BoinaCoins como cualquier viewer.
 //       Solo se excluye al propio BoinaBot.
 // ============================================================
 
@@ -45,7 +45,7 @@ public class CPHInline
         var botInfo = CPH.KickGetBot();
         if (botInfo != null && userId == botInfo.UserId.ToString()) return false;
 
-        // ── NOTA: El broadcaster (afaces) SÍ gana Boinacoins ─
+        // ── NOTA: El broadcaster (afaces) SÍ gana BoinaCoins ─
         // No se excluye aquí. La exclusión del broadcaster solo
         // aplica en comandos de administración, no en earn.
 
@@ -121,7 +121,7 @@ public class CPHInline
             string multText = mult > 1.0 ? $" (x{mult:0.##} ⚡)" : "";
             CPH.SendKickMessage(
                 $"👋 ¡Buen día, {userName}! " +
-                $"+{earned} Boinacoins por tu primer mensaje de hoy{multText} · " +
+                $"+{earned} BoinaCoins por tu primer mensaje de hoy{multText} · " +
                 $"Saldo: {balance} 🪙");
         }
 
@@ -169,7 +169,7 @@ public class CPHInline
         CPH.SetArgument("rankUpUserId",   userId);
         CPH.SetArgument("rankUpUserName", userName);
         CPH.SetArgument("rankUpNewRank",  newRank);
-        CPH.RunAction("Boinacoin · RankChecker", false);
+        CPH.RunAction("BoinaCoin · RankChecker", false);
     }
 
     private int RankForBalance(long balance)

@@ -1,10 +1,10 @@
 // ============================================================
 //  BOINACOIN · earn/kicks.cs
 //  Evento: Kicks Gifted en Kick (equivalente a Bits/Cheers)
-//  Recompensa: +1 Boinacoin por cada Kick enviado
+//  Recompensa: +1 BoinaCoin por cada Kick enviado
 //
-//  Ejemplo: 500 Kicks enviados → +500 Boinacoins (base)
-//           Con hora feliz x2  → +1.000 Boinacoins
+//  Ejemplo: 500 Kicks enviados → +500 BoinaCoins (base)
+//           Con hora feliz x2  → +1.000 BoinaCoins
 //
 //  ARG KEY confirmado via dump: "kicks.amount"
 // ============================================================
@@ -84,7 +84,7 @@ public class CPHInline
             CPH.SendKickMessage(
                 $"💥 {userName} acaba de tirar {kicksAmount} Kicks. " +
                 $"Alguien tiene el carrete suelto. " +
-                $"+{earned} Boinacoins{multText} · Saldo: {balance} 🪙");
+                $"+{earned} BoinaCoins{multText} · Saldo: {balance} 🪙");
         }
 
         return true;
@@ -126,7 +126,7 @@ public class CPHInline
         CPH.SetArgument("rankUpUserId",   userId);
         CPH.SetArgument("rankUpUserName", userName);
         CPH.SetArgument("rankUpNewRank",  newRank);
-        CPH.RunAction("Boinacoin · RankChecker", false);
+        CPH.RunAction("BoinaCoin · RankChecker", false);
     }
 
     private int RankForBalance(long balance)

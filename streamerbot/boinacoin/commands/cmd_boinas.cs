@@ -54,7 +54,7 @@ public class CPHInline
 
                 if (CPH.UserInGroup(lookupName, Platform.Kick, "Chat Bots"))
                 {
-                    CPH.SendKickMessage("⚠️ Los bots del sistema no pueden participar en la economía Boinacoin.");
+                    CPH.SendKickMessage("⚠️ Los bots del sistema no pueden participar en la economía BoinaCoin.");
                     return true;
                 }
 
@@ -71,7 +71,7 @@ public class CPHInline
                 CPH.LogInfo($"[BOINAS] Lookup OK → balance={balance} rank={rank} streak={streak}");
                 CPH.SendKickMessage(
                     $"🪙 {rankEmoji} {lookupName} · " +
-                    $"Saldo: {balance} Boinacoins · " +
+                    $"Saldo: {balance} BoinaCoins · " +
                     $"Rango: {rankName}{streakText}");
             }
             else
@@ -94,7 +94,7 @@ public class CPHInline
                 CPH.LogInfo($"[BOINAS] Enviando mensaje → {callerName} balance={balance} rank={rankName}");
                 CPH.SendKickMessage(
                     $"🪙 {rankEmoji} {callerName} · " +
-                    $"Saldo: {balance} Boinacoins · " +
+                    $"Saldo: {balance} BoinaCoins · " +
                     $"Rango: {rankName} · " +
                     $"Total histórico: {total}{multText}{streakText}");
             }

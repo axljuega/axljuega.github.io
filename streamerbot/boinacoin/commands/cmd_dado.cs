@@ -91,7 +91,7 @@ public class CPHInline
 
         if (balance < totalCost)
         {
-            CPH.SendKickMessage($"❌ @{userName}, no tienes suficiente liquidez. Necesitas {totalCost} Boinacoins.");
+            CPH.SendKickMessage($"❌ @{userName}, no tienes suficiente liquidez. Necesitas {totalCost} BoinaCoins.");
             return true;
         }
 
@@ -120,7 +120,7 @@ public class CPHInline
             streak++;
             long prize = baseCost + BONUS_MAX;
             newBalance += prize;
-            msg += $"🌟 ¡NAT MÁXIMO! Recuperas el coste y sumas +{BONUS_MAX} Boinacoins. ";
+            msg += $"🌟 ¡NAT MÁXIMO! Recuperas el coste y sumas +{BONUS_MAX} BoinaCoins. ";
             if (streak == 3) msg += "🔥 ¡MODO DIOS ACTIVADO! Siguiente lanzamiento GRATIS. ";
         }
         else if (isMin)
@@ -141,7 +141,7 @@ public class CPHInline
             {
                 long profit = (long)(betAmount * (caras / 6.0));
                 newBalance += (betAmount + profit);
-                msg += $"💰 ¡VATICINIO CORRECTO! Ganas {profit} Boinacoins (más tu apuesta). ";
+                msg += $"💰 ¡VATICINIO CORRECTO! Ganas {profit} BoinaCoins (más tu apuesta). ";
             }
             else
             {
@@ -167,7 +167,7 @@ public class CPHInline
         // Actualizar rango
         CPH.SetArgument("rankUpUserId", userId);
         CPH.SetArgument("rankUpUserName", userName);
-        CPH.RunAction("Boinacoin · RankChecker", false);
+        CPH.RunAction("BoinaCoin · RankChecker", false);
 
         return true;
     }

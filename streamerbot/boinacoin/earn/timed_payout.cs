@@ -1,7 +1,7 @@
 // ============================================================
 //  BOINACOIN · earn/timed_payout.cs
 //  Tipo: acción temporizada (cada 10 min)
-//  Recompensa: +15 Boinacoins (base) a TODOS los espectadores
+//  Recompensa: +15 BoinaCoins (base) a TODOS los espectadores
 //              que hayan chateado en los últimos 20 min.
 //
 //  Cómo conectarlo en Streamer.bot:
@@ -94,7 +94,7 @@ public class CPHInline
 
         // ── Resumen silencioso en log (no al chat) ───────────
         // Útil para depurar desde la consola de Streamer.bot.
-        CPH.LogInfo($"[Boinacoin] Timed payout: +{REWARD_PASSIVE} base a {rewardedCount} viewers activos.");
+        CPH.LogInfo($"[BoinaCoin] Timed payout: +{REWARD_PASSIVE} base a {rewardedCount} viewers activos.");
 
         return true;
     }
@@ -134,7 +134,7 @@ public class CPHInline
         CPH.SetArgument("rankUpUserId",   userId);
         CPH.SetArgument("rankUpUserName", userName);
         CPH.SetArgument("rankUpNewRank",  newRank);
-        CPH.RunAction("Boinacoin · RankChecker", false);
+        CPH.RunAction("BoinaCoin · RankChecker", false);
     }
 
     private int RankForBalance(long balance)

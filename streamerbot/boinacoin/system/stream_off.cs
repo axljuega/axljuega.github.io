@@ -9,7 +9,7 @@
 //    4. Limpiar globals de sesión
 //
 //  Cómo configurarlo en Streamer.bot:
-//    Acción "Boinacoin · StreamOff"
+//    Acción "BoinaCoin · StreamOff"
 //    Trigger: Kick → Channel → Stream Offline
 //    Sub-action: Execute C# (este script)
 // ============================================================
@@ -59,7 +59,7 @@ public class CPHInline
 
         // Mensaje 1: Stats Generales
         string msg1 = $"🎩 DIRECTO FINALIZADO — {title}\n" +
-                      $"⏱ Duración: {durText} | 👥 Follows: {followsCount} | ⭐ Subs: {subsCount} | 🪙 Boinacoins repartidas: {coinsRepartidos:N0}";
+                      $"⏱ Duración: {durText} | 👥 Follows: {followsCount} | ⭐ Subs: {subsCount} | 🪙 BoinaCoins repartidas: {coinsRepartidos:N0}";
 
         if (followsNames.Any()) {
             var lastFollows = followsNames.Skip(Math.Max(0, followsNames.Count - 5)).ToList();
@@ -98,10 +98,10 @@ public class CPHInline
         }
 
         if (parts2.Any()) {
-            parts2.Add("🎩 ¡Gracias por estar ahí! Que vuestras Boinacoins descansen... por ahora.");
+            parts2.Add("🎩 ¡Gracias por estar ahí! Que vuestras BoinaCoins descansen... por ahora.");
             CPH.SendKickMessage(string.Join("\n", parts2));
         } else {
-            CPH.SendKickMessage("🎩 ¡Gracias por estar ahí! Que vuestras Boinacoins descansen... por ahora.");
+            CPH.SendKickMessage("🎩 ¡Gracias por estar ahí! Que vuestras BoinaCoins descansen... por ahora.");
         }
 
         // ── 4. Embed resumen en Discord ───────────────────────
@@ -131,13 +131,13 @@ public class CPHInline
                     {{""name"": ""⏱️ Duración"",              ""value"": ""{durText}"",                    ""inline"": true}},
                     {{""name"": ""❤️ Follows ({followsCount})"", ""value"": ""{EscapeJson(followsStr)}"",     ""inline"": false}},
                     {{""name"": ""🎟️ Subs ({subsCount})"",    ""value"": ""{EscapeJson(subsStr)}"",        ""inline"": false}},
-                    {{""name"": ""🪙 Boinacoins repartidas"",  ""value"": ""{coinsRepartidos:N0} 🪙"",      ""inline"": true}},
+                    {{""name"": ""🪙 BoinaCoins repartidas"",  ""value"": ""{coinsRepartidos:N0} 🪙"",      ""inline"": true}},
                     {{""name"": ""⚔️ Duelos totales"",         ""value"": ""{duelsTotal}"",                  ""inline"": true}},
                     {{""name"": ""🏆 Top 10 Earners"",         ""value"": ""{EscapeJson(lbStr)}"",           ""inline"": true}},
                     {{""name"": ""📢 Top 10 Chatters"",        ""value"": ""{EscapeJson(chattersStr)}"",     ""inline"": true}},
                     {{""name"": ""👑 Top Duelistas"",          ""value"": ""{EscapeJson(winnersStr)}"",      ""inline"": true}}
                 ],
-                ""footer"": {{""text"": ""Boinacoin · La Chica de la Boina""}},
+                ""footer"": {{""text"": ""BoinaCoin · La Chica de la Boina""}},
                 ""timestamp"": ""{timestamp}""
             }}]
         }}";
@@ -157,7 +157,7 @@ public class CPHInline
         CPH.UnsetGlobalVar("boinacoin_session_duels_total",   false);
         CPH.UnsetGlobalVar("boinacoin_session_duels_winners", false);
 
-        CPH.LogInfo($"[Boinacoin] StreamOff · sesión cerrada · duración: {durText}");
+        CPH.LogInfo($"[BoinaCoin] StreamOff · sesión cerrada · duración: {durText}");
 
         return true;
     }

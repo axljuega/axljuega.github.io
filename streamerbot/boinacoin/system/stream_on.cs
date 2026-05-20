@@ -8,7 +8,7 @@
 //    3. Mensaje de bienvenida en chat de Kick
 //
 //  Cómo configurarlo en Streamer.bot:
-//    Acción "Boinacoin · StreamOn"
+//    Acción "BoinaCoin · StreamOn"
 //    Trigger: Kick → Channel → Stream Online
 //    Sub-action: Execute C# (este script)
 // ============================================================
@@ -42,7 +42,7 @@ public class CPHInline
         CPH.SetGlobalVar("boinacoin_session_duels_total",   0L,   false);
         CPH.SetGlobalVar("boinacoin_session_duels_winners", "{}", false); // JSON dict: username -> wins
 
-        CPH.LogInfo("[Boinacoin] StreamOn · stats de sesión reseteadas.");
+        CPH.LogInfo("[BoinaCoin] StreamOn · stats de sesión reseteadas.");
 
         // ── 2. Obtener título del stream (si está disponible) ─
         string streamTitle = args.ContainsKey("streamTitle")
@@ -59,13 +59,13 @@ public class CPHInline
             ""content"": ""@everyone 🎩 **{EscapeJson(channelName)}** está en directo ahora mismo en Kick!"",
             ""embeds"": [{{
                 ""title"": ""🔴 {EscapeJson(streamTitle)}"",
-                ""description"": ""¡El directo ha comenzado! Entra y gana Boinacoins solo por ver el stream.\n\n🔗 [Ver directo en Kick](https://kick.com/LaChicaDeLaBoina)"",
+                ""description"": ""¡El directo ha comenzado! Entra y gana BoinaCoins solo por ver el stream.\n\n🔗 [Ver directo en Kick](https://kick.com/LaChicaDeLaBoina)"",
                 ""color"": {COLOR_LIVE},
                 ""fields"": [
                     {{""name"": ""📅 Hora de inicio"", ""value"": ""<t:{DateTimeOffset.UtcNow.ToUnixTimeSeconds()}:t>"", ""inline"": true}},
-                    {{""name"": ""🪙 Boinacoins"",     ""value"": ""Activas · gana por ver y chatear"", ""inline"": true}}
+                    {{""name"": ""🪙 BoinaCoins"",     ""value"": ""Activas · gana por ver y chatear"", ""inline"": true}}
                 ],
-                ""footer"": {{""text"": ""Boinacoin · La Chica de la Boina""}},
+                ""footer"": {{""text"": ""BoinaCoin · La Chica de la Boina""}},
                 ""timestamp"": ""{timestamp}""
             }}]
         }}";
@@ -74,7 +74,7 @@ public class CPHInline
 
         // ── 4. Mensaje de bienvenida en Kick ──────────────────
         CPH.SendKickMessage(
-            "🎩 ¡El directo ha comenzado! Escribe en el chat para ganar Boinacoins. " +
+            "🎩 ¡El directo ha comenzado! Escribe en el chat para ganar BoinaCoins. " +
             "Usa !boinas para ver tu saldo y !top para el ranking. ¡Buenas a tod@s! 🪙");
 
         return true;

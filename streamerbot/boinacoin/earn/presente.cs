@@ -1,7 +1,7 @@
 // ============================================================
 //  BOINACOIN · earn/presente.cs
 //  Comando: !presente
-//  Recompensa: +50 Boinacoins · 1 vez por stream
+//  Recompensa: +50 BoinaCoins · 1 vez por stream
 //
 //  También gestiona:
 //    · boinacoin_streak    → racha de streams consecutivos
@@ -39,11 +39,11 @@ public class CPHInline
         string userId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
         string userName = args.ContainsKey("userName") ? args["userName"].ToString() : "alguien";
 
-        CPH.LogInfo($"[Boinacoin Debug] Iniciando !presente para {userName} ({userId})");
+        CPH.LogInfo($"[BoinaCoin Debug] Iniciando !presente para {userName} ({userId})");
 
         if (string.IsNullOrEmpty(userId))
         {
-            CPH.LogInfo("[Boinacoin Debug] Saliendo por verificación de ID nulo.");
+            CPH.LogInfo("[BoinaCoin Debug] Saliendo por verificación de ID nulo.");
             return false;
         }
 
@@ -54,7 +54,7 @@ public class CPHInline
         var botInfo = CPH.KickGetBot();
         if (botInfo != null && userId == botInfo.UserId.ToString())
         {
-            CPH.LogInfo("[Boinacoin Debug] Saliendo: El bot no puede usar !presente.");
+            CPH.LogInfo("[BoinaCoin Debug] Saliendo: El bot no puede usar !presente.");
             return false;
         }
 
@@ -62,7 +62,7 @@ public class CPHInline
         string lowerUser = userName.ToLower().Replace("@", "");
         if (lowerUser == "afaces" || lowerUser == "lachicadelaboina")
         {
-            CPH.LogInfo($"[Boinacoin Debug] {userName} detectado. Forzando limpieza de cooldown diario.");
+            CPH.LogInfo($"[BoinaCoin Debug] {userName} detectado. Forzando limpieza de cooldown diario.");
             CPH.SetKickUserVarById(userId, "boinacoin_daily_claimed", "", true);
         }
 
@@ -79,7 +79,7 @@ public class CPHInline
                 $"⏳ {userName}, ya hiciste !presente hoy. " +
                 $"Saldo: {balance} 🪙 · Racha: {streak} streams 🔥");
 
-            CPH.LogInfo("[Boinacoin Debug] Saliendo por cooldown activo (ya reclamado hoy).");
+            CPH.LogInfo("[BoinaCoin Debug] Saliendo por cooldown activo (ya reclamado hoy).");
             return true;
         }
 
@@ -124,13 +124,13 @@ public class CPHInline
         string streakText = BuildStreakText(newStreak);
         CPH.SendKickMessage(
             $"{rollCallMessage} " +
-            $"+{earned} Boinacoins{multText} · " +
+            $"+{earned} BoinaCoins{multText} · " +
             $"Saldo: {balance2} 🪙 · {streakText}");
 
         // ── 9. Hito de racha: anuncio especial ───────────────
         AnnounceStreakMilestone(userName, newStreak);
 
-        CPH.LogInfo("[Boinacoin Debug] !presente ejecutado con éxito.");
+        CPH.LogInfo("[BoinaCoin Debug] !presente ejecutado con éxito.");
         return true;
     }
 
@@ -233,7 +233,7 @@ public class CPHInline
         CPH.SetArgument("rankUpUserId",   userId);
         CPH.SetArgument("rankUpUserName", userName);
         CPH.SetArgument("rankUpNewRank",  newRank);
-        CPH.RunAction("Boinacoin · RankChecker", false);
+        CPH.RunAction("BoinaCoin · RankChecker", false);
     }
 
     private int RankForBalance(long balance)

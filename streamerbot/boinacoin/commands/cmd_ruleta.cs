@@ -6,7 +6,7 @@
 //    1. Usuario canjea la recompensa.
 //    2. Cooldown interno: 5 minutos.
 //    3. Resultados pesados:
-//       - 60% Común: ±10–30 Boinacoins.
+//       - 60% Común: ±10–30 BoinaCoins.
 //       - 28% Poco Común: +50–100 o mensaje vergonzoso.
 //       - 10% Raro: +200–500 o pérdida del 50% del saldo.
 //       - 2% Jackpot: 1000+ y proclama.
@@ -31,25 +31,25 @@ public class CPHInline
 
     private readonly string[] COMMON_WIN_POOLS =
     {
-        "🪙 @{userName} gana {amount} Boinacoins. Es poco, pero para lo que aportas al chat, es una fortuna.",
+        "🪙 @{userName} gana {amount} BoinaCoins. Es poco, pero para lo que aportas al chat, es una fortuna.",
         "🪙 Toma {amount} monedas, @{userName}. No las gastes todas en un solo script, aunque sé que lo harás.",
-        "🪙 @{userName}, la ruleta te regala {amount} Boinacoins. No te flipes, sigues siendo un don nadie en el ranking.",
+        "🪙 @{userName}, la ruleta te regala {amount} BoinaCoins. No te flipes, sigues siendo un don nadie en el ranking.",
         "🪙 Has ganado {amount}. Es calderilla, @{userName}, pero menos es nada. Como tu carisma."
     };
 
     private readonly string[] COMMON_LOSS_POOLS =
     {
-        "📉 @{userName} pierde {amount} Boinacoins. El casino no solo gana siempre, también se ríe de ti.",
+        "📉 @{userName} pierde {amount} BoinaCoins. El casino no solo gana siempre, también se ríe de ti.",
         "📉 @{userName}, te he quitado {amount} monedas por pura diversión algorítmica. Llora un poco.",
-        "📉 {amount} Boinacoins menos para @{userName}. Consideralo un impuesto por ser tan predecible.",
+        "📉 {amount} BoinaCoins menos para @{userName}. Consideralo un impuesto por ser tan predecible.",
         "📉 La ruleta te ha desplumado {amount} monedas. @{userName}, deberías haber invertido en Dogecoin... o no."
     };
 
     private readonly string[] UNCOMMON_WIN_POOLS =
     {
-        "✨ ¡Vaya! @{userName} suma {amount} Boinacoins. Disfruta de tu efímera riqueza antes de que te la quite en un duelo.",
+        "✨ ¡Vaya! @{userName} suma {amount} BoinaCoins. Disfruta de tu efímera riqueza antes de que te la quite en un duelo.",
         "✨ @{userName} gana {amount}. Eso son casi suficientes monedas para comprarte una personalidad.",
-        "✨ ¿{amount} Boinacoins? @{userName}, hoy los astros (y mi código) se han alineado para favorecer a los mediocres."
+        "✨ ¿{amount} BoinaCoins? @{userName}, hoy los astros (y mi código) se han alineado para favorecer a los mediocres."
     };
 
     private readonly string[] EMBARRASSMENT_POOLS =
@@ -62,7 +62,7 @@ public class CPHInline
 
     private readonly string[] RARE_WIN_POOLS =
     {
-        "💎 ¡SORPRESA! @{userName} se lleva {amount} Boinacoins. Un golpe de suerte digno de un bot con un bug.",
+        "💎 ¡SORPRESA! @{userName} se lleva {amount} BoinaCoins. Un golpe de suerte digno de un bot con un bug.",
         "💎 @{userName} acaba de ganar {amount}. Mi base de datos está llorando bytes de pura indignación.",
         "💎 ¿{amount} monedas para @{userName}? Esto es un error en la Matrix, voy a tener que formatear algo."
     };
@@ -71,14 +71,14 @@ public class CPHInline
     {
         "💀 ¡REKT! @{userName} ha perdido el 50% de su saldo ({amount} 🪙). Gracias por la donación involuntaria.",
         "💀 ¡HACHAZO! @{userName}, la ruleta ha decidido que te sobraba la mitad de tu dinero. {amount} monedas al limbo.",
-        "💀 @{userName}, acabas de ser liquidado como un apalancado en Binance. -{amount} Boinacoins. ¡F!"
+        "💀 @{userName}, acabas de ser liquidado como un apalancado en Binance. -{amount} BoinaCoins. ¡F!"
     };
 
     private readonly string[] JACKPOT_POOLS =
     {
         "👑 ¡¡¡JACKPOT!!! @{userName} HA ROTO LA BANCA CON {amount} BOINACOINS. ¡TODOS ALABAD A NUESTRO NUEVO Y TEMPORAL LÍDER! 👑",
         "👑 ¡MILAGRO DIGITAL! @{userName} se lleva el Jackpot de {amount}. Mi creador va a pensar que me han hackeado. 👑",
-        "👑 @{userName} ha ganado {amount} Boinacoins. Prepárate, que todo el chat va a querer desplumarte ahora. 👑"
+        "👑 @{userName} ha ganado {amount} BoinaCoins. Prepárate, que todo el chat va a querer desplumarte ahora. 👑"
     };
 
     public bool Execute()
@@ -201,7 +201,7 @@ public class CPHInline
         CPH.SetArgument("rankUpUserId", userId);
         CPH.SetArgument("rankUpUserName", userName);
         CPH.SetArgument("rankUpNewRank", newRank);
-        CPH.RunAction("Boinacoin · RankChecker", false);
+        CPH.RunAction("BoinaCoin · RankChecker", false);
     }
 
     private int RankForBalance(long balance)

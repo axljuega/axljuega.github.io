@@ -1,7 +1,7 @@
 // ============================================================
 //  BOINACOIN · moderation/mod_timeout.cs
 //  Evento: usuario recibe timeout de un moderador en Kick
-//  Penalización: -500 Boinacoins (nunca por debajo de 0)
+//  Penalización: -500 BoinaCoins (nunca por debajo de 0)
 //
 //  Cómo conectarlo en Streamer.bot:
 //    Acción → trigger "Kick · User Banned" con duración > 0
@@ -44,7 +44,7 @@ public class CPHInline
         if (currentBalance <= 0)
         {
             // Sin saldo que penalizar — solo log
-            CPH.LogInfo($"[Boinacoin] Timeout {userName}: saldo ya era 0, sin penalización.");
+            CPH.LogInfo($"[BoinaCoin] Timeout {userName}: saldo ya era 0, sin penalización.");
             return true;
         }
 
@@ -59,7 +59,7 @@ public class CPHInline
 
         // ── 4. Log interno ────────────────────────────────────
         CPH.LogInfo(
-            $"[Boinacoin] Timeout · {userName} · " +
+            $"[BoinaCoin] Timeout · {userName} · " +
             $"Duración: {durationStr}s · " +
             $"Penalización: -{penaltyApplied} · " +
             $"Saldo: {currentBalance} → {newBalance}");
@@ -69,7 +69,7 @@ public class CPHInline
         // del necesario al usuario penalizado.
         CPH.SendKickMessage(
             $"⚠️ {userName} ha sido silenciado · " +
-            $"-{penaltyApplied} Boinacoins · Saldo: {newBalance} 🪙");
+            $"-{penaltyApplied} BoinaCoins · Saldo: {newBalance} 🪙");
 
         return true;
     }
@@ -84,7 +84,7 @@ public class CPHInline
 
         CPH.SetKickUserVarById(userId, "boinacoin_rank", newRank, true);
         CPH.LogInfo(
-            $"[Boinacoin] {userName} baja de rango: " +
+            $"[BoinaCoin] {userName} baja de rango: " +
             $"{GetRankName(oldRank)} → {GetRankName(newRank)}");
 
         // Bajada de rango por penalización: log pero NO anuncio
