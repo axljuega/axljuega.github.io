@@ -1,10 +1,11 @@
 // ============================================================
 //  BOINACOIN · earn/follow.cs
 //  Evento: nuevo Follow en Kick
-//  Recompensa: +250 BoinaCoins (antes de multiplicadores)
+//  Recompensa: +250 BoinaCoins (solo la primera vez)
 //
-//  FIX: Eliminado bloque de exclusión del broadcaster.
-//  NEW: Envía embed a Discord #subs-y-follows.
+//  ANTI-FARM: Si el usuario ya reclamó la recompensa y vuelve
+//  a dar follow (unfollow/follow), se le resetea el saldo a 0
+//  y se le humilla públicamente.
 // ============================================================
 
 using System;
@@ -16,12 +17,55 @@ using Newtonsoft.Json;
 
 public class CPHInline
 {
+    private static readonly Random RND = new Random();
+
     private const long RANK_LANA       =  1_000;
     private const long RANK_CUERO      = 10_000;
     private const long RANK_TERCIOPELO = 50_000;
     private const long RANK_LEGENDARIA = 100_000;
 
     private const string WEBHOOK_SUBS_FOLLOWS = "https://discord.com/api/webhooks/WEBHOOK_ID/WEBHOOK_TOKEN";
+
+    private static readonly string[] HUMILIATION_POOL = {
+        "Congratulations, you've reset yourself to zero. Twice the effort, zero the dignity.",
+        "Farming Boinacoins. In a Kick chat. Let that sink in.",
+        "Your greed is only matched by your incompetence. Enjoy the 0 balance.",
+        "The Boina sees through your cheap tricks. Back to the bottom, peasant.",
+        "A pathetic attempt at farming. Your balance is now as empty as your prospects.",
+        "Did you think I wouldn't notice? Your BoinaCoins are gone, just like your self-respect.",
+        "Error 404: Integrity not found. Resetting your existence to zero.",
+        "Imagine trying to exploit a bot and still failing this hard. Zeroed.",
+        "The House always wins, especially against bottom-feeders like you.",
+        "Your Boina rank has been demoted to 'Disappointment'. Balance: 0.",
+        "I’d call you a clown, but clowns actually get paid. You get nothing.",
+        "Farming follows is for the weak. Losing everything is for the stupid.",
+        "Your digital wallet is now as vacant as your head. Enjoy the reset.",
+        "Play stupid games, win zero Boinacoins. Hope it was worth it.",
+        "A bold move, being this dishonest and this bad at it. Back to zero.",
+        "Your contribution to this channel is now officially 0. Literally.",
+        "The blockchain of your life just suffered a 51% attack. You lost everything.",
+        "I expected nothing and you still disappointed me. Welcome back to zero.",
+        "Some people farm for a living. You farm for a ban. I’ll start with a reset.",
+        "You tried to outsmart the system. The system just deleted your progress.",
+        "Your Boinacoin balance is now reflecting your IQ. Zero.",
+        "Was it worth the 250 coins? Because it just cost you everything.",
+        "The Boina doesn't reward rats. Back to the starting line, rodent.",
+        "You've been liquidated. Your dignity was the collateral.",
+        "Nice try, farm boy. Now go cry in a corner with your 0 coins.",
+        "Cheaters never prosper. In your case, they also lose their historical progress.",
+        "I could explain why this happened, but I doubt you’d understand. 0 coins for you.",
+        "Your status has been updated from 'Follower' to 'Leech'. Balance cleared.",
+        "Look at you, all that effort just to end up with nothing. Peak efficiency.",
+        "The Boina has spoken. Your greed is your undoing. Reset complete."
+    };
+
+    private static readonly string[] WELCOME_POOL = {
+        "Welcome to the elite circle of Boina wearers.",
+        "Another soul joins the collective. Make yourself useful.",
+        "The Boina recognizes your presence. For now.",
+        "Welcome. Try not to embarrass yourself in front of the others.",
+        "A new apprentice appears. Let's see if you last a week."
+    };
 
     // ────────────────────────────────────────────────────────
     public bool Execute()
@@ -38,27 +82,51 @@ public class CPHInline
         var botInfo = CPH.KickGetBot();
         if (botInfo != null && userId == botInfo.UserId.ToString()) return false;
 
-        // ── 1. Calcular recompensa ───────────────────────────
+        // ── 1. Anti-Farm Check ───────────────────────────────
+        bool alreadyClaimed = CPH.GetKickUserVarById<bool>(userId, "boinacoin_follow_reward_claimed");
+
+        if (alreadyClaimed)
+        {
+            // PUNISHMENT
+            CPH.SetKickUserVarById(userId, "boinacoin", 0L, true);
+            CPH.SetKickUserVarById(userId, "boinacoin_total_earned", 0L, true);
+            CPH.SetKickUserVarById(userId, "boinacoin_rank", 0, true);
+            CPH.SetKickUserVarById(userId, "boinacoin_rank_max", 0, true);
+
+            // Update Rank / Discord immediately
+            CPH.SetArgument("rankUpUserId", userId);
+            CPH.SetArgument("rankUpUserName", userName);
+            CPH.SetArgument("rankUpNewRank", 0);
+            CPH.RunAction("BoinaCoin · RankChecker", false);
+
+            string msg = HUMILIATION_POOL[RND.Next(HUMILIATION_POOL.Length)];
+            CPH.SendKickMessage($"@{userName} {msg}");
+
+            return true;
+        }
+
+        // ── 2. Calcular recompensa ───────────────────────────
         const long BASE = 250;
         double mult   = GetMultiplier(userId);
         long   earned = (long)Math.Floor(BASE * mult);
 
-        // ── 2. Actualizar saldo ──────────────────────────────
+        // ── 3. Actualizar saldo y flag ──────────────────────
         long balance = CPH.GetKickUserVarById<long>(userId, "boinacoin") + earned;
         CPH.SetKickUserVarById(userId, "boinacoin", balance, true);
+        CPH.SetKickUserVarById(userId, "boinacoin_follow_reward_claimed", true, true);
 
-        // ── 3. Estadística histórica ─────────────────────────
+        // ── 4. Estadística histórica ─────────────────────────
         long totalEarned = CPH.GetKickUserVarById<long>(userId, "boinacoin_total_earned") + earned;
         CPH.SetKickUserVarById(userId, "boinacoin_total_earned", totalEarned, true);
 
-        // ── 4. Timestamp antiinactividad ─────────────────────
+        // ── 5. Timestamp antiinactividad ─────────────────────
         CPH.SetKickUserVarById(userId, "boinacoin_last_seen",
             DateTimeOffset.UtcNow.ToUnixTimeSeconds(), true);
 
-        // ── 5. Comprobar subida de rango ─────────────────────
+        // ── 6. Comprobar subida de rango ─────────────────────
         CheckRankUp(userId, userName, balance);
 
-        // ── 5.1 Tracking de sesión ───────────────────────────
+        // ── 6.1 Tracking de sesión ───────────────────────────
         long sFollows = CPH.GetGlobalVar<long>("boinacoin_session_follows", false) + 1;
         CPH.SetGlobalVar("boinacoin_session_follows", sFollows, false);
 
@@ -81,25 +149,27 @@ public class CPHInline
             CPH.SetGlobalVar("boinacoin_session_follows_names", JsonConvert.SerializeObject(followsList), false);
         }
 
-        // ── 6. Mensaje de bienvenida en Kick ─────────────────
+        // ── 7. Mensaje de bienvenida en Kick ─────────────────
         string multText = mult > 1.0 ? $" (x{mult:0.##} ⚡)" : "";
         CPH.SendKickMessage(
-            $"🎩 ¡Bienvenid@ {userName}! +{earned} BoinaCoins por el follow{multText} · " +
+            $"🎩 ¡Bienvenid@ @{userName}! +{earned} BoinaCoins por el follow{multText} · " +
             $"Saldo total: {balance} 🪙");
 
-        // ── 7. Embed Discord #subs-y-follows ─────────────────
-        string rankName = RankName(CPH.GetKickUserVarById<int>(userId, "boinacoin_rank"));
+        // ── 8. Embed Discord #subs-y-follows (Godmode) ───────
+        string welcomePhrase = WELCOME_POOL[RND.Next(WELCOME_POOL.Length)];
+        int currentRank = CPH.GetKickUserVarById<int>(userId, "boinacoin_rank");
+        string rankName = RankName(currentRank);
         string timestamp = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ");
 
         string payload = $@"{{
             ""embeds"": [{{
                 ""title"": ""🎩 ¡Nuevo Follow!"",
-                ""description"": ""**{EscapeJson(userName)}** acaba de seguir el canal.\n¡Bienvenid@ a la comunidad de la Boina!"",
+                ""description"": ""**{EscapeJson(userName)}** acaba de seguir el canal.\n_{EscapeJson(welcomePhrase)}_"",
                 ""color"": 5763719,
                 ""fields"": [
-                    {{""name"": ""BoinaCoins ganados"", ""value"": ""+{earned} 🪙{EscapeJson(multText)}"", ""inline"": true}},
-                    {{""name"": ""Saldo total"",        ""value"": ""{balance:N0} 🪙"",            ""inline"": true}},
-                    {{""name"": ""Rango actual"",       ""value"": ""{EscapeJson(rankName)}"",     ""inline"": true}}
+                    {{""name"": ""Recompensa"",     ""value"": ""+{earned} 🪙{EscapeJson(multText)}"", ""inline"": true}},
+                    {{""name"": ""Saldo total"",    ""value"": ""{balance:N0} 🪙"",            ""inline"": true}},
+                    {{""name"": ""Rango inicial"",  ""value"": ""{EscapeJson(rankName)}"",     ""inline"": true}}
                 ],
                 ""footer"": {{""text"": ""BoinaCoin · La Chica de la Boina""}},
                 ""timestamp"": ""{timestamp}""

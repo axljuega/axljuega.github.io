@@ -10,17 +10,35 @@
 //    · Cooldown: 60 segundos por usuario emisor
 //    · Receptor debe existir en la base de datos local
 //
-//  Cómo conectarlo en Streamer.bot:
-//    Acción → trigger "Kick · Chat Command · !regalar"
-//    Parse Input activado: input0 = @usuario, input1 = cantidad
+//  FIX: Mensajes de confirmación aleatorios para evitar
+//  el bot-detection de Kick por mensajes repetidos (flood).
 // ============================================================
 
 using System;
 
 public class CPHInline
 {
+    private static readonly Random RND = new Random();
     private const long MIN_TRANSFER   = 10;
     private const int  COOLDOWN_SECS  = 60;
+
+    private static readonly string[] GIFT_TEMPLATES = {
+        "🎁 {0} regala {1} BoinaCoins a {2} · {0}: {3} 🪙 · {2}: {4} 🪙",
+        "💸 {2} recibe {1} BoinaCoins de {0}. Nadie sabe por qué. Saldos: {3} 🪙 → {4} 🪙",
+        "🎁 Transferencia completada: {0} → {2} · {1} 🪙 · [{3} / {4}]",
+        "💰 ¡Lluvia de monedas! {0} le lanza {1} 🪙 a {2}. Nuevos saldos: {0}({3}) {2}({4})",
+        "🤝 {0} ha sido generoso: {1} BoinaCoins para {2}. [Carteras: {3} | {4}]",
+        "🎁 {2}, tienes un regalo de {0}: {1} BoinaCoins. {0} ahora tiene {3} y tú {4}.",
+        "💸 {0} soltó {1} 🪙 y {2} los recogió. Balance actual: {0}={3}, {2}={4}",
+        "🏦 Movimiento bancario: {0} transfirió {1} 🪙 a {2}. {0}: {3} 🪙 / {2}: {4} 🪙",
+        "🎁 ¡Toma ya! {0} le da {1} BoinaCoins a {2}. {3} y {4} son sus nuevos saldos.",
+        "✨ {0} compartió su riqueza con {2}: {1} 🪙 enviados. {0} queda con {3}, {2} con {4}.",
+        "🎁 Regalo de {0} para {2}: {1} BoinaCoins. Cuenta de {0}: {3} 🪙, cuenta de {2}: {4} 🪙",
+        "💸 {0} le pasó {1} 🪙 a {2}. Ahora {0} tiene {3} y {2} tiene {4}.",
+        "🎁 {2} está de suerte, {0} le regaló {1} BoinaCoins. Balances: {3} / {4}",
+        "💰 {1} BoinaCoins han volado de {0} a {2}. Estado actual: {0}={3} 🪙, {2}={4} 🪙",
+        "🎁 {0} → {1} 🪙 → {2}. Confirmado. Nuevos totales: {3} y {4}."
+    };
 
     // ────────────────────────────────────────────────────────
     public bool Execute()
@@ -113,10 +131,9 @@ public class CPHInline
         CheckRankChange(senderId, senderName, senderNew, isId: true);
         CheckRankChange("", targetName, receiverNew, isId: false);
 
-        // ── 12. Mensaje al chat ───────────────────────────────
-        CPH.SendKickMessage(
-            $"🎁 {senderName} regala {amount} BoinaCoins a {targetName} · " +
-            $"{senderName}: {senderNew} 🪙 · {targetName}: {receiverNew} 🪙");
+        // ── 12. Mensaje al chat (Aleatorio) ───────────────────
+        string template = GIFT_TEMPLATES[RND.Next(GIFT_TEMPLATES.Length)];
+        CPH.SendKickMessage(string.Format(template, senderName, amount, targetName, senderNew, receiverNew));
 
         return true;
     }
