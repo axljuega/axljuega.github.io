@@ -11,6 +11,10 @@
     <meta property="og:description" content="Ecosistema de economía virtual open source para Kick.com. Monedas, rangos, comandos y más.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://axljuega.github.io/">
+    <meta property="og:image" content="https://axljuega.github.io/img/BoinaCoinLogo.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="img/BoinaCoinLogo.jpg">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -78,7 +82,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
             background: radial-gradient(circle at 50% 50%, rgba(255, 107, 43, 0.05) 0%, transparent 70%);
             overflow: hidden;
         }
@@ -110,13 +113,32 @@
         }
 
         .hero-content {
-            max-width: 900px;
+            max-width: 1100px;
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            text-align: left;
+            z-index: 1;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-image {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            border: 2px solid var(--border-accent);
+            box-shadow: 0 0 32px rgba(255, 107, 43, 0.2);
+            object-fit: cover;
+            flex-shrink: 0;
         }
 
         .badge-pills {
             display: flex;
             gap: 0.5rem;
-            justify-content: center;
+            justify-content: flex-start;
             margin-bottom: 2rem;
             flex-wrap: wrap;
         }
@@ -149,13 +171,13 @@
             font-size: clamp(1.1rem, 3vw, 1.4rem);
             color: var(--text-secondary);
             max-width: 700px;
-            margin: 0 auto 2.5rem;
+            margin-bottom: 2.5rem;
         }
 
         .cta-group {
             display: flex;
             gap: 1rem;
-            justify-content: center;
+            justify-content: flex-start;
             flex-wrap: wrap;
         }
 
@@ -275,6 +297,27 @@
         }
 
         /* --- Steps --- */
+        #how-it-works {
+            position: relative;
+        }
+
+        .floating-coin {
+            position: absolute;
+            top: 6rem;
+            right: 2rem;
+            width: 80px;
+            height: 80px;
+            animation: float 6s ease-in-out infinite;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
         .steps-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -398,10 +441,20 @@
         }
 
         .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 1.5rem;
-            display: inline-block;
+        }
+
+        .footer-logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            border: 1px solid var(--border-accent);
         }
 
         .footer-logo span {
@@ -437,8 +490,33 @@
             .docs-content {
                 padding: 1.5rem;
             }
+            .hero {
+                text-align: center;
+            }
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 6rem;
+                gap: 2rem;
+            }
+            .hero-text {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .badge-pills, .cta-group {
+                justify-content: center;
+            }
+            .hero-image {
+                width: 240px;
+                height: 240px;
+            }
             .hero h1 { font-size: 3rem; }
+            .hero p { margin: 0 auto 2.5rem; }
             section { padding: 4rem 0; }
+            .floating-coin {
+                display: none;
+            }
         }
 
         /* Hamburger Menu for Mobile Docs (Simulated) */
@@ -470,18 +548,21 @@
             <div class="hero-gradient"></div>
         </div>
         <div class="container hero-content">
-            <div class="badge-pills">
-                <div class="pill">⚡ <span>STREAMER.BOT</span></div>
-                <div class="pill">KICK</div>
-                <div class="pill">DISCORD</div>
-                <div class="pill">OBS</div>
+            <div class="hero-text">
+                <div class="badge-pills">
+                    <div class="pill">⚡ <span>STREAMER.BOT</span></div>
+                    <div class="pill">KICK</div>
+                    <div class="pill">DISCORD</div>
+                    <div class="pill">OBS</div>
+                </div>
+                <h1>CONSTRUYE TU BOT. SIN DEPENDER DE NADIE.</h1>
+                <p>BoinaCoin es un ecosistema de economía virtual open source para Kick. Monedas, rangos, comandos, alertas en OBS y Discord — todo en tu servidor, todo bajo tu control.</p>
+                <div class="cta-group">
+                    <a href="#docs" class="btn btn-primary">Ver documentación →</a>
+                    <a href="https://github.com/axljuega/axljuega.github.io" target="_blank" class="btn btn-secondary">GitHub →</a>
+                </div>
             </div>
-            <h1>CONSTRUYE TU BOT. SIN DEPENDER DE NADIE.</h1>
-            <p>BoinaCoin es un ecosistema de economía virtual open source para Kick. Monedas, rangos, comandos, alertas en OBS y Discord — todo en tu servidor, todo bajo tu control.</p>
-            <div class="cta-group">
-                <a href="#docs" class="btn btn-primary">Ver documentación →</a>
-                <a href="https://github.com/axljuega/axljuega.github.io" target="_blank" class="btn btn-secondary">GitHub →</a>
-            </div>
+            <img src="img/BoinaBot.jpg" alt="BoinaBot - Mascota oficial del bot" class="hero-image" loading="lazy">
         </div>
     </header>
 
@@ -519,6 +600,7 @@
 
         <!-- Section 3: Cómo funciona -->
         <section id="how-it-works">
+            <img src="img/BoinaCoin.jpg" alt="Moneda BoinaCoin" class="floating-coin" loading="lazy">
             <div class="section-header">
                 <h2>Cómo funciona</h2>
                 <p>Una arquitectura diseñada para darte el control absoluto de tu contenido.</p>
@@ -624,7 +706,10 @@
     <!-- Section 6: Footer -->
     <footer>
         <div class="container">
-            <div class="footer-logo">BOINA<span>COIN</span></div>
+            <div class="footer-logo">
+                <img src="img/BoinaCoinLogo.jpg" alt="Logo BoinaCoin" loading="lazy">
+                BOINA<span>COIN</span>
+            </div>
             <div class="footer-links">
                 <a href="https://github.com/axljuega/axljuega.github.io" target="_blank">GitHub</a>
                 <a href="#">Kick</a>
