@@ -180,6 +180,7 @@ Debes crear una **Action** por cada script `.cs`.
 | `commands/` | `cmd_mencion.cs` | `BoinaCoin · Mención` |
 | `commands/` | `cmd_dado.cs` | `BoinaCoin · Dado` |
 | `commands/` | `cmd_8ball.cs` | `BoinaCoin · 8ball` |
+| `commands/` | `cmd_help.cs` | `BoinaCoin · Help` |
 | `commands/` | `cmd_ruleta.cs` | `BoinaCoin · Ruleta` |
 | `commands/` | `cmd_vincular.cs` | `BoinaCoin · Vincular` |
 | `commands/` | `cmd_exclusive.cs` | `BoinaCoin · Exclusive` |
@@ -213,6 +214,7 @@ Ve a **Commands** → `Add`. Configura cada comando con su acción correspondien
 | `!presente` | `BoinaCoin · Presente` | Check-in diario (+50 BoinaCoins, 1 vez por stream) |
 | `!dado` | `BoinaCoin · Dado` | Lanzar dados (coste base 5). Soporta apuestas: `!dado [caras] apuesta [nº] [cant]` |
 | `!8ball` | `BoinaCoin · 8ball` | La bola 8 mágica (ácida). Pregunta opcional. |
+| `!help` | `BoinaCoin · Help` | Ayuda efímera con los comandos disponibles para tu rango. |
 | `!vincular` | `BoinaCoin · Vincular` | Vincular cuenta de Discord (`!vincular usuario`) |
 | `!desvincular` | `BoinaCoin · Vincular` | Eliminar vínculo de Discord |
 
@@ -265,6 +267,12 @@ El bot responde con una frase aleatoria del archivo `data/boinabot_frases.json` 
 - `!boinas @BoinaBot` → NO (empieza por `!`) ❌
 
 ---
+
+## 🛡️ Protección Anti-Farm (Follows)
+
+El sistema detecta automáticamente intentos de farmear Boinacoins mediante el ciclo de follow/unfollow/follow.
+- **Primer follow:** Recompensa normal y bienvenida.
+- **Follow repetido:** Reseteo inmediato de `boinacoin`, `total_earned`, `rank` y `rank_max` a cero. Humillación pública en el chat y registro en logs de moderación.
 
 ## ⚡ Paso 3: Triggers de Eventos de Kick
 

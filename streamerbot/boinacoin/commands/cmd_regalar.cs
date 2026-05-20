@@ -9,10 +9,6 @@
 //    · No regalarse a uno mismo
 //    · Cooldown: 60 segundos por usuario emisor
 //    · Receptor debe existir en la base de datos local
-//
-//  Cómo conectarlo en Streamer.bot:
-//    Acción → trigger "Kick · Chat Command · !regalar"
-//    Parse Input activado: input0 = @usuario, input1 = cantidad
 // ============================================================
 
 using System;
@@ -21,8 +17,26 @@ public class CPHInline
 {
     private const long MIN_TRANSFER   = 10;
     private const int  COOLDOWN_SECS  = 60;
+    private static readonly Random RND = new Random();
 
-    // ────────────────────────────────────────────────────────
+    private static readonly string[] GIFT_TEMPLATES = {
+        "🎁 {sender} acaba de soltar {amount} Boinacoins encima de {receiver}. Saldos: {senderBal} 🪙 / {receiverBal} 🪙",
+        "💸 {receiver} recibe {amount} Boinacoins de {sender}. Nadie sabe por qué. [{senderBal} 🪙 → {receiverBal} 🪙]",
+        "🎁 Transferencia aceptada a regañadientes: {sender} → {receiver} · {amount} 🪙 · Saldos: {senderBal} / {receiverBal}",
+        "💸 {sender} se siente generoso (o cometió un error) y le da {amount} 🪙 a {receiver}. [Saldos: {senderBal} / {receiverBal}]",
+        "🎁 ¡Lluvia de monedas! {sender} lanzó {amount} 🪙 a {receiver}. Ahora tienen {senderBal} y {receiverBal} respectivamente.",
+        "💸 Registro contable: {sender} traspasó {amount} Boinacoins a {receiver}. Mi base de datos bosteza. ({senderBal} / {receiverBal})",
+        "🎁 {receiver}, hoy es tu día de suerte. {sender} te regaló {amount} 🪙. No lo gastes todo en una sola apuesta. Saldos: {senderBal} / {receiverBal}",
+        "💸 {sender} ha reducido su saldo en {amount} 🪙 para dárselo a {receiver}. Qué altruismo más innecesario. [{senderBal} | {receiverBal}]",
+        "🎁 {amount} Boinacoins han volado del bolsillo de {sender} al de {receiver}. Magia financiera. {senderBal} 🪙 / {receiverBal} 🪙",
+        "💸 {receiver} ahora es {amount} 🪙 más rico gracias a {sender}. La envidia me corroe (es mentira). [{senderBal} → {receiverBal}]",
+        "🎁 Confirmado: {sender} → {receiver} por {amount} BoinaCoins. Saldos actualizados: {senderBal} y {receiverBal}.",
+        "💸 {sender} se deshace de {amount} 🪙. {receiver} los recoge del suelo. Qué espectáculo. Saldos: {senderBal} / {receiverBal}",
+        "🎁 {receiver} recibe un paquete de {sender} con {amount} Boinacoins. No tiene bomba, tranquilo. [Saldos: {senderBal} / {receiverBal}]",
+        "💸 Transacción completada: {sender} donó {amount} 🪙 a {receiver}. Mi procesador se siente más ligero. ({senderBal} / {receiverBal})",
+        "🎁 {sender} le pasa el sobre a {receiver}: {amount} 🪙. Circulen, aquí no hay nada que ver. Saldos: {senderBal} | {receiverBal}"
+    };
+
     public bool Execute()
     {
         string senderId   = args.ContainsKey("userId")   ? args["userId"].ToString()   : "";
@@ -100,7 +114,6 @@ public class CPHInline
         CPH.SetKickUserVarById(senderId, "boinacoin_regalar_last", nowUnix, true);
 
         // ── 9. Estadística histórica del receptor ─────────────
-        // (el regalo cuenta como ingreso en el histórico del receptor)
         long receiverTotal = CPH.GetKickUserVar<long>(targetName, "boinacoin_total_earned") + amount;
         CPH.SetKickUserVar(targetName, "boinacoin_total_earned", receiverTotal, true);
 
@@ -109,19 +122,23 @@ public class CPHInline
         CPH.SetKickUserVar(targetName, "boinacoin_last_seen", nowUnix, true);
 
         // ── 11. Comprobar cambios de rango ────────────────────
-        // El emisor puede bajar y el receptor puede subir
         CheckRankChange(senderId, senderName, senderNew, isId: true);
         CheckRankChange("", targetName, receiverNew, isId: false);
 
-        // ── 12. Mensaje al chat ───────────────────────────────
-        CPH.SendKickMessage(
-            $"🎁 {senderName} regala {amount} BoinaCoins a {targetName} · " +
-            $"{senderName}: {senderNew} 🪙 · {targetName}: {receiverNew} 🪙");
+        // ── 12. Mensaje al chat (Aleatorio) ───────────────────
+        string template = GIFT_TEMPLATES[RND.Next(GIFT_TEMPLATES.Length)];
+        string finalMsg = template
+            .Replace("{sender}", "@" + senderName)
+            .Replace("{receiver}", "@" + targetName)
+            .Replace("{amount}", amount.ToString())
+            .Replace("{senderBal}", senderNew.ToString())
+            .Replace("{receiverBal}", receiverNew.ToString());
+
+        CPH.SendKickMessage(finalMsg);
 
         return true;
     }
 
-    // ── Cambio de rango ───────────────────────────────────────
     private void CheckRankChange(string userId, string userName, long balance, bool isId)
     {
         int oldRank = isId
@@ -145,22 +162,10 @@ public class CPHInline
 
     private int RankForBalance(long balance)
     {
-        if (balance >= 100_000) return 4;
-        if (balance >= 50_000)  return 3;
-        if (balance >= 10_000)  return 2;
-        if (balance >= 1_000)   return 1;
+        if (balance >= 100000) return 4;
+        if (balance >= 50000)  return 3;
+        if (balance >= 10000)  return 2;
+        if (balance >= 1000)   return 1;
         return 0;
-    }
-
-    private string GetRankName(int rank)
-    {
-        switch (rank)
-        {
-            case 1: return "🧶 Boina de Lana";
-            case 2: return "🪡 Boina de Cuero";
-            case 3: return "💎 Boina de Terciopelo";
-            case 4: return "👑 La Boina Legendaria";
-            default: return "🪡 Boina de Paja";
-        }
     }
 }
