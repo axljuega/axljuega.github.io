@@ -1,48 +1,761 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page</title>
-    <link rel="stylesheet" href="style.css">
+    <title>BoinaCoin — Bot de economía para Kick</title>
+    <meta name="description" content="Ecosistema de economía virtual open source para Kick.com. Monedas, rangos, comandos y más. Sin depender de plataformas externas.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="BoinaCoin — Bot de economía para Kick">
+    <meta property="og:description" content="Ecosistema de economía virtual open source para Kick.com. Monedas, rangos, comandos y más.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://axljuega.github.io/">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-surface: #111111;
+            --bg-card: #1a1a1a;
+            --accent: #FF6B2B;
+            --accent-dim: #CC4F18;
+            --text-primary: #ffffff;
+            --text-secondary: #9FA6AD;
+            --border: rgba(255,255,255,0.08);
+            --border-accent: rgba(255, 107, 43, 0.3);
+            --font-main: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        h1, h2, h3, h4 {
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 107, 43, 0.05) 0%, transparent 70%);
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: var(--bg-primary);
+        }
+
+        .hero-gradient {
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            top: -25%;
+            left: -25%;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 107, 43, 0.08) 0%, transparent 50%);
+            animation: gradientMove 15s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes gradientMove {
+            0% { transform: translate(-5%, -5%) scale(1); }
+            100% { transform: translate(5%, 5%) scale(1.1); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .badge-pills {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .pill {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 0.4rem 1rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pill span {
+            color: var(--accent);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            line-height: 0.95;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-dim);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border-color: var(--border);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            background: rgba(255, 107, 43, 0.05);
+        }
+
+        /* --- Section Styling --- */
+        section {
+            padding: 6rem 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- Features Grid --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--border-accent);
+            transform: translateY(-5px);
+        }
+
+        .feature-card svg {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* --- Architecture --- */
+        .architecture-viz {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            background: var(--bg-surface);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .arch-svg {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+        }
+
+        .architecture-text {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--text-secondary);
+        }
+
+        /* --- Steps --- */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .step-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .step-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--border);
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            line-height: 1;
+        }
+
+        .step-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- Docs System --- */
+        #docs {
+            display: flex;
+            min-height: 600px;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .docs-sidebar {
+            width: 280px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .docs-sidebar h3 {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .docs-nav ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .docs-nav ul li a {
+            display: block;
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .docs-nav ul li a:hover, .docs-nav ul li a.active {
+            background: rgba(255, 107, 43, 0.1);
+            color: var(--accent);
+        }
+
+        .docs-content {
+            flex: 1;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 3rem;
+            min-height: 500px;
+        }
+
+        .docs-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 400px;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        /* Markdown Styles */
+        .markdown-body h1 { font-size: 2.2rem; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+        .markdown-body h2 { font-size: 1.5rem; margin: 2rem 0 1rem; color: var(--accent); }
+        .markdown-body h3 { font-size: 1.2rem; margin: 1.5rem 0 1rem; }
+        .markdown-body p { margin-bottom: 1.2rem; color: var(--text-secondary); }
+        .markdown-body ul, .markdown-body ol { margin-bottom: 1.2rem; padding-left: 1.5rem; color: var(--text-secondary); }
+        .markdown-body li { margin-bottom: 0.5rem; }
+        .markdown-body code { background: var(--bg-card); padding: 0.2rem 0.4rem; border-radius: 4px; font-family: monospace; font-size: 0.9em; }
+        .markdown-body pre { background: var(--bg-card); padding: 1.5rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1.5rem; border: 1px solid var(--border); }
+        .markdown-body pre code { background: transparent; padding: 0; }
+        .markdown-body blockquote { border-left: 4px solid var(--accent); padding-left: 1.5rem; color: var(--text-secondary); font-style: italic; margin-bottom: 1.5rem; }
+        .markdown-body table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; }
+        .markdown-body th, .markdown-body td { border: 1px solid var(--border); padding: 0.75rem; text-align: left; }
+        .markdown-body th { background: var(--bg-card); }
+
+        /* --- Footer --- */
+        footer {
+            padding: 4rem 0;
+            background: var(--bg-surface);
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .footer-logo span {
+            color: var(--accent);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-copy {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* --- Mobile --- */
+        @media (max-width: 768px) {
+            #docs {
+                flex-direction: column;
+            }
+            .docs-sidebar {
+                width: 100%;
+                position: relative;
+                top: 0;
+            }
+            .docs-content {
+                padding: 1.5rem;
+            }
+            .hero h1 { font-size: 3rem; }
+            section { padding: 4rem 0; }
+        }
+
+        /* Hamburger Menu for Mobile Docs (Simulated) */
+        .mobile-docs-toggle {
+            display: none;
+            width: 100%;
+            padding: 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-docs-toggle { display: flex; }
+            .docs-nav { display: none; }
+            .docs-nav.open { display: block; }
+        }
+
+    </style>
 </head>
 <body>
-	<header>
-        <h1>Welcome to My Website</h1>
-        <nav>
-            <ul>
-                <li><a href="list.html">News Category 1</a></li>
-                <li><a href="list.html">News Category 2</a></li>
-                <li><a href="list.html">News Category 3</a></li>
-                <li><a href="list.html">News Category 4</a></li>
-                <li><a href="add.html">Add News</a></li>
-            </ul>
-        </nav>
+
+    <!-- Section 1: Hero -->
+    <header class="hero">
+        <div class="hero-bg">
+            <div class="hero-gradient"></div>
+        </div>
+        <div class="container hero-content">
+            <div class="badge-pills">
+                <div class="pill">⚡ <span>STREAMER.BOT</span></div>
+                <div class="pill">KICK</div>
+                <div class="pill">DISCORD</div>
+                <div class="pill">OBS</div>
+            </div>
+            <h1>CONSTRUYE TU BOT. SIN DEPENDER DE NADIE.</h1>
+            <p>BoinaCoin es un ecosistema de economía virtual open source para Kick. Monedas, rangos, comandos, alertas en OBS y Discord — todo en tu servidor, todo bajo tu control.</p>
+            <div class="cta-group">
+                <a href="#docs" class="btn btn-primary">Ver documentación →</a>
+                <a href="https://github.com/axljuega/axljuega.github.io" target="_blank" class="btn btn-secondary">GitHub →</a>
+            </div>
+        </div>
     </header>
-	<main>
-		<section class="gallery">
-            <a href="list.html"><img src="image1.jpg" alt="News 1"></a>
-            <a href="list.html"><img src="image2.jpg" alt="News 2"></a>
-            <a href="list.html"><img src="image3.jpg" alt="News 3"></a>
-            <a href="list.html"><img src="image4.jpg" alt="News 4"></a>
-            <a href="add.html"><img src="add.jpg" alt="Add News"></a>
-		</section>
-		
-		<section>
-			<input id="numero1" type="number" placeholder="Número 1">
-			<input id="numero2" type="number" placeholder="Número 2">
-			<button id="btnSumar" onclick="sumar()">"Cargando..."</button>
-		</section>
-		
-		<section>
-			<p id="resultado"></p>
-		</section>
-	
-	</main>
-	<footer>
-        <p>&copy; 2024 My Website. All rights reserved.</p>
+
+    <main class="container">
+
+        <!-- Section 2: Features -->
+        <section id="features">
+            <div class="section-header">
+                <h2>Funcionalidades</h2>
+                <p>Todo lo que necesitas para gamificar tu stream de Kick de forma profesional.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    <h3>Economía completa</h3>
+                    <p>Saldo, rangos, apuestas, duelos, cofres y hora feliz. Totalmente configurable y persistente.</p>
+                </div>
+                <div class="feature-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    <h3>Open Source total</h3>
+                    <p>Haz un fork, modifica el código C# y despliégalo. Sin cuotas mensuales ni depender de plataformas SaaS.</p>
+                </div>
+                <div class="feature-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    <h3>Tus propias frases</h3>
+                    <p>BoinaBot responde con un JSON de frases que tú escribes. Personalidad única para tu canal sin tocar código binario.</p>
+                </div>
+                <div class="feature-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                    <h3>Integración nativa</h3>
+                    <p>Conexión directa entre Streamer.bot, Kick, Discord y OBS. Arquitectura modular diseñada para la estabilidad.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Cómo funciona -->
+        <section id="how-it-works">
+            <div class="section-header">
+                <h2>Cómo funciona</h2>
+                <p>Una arquitectura diseñada para darte el control absoluto de tu contenido.</p>
+            </div>
+            <div class="architecture-viz">
+                <svg class="arch-svg" viewBox="0 0 800 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Boxes -->
+                    <rect x="20" y="70" width="160" height="100" rx="8" fill="var(--bg-card)" stroke="var(--border)" stroke-width="2"/>
+                    <text x="100" y="125" fill="var(--text-primary)" font-size="16" font-weight="700" text-anchor="middle">KICK.COM</text>
+                    <text x="100" y="145" fill="var(--text-secondary)" font-size="12" text-anchor="middle">Eventos de chat/sub</text>
+
+                    <path d="M180 120H240" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4 4" />
+                    <polygon points="245,120 235,115 235,125" fill="var(--accent)"/>
+
+                    <rect x="250" y="40" width="200" height="160" rx="8" fill="var(--bg-card)" stroke="var(--accent)" stroke-width="2"/>
+                    <text x="350" y="115" fill="var(--accent)" font-size="18" font-weight="700" text-anchor="middle">STREAMER.BOT</text>
+                    <text x="350" y="140" fill="var(--text-secondary)" font-size="12" text-anchor="middle">Cerebro / Lógica C#</text>
+                    <text x="350" y="160" fill="var(--text-secondary)" font-size="12" text-anchor="middle">Persistencia Local</text>
+
+                    <!-- Outputs -->
+                    <path d="M450 120H510" stroke="var(--border)" stroke-width="2" />
+                    <path d="M510 120V60H540" stroke="var(--border)" stroke-width="2" />
+                    <path d="M510 120H540" stroke="var(--border)" stroke-width="2" />
+                    <path d="M510 120V180H540" stroke="var(--border)" stroke-width="2" />
+
+                    <rect x="550" y="20" width="120" height="50" rx="6" fill="var(--bg-card)" stroke="var(--border)" stroke-width="2"/>
+                    <text x="610" y="50" fill="var(--text-primary)" font-size="14" font-weight="700" text-anchor="middle">OBS STUDIO</text>
+
+                    <rect x="550" y="95" width="120" height="50" rx="6" fill="var(--bg-card)" stroke="var(--border)" stroke-width="2"/>
+                    <text x="610" y="125" fill="var(--text-primary)" font-size="14" font-weight="700" text-anchor="middle">DISCORD</text>
+
+                    <rect x="550" y="170" width="120" height="50" rx="6" fill="var(--bg-card)" stroke="var(--border)" stroke-width="2"/>
+                    <text x="610" y="200" fill="var(--text-primary)" font-size="14" font-weight="700" text-anchor="middle">n8n / API</text>
+                </svg>
+            </div>
+            <div class="architecture-text">
+                <p>Streamer.bot actúa como el centro neurálgico que procesa los eventos de Kick en tiempo real, ejecuta la lógica económica y dispara acciones coordinadas en tu comunidad y tus directos.</p>
+            </div>
+        </section>
+
+        <!-- Section 4: Empezar -->
+        <section id="deploy">
+            <div class="section-header">
+                <h2>¿Listo para desplegar?</h2>
+                <p>Sigue estos 4 pasos para tener tu economía funcionando hoy mismo.</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <span class="step-number">01</span>
+                    <h3>Descarga Streamer.bot</h3>
+                    <p>Consigue la última versión del software base para Windows o Linux.</p>
+                </div>
+                <div class="step-card">
+                    <span class="step-number">02</span>
+                    <h3>Conecta tu Kick</h3>
+                    <p>Vincula tus cuentas de Streamer y Bot en el panel de configuración.</p>
+                </div>
+                <div class="step-card">
+                    <span class="step-number">03</span>
+                    <h3>Importa Acciones</h3>
+                    <p>Carga los scripts C# del repositorio directamente en tus acciones.</p>
+                </div>
+                <div class="step-card">
+                    <span class="step-number">04</span>
+                    <h3>Personaliza</h3>
+                    <p>Edita tu JSON de frases y lánzalo a tu comunidad.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Documentación -->
+        <section id="docs-section">
+            <div class="section-header">
+                <h2>Documentación</h2>
+                <p>Guías técnicas y manuales de usuario para el ecosistema BoinaCoin.</p>
+            </div>
+
+            <div id="docs">
+                <div class="docs-sidebar">
+                    <div class="mobile-docs-toggle" id="mobile-docs-toggle">
+                        <span>Seleccionar documento</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <h3>ARCHIVOS</h3>
+                    <nav class="docs-nav" id="docs-nav">
+                        <ul id="docs-list">
+                            <!-- JS populated -->
+                            <li style="color: var(--text-secondary); font-size: 0.9rem;">Cargando...</li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="docs-content markdown-body" id="docs-content">
+                    <div class="docs-placeholder">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1.5rem; opacity: 0.3;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        <p>Selecciona un archivo del menú lateral para ver su contenido.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Section 6: Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">BOINA<span>COIN</span></div>
+            <div class="footer-links">
+                <a href="https://github.com/axljuega/axljuega.github.io" target="_blank">GitHub</a>
+                <a href="#">Kick</a>
+                <a href="#">Discord</a>
+            </div>
+            <div class="footer-copy">
+                Hecho con 🎩 por La Chica de la Boina · Open Source · MIT License
+            </div>
+        </div>
     </footer>
-	
-    <script src="script.js"></script>
+
+    <!-- Scripts -->
+    <script>
+        const REPO_OWNER = 'axljuega';
+        const REPO_NAME = 'axljuega.github.io';
+        const API_URL = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/`;
+
+        let librariesLoaded = false;
+
+        // Fetch docs list from GitHub
+        async function fetchDocsList() {
+            const listElement = document.getElementById('docs-list');
+            try {
+                const response = await fetch(API_URL);
+                if (!response.ok) throw new Error('Failed to fetch');
+
+                const files = await response.json();
+                const mdFiles = files.filter(file =>
+                    file.name.endsWith('.md') &&
+                    file.name.toLowerCase() !== 'readme.md'
+                );
+
+                if (mdFiles.length === 0) {
+                    listElement.innerHTML = '<li style="color: var(--text-secondary); font-size: 0.9rem;">Añade archivos .md al repo para que aparezcan aquí automáticamente.</li>';
+                    return;
+                }
+
+                listElement.innerHTML = '';
+                mdFiles.forEach(file => {
+                    const li = document.createElement('li');
+                    const a = document.createElement('a');
+                    a.href = `#${file.name}`;
+                    a.textContent = formatDocName(file.name);
+                    a.onclick = (e) => {
+                        e.preventDefault();
+                        loadDoc(file.download_url, a);
+                        if (window.innerWidth <= 768) {
+                            document.getElementById('docs-nav').classList.remove('open');
+                        }
+                    };
+                    li.appendChild(a);
+                    listElement.appendChild(li);
+                });
+
+            } catch (error) {
+                console.error(error);
+                listElement.innerHTML = '<li style="color: #ff4444; font-size: 0.9rem;">No se pudo cargar la lista de documentos. Refresca o revisa la conexión.</li>';
+            }
+        }
+
+        function formatDocName(filename) {
+            return filename
+                .replace('.md', '')
+                .replace(/_/g, ' ')
+                .replace(/-/g, ' ')
+                .toLowerCase()
+                .split(' ')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(' ');
+        }
+
+        async function loadDoc(url, element) {
+            const contentArea = document.getElementById('docs-content');
+
+            // Mark active
+            document.querySelectorAll('#docs-list a').forEach(a => a.classList.remove('active'));
+            element.classList.add('active');
+
+            contentArea.innerHTML = '<div class="docs-placeholder"><p>Cargando contenido...</p></div>';
+
+            try {
+                // Lazy load marked and highlight.js
+                if (!librariesLoaded) {
+                    await loadScript('https://cdn.jsdelivr.net/npm/marked/marked.min.js');
+                    await loadScript('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js');
+                    const link = document.createElement('link');
+                    link.rel = 'stylesheet';
+                    link.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css';
+                    document.head.appendChild(link);
+                    librariesLoaded = true;
+                }
+
+                const response = await fetch(url);
+                const markdown = await response.text();
+
+                contentArea.innerHTML = marked.parse(markdown);
+
+                // Highlight code blocks
+                contentArea.querySelectorAll('pre code').forEach((block) => {
+                    hljs.highlightElement(block);
+                });
+
+                // Auto-anchor headings
+                contentArea.querySelectorAll('h1, h2, h3, h4').forEach(header => {
+                    const id = header.textContent.toLowerCase().replace(/[^\w]+/g, '-');
+                    header.id = id;
+                });
+
+            } catch (error) {
+                console.error(error);
+                contentArea.innerHTML = '<div class="docs-placeholder"><p style="color: #ff4444;">Error al cargar el documento.</p></div>';
+            }
+        }
+
+        function loadScript(src) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.onload = resolve;
+                script.onerror = reject;
+                document.head.appendChild(script);
+            });
+        }
+
+        // Mobile Toggle
+        document.getElementById('mobile-docs-toggle').onclick = () => {
+            document.getElementById('docs-nav').classList.toggle('open');
+        };
+
+        // Init
+        fetchDocsList();
+    </script>
 </body>
 </html>
