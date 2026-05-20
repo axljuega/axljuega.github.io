@@ -10,7 +10,7 @@
 //    · webhookUserName    → nombre del usuario
 //    · webhookNewRank     → nuevo rango (int 0-4)
 //    · webhookOldRank     → rango anterior (int 0-4, solo en bajadas)
-//    · webhookBonus       → Boinacoins de bonus (long, 0 en bajadas)
+//    · webhookBonus       → BoinaCoins de bonus (long, 0 en bajadas)
 //    · webhookIsDowngrade → true si es bajada, false si es subida
 // ============================================================
 
@@ -96,7 +96,7 @@ public class CPHInline
                     rankEmoji   = "🧶";
                     roleId      = ROLE_ID_LANA;
                     color       = COLOR_LANA;
-                    description = $"**{userName}** acaba de unirse a la comunidad Boinacoin.\\n" +
+                    description = $"**{userName}** acaba de unirse a la comunidad BoinaCoin.\\n" +
                                   $"Ya puede usar `!dado` y `!8ball` en el canal.";
                     break;
                 case 2:
@@ -151,14 +151,14 @@ public class CPHInline
                         $"{{\"name\": \"Racha\",           \"value\": \"{streak} streams 🔥\", \"inline\": true}}" +
                         bonusField +
                     "]," +
-                    $"\"footer\": {{\"text\": \"Boinacoin · La Chica de la Boina\"}}," +
+                    $"\"footer\": {{\"text\": \"BoinaCoin · La Chica de la Boina\"}}," +
                     $"\"timestamp\": \"{timestamp}\"" +
                 "}]}";
 
             sent = SendWebhook(webhookUrl, payload);
 
-            if (sent) CPH.LogInfo($"[Boinacoin] Webhook subida · {userName} → {rankName}");
-            else      CPH.LogWarn($"[Boinacoin] Webhook subida FALLIDO · {userName} → {rankName}");
+            if (sent) CPH.LogInfo($"[BoinaCoin] Webhook subida · {userName} → {rankName}");
+            else      CPH.LogWarn($"[BoinaCoin] Webhook subida FALLIDO · {userName} → {rankName}");
         }
         else
         {
@@ -175,7 +175,7 @@ public class CPHInline
             if (newRank == 0)
             {
                 title       = $"📉 {userName} pierde todos sus rangos";
-                description = $"**{userName}** ha caído por debajo de los 1.000 Boinacoins.\\n" +
+                description = $"**{userName}** ha caído por debajo de los 1.000 BoinaCoins.\\n" +
                               $"Ha perdido su rango **{oldRankName}** y vuelve a **Boina de Paja**.\\n" +
                               $"*Todos los roles de rango han sido eliminados en el servidor.*";
             }
@@ -183,7 +183,7 @@ public class CPHInline
             {
                 title       = $"📉 {userName} baja de rango";
                 description = $"**{userName}** ha pasado de **{oldRankName}** a **{newRankName}**.\\n" +
-                              $"*Recupera las Boinacoins perdidas para volver a subir.*";
+                              $"*Recupera las BoinaCoins perdidas para volver a subir.*";
             }
 
             string payload = "{\"embeds\": [{" +
@@ -195,14 +195,14 @@ public class CPHInline
                     $"{{\"name\": \"Total histórico\", \"value\": \"{total:N0} 🪙\",   \"inline\": true}}," +
                     $"{{\"name\": \"Racha\",           \"value\": \"{streak} streams 🔥\", \"inline\": true}}" +
                 "]," +
-                $"\"footer\": {{\"text\": \"Boinacoin · La Chica de la Boina\"}}," +
+                $"\"footer\": {{\"text\": \"BoinaCoin · La Chica de la Boina\"}}," +
                 $"\"timestamp\": \"{timestamp}\"" +
             "}]}";
 
             sent = SendWebhook(WEBHOOK_DOWNGRADE, payload);
 
-            if (sent) CPH.LogInfo($"[Boinacoin] Webhook bajada · {userName} · {oldRankName} → {newRankName}");
-            else      CPH.LogWarn($"[Boinacoin] Webhook bajada FALLIDO · {userName} · {oldRankName} → {newRankName}");
+            if (sent) CPH.LogInfo($"[BoinaCoin] Webhook bajada · {userName} · {oldRankName} → {newRankName}");
+            else      CPH.LogWarn($"[BoinaCoin] Webhook bajada FALLIDO · {userName} · {oldRankName} → {newRankName}");
         }
 
         return sent;
@@ -213,7 +213,7 @@ public class CPHInline
     {
         if (url.Contains("WEBHOOK_ID") || url.Contains("WEBHOOK_TOKEN"))
         {
-            CPH.LogWarn("[Boinacoin] Webhook URL sin configurar.");
+            CPH.LogWarn("[BoinaCoin] Webhook URL sin configurar.");
             return false;
         }
 
@@ -227,13 +227,13 @@ public class CPHInline
 
                 if (response.IsSuccessStatusCode) return true;
 
-                CPH.LogWarn($"[Boinacoin] Webhook HTTP {(int)response.StatusCode} · {response.ReasonPhrase}");
+                CPH.LogWarn($"[BoinaCoin] Webhook HTTP {(int)response.StatusCode} · {response.ReasonPhrase}");
                 return false;
             }
         }
         catch (Exception ex)
         {
-            CPH.LogWarn($"[Boinacoin] Webhook excepción: {ex.Message}");
+            CPH.LogWarn($"[BoinaCoin] Webhook excepción: {ex.Message}");
             return false;
         }
     }

@@ -1,7 +1,7 @@
 // ============================================================
 //  BOINACOIN · earn/follow.cs
 //  Evento: nuevo Follow en Kick
-//  Recompensa: +250 Boinacoins (antes de multiplicadores)
+//  Recompensa: +250 BoinaCoins (antes de multiplicadores)
 //
 //  FIX: Eliminado bloque de exclusión del broadcaster.
 //  NEW: Envía embed a Discord #subs-y-follows.
@@ -84,7 +84,7 @@ public class CPHInline
         // ── 6. Mensaje de bienvenida en Kick ─────────────────
         string multText = mult > 1.0 ? $" (x{mult:0.##} ⚡)" : "";
         CPH.SendKickMessage(
-            $"🎩 ¡Bienvenid@ {userName}! +{earned} Boinacoins por el follow{multText} · " +
+            $"🎩 ¡Bienvenid@ {userName}! +{earned} BoinaCoins por el follow{multText} · " +
             $"Saldo total: {balance} 🪙");
 
         // ── 7. Embed Discord #subs-y-follows ─────────────────
@@ -97,11 +97,11 @@ public class CPHInline
                 ""description"": ""**{EscapeJson(userName)}** acaba de seguir el canal.\n¡Bienvenid@ a la comunidad de la Boina!"",
                 ""color"": 5763719,
                 ""fields"": [
-                    {{""name"": ""Boinacoins ganados"", ""value"": ""+{earned} 🪙{EscapeJson(multText)}"", ""inline"": true}},
+                    {{""name"": ""BoinaCoins ganados"", ""value"": ""+{earned} 🪙{EscapeJson(multText)}"", ""inline"": true}},
                     {{""name"": ""Saldo total"",        ""value"": ""{balance:N0} 🪙"",            ""inline"": true}},
                     {{""name"": ""Rango actual"",       ""value"": ""{EscapeJson(rankName)}"",     ""inline"": true}}
                 ],
-                ""footer"": {{""text"": ""Boinacoin · La Chica de la Boina""}},
+                ""footer"": {{""text"": ""BoinaCoin · La Chica de la Boina""}},
                 ""timestamp"": ""{timestamp}""
             }}]
         }}";
@@ -137,7 +137,7 @@ public class CPHInline
         CPH.SetArgument("rankUpUserId",   userId);
         CPH.SetArgument("rankUpUserName", userName);
         CPH.SetArgument("rankUpNewRank",  newRank);
-        CPH.RunAction("Boinacoin · RankChecker", false);
+        CPH.RunAction("BoinaCoin · RankChecker", false);
     }
 
     private void SendWebhook(string url, string json)

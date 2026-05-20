@@ -12,7 +12,7 @@
 //       contra CPH.KickGetBroadcaster().UserId, que sí está
 //       garantizado por la API.
 //
-//  Resetea completamente el perfil Boinacoin de un usuario:
+//  Resetea completamente el perfil BoinaCoin de un usuario:
 //    · boinacoin             → 0
 //    · boinacoin_rank        → 0
 //    · boinacoin_multiplier  → 0 (sin sub activa)
@@ -54,7 +54,7 @@ public class CPHInline
 
         if (!isBroadcaster)
         {
-            CPH.LogInfo($"[Boinacoin] !resetboinas denegado a {callerName} (no es broadcaster).");
+            CPH.LogInfo($"[BoinaCoin] !resetboinas denegado a {callerName} (no es broadcaster).");
             return true;
         }
 
@@ -72,7 +72,7 @@ public class CPHInline
 
         if (CPH.UserInGroup(targetName, Platform.Kick, "Chat Bots"))
         {
-            CPH.SendKickMessage("⚠️ Los bots del sistema no pueden participar en la economía Boinacoin.");
+            CPH.SendKickMessage("⚠️ Los bots del sistema no pueden participar en la economía BoinaCoin.");
             return true;
         }
 
@@ -101,18 +101,18 @@ public class CPHInline
         {
             CPH.SetArgument("rankUpUserName", targetName);
             CPH.SetArgument("rankUpNewRank",  0);
-            CPH.RunAction("Boinacoin · RankChecker", false);
+            CPH.RunAction("BoinaCoin · RankChecker", false);
         }
 
         // ── 7. Log interno ────────────────────────────────────
         CPH.LogInfo(
-            $"[Boinacoin] RESET · {targetName} · " +
+            $"[BoinaCoin] RESET · {targetName} · " +
             $"Saldo borrado: {oldBalance} · Rango borrado: {oldRank} · " +
             $"Ejecutado por: {callerName}");
 
         // ── 8. Mensaje de confirmación (discreto) ─────────────
         CPH.SendKickMessage(
-            $"🛠️ [{callerName}] Perfil Boinacoin de {targetName} reseteado a cero.");
+            $"🛠️ [{callerName}] Perfil BoinaCoin de {targetName} reseteado a cero.");
 
         return true;
     }

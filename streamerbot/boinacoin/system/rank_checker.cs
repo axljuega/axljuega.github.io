@@ -13,7 +13,7 @@
 //
 //  Responsabilidades:
 //    1. Guard antiduplicado via boinacoin_rank_announced.
-//    2. Bonus de Boinacoins: solo si newRank supera el récord
+//    2. Bonus de BoinaCoins: solo si newRank supera el récord
 //       histórico (boinacoin_rank_max) → sin abuso por re-subida.
 //    3. Anuncio en chat de Kick.
 //    4. Anuncio en Discord (DiscordWebhook) → tanto en subidas
@@ -34,10 +34,10 @@ public class CPHInline
     private static readonly string[] RANK_UP_MESSAGES =
     {
         "",
-        "🧶 ¡{0} acaba de conseguir la Boina de Lana! Ya eres parte de la comunidad. +{1} Boinacoins de bienvenida.",
-        "🪡 ¡¡{0} asciende a Boina de Cuero!! Acceso a recompensas Nivel 2 desbloqueado. +{1} Boinacoins.",
-        "💎 ¡¡¡{0} alcanza la Boina de Terciopelo!!! Multiplicador x1.25 permanente activado. +{1} Boinacoins.",
-        "👑 ¡¡¡¡{0} entra en la LEYENDA como La Boina Legendaria!!!! Multiplicador x1.5 · VIP · +{1} Boinacoins. ¡INCREÍBLE!"
+        "🧶 ¡{0} acaba de conseguir la Boina de Lana! Ya eres parte de la comunidad. +{1} BoinaCoins de bienvenida.",
+        "🪡 ¡¡{0} asciende a Boina de Cuero!! Acceso a recompensas Nivel 2 desbloqueado. +{1} BoinaCoins.",
+        "💎 ¡¡¡{0} alcanza la Boina de Terciopelo!!! Multiplicador x1.25 permanente activado. +{1} BoinaCoins.",
+        "👑 ¡¡¡¡{0} entra en la LEYENDA como La Boina Legendaria!!!! Multiplicador x1.5 · VIP · +{1} BoinaCoins. ¡INCREÍBLE!"
     };
 
     // Mensajes de bajada: discretos pero visibles en el chat de Kick
@@ -90,9 +90,9 @@ public class CPHInline
         CPH.SetArgument("webhookUserName",     userName);
         CPH.SetArgument("webhookNewRank",      newRank);
         CPH.SetArgument("webhookIsDowngrade",  isDowngrade);
-        CPH.RunAction("Boinacoin · DiscordRoles", false);
+        CPH.RunAction("BoinaCoin · DiscordRoles", false);
 
-        CPH.LogInfo($"[Boinacoin] RankChecker · {userName} · {lastAnnounced} → {newRank} · downgrade={isDowngrade}");
+        CPH.LogInfo($"[BoinaCoin] RankChecker · {userName} · {lastAnnounced} → {newRank} · downgrade={isDowngrade}");
 
         return true;
     }
@@ -156,7 +156,7 @@ public class CPHInline
         CPH.SetArgument("webhookNewRank",     newRank);
         CPH.SetArgument("webhookBonus",       bonus);
         CPH.SetArgument("webhookIsDowngrade", false);
-        CPH.RunAction("Boinacoin · DiscordWebhook", false);
+        CPH.RunAction("BoinaCoin · DiscordWebhook", false);
     }
 
     // ════════════════════════════════════════════════════════
@@ -180,7 +180,7 @@ public class CPHInline
         CPH.SetArgument("webhookOldRank",     oldRank);
         CPH.SetArgument("webhookBonus",       0L);
         CPH.SetArgument("webhookIsDowngrade", true);
-        CPH.RunAction("Boinacoin · DiscordWebhook", false);
+        CPH.RunAction("BoinaCoin · DiscordWebhook", false);
     }
 
     private string RankName(int rank)

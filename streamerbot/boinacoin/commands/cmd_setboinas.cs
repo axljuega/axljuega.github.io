@@ -61,7 +61,7 @@ public class CPHInline
 
         if (CPH.UserInGroup(targetName, Platform.Kick, "Chat Bots"))
         {
-            CPH.SendKickMessage("⚠️ Los bots del sistema no pueden participar en la economía Boinacoin.");
+            CPH.SendKickMessage("⚠️ Los bots del sistema no pueden participar en la economía BoinaCoin.");
             return true;
         }
 
@@ -122,7 +122,7 @@ public class CPHInline
 
         CPH.SetArgument("rankUpUserName", userName);
         CPH.SetArgument("rankUpNewRank",  newRank);
-        CPH.RunAction("Boinacoin · RankChecker", false);
+        CPH.RunAction("BoinaCoin · RankChecker", false);
     }
 
     private int RankForBalance(long balance)

@@ -8,7 +8,7 @@
 //
 //  Cómo usarlo desde otro script:
 //    CPH.SetArgument("multUserId", userId);
-//    CPH.RunAction("Boinacoin · Multiplier", true);  // true = esperar
+//    CPH.RunAction("BoinaCoin · Multiplier", true);  // true = esperar
 //    double mult = CPH.GetGlobalVar<double>("boinacoin_calc_mult_" + userId, false);
 //    CPH.UnsetGlobalVar("boinacoin_calc_mult_" + userId, false);  // limpiar
 //
@@ -40,7 +40,7 @@ public class CPHInline
 
         if (string.IsNullOrEmpty(userId))
         {
-            CPH.LogWarn("[Boinacoin] Multiplier: llamado sin multUserId.");
+            CPH.LogWarn("[BoinaCoin] Multiplier: llamado sin multUserId.");
             return false;
         }
 
@@ -52,7 +52,7 @@ public class CPHInline
         string resultKey = "boinacoin_calc_mult_" + userId;
         CPH.SetGlobalVar(resultKey, multiplier, false);
 
-        CPH.LogInfo($"[Boinacoin] Multiplier · {userId} → x{multiplier:0.##}");
+        CPH.LogInfo($"[BoinaCoin] Multiplier · {userId} → x{multiplier:0.##}");
 
         return true;
     }

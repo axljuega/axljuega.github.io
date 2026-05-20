@@ -4,7 +4,7 @@
 //  Permiso: Boina de Lana+ (rank >= 1)
 //
 //  Mecánica:
-//    1. Usuario apuesta X Boinacoins
+//    1. Usuario apuesta X BoinaCoins
 //    2. Probabilidad 50% de ganar (dobla apuesta) o perder.
 //    3. Límites:
 //       - Mínimo: 10
@@ -46,7 +46,7 @@ public class CPHInline
             long toLana = 1_000 - CPH.GetKickUserVarById<long>(userId, "boinacoin");
             CPH.SendKickMessage(
                 $"🔒 {userName}, necesitas ser 🧶 Boina de Lana para apostar. " +
-                $"Te faltan {Math.Max(0, toLana)} Boinacoins.");
+                $"Te faltan {Math.Max(0, toLana)} BoinaCoins.");
             return true;
         }
 
@@ -78,7 +78,7 @@ public class CPHInline
 
         if (balance < MIN_BET)
         {
-            CPH.SendKickMessage($"❌ {userName}, necesitas al menos {MIN_BET} Boinacoins para apostar.");
+            CPH.SendKickMessage($"❌ {userName}, necesitas al menos {MIN_BET} BoinaCoins para apostar.");
             return true;
         }
 
@@ -87,14 +87,14 @@ public class CPHInline
 
         if (bet < MIN_BET)
         {
-            CPH.SendKickMessage($"❌ {userName}, apuesta mínima: {MIN_BET} Boinacoins.");
+            CPH.SendKickMessage($"❌ {userName}, apuesta mínima: {MIN_BET} BoinaCoins.");
             return true;
         }
 
         if (bet > maxBet)
         {
             CPH.SendKickMessage(
-                $"❌ {userName}, tu apuesta máxima ahora es {maxBet} Boinacoins " +
+                $"❌ {userName}, tu apuesta máxima ahora es {maxBet} BoinaCoins " +
                 $"(20% de tu saldo o {MAX_BET_ABSOLUTE}, lo que sea menor).");
             return true;
         }
@@ -107,12 +107,12 @@ public class CPHInline
         if (win)
         {
             newBalance = balance + bet;
-            resultMsg  = $"🪙 ¡CARA! {userName} gana {bet} Boinacoins · Saldo: {newBalance} 🎉";
+            resultMsg  = $"🪙 ¡CARA! {userName} gana {bet} BoinaCoins · Saldo: {newBalance} 🎉";
         }
         else
         {
             newBalance = balance - bet;
-            resultMsg  = $"💀 ¡CRUZ! {userName} pierde {bet} Boinacoins · Saldo: {newBalance} 😬";
+            resultMsg  = $"💀 ¡CRUZ! {userName} pierde {bet} BoinaCoins · Saldo: {newBalance} 😬";
         }
 
         // ── 6. Guardar nuevo saldo ────────────────────────────
@@ -163,7 +163,7 @@ public class CPHInline
         CPH.SetArgument("rankUpUserId",   userId);
         CPH.SetArgument("rankUpUserName", userName);
         CPH.SetArgument("rankUpNewRank",  newRank);
-        CPH.RunAction("Boinacoin · RankChecker", false);
+        CPH.RunAction("BoinaCoin · RankChecker", false);
     }
 
     private int RankForBalance(long balance)

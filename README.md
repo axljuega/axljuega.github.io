@@ -1,4 +1,4 @@
-# 🎩 Ecosistema Boinacoin — Guía completa DIY (Streamer.bot + Kick + Discord)
+# 🎩 Ecosistema BoinaCoin — Guía completa DIY (Streamer.bot + Kick + Discord)
 
 > **Filosofía:** Este sistema está diseñado para ser modular, transparente y fácil de configurar. Cada pieza hace una cosa concreta y se conecta con las demás de forma explícita a través de variables y acciones.
 
@@ -157,41 +157,41 @@ Debes crear una **Action** por cada script `.cs`.
 
 | Carpeta | Script | Nombre de la Acción |
 |:--- |:--- |:--- |
-| `earn/` | `follow.cs` | `Boinacoin · Follow` |
-| `earn/` | `sub.cs` | `Boinacoin · Sub` |
-| `earn/` | `resub.cs` | `Boinacoin · Resub` |
-| `earn/` | `giftsub.cs` | `Boinacoin · GiftSub` |
-| `earn/` | `massgift.cs` | `Boinacoin · MassGift` |
-| `earn/` | `kicks.cs` | `Boinacoin · Kicks` |
-| `earn/` | `chat_message.cs` | `Boinacoin · ChatMessage` |
-| `earn/` | `timed_payout.cs` | `Boinacoin · TimedPayout` |
-| `earn/` | `presente.cs` | `Boinacoin · Presente` |
-| `commands/` | `cmd_boinas.cs` | `Boinacoin · Boinas` |
-| `commands/` | `cmd_top.cs` | `Boinacoin · Top` |
-| `commands/` | `cmd_rank.cs` | `Boinacoin · Rank` |
-| `commands/` | `cmd_regalar.cs` | `Boinacoin · Regalar` |
-| `commands/` | `cmd_apostar.cs` | `Boinacoin · Apostar` |
-| `commands/` | `cmd_duelo.cs` | `Boinacoin · Duelo` |
-| `commands/` | `cmd_cofre.cs` | `Boinacoin · Cofre` |
-| `commands/` | `cmd_horafeliz.cs` | `Boinacoin · HoraFeliz` |
-| `commands/` | `cmd_addboinas.cs` | `Boinacoin · AddBoinas` |
-| `commands/` | `cmd_setboinas.cs` | `Boinacoin · SetBoinas` |
-| `commands/` | `cmd_resetboinas.cs` | `Boinacoin · ResetBoinas` |
-| `commands/` | `cmd_mencion.cs` | `Boinacoin · Mención` |
-| `commands/` | `cmd_dado.cs` | `Boinacoin · Dado` |
-| `commands/` | `cmd_8ball.cs` | `Boinacoin · 8ball` |
-| `commands/` | `cmd_ruleta.cs` | `Boinacoin · Ruleta` |
-| `commands/` | `cmd_vincular.cs` | `Boinacoin · Vincular` |
-| `commands/` | `cmd_exclusive.cs` | `Boinacoin · Exclusive` |
-| `moderation/` | `mod_timeout.cs` | `Boinacoin · Timeout` |
-| `moderation/` | `mod_ban.cs` | `Boinacoin · Ban` |
-| `moderation/` | `mod_inactividad.cs` | `Boinacoin · Inactividad` |
-| `system/` | `rank_checker.cs` | **`Boinacoin · RankChecker`** ⚠️ Exacto |
-| `system/` | `multiplier.cs` | **`Boinacoin · Multiplier`** ⚠️ Exacto |
-| `system/` | `discord_webhook.cs` | **`Boinacoin · DiscordWebhook`** ⚠️ Exacto |
-| `system/` | `discord_roles.cs` | **`Boinacoin · DiscordRoles`** ⚠️ Exacto |
-| `system/` | `stream_on.cs` | `Boinacoin · StreamOn` |
-| `system/` | `stream_off.cs` | `Boinacoin · StreamOff` |
+| `earn/` | `follow.cs` | `BoinaCoin · Follow` |
+| `earn/` | `sub.cs` | `BoinaCoin · Sub` |
+| `earn/` | `resub.cs` | `BoinaCoin · Resub` |
+| `earn/` | `giftsub.cs` | `BoinaCoin · GiftSub` |
+| `earn/` | `massgift.cs` | `BoinaCoin · MassGift` |
+| `earn/` | `kicks.cs` | `BoinaCoin · Kicks` |
+| `earn/` | `chat_message.cs` | `BoinaCoin · ChatMessage` |
+| `earn/` | `timed_payout.cs` | `BoinaCoin · TimedPayout` |
+| `earn/` | `presente.cs` | `BoinaCoin · Presente` |
+| `commands/` | `cmd_boinas.cs` | `BoinaCoin · Boinas` |
+| `commands/` | `cmd_top.cs` | `BoinaCoin · Top` |
+| `commands/` | `cmd_rank.cs` | `BoinaCoin · Rank` |
+| `commands/` | `cmd_regalar.cs` | `BoinaCoin · Regalar` |
+| `commands/` | `cmd_apostar.cs` | `BoinaCoin · Apostar` |
+| `commands/` | `cmd_duelo.cs` | `BoinaCoin · Duelo` |
+| `commands/` | `cmd_cofre.cs` | `BoinaCoin · Cofre` |
+| `commands/` | `cmd_horafeliz.cs` | `BoinaCoin · HoraFeliz` |
+| `commands/` | `cmd_addboinas.cs` | `BoinaCoin · AddBoinas` |
+| `commands/` | `cmd_setboinas.cs` | `BoinaCoin · SetBoinas` |
+| `commands/` | `cmd_resetboinas.cs` | `BoinaCoin · ResetBoinas` |
+| `commands/` | `cmd_mencion.cs` | `BoinaCoin · Mención` |
+| `commands/` | `cmd_dado.cs` | `BoinaCoin · Dado` |
+| `commands/` | `cmd_8ball.cs` | `BoinaCoin · 8ball` |
+| `commands/` | `cmd_ruleta.cs` | `BoinaCoin · Ruleta` |
+| `commands/` | `cmd_vincular.cs` | `BoinaCoin · Vincular` |
+| `commands/` | `cmd_exclusive.cs` | `BoinaCoin · Exclusive` |
+| `moderation/` | `mod_timeout.cs` | `BoinaCoin · Timeout` |
+| `moderation/` | `mod_ban.cs` | `BoinaCoin · Ban` |
+| `moderation/` | `mod_inactividad.cs` | `BoinaCoin · Inactividad` |
+| `system/` | `rank_checker.cs` | **`BoinaCoin · RankChecker`** ⚠️ Exacto |
+| `system/` | `multiplier.cs` | **`BoinaCoin · Multiplier`** ⚠️ Exacto |
+| `system/` | `discord_webhook.cs` | **`BoinaCoin · DiscordWebhook`** ⚠️ Exacto |
+| `system/` | `discord_roles.cs` | **`BoinaCoin · DiscordRoles`** ⚠️ Exacto |
+| `system/` | `stream_on.cs` | `BoinaCoin · StreamOn` |
+| `system/` | `stream_off.cs` | `BoinaCoin · StreamOff` |
 
 > ⚠️ Las acciones marcadas como **Exacto** son invocadas internamente por otros scripts mediante `CPH.RunAction("nombre", false)` y deben llamarse exactamente así.
 
@@ -205,46 +205,46 @@ Ve a **Commands** → `Add`. Configura cada comando con su acción correspondien
 
 | Comando | Acción | Descripción |
 |:--- |:--- |:--- |
-| `!boinas` | `Boinacoin · Boinas` | Ver saldo propio o de otro (`!boinas @usuario`) |
-| `!top` | `Boinacoin · Top` | Top 5 del canal |
-| `!rank` | `Boinacoin · Rank` | Ver posición propia en el ranking |
-| `!regalar` | `Boinacoin · Regalar` | Transferir coins (`!regalar @usuario 500`) |
-| `!apostar` | `Boinacoin · Apostar` | Apostar al azar (requiere Boina de Lana+) |
-| `!presente` | `Boinacoin · Presente` | Check-in diario (+50 Boinacoins, 1 vez por stream) |
-| `!dado` | `Boinacoin · Dado` | Lanzar dados (coste base 5). Soporta apuestas: `!dado [caras] apuesta [nº] [cant]` |
-| `!8ball` | `Boinacoin · 8ball` | La bola 8 mágica (ácida). Pregunta opcional. |
-| `!vincular` | `Boinacoin · Vincular` | Vincular cuenta de Discord (`!vincular usuario`) |
-| `!desvincular` | `Boinacoin · Vincular` | Eliminar vínculo de Discord |
+| `!boinas` | `BoinaCoin · Boinas` | Ver saldo propio o de otro (`!boinas @usuario`) |
+| `!top` | `BoinaCoin · Top` | Top 5 del canal |
+| `!rank` | `BoinaCoin · Rank` | Ver posición propia en el ranking |
+| `!regalar` | `BoinaCoin · Regalar` | Transferir coins (`!regalar @usuario 500`) |
+| `!apostar` | `BoinaCoin · Apostar` | Apostar al azar (requiere Boina de Lana+) |
+| `!presente` | `BoinaCoin · Presente` | Check-in diario (+50 BoinaCoins, 1 vez por stream) |
+| `!dado` | `BoinaCoin · Dado` | Lanzar dados (coste base 5). Soporta apuestas: `!dado [caras] apuesta [nº] [cant]` |
+| `!8ball` | `BoinaCoin · 8ball` | La bola 8 mágica (ácida). Pregunta opcional. |
+| `!vincular` | `BoinaCoin · Vincular` | Vincular cuenta de Discord (`!vincular usuario`) |
+| `!desvincular` | `BoinaCoin · Vincular` | Eliminar vínculo de Discord |
 
 ### Comandos de Subs y Rangos (Exclusive):
 
 | Comando | Acción | Requisito |
 |:--- |:--- |:--- |
-| `!vip` | `Boinacoin · Exclusive` | Suscriptor |
-| `!sorteo` | `Boinacoin · Exclusive` | Suscriptor |
-| `!boinavip` | `Boinacoin · Exclusive` | Suscriptor |
-| `!bufar` | `Boinacoin · Exclusive` | Boina de Lana+ |
-| `!apodo` | `Boinacoin · Exclusive` | Boina de Cuero+ |
-| `!spotlight` | `Boinacoin · Exclusive` | Boina de Terciopelo+ |
-| `!oraculo` | `Boinacoin · Exclusive` | La Boina Legendaria |
+| `!vip` | `BoinaCoin · Exclusive` | Suscriptor |
+| `!sorteo` | `BoinaCoin · Exclusive` | Suscriptor |
+| `!boinavip` | `BoinaCoin · Exclusive` | Suscriptor |
+| `!bufar` | `BoinaCoin · Exclusive` | Boina de Lana+ |
+| `!apodo` | `BoinaCoin · Exclusive` | Boina de Cuero+ |
+| `!spotlight` | `BoinaCoin · Exclusive` | Boina de Terciopelo+ |
+| `!oraculo` | `BoinaCoin · Exclusive` | La Boina Legendaria |
 
 ### Comandos con modo (Set Argument antes del Execute):
 
 | Comando | Argumento | Acción |
 |:--- |:--- |:--- |
-| `!duelo` | `mode = challenge` | `Boinacoin · Duelo` |
-| `!aceptar` | `mode = accept` | `Boinacoin · Duelo` |
-| `!cofre` | `mode = spawn` | `Boinacoin · Cofre` |
-| `!abrir` | `mode = open` | `Boinacoin · Cofre` |
-| `!horafeliz` | — | `Boinacoin · HoraFeliz` |
+| `!duelo` | `mode = challenge` | `BoinaCoin · Duelo` |
+| `!aceptar` | `mode = accept` | `BoinaCoin · Duelo` |
+| `!cofre` | `mode = spawn` | `BoinaCoin · Cofre` |
+| `!abrir` | `mode = open` | `BoinaCoin · Cofre` |
+| `!horafeliz` | — | `BoinaCoin · HoraFeliz` |
 
 ### Comandos de administración (solo Moderator/Broadcaster):
 
 | Comando | Acción | Descripción |
 |:--- |:--- |:--- |
-| `!addboinas` | `Boinacoin · AddBoinas` | Añadir puntos (`!addboinas @usuario 1000`) |
-| `!setboinas` | `Boinacoin · SetBoinas` | Fijar puntos exactos |
-| `!resetboinas` | `Boinacoin · ResetBoinas` | Resetear saldo a cero |
+| `!addboinas` | `BoinaCoin · AddBoinas` | Añadir puntos (`!addboinas @usuario 1000`) |
+| `!setboinas` | `BoinaCoin · SetBoinas` | Fijar puntos exactos |
+| `!resetboinas` | `BoinaCoin · ResetBoinas` | Resetear saldo a cero |
 
 ### Mención al bot (sin comando):
 
@@ -270,18 +270,18 @@ El bot responde con una frase aleatoria del archivo `data/boinabot_frases.json` 
 
 | Acción | Trigger |
 |:--- |:--- |
-| `Boinacoin · Follow` | Kick → Channel → Follow |
-| `Boinacoin · Sub` | Kick → Subscriptions → Subscription |
-| `Boinacoin · Resub` | Kick → Subscriptions → Resubscription |
-| `Boinacoin · GiftSub` | Kick → Subscriptions → Gift Subscription |
-| `Boinacoin · MassGift` | Kick → Subscriptions → Mass Gift Subscription |
-| `Boinacoin · Kicks` | Kick → Kicks → Gifted |
-| `Boinacoin · ChatMessage` | Kick → Chat → Message |
-| `Boinacoin · Mención` | Kick → Chat → Message (con criteria: contains @BoinaBot, not starts with !) |
-| `Boinacoin · Timeout` | Kick → Moderation → User Banned + criteria: duration > 0 |
-| `Boinacoin · Ban` | Kick → Moderation → User Banned + criteria: duration == 0 |
-| `Boinacoin · StreamOn` | Kick → Channel → Stream Online |
-| `Boinacoin · StreamOff` | Kick → Channel → Stream Offline |
+| `BoinaCoin · Follow` | Kick → Channel → Follow |
+| `BoinaCoin · Sub` | Kick → Subscriptions → Subscription |
+| `BoinaCoin · Resub` | Kick → Subscriptions → Resubscription |
+| `BoinaCoin · GiftSub` | Kick → Subscriptions → Gift Subscription |
+| `BoinaCoin · MassGift` | Kick → Subscriptions → Mass Gift Subscription |
+| `BoinaCoin · Kicks` | Kick → Kicks → Gifted |
+| `BoinaCoin · ChatMessage` | Kick → Chat → Message |
+| `BoinaCoin · Mención` | Kick → Chat → Message (con criteria: contains @BoinaBot, not starts with !) |
+| `BoinaCoin · Timeout` | Kick → Moderation → User Banned + criteria: duration > 0 |
+| `BoinaCoin · Ban` | Kick → Moderation → User Banned + criteria: duration == 0 |
+| `BoinaCoin · StreamOn` | Kick → Channel → Stream Online |
+| `BoinaCoin · StreamOff` | Kick → Channel → Stream Offline |
 
 ---
 
@@ -291,8 +291,8 @@ Ve a **Settings** → **Timed Actions** → `Add`:
 
 | Nombre | Intervalo | Acción |
 |:--- |:--- |:--- |
-| Ingreso Pasivo | 600s (10 min) | `Boinacoin · TimedPayout` |
-| Limpieza Inactividad | 86400s (24h) | `Boinacoin · Inactividad` |
+| Ingreso Pasivo | 600s (10 min) | `BoinaCoin · TimedPayout` |
+| Limpieza Inactividad | 86400s (24h) | `BoinaCoin · Inactividad` |
 
 ---
 
@@ -323,7 +323,7 @@ Ve a **Settings** → **Timed Actions** → `Add`:
 
 Tipos disponibles: `follow`, `sub`, `resub`, `giftsub`, `massgift`, `kicks`.
 
-> ⚠️ Si OBS no está conectado, Streamer.bot registrará un `NullReferenceException` en el log. No afecta a los Boinacoins. Elimina el sub-action si no usas OBS.
+> ⚠️ Si OBS no está conectado, Streamer.bot registrará un `NullReferenceException` en el log. No afecta a los BoinaCoins. Elimina el sub-action si no usas OBS.
 
 ---
 
@@ -360,7 +360,7 @@ Tipos disponibles: `follow`, `sub`, `resub`, `giftsub`, `massgift`, `kicks`.
 | `boinacoin_session_start` | `long` | Unix timestamp de inicio del stream actual |
 | `boinacoin_session_follows` | `long` | Follows acumulados en la sesión |
 | `boinacoin_session_subs` | `long` | Subs acumuladas en la sesión |
-| `boinacoin_session_earned` | `long` | Boinacoins repartidas en la sesión |
+| `boinacoin_session_earned` | `long` | BoinaCoins repartidas en la sesión |
 | `boinacoin_session_chatters` | `string` | JSON top 10 chatters de la sesión |
 | `boinacoin_session_leaderboard` | `string` | JSON top 10 earners de la sesión |
 | `boinacoin_sorteo_entries` | `string` | JSON lista de participantes del sorteo |
@@ -422,7 +422,7 @@ Si el usuario tiene un nombre distinto en Kick y en Discord, el rol no se asigna
 Comprueba que el bot esté conectado en Settings → Kick y que la acción compile sin errores.
 
 **P: ¿Por qué el saldo no sube cuando chateo?**
-Verifica que `Boinacoin · ChatMessage` tiene el trigger `Kick → Chat → Message` y que el userId no llega vacío.
+Verifica que `BoinaCoin · ChatMessage` tiene el trigger `Kick → Chat → Message` y que el userId no llega vacío.
 
 **P: ¿Cómo excluyo a otros bots?**
 Añádelos al grupo `Chat Bots` en la pestaña Users. Sin tocar código.
@@ -453,4 +453,4 @@ Incluye `"kick"` en el check de permisos. Ver sección Fixes Conocidos.
 
 ---
 
-*Manual generado para el despliegue del Ecosistema Boinacoin · La Chica de la Boina 🎩*
+*Manual generado para el despliegue del Ecosistema BoinaCoin · La Chica de la Boina 🎩*

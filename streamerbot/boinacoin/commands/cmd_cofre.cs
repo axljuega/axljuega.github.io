@@ -5,7 +5,7 @@
 //  Mecánica:
 //    1. Streamer escribe !cofre → se activa un cofre por 5 min.
 //    2. El primer viewer que escriba !abrir gana el premio.
-//    3. Premio aleatorio: 500 a 5.000 Boinacoins.
+//    3. Premio aleatorio: 500 a 5.000 BoinaCoins.
 //    4. Máximo 1 cofre por stream (día).
 //
 //  FIX 1: Random.NextInt64() no existe en el runtime de
@@ -62,7 +62,7 @@ public class CPHInline
 
         if (!isBroadcaster)
         {
-            CPH.LogInfo($"[Boinacoin] !cofre denegado a {callerName} (no es broadcaster).");
+            CPH.LogInfo($"[BoinaCoin] !cofre denegado a {callerName} (no es broadcaster).");
             return true;
         }
 
@@ -106,7 +106,7 @@ public class CPHInline
         CPH.SendKickMessage(
             $"📦✨ ¡¡HA APARECIDO UN COFRE SECRETO!! " +
             $"El primero en escribir !abrir se llevará entre " +
-            $"{PRIZE_MIN} y {PRIZE_MAX} Boinacoins. " +
+            $"{PRIZE_MIN} y {PRIZE_MAX} BoinaCoins. " +
             $"¡Tienes {COFRE_TIMEOUT_SECS / 60} minutos! ⏳");
 
         return true;
@@ -167,7 +167,7 @@ public class CPHInline
 
         // ── Anuncio del ganador ───────────────────────────────
         CPH.SendKickMessage(
-            $"🎉 ¡¡{userName} ha abierto el cofre secreto y gana {prize} Boinacoins!! " +
+            $"🎉 ¡¡{userName} ha abierto el cofre secreto y gana {prize} BoinaCoins!! " +
             $"Saldo: {balance} 🪙 🎊");
 
         return true;
@@ -187,7 +187,7 @@ public class CPHInline
         CPH.SetArgument("rankUpUserId",   userId);
         CPH.SetArgument("rankUpUserName", userName);
         CPH.SetArgument("rankUpNewRank",  newRank);
-        CPH.RunAction("Boinacoin · RankChecker", false);
+        CPH.RunAction("BoinaCoin · RankChecker", false);
     }
 
     private int RankForBalance(long balance)

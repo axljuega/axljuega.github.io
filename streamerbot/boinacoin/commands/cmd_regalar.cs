@@ -4,7 +4,7 @@
 //  Permiso: todos
 //
 //  Validaciones:
-//    · Cantidad mínima: 10 Boinacoins
+//    · Cantidad mínima: 10 BoinaCoins
 //    · Saldo suficiente en el emisor
 //    · No regalarse a uno mismo
 //    · Cooldown: 60 segundos por usuario emisor
@@ -46,7 +46,7 @@ public class CPHInline
         // ── 2. Validar cantidad ───────────────────────────────
         if (!long.TryParse(rawAmount, out long amount) || amount < MIN_TRANSFER)
         {
-            CPH.SendKickMessage($"❌ {senderName}, la cantidad mínima para regalar es {MIN_TRANSFER} Boinacoins.");
+            CPH.SendKickMessage($"❌ {senderName}, la cantidad mínima para regalar es {MIN_TRANSFER} BoinaCoins.");
             return true;
         }
 
@@ -66,14 +66,14 @@ public class CPHInline
 
         if (CPH.UserInGroup(targetName, Platform.Kick, "Chat Bots"))
         {
-            CPH.SendKickMessage("⚠️ Los bots del sistema no pueden participar en la economía Boinacoin.");
+            CPH.SendKickMessage("⚠️ Los bots del sistema no pueden participar en la economía BoinaCoin.");
             return true;
         }
 
         // ── 5. No regalarse a uno mismo ───────────────────────
         if (targetName.ToLower() == senderName.ToLower())
         {
-            CPH.SendKickMessage($"😅 {senderName}, no puedes regalarte Boinacoins a ti mismo.");
+            CPH.SendKickMessage($"😅 {senderName}, no puedes regalarte BoinaCoins a ti mismo.");
             return true;
         }
 
@@ -83,7 +83,7 @@ public class CPHInline
         if (senderBalance < amount)
         {
             CPH.SendKickMessage(
-                $"❌ {senderName}, no tienes suficientes Boinacoins. " +
+                $"❌ {senderName}, no tienes suficientes BoinaCoins. " +
                 $"Saldo actual: {senderBalance} 🪙");
             return true;
         }
@@ -115,7 +115,7 @@ public class CPHInline
 
         // ── 12. Mensaje al chat ───────────────────────────────
         CPH.SendKickMessage(
-            $"🎁 {senderName} regala {amount} Boinacoins a {targetName} · " +
+            $"🎁 {senderName} regala {amount} BoinaCoins a {targetName} · " +
             $"{senderName}: {senderNew} 🪙 · {targetName}: {receiverNew} 🪙");
 
         return true;
@@ -140,7 +140,7 @@ public class CPHInline
         if (isId) CPH.SetArgument("rankUpUserId", userId);
         CPH.SetArgument("rankUpUserName", userName);
         CPH.SetArgument("rankUpNewRank",  newRank);
-        CPH.RunAction("Boinacoin · RankChecker", false);
+        CPH.RunAction("BoinaCoin · RankChecker", false);
     }
 
     private int RankForBalance(long balance)

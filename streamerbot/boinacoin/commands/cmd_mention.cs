@@ -13,7 +13,7 @@
 //    ❌ "!boinas @BoinaBot"             → NO trigger (es comando)
 //
 //  Configuración en Streamer.bot:
-//    Acción "Boinacoin · Mención"
+//    Acción "BoinaCoin · Mención"
 //    Trigger: Kick → Chat → Message
 //    Criteria (en el trigger):
 //      · Message Contains: @BoinaBot   (case-insensitive)

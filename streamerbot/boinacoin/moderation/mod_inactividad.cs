@@ -2,7 +2,7 @@
 //  BOINACOIN · moderation/mod_inactividad.cs
 //  Tipo: acción temporizadora diaria (o al inicio del stream)
 //  Penalización: -5% del saldo por cada 30 días de inactividad
-//                mínimo aplicado: -100 Boinacoins
+//                mínimo aplicado: -100 BoinaCoins
 //                nunca por debajo de 0
 //
 //  Lógica:
@@ -43,7 +43,7 @@ public class CPHInline
         string lastRun = CPH.GetGlobalVar<string>("boinacoin_inactivity_last_run", true) ?? "";
         if (lastRun == todayDate)
         {
-            CPH.LogInfo("[Boinacoin] Inactividad: ya ejecutado hoy, omitiendo.");
+            CPH.LogInfo("[BoinaCoin] Inactividad: ya ejecutado hoy, omitiendo.");
             return true;
         }
 
@@ -58,7 +58,7 @@ public class CPHInline
 
         if (allVars == null || allVars.Count == 0)
         {
-            CPH.LogInfo("[Boinacoin] Inactividad: sin usuarios registrados.");
+            CPH.LogInfo("[BoinaCoin] Inactividad: sin usuarios registrados.");
             return true;
         }
 
@@ -101,7 +101,7 @@ public class CPHInline
             // ── Log por usuario ───────────────────────────────
             long daysInactive = daysSinceActive / 86400;
             CPH.LogInfo(
-                $"[Boinacoin] Inactividad · {userName} · " +
+                $"[BoinaCoin] Inactividad · {userName} · " +
                 $"Días sin aparecer: {daysInactive} · " +
                 $"Penalización: -{applied} · " +
                 $"Saldo: {balance} → {newBalance}");
@@ -112,9 +112,9 @@ public class CPHInline
 
         // ── Resumen final en log ──────────────────────────────
         CPH.LogInfo(
-            $"[Boinacoin] Inactividad completada · " +
+            $"[BoinaCoin] Inactividad completada · " +
             $"Usuarios penalizados: {penalizedCount} · " +
-            $"Total deducido: {totalDeducted} Boinacoins");
+            $"Total deducido: {totalDeducted} BoinaCoins");
 
         // Solo mencionar en chat si hubo penalizaciones
         // (mensaje discreto, sin nombres — privacidad)

@@ -16,7 +16,7 @@
 //  IMPORTANTE — Anuncio de fin automático:
 //    Este script activa la hora feliz pero NO puede programar
 //    un timer de 30 min desde C#. Para el anuncio de fin,
-//    crea en Streamer.bot una acción "Boinacoin · HoraFeliz Fin"
+//    crea en Streamer.bot una acción "BoinaCoin · HoraFeliz Fin"
 //    con un trigger Timer de 1.800 s (one-shot) que llame a
 //    este mismo script con Set Argument "mode" = "end".
 //
@@ -101,7 +101,7 @@ public class CPHInline
 
             CPH.SendKickMessage(
                 $"⚡ ¡¡HORA FELIZ activada!! " +
-                $"Todos los Boinacoins x2 durante 30 minutos · " +
+                $"Todos los BoinaCoins x2 durante 30 minutos · " +
                 $"Termina a las {endTime} 🎉🎉");
         }
 
@@ -124,7 +124,7 @@ public class CPHInline
             long mins      = remaining / 60;
             long secs      = remaining % 60;
             CPH.SendKickMessage(
-                $"⚡ Hora Feliz ACTIVA · x2 en todos los Boinacoins · " +
+                $"⚡ Hora Feliz ACTIVA · x2 en todos los BoinaCoins · " +
                 $"quedan {mins} min {secs}s · " +
                 $"tú no la has activado, {callerName}, pero disfrútala igual 🎩");
         }
@@ -150,13 +150,13 @@ public class CPHInline
 
         if (!stillActive)
         {
-            CPH.LogInfo("[Boinacoin] HoraFeliz Fin: ya estaba inactiva, nada que hacer.");
+            CPH.LogInfo("[BoinaCoin] HoraFeliz Fin: ya estaba inactiva, nada que hacer.");
             return true;
         }
 
         if (nowUnix < expiry)
         {
-            CPH.LogInfo($"[Boinacoin] HoraFeliz Fin: todavía activa ({expiry - nowUnix}s restantes).");
+            CPH.LogInfo($"[BoinaCoin] HoraFeliz Fin: todavía activa ({expiry - nowUnix}s restantes).");
             return true;
         }
 
