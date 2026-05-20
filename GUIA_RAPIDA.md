@@ -1,28 +1,35 @@
-# Guía Rápida de BoinaCoin 🎩
+# Guía Rápida
 
-Bienvenido al ecosistema **BoinaCoin**. Esta guía te ayudará a poner en marcha tu bot de economía en tiempo récord.
+Poner en marcha el ecosistema **BoinaCoin** te llevará menos de 10 minutos si sigues estos pasos.
 
-## 🚀 Pasos iniciales
+## 1. Requisitos Previos
+*   **Sistema Operativo:** Windows 10/11 o Linux.
+*   **Software:** OBS Studio instalado (opcional, para alertas visuales).
+*   **Cuentas:** Una cuenta de Streamer en Kick y, preferiblemente, una cuenta secundaria para el Bot.
 
-1. **Descarga Streamer.bot:** Es el motor que procesa toda la lógica.
-2. **Conecta Kick:** Ve a `Platforms -> Kick` y vincula tu cuenta.
-3. **Importa las Acciones:** Copia el código C# de la carpeta `streamerbot/` del repo a nuevas acciones en Streamer.bot.
+## 2. Descarga de Streamer.bot
+1.  Ve a [streamer.bot](https://streamer.bot/).
+2.  Descarga la última versión estable.
+3.  Descomprime y ejecuta `Streamer.bot.exe`.
 
-## 🛠️ Configuración esencial
+## 3. Conexión de Kick
+1.  En Streamer.bot, ve a **Platforms** -> **Kick** -> **Accounts**.
+2.  Haz clic derecho en la lista y selecciona **Add**.
+3.  Añade tu cuenta de **Streamer** y tu cuenta de **Bot**.
+4.  Asegúrate de que ambas aparezcan como `Connected` en verde.
 
-Para que el bot funcione correctamente, asegúrate de configurar los **Webhooks de Discord** si quieres notificaciones automáticas de rangos y eventos.
+## 4. Importación de la Lógica
+1.  Crea una nueva acción en la pestaña **Actions** (ej. `BoinaCoin · Boinas`).
+2.  En **Sub-Actions**, añade `Core` -> `C# Execute Code`.
+3.  Copia el contenido del archivo correspondiente en la carpeta `streamerbot/boinacoin/` de este repositorio.
+4.  Pulsa **Compile**. Si aparece en verde, ¡está listo!
 
-### Comandos básicos
-- `!boinas`: Consulta tu saldo.
-- `!top`: Mira quiénes son los más ricos del canal.
-- `!regalar @usuario cantidad`: Envía BoinaCoins a otros usuarios.
-
-## 💎 Rangos
-El sistema incluye 4 rangos automáticos basados en la actividad y las monedas:
-1. 🧶 **Boina de Lana**
-2. 🪡 **Boina de Cuero**
-3. 💎 **Boina de Terciopelo**
-4. 👑 **La Boina Legendaria**
+## 5. Tu primer comando funcionando
+1.  Ve a la pestaña **Commands**.
+2.  Haz clic derecho -> **Add**.
+3.  En **Command**, escribe `!boinas`.
+4.  En **Action**, selecciona la acción que creaste en el paso anterior.
+5.  ¡Prueba a escribir `!boinas` en tu chat de Kick!
 
 ---
-*Para más detalles, consulta la documentación completa en el README.md o explora los scripts del repositorio.*
+*Para una configuración avanzada (Discord, rangos, etc.), consulta el resto de la documentación.*
