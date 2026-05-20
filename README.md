@@ -444,8 +444,19 @@ Incluye `"kick"` en el check de permisos. Ver sección Fixes Conocidos.
 
 ---
 
+## 🥊 Comando !slap (Legacy)
+
+El comando `!slap` es un comando legacy gestionado externamente (por ejemplo compatible con NightBot u otros bots de chat).
+- **Sintaxis:** `!slap @usuario`
+- **Resultado:** Devuelve un mensaje de texto del tipo *"¡[quien ejecuta] le da una bofetada a [usuario]! 👋"*.
+
+Actualmente no forma parte del ecosistema Streamer.bot/BoinaCoin pero sigue funcionando como comando de chat básico de terceros.
+
+---
+
 ## 🗺️ Roadmap — Pendiente
 
+- [ ] Portar `!slap` a Streamer.bot como acción nativa con frases personalizables en JSON, integrándolo en el ecosistema BoinaCoin.
 - [ ] Testear en directo los comandos exclusivos (`!vip`, `!bufar`, `!oraculo`, etc.)
 - [ ] Verificar funcionamiento del `!apodo` persistido en las respuestas del bot
 - [ ] Validar el pool de premios de la `Ruleta de la Boina` y su cooldown interno
