@@ -36,6 +36,7 @@ public class CPHInline
         commands.Add("!regalar - Enviar");
         commands.Add("!presente - Diario");
         commands.Add("!8ball - Oráculo ácido");
+        commands.Add("!blue - La asulita");
         commands.Add("!vincular - Discord");
         commands.Add("!duelo - Retar");
         commands.Add("!aceptar - Aceptar reto");
@@ -46,6 +47,7 @@ public class CPHInline
         {
             commands.Add("!apostar - Azar");
             commands.Add("!dado - Dados");
+            commands.Add("!slap - Bofetón");
             commands.Add("!bufar - +Ganancia");
         }
 

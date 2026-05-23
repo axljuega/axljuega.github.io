@@ -14,6 +14,8 @@ Esta es la lista completa de comandos disponibles en el ecosistema **BoinaCoin**
 | `!presente` | `BoinaCoin · Presente` | Check-in diario (+50 BoinaCoins, 1 vez por stream). |
 | `!dado` | `BoinaCoin · Dado` | Lanza dados. Soporta apuestas: `!dado [caras] apuesta [nº] [cant]`. |
 | `!8ball` | `BoinaCoin · 8ball` | Pregunta a la bola 8 mágica (respuestas ácidas). |
+| `!blue` | `BoinaCoin · Blue` | Frases aleatorias de la asulita (moderación). |
+| `!slap` | `BoinaCoin · Slap` | Da un bofetón a alguien (Coste: 10, Rango 1+). |
 | `!help` | `BoinaCoin · Help` | Muestra la lista de comandos disponibles para tu rango (efímero). |
 | `!vincular` | `BoinaCoin · Vincular` | Vincula tu cuenta de Discord (`!vincular usuario`). |
 | `!desvincular` | `BoinaCoin · Vincular` | Elimina el vínculo con tu cuenta de Discord. |

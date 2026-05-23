@@ -6,7 +6,7 @@ El ecosistema **BoinaCoin** premia la lealtad y la participación a través de u
 
 | Rango | Umbral | Multiplicador | Beneficios |
 |:--- |:--- |:--- |:--- |
-| 🧶 **Boina de Lana** | 1,000 🪙 | x1.0 | Acceso a `!apostar` y `!bufar`. |
+| 🧶 **Boina de Lana** | 1,000 🪙 | x1.0 | Acceso a `!apostar`, `!slap` y `!bufar`. |
 | 🪡 **Boina de Cuero** | 10,000 🪙 | x1.0 | Acceso a `!apodo`. |
 | 💎 **Boina de Terciopelo** | 50,000 🪙 | x1.25 | Acceso a `!spotlight`. |
 | 👑 **La Boina Legendaria** | 100,000 🪙 | x1.5 | Acceso a `!oraculo`. |
