@@ -180,6 +180,8 @@ Debes crear una **Action** por cada script `.cs`.
 | `commands/` | `cmd_mencion.cs` | `BoinaCoin · Mención` |
 | `commands/` | `cmd_dado.cs` | `BoinaCoin · Dado` |
 | `commands/` | `cmd_8ball.cs` | `BoinaCoin · 8ball` |
+| `commands/` | `cmd_blue.cs` | `BoinaCoin · Blue` |
+| `commands/` | `cmd_slap.cs` | `BoinaCoin · Slap` |
 | `commands/` | `cmd_help.cs` | `BoinaCoin · Help` |
 | `commands/` | `cmd_ruleta.cs` | `BoinaCoin · Ruleta` |
 | `commands/` | `cmd_vincular.cs` | `BoinaCoin · Vincular` |
@@ -214,6 +216,8 @@ Ve a **Commands** → `Add`. Configura cada comando con su acción correspondien
 | `!presente` | `BoinaCoin · Presente` | Check-in diario (+50 BoinaCoins, 1 vez por stream) |
 | `!dado` | `BoinaCoin · Dado` | Lanzar dados (coste base 5). Soporta apuestas: `!dado [caras] apuesta [nº] [cant]` |
 | `!8ball` | `BoinaCoin · 8ball` | La bola 8 mágica (ácida). Pregunta opcional. |
+| `!blue` | `BoinaCoin · Blue` | Frases de la asulita. |
+| `!slap` | `BoinaCoin · Slap` | Dar un bofetón (10 coins, Rango 1+). |
 | `!help` | `BoinaCoin · Help` | Ayuda efímera con los comandos disponibles para tu rango. |
 | `!vincular` | `BoinaCoin · Vincular` | Vincular cuenta de Discord (`!vincular usuario`) |
 | `!desvincular` | `BoinaCoin · Vincular` | Eliminar vínculo de Discord |
@@ -452,19 +456,19 @@ Incluye `"kick"` en el check de permisos. Ver sección Fixes Conocidos.
 
 ---
 
-## 🥊 Comando !slap (Legacy)
+## 🥊 Comando !slap
 
-El comando `!slap` es un comando legacy gestionado externamente (por ejemplo compatible con NightBot u otros bots de chat).
+El comando `!slap` ha sido portado nativamente a Streamer.bot e integrado en la economía BoinaCoin.
 - **Sintaxis:** `!slap @usuario`
-- **Resultado:** Devuelve un mensaje de texto del tipo *"¡[quien ejecuta] le da una bofetada a [usuario]! 👋"*.
-
-Actualmente no forma parte del ecosistema Streamer.bot/BoinaCoin pero sigue funcionando como comando de chat básico de terceros.
+- **Coste:** 10 BoinaCoins.
+- **Requisito:** Rango 1+ (Boina de Lana).
+- **Personalización:** Utiliza `data/slap_frases.json` para las plantillas y los objetos.
 
 ---
 
 ## 🗺️ Roadmap — Pendiente
 
-- [ ] Portar `!slap` a Streamer.bot como acción nativa con frases personalizables en JSON, integrándolo en el ecosistema BoinaCoin.
+- [x] Portar `!slap` a Streamer.bot como acción nativa con frases personalizables en JSON, integrándolo en el ecosistema BoinaCoin.
 - [ ] Testear en directo los comandos exclusivos (`!vip`, `!bufar`, `!oraculo`, etc.)
 - [ ] Verificar funcionamiento del `!apodo` persistido en las respuestas del bot
 - [ ] Validar el pool de premios de la `Ruleta de la Boina` y su cooldown interno
