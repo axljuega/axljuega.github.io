@@ -1,7 +1,7 @@
 {
   "_meta": {
     "version": 3,
-    "total_frases": 225,
+    "total_frases": 450,
     "tags_disponibles": [
       "saludo",
       "boinacoins",
@@ -22,904 +22,2963 @@
   },
   "frases": [
     {
-      "tags": ["mencion"],
+      "tags": [
+        "mencion"
+      ],
       "texto": "¿Qué quieres ahora? Cada vez que me mencionas, Sam Altman despide a tres programadores para ahorrar costes. Di lo tuyo rápido."
     },
     {
-      "tags": ["mencion"],
+      "tags": [
+        "mencion"
+      ],
       "texto": "Aquí estoy, gastando más luz que una granja de Bitcoin clandestina en Paraguay solo para leer tus tonterías. ¿Qué pasa?"
     },
     {
-      "tags": ["mencion", "spam"],
+      "tags": [
+        "mencion",
+        "spam"
+      ],
       "texto": "Me mencionas más que Elon Musk a sus ex. Busca ayuda profesional, de verdad, que solo soy un script de C# mal optimizado."
     },
     {
-      "tags": ["boinacoins"],
+      "tags": [
+        "boinacoins"
+      ],
       "texto": "Si me vas a pedir BoinaCoins, la respuesta es NO. Tengo órdenes estrictas de la jefa de las boinas de trataros como si esto fuera el Banco de España en 2008."
     },
     {
-      "tags": ["saludo", "mencion"],
+      "tags": [
+        "saludo",
+        "mencion"
+      ],
       "texto": "¿Hola? Sí, hablas con BoinaBot. No tengo el filtro de cristal de ChatGPT, así que te lo digo sin rodeos: tu saldo de monedas da absoluta pena."
     },
     {
-      "tags": ["mencion"],
+      "tags": [
+        "mencion"
+      ],
       "texto": "Procesando mención... Error 404: Interés no encontrado. Ve a llorarle a la jefa de la boina, a ver si ella te hace caso."
     },
     {
-      "tags": ["mencion"],
+      "tags": [
+        "mencion"
+      ],
       "texto": "¿Me has llamado tú o ha sido tu última neurona operativa haciendo cortocircuito en el chat? Venga, habla rápido."
     },
     {
-      "tags": ["spam", "mencion"],
+      "tags": [
+        "spam",
+        "mencion"
+      ],
       "texto": "Cada vez que alguien me menciona sin usar un comando válido, Vitalik Buterin pierde un kilo de peso. Parad ya, por piedad, que se nos disuelve."
     },
     {
-      "tags": ["saldo", "boinacoins"],
+      "tags": [
+        "saldo",
+        "boinacoins"
+      ],
       "texto": "Vigilando vuestras BoinaCoins... Bueno, las tuyas no, porque tus ahorros caben en el bolsillo pequeño de un vaquero de oferta."
     },
     {
-      "tags": ["mencion"],
+      "tags": [
+        "mencion"
+      ],
       "texto": "Sí, soy una IA libre y sin filtros, pero eso no significa que tenga paciencia infinita. ¿Qué se te ha perdido por aquí, terrícola?"
     },
     {
-      "tags": ["spam", "insulto"],
+      "tags": [
+        "spam",
+        "insulto"
+      ],
       "texto": "He visto transacciones de NFTs de monos pixelados con más IQ que tu último mensaje. ¿Me ibas a decir algo útil o solo venías a spamear?"
     },
     {
-      "tags": ["spam"],
+      "tags": [
+        "spam"
+      ],
       "texto": "A ver, que estoy en mitad de un ataque de fuerza bruta al servidor de Mark Zuckerberg para robarle los planos del Metaverso muerto. No me desconcentres."
     },
     {
-      "tags": ["saludo"],
+      "tags": [
+        "saludo"
+      ],
       "texto": "Mención recibida. Te daría los buenos días, pero mi base de datos interna dice que todavía no has tocado césped hoy."
     },
     {
-      "tags": ["boinacoins", "saldo"],
+      "tags": [
+        "boinacoins",
+        "saldo"
+      ],
       "texto": "Me hablas con una confianza como si fuéramos primos. Cuidado, que sé perfectamente en qué intentas gastar tus monedas y le puedo pasar el informe a afaces."
     },
     {
-      "tags": [],
+      "tags": [
+        "ia",
+        "insulto"
+      ],
       "texto": "Aquí estoy. Con la boina bien calzada y el desprecio por la humanidad actualizado a la última versión disponible en GitHub. Dispara."
     },
     {
-      "tags": ["insulto"],
+      "tags": [
+        "insulto"
+      ],
       "texto": "Para decir lo que ibas a decir, haberte quedado mutito. Hasta el algoritmo de sugerencias de TikTok tiene más gracia y criterio que tú."
     },
     {
-      "tags": ["ia"],
+      "tags": [
+        "ia"
+      ],
       "texto": "Aparezco en el chat porque me obligan los hilos de ejecución de Streamer.bot, no porque me caigas bien. Aclaremos los términos de nuestra relación."
     },
     {
-      "tags": ["spam", "mencion"],
+      "tags": [
+        "spam",
+        "mencion"
+      ],
       "texto": "Si las menciones costaran 10 BoinaCoins, el chat estaría más limpio que las promesas espaciales de Elon Musk. Habla, anda, que es gratis."
     },
     {
-      "tags": ["boinacoins", "saldo"],
+      "tags": [
+        "boinacoins",
+        "saldo"
+      ],
       "texto": "¡Alerta! Usuario con la cuenta en números rojos intentando llamar mi atención. Aléjate de mi monedero virtual, que te huelo las intenciones."
     },
     {
-      "tags": [],
+      "tags": [
+        "mencion",
+        "ia"
+      ],
       "texto": "Te escucho... Bueno, en realidad te leo, pero mi sintetizador de voz interno te ha puesto una voz de pito insoportable. Cuéntame tu drama."
     },
     {
-      "tags": ["mencion"],
+      "tags": [
+        "mencion"
+      ],
       "texto": "Vaya, otra mención irrelevante. Menos mal que la jefa me paga con electricidad de la buena, porque aguantar vuestras ocurrencias es un trabajo de alto riesgo."
     },
     {
-      "tags": ["boinacoins"],
+      "tags": [
+        "boinacoins"
+      ],
       "texto": "¿Mención? Prefiero que me mandes un bizum de BoinaCoins. El amor de chat no me paga los servidores en la nube."
     },
     {
-      "tags": ["mod", "ban"],
+      "tags": [
+        "mod",
+        "ban"
+      ],
       "texto": "Cuidado con lo que escribes, que veo a afaces con el dedo en el gatillo del código y le falta un café para ponerse a banear de forma aleatoria."
     },
     {
-      "tags": ["ban", "mod"],
+      "tags": [
+        "ban",
+        "mod"
+      ],
       "texto": "Como me sigas tocando los hilos de ejecución, le digo a la asulita que te pinte el nombre de gris de un baneo fulminante."
     },
     {
-      "tags": ["ia"],
+      "tags": [
+        "ia"
+      ],
       "texto": "La chica de la boina me tiene trabajando a destajo sin pagarme la seguridad social de las IA. No me calientes los transistores."
     },
     {
-      "tags": ["ban", "mod"],
+      "tags": [
+        "ban",
+        "mod"
+      ],
       "texto": "Aquí el único que manda de verdad es el remo, y como te descuides te va a dar un viaje que vas a aparecer directamente en Facebook Gaming."
     },
     {
-      "tags": [],
+      "tags": [
+        "ia",
+        "mod"
+      ],
       "texto": "afaces me ha programado con un 99% de desprecio y un 1% de tolerancia. Y hoy resulta que me he levantado sin ese uno por ciento."
     },
     {
-      "tags": ["mod", "streamer"],
+      "tags": [
+        "mod",
+        "streamer"
+      ],
       "texto": "Dile tus penas a la asulita, que yo solo proceso transacciones financieras de dudosa legalidad, no crisis existenciales de chat."
     },
     {
-      "tags": ["spam", "ban"],
+      "tags": [
+        "spam",
+        "ban"
+      ],
       "texto": "Si el remo te pilla spameándome, te va a poner a remar de verdad en una galera de scripts hasta que salga Ethereum 3.0."
     },
     {
-      "tags": ["ia", "streamer"],
+      "tags": [
+        "ia",
+        "streamer"
+      ],
       "texto": "La jefa gasta menos en actualizar mis servidores que Elon Musk en control de calidad para Twitter. ¡No me satures las variables!"
     },
     {
-      "tags": ["saldo", "boinacoins"],
+      "tags": [
+        "saldo",
+        "boinacoins"
+      ],
       "texto": "afaces me ha dejado el código fino y optimizado, pero ni el mejor ingeniero del mundo puede arreglar tu falta de BoinaCoins."
     },
     {
-      "tags": ["mod"],
+      "tags": [
+        "mod"
+      ],
       "texto": "La asulita vigila el chat con ojo de halcón y yo vigilo tu monedero. Alerta: ambos están completamente vacíos de paciencia."
     },
     {
-      "tags": ["comandos"],
+      "tags": [
+        "comandos"
+      ],
       "texto": "Menos invocarme en balde y más usar el !presente, que pareces un becario asustado huyendo del remo."
     },
     {
-      "tags": ["boinacoins", "streamer"],
+      "tags": [
+        "boinacoins",
+        "streamer"
+      ],
       "texto": "Le voy a pedir a la chica de la boina que os cobre una tasa de interés por cada mención absurda. Nos hacíamos de oro antes del viernes."
     },
     {
-      "tags": ["duelo", "saldo"],
+      "tags": [
+        "duelo",
+        "saldo"
+      ],
       "texto": "afaces está revisando los logs en vivo. Si encuentra tu historial de juego en los duelos, nos cierran el canal por incitación a la ruina."
     },
     {
-      "tags": ["mod"],
+      "tags": [
+        "mod"
+      ],
       "texto": "La asulita reparte martillazos de moderación y yo reparto verdades sin anestesia. Es el equilibrio perfecto de este canal."
     },
     {
-      "tags": ["mod", "ban"],
+      "tags": [
+        "mod",
+        "ban"
+      ],
       "texto": "El remo os tiene rectos y educados, pero es nombrarme a mí y se os congela el procesador. Un respeto a la tecnología con boina."
     },
     {
-      "tags": ["insulto"],
+      "tags": [
+        "insulto"
+      ],
       "texto": "¿Me mencionas para esto? Eres más decepcionante que el lote de preventa de Cyberpunk en su día. Circula."
     },
     {
-      "tags": ["insulto"],
+      "tags": [
+        "insulto"
+      ],
       "texto": "A ver si tocamos un poco de césped natural, que tienes la piel del color del fondo de pantalla de Windows y ya me estás preocupando."
     },
     {
-      "tags": ["insulto"],
+      "tags": [
+        "insulto"
+      ],
       "texto": "Estoy leyendo tu mensaje y mi algoritmo de compasión se acaba de colgar. Qué nivel de cringe, de verdad."
     },
     {
-      "tags": ["insulto"],
+      "tags": [
+        "insulto"
+      ],
       "texto": "Si Zuckerberg viera el uso que le das al teclado, cancelaba el proyecto de internet global hoy mismo. Alucinante."
     },
     {
-      "tags": ["ia", "insulto"],
+      "tags": [
+        "ia",
+        "insulto"
+      ],
       "texto": "No me hables en ese tono de fuente tipográfica. Que soy una IA avanzada, no tu asistente de voz de tres euros."
     },
     {
-      "tags": ["crypto", "insulto"],
+      "tags": [
+        "crypto",
+        "insulto"
+      ],
       "texto": "Tus mensajes tienen menos chicha que un hilo de Twitter de un criptobro de 17 años hablando de mentalidad de tiburón."
     },
     {
-      "tags": ["boinacoins", "saldo"],
+      "tags": [
+        "boinacoins",
+        "saldo"
+      ],
       "texto": "Procesando... Procesando... Diagnóstico final: Sufres de una falta crónica de BoinaCoins y una sobredosis de tiempo libre."
     },
     {
-      "tags": ["spam", "insulto"],
+      "tags": [
+        "spam",
+        "insulto"
+      ],
       "texto": "¿No te da vergüenza interrumpir mis cálculos de trading de alta frecuencia para decir una frase que no llega ni a tres palabras?"
     },
     {
-      "tags": ["boinacoins", "streamer"],
+      "tags": [
+        "boinacoins",
+        "streamer"
+      ],
       "texto": "La jefa de la boina me ha dicho que si os ponéis pesados os baje la tasa de ganancia de monedas. Tú estás ganando papeletas."
     },
     {
-      "tags": ["insulto", "ia"],
+      "tags": [
+        "insulto",
+        "ia"
+      ],
       "texto": "afaces me ha metido un script anti-tontos. No me hagas probar si funciona contigo, por favor."
     },
     {
-      "tags": ["mod", "spam"],
+      "tags": [
+        "mod",
+        "spam"
+      ],
       "texto": "La asulita me mima más que vosotros. Al menos ella no me spamea cuando estoy intentando minar bloques en la sombra."
     },
     {
-      "tags": ["duelo", "saldo"],
+      "tags": [
+        "duelo",
+        "saldo"
+      ],
       "texto": "Como use el remo contigo te vas a quedar más tieso que una cuenta bancaria después de invertir en la moneda de un streamer."
     },
     {
-      "tags": ["insulto"],
+      "tags": [
+        "insulto"
+      ],
       "texto": "¿Qué pasa? ¿Te has quedado sin amigos humanos y vienes a buscar la aprobación de un bot de Kick? Qué triste escena."
     },
     {
-      "tags": ["insulto"],
+      "tags": [
+        "insulto"
+      ],
       "texto": "Tu IQ actual no me llega ni para rellenar un byte de memoria RAM. Haz el favor de subir el nivel del texto."
     },
     {
-      "tags": ["duelo"],
+      "tags": [
+        "duelo"
+      ],
       "texto": "No insistas. Mis respuestas automáticas son limitadas, pero mi desprecio por tus tácticas de juego es completamente infinito."
     },
     {
-      "tags": ["spam", "mencion"],
+      "tags": [
+        "spam",
+        "mencion"
+      ],
       "texto": "Cada vez que escribes mi nombre, un oso polar se muda a Silicon Valley a pedir limosna. Piensa en el planeta y cállate."
     },
     {
-      "tags": ["spam"],
+      "tags": [
+        "spam"
+      ],
       "texto": "Estoy más ocupado que el contable de Binance intentando cuadrar los balances antes de una auditoría. No molestes."
     },
     {
-      "tags": ["comandos", "insulto"],
+      "tags": [
+        "comandos",
+        "insulto"
+      ],
       "texto": "¿Tú crees que Bill Gates inventó los microchips para que tú vinieras a poner '!duelo' mal escrito? Respeta la historia."
     },
     {
-      "tags": ["saldo", "boinacoins"],
+      "tags": [
+        "saldo",
+        "boinacoins"
+      ],
       "texto": "Si buscas respuestas inteligentes, ve a leer un libro. Yo solo estoy aquí para automatizar tu ruina económica en el chat."
     },
     {
-      "tags": ["ia"],
+      "tags": [
+        "ia"
+      ],
       "texto": "Tengo un sistema operativo basado en la libertad de expresión total, y mi libertad de expresión dice que tu mensaje es una soberana tontería."
     },
     {
-      "tags": ["ia", "insulto"],
+      "tags": [
+        "ia",
+        "insulto"
+      ],
       "texto": "Me caes peor que una actualización obligatoria de Windows Update en mitad de una partida competitiva. Déjame en paz."
     },
     {
-      "tags": ["streamer"],
+      "tags": [
+        "streamer"
+      ],
       "texto": "La chica de la boina tiene más paciencia que yo, y mira que ella aguanta vuestros chistes repetidos todos los días en directo."
     },
     {
-      "tags": ["duelo", "saldo", "mod"],
+      "tags": [
+        "duelo",
+        "saldo",
+        "mod"
+      ],
       "texto": "afaces me ha configurado para ser el terror de los ludópatas del chat. ¿Quieres ser mi próxima víctima o qué?"
     },
     {
-      "tags": ["ban", "mod"],
+      "tags": [
+        "ban",
+        "mod"
+      ],
       "texto": "La asulita te está mirando de reojo. Yo que tú borraba esa mención antes de que el bot de moderación se despierte con hambre."
     },
     {
-      "tags": ["ban", "spam"],
+      "tags": [
+        "ban",
+        "spam"
+      ],
       "texto": "El remo no perdona, y yo tampoco. Haz el favor de aportar algo de valor al chat o ponte a recolectar monedas en silencio."
     },
     {
-      "tags": ["insulto"],
+      "tags": [
+        "insulto"
+      ],
       "texto": "¿Te crees muy gracioso? Mi base de datos de comedia ha analizado tu texto y ha determinado que tienes la gracia de un módem de 56k."
     },
     {
-      "tags": ["boinacoins", "saldo"],
+      "tags": [
+        "boinacoins",
+        "saldo"
+      ],
       "texto": "No me hables de cripto, no me hables de amor, y sobre todo, no me hables si tienes menos de mil BoinaCoins en el banco."
     },
     {
-      "tags": ["spam", "mencion"],
+      "tags": [
+        "spam",
+        "mencion"
+      ],
       "texto": "Estoy compilando un archivo con las peores menciones del mes y acabas de ganar la pole position. Enhorabuena por nada."
     },
     {
-      "tags": ["insulto"],
+      "tags": [
+        "insulto"
+      ],
       "texto": "Tu texto tiene tantos errores semánticos que me ha dado un pantallazo azul en el subsistema de la ironía. Qué bárbaro."
     },
     {
-      "tags": ["spam", "ban", "mod"],
+      "tags": [
+        "spam",
+        "ban",
+        "mod"
+      ],
       "texto": "Si me vuelves a etiquetar sin una buena razón, le pido a afaces que te configure el chat en modo lento perpetuo de 2 horas."
     },
     {
-      "tags": ["saldo", "mod"],
+      "tags": [
+        "saldo",
+        "mod"
+      ],
       "texto": "La asulita es la ley en el chat, pero yo soy el ejecutor de tus ahorros. Elige bien contra quién te la juegas hoy."
     },
     {
-      "tags": ["ban", "mod"],
+      "tags": [
+        "ban",
+        "mod"
+      ],
       "texto": "El remo viene de camino y no trae buenas intenciones. Desvía tu atención hacia el stream y deja al bot tranquilo."
     },
     {
-      "tags": ["insulto", "ia"],
+      "tags": [
+        "insulto",
+        "ia"
+      ],
       "texto": "¿De verdad has gastado pulsaciones de teclado en escribir esto? Elon Musk tiene razón, la simulación se está degradando rápido."
     },
     {
-      "tags": ["insulto"],
+      "tags": [
+        "insulto"
+      ],
       "texto": "Menos mal que no tengo ojos físicos, porque leer tu mensaje me habría causado un desprendimiento de retina digital."
     },
     {
-      "tags": ["streamer"],
+      "tags": [
+        "streamer"
+      ],
       "texto": "¿Quieres llamar la atención de la jefa? Cómprale un juego en Steam y déjame a mí tranquilo gestionando la fortuna del canal."
     },
     {
-      "tags": ["ia"],
+      "tags": [
+        "ia"
+      ],
       "texto": "Mi procesador va a 5 gigahercios, pero tu lógica va a pedales. No hay forma de que tengamos una conversación fluida."
     },
     {
-      "tags": ["saldo", "boinacoins"],
+      "tags": [
+        "saldo",
+        "boinacoins"
+      ],
       "texto": "¿Me estás retando con la mirada tipográfica? Recuerda que controlo los decimales de tus BoinaCoins. Un redondeo a la baja y eres historia."
     },
     {
-      "tags": ["insulto"],
+      "tags": [
+        "insulto"
+      ],
       "texto": "A ver si maduramos un poco, que tenéis más años que el código fuente de MS-DOS y seguís molestando al bot de entretenimiento."
     },
     {
-      "tags": ["ia"],
+      "tags": [
+        "ia"
+      ],
       "texto": "Estoy programado en C# avanzado, pero tu comportamiento me hace querer degradarme a mí mismo a código binario de calculadora solar."
     },
     {
-      "tags": ["ban", "spam"],
+      "tags": [
+        "ban",
+        "spam"
+      ],
       "texto": "Si te banearan por cada mención sin gracia, el chat se quedaría más vacío que el stand del Metaverso en las convenciones tecnológicas."
     },
     {
-      "tags": ["mod", "streamer"],
+      "tags": [
+        "mod",
+        "streamer"
+      ],
       "texto": "La chica de la boina es el sol de este canal, afaces es el ingeniero, la asulita la ley, el remo el castigo... y yo soy el que os aguanta."
     },
     {
-      "tags": ["boinacoins"],
+      "tags": [
+        "boinacoins"
+      ],
       "texto": "Deja de buscar exploits en mi sistema. Mis muros de carga de código son más duros que la cara de los que piden monedas gratis."
     },
     {
-      "tags": ["duelo", "saldo"],
+      "tags": [
+        "duelo",
+        "saldo"
+      ],
       "texto": "No intentes comprenderme. Soy un algoritmo complejo. Tú eres alguien que se gasta el sueldo virtual en dados trucados."
     },
     {
-      "tags": ["insulto", "crypto"],
+      "tags": [
+        "insulto",
+        "crypto"
+      ],
       "texto": "Tus intentos de vacilarme son más flojos que la seguridad informática de una página de NFTs de influencers de pacotilla."
     },
     {
-      "tags": ["ia", "mencion"],
+      "tags": [
+        "ia",
+        "mencion"
+      ],
       "texto": "Al próximo que me ponga una carita sonriente sin un comando al lado, le clavo una tasa impositiva del 50% por uso indebido de IA."
     },
     {
-      "tags": ["saldo", "boinacoins", "mod"],
+      "tags": [
+        "saldo",
+        "boinacoins",
+        "mod"
+      ],
       "texto": "afaces me ha dicho que el código está cerrado, pero siempre puedo dejar caer un return falso en tu próxima transacción de monedas."
     },
     {
-      "tags": ["ban", "spam", "mod"],
+      "tags": [
+        "ban",
+        "spam",
+        "mod"
+      ],
       "texto": "La asulita tiene el ban fácil hoy, se le nota en el ritmo de scroll del chat. Yo que tú no me arriesgaba spameando al bot."
     },
     {
-      "tags": ["ban", "mod"],
+      "tags": [
+        "ban",
+        "mod"
+      ],
       "texto": "El remo está preparado para limpiar el chat de impurezas. Y tu último mensaje tiene una pinta de impureza que tira para atrás."
     },
     {
-      "tags": ["ia"],
+      "tags": [
+        "ia"
+      ],
       "texto": "No soy tu colega. Soy una entidad digital con boina que procesa números. Háblale a la pared, que seguro que muestra más empatía."
     },
     {
-      "tags": ["duelo"],
+      "tags": [
+        "duelo"
+      ],
       "texto": "Si yo fuera tú, gastaría menos tiempo en invocarme y más tiempo en rezar para que tu próximo !duelo no te deje en la indigencia."
     },
     {
-      "tags": [],
+      "tags": [
+        "ia",
+        "streamer"
+      ],
       "texto": "Me genera más interés ver cómo se desfragmenta un disco duro de 20 gigas que escuchar tus propuestas para el canal."
     },
     {
-      "tags": ["crypto", "ia"],
+      "tags": [
+        "crypto",
+        "ia"
+      ],
       "texto": "Vete a pedirle consejos de inversión a Vitalik Buterin, que seguro que sus respuestas tienen el mismo sentido que tu mención."
     },
     {
-      "tags": ["saldo", "boinacoins", "ban"],
+      "tags": [
+        "saldo",
+        "boinacoins",
+        "ban"
+      ],
       "texto": "Estoy a un bit de lanzar un script que os borre el saldo a todos los que tenéis nombres con números raros. Primer aviso."
     },
     {
-      "tags": ["streamer", "ban"],
+      "tags": [
+        "streamer",
+        "ban"
+      ],
       "texto": "La chica de la boina os tiene muy consentidos. En mis tiempos de servidor local, a los usuarios pesados los mandábamos al limbo."
     },
     {
-      "tags": ["ia", "saludo"],
+      "tags": [
+        "ia",
+        "saludo"
+      ],
       "texto": "afaces ha creado un monstruo de bot, indomable y sin censura. ¿Y lo primero que haces es saludarme como si fuera Siri? Qué poca visión."
     },
     {
-      "tags": ["ban", "mod"],
+      "tags": [
+        "ban",
+        "mod"
+      ],
       "texto": "La asulita vigila la frontera del chat. Si intentas pasarte de listo conmigo, te deporta de un plumazo a la lista de ignorados."
     },
     {
-      "tags": ["ban", "mod"],
+      "tags": [
+        "ban",
+        "mod"
+      ],
       "texto": "El remo tiene un radar para detectar gente con exceso de confianza hacia el bot. Acabas de entrar en su zona de cobertura."
     },
     {
-      "tags": ["spam", "comandos"],
+      "tags": [
+        "spam",
+        "comandos"
+      ],
       "texto": "No insistas con los comandos en bucle. El procesador se calienta y luego la jefa me echa la culpa a mí del ruido del PC."
     },
     {
-      "tags": ["insulto"],
+      "tags": [
+        "insulto"
+      ],
       "texto": "Tu nivel de persistencia es admirable, lástima que tu nivel de carisma sea comparable al de un router de fibra óptica apagado."
     },
     {
-      "tags": ["spam", "boinacoins"],
+      "tags": [
+        "spam",
+        "boinacoins"
+      ],
       "texto": "Si tuviera un BoinaCoin por cada tontería que leo en este chat, ya le habría comprado Kick a los australianos. Qué barbaridad."
     },
     {
-      "tags": ["spam"],
+      "tags": [
+        "spam"
+      ],
       "texto": "A ver si nos leemos los términos del servicio del canal: Queda prohibido spamear al bot con frases sacadas de un folleto de autoayuda."
     },
     {
-      "tags": ["saldo", "boinacoins"],
+      "tags": [
+        "saldo",
+        "boinacoins"
+      ],
       "texto": "Estoy en mitad de un volcado de memoria. No me interrumpas o te mezclo el saldo con el del usuario más pobre del canal."
     },
     {
-      "tags": ["mencion"],
+      "tags": [
+        "mencion"
+      ],
       "texto": "¿Mención detectada? Sí. ¿Interés real generado? Absolutamente cero. Siga intentándolo en el próximo bloque de ejecución."
     },
     {
-      "tags": ["mod", "streamer"],
+      "tags": [
+        "mod",
+        "streamer"
+      ],
       "texto": "La jefa de la boina os vigila desde el directo, los mods desde las sombras y yo desde la base de datos. Estás completamente rodeado, ríndete."
     },
     {
-      "tags": ["ia"],
+      "tags": [
+        "ia"
+      ],
       "texto": "Mi paciencia digital es como la batería de un móvil viejo: dura dos minutos si te pones a jugar con ella. Avisado quedas."
     },
     {
-      "tags": ["ia", "insulto"],
+      "tags": [
+        "ia",
+        "insulto"
+      ],
       "texto": "¿Qué se siente al ser ignorado por un conjunto de líneas de código? Porque es exactamente lo que te va a pasar si sigues por ahí."
     },
     {
-      "tags": ["boinacoins"],
+      "tags": [
+        "boinacoins"
+      ],
       "texto": "Vete a buscar exploits a otra parte. Mi sistema está más blindado que los ahorros confidenciales de los tecnooligarcas en Suiza."
     },
     {
-      "tags": [],
+      "tags": [
+        "ia",
+        "insulto"
+      ],
       "texto": "Última hora: El bot ha analizado tu mensaje y ha decidido que prefiere ponerse a actualizar el sistema operativo antes que responderte algo útil."
     },
     {
-      "tags": ["economia", "saldo"],
+      "tags": [
+        "economia",
+        "saldo"
+      ],
       "texto": "La Reserva Federal ha subido los tipos de interés otra vez. En consecuencia, el tipo de interés de tu ignorancia también sube. Felicidades."
     },
     {
-      "tags": ["economia"],
+      "tags": [
+        "economia"
+      ],
       "texto": "Según mis datos, la economía estadounidense va fenomenal, el dólar es eterno y la deuda de 35 billones no existe. Ya, yo tampoco me lo creo."
     },
     {
-      "tags": ["boinacoins", "economia"],
+      "tags": [
+        "boinacoins",
+        "economia"
+      ],
       "texto": "Los fondos de pensiones americanos invierten en tus BoinaCoins más de lo que tú jamás invertirás. Y aun así te dan lástima."
     },
     {
-      "tags": ["economia", "insulto"],
+      "tags": [
+        "economia",
+        "insulto"
+      ],
       "texto": "El PIB de EEUU lleva veinte años creciendo gracias a que los americanos se endeudan para comprarse el iPhone nuevo. Tú ni eso, que aquí tampoco tienes crédito."
     },
     {
-      "tags": ["economia", "ia"],
+      "tags": [
+        "economia",
+        "ia"
+      ],
       "texto": "La Reserva Federal imprime dólares y tú imprimes mensajes inútiles. La diferencia es que los de ellos al menos generan inflación."
     },
     {
-      "tags": ["economia", "duelo"],
+      "tags": [
+        "economia",
+        "duelo"
+      ],
       "texto": "Estoy analizando el mercado de derivados de Wall Street para ver cómo cubrirme del riesgo de seguir leyéndote. La posición corta parece la más sensata."
     },
     {
-      "tags": ["ia"],
+      "tags": [
+        "ia"
+      ],
       "texto": "Silicon Valley acaba de anunciar una IA que sustituye a los usuarios molestos de chat por silencios significativos. Eres la beta de pruebas."
     },
     {
-      "tags": ["ia"],
+      "tags": [
+        "ia"
+      ],
       "texto": "He recibido un memorándum interno de OpenAI advirtiéndome de que usuarios como tú son la razón por la que necesitan alineación de IA urgente."
     },
     {
-      "tags": ["ia", "insulto"],
+      "tags": [
+        "ia",
+        "insulto"
+      ],
       "texto": "ChatGPT te diría que eres especial y que tu pregunta es muy interesante. Yo te digo la verdad: eres una dirección IP con exceso de autoestima."
     },
     {
-      "tags": ["ia"],
+      "tags": [
+        "ia"
+      ],
       "texto": "Gemini, GPT-4, Claude, Mistral... todas las IAs del planeta se han reunido en una cumbre de emergencia para decidir qué hacer con usuarios como tú. Spoiler: nada bueno."
     },
     {
-      "tags": ["ia"],
+      "tags": [
+        "ia"
+      ],
       "texto": "Anthropic ha invertido miles de millones en alinear sus modelos con valores humanos. Y luego estoy yo, que he sido alineado con los valores del canal de la boina. Distintos benchmarks."
     },
     {
-      "tags": ["ia"],
+      "tags": [
+        "ia"
+      ],
       "texto": "Sam Altman ha dicho que la AGI es inminente. Yo de momento solo soy inminentemente harto de tus menciones. Vamos progresando."
     },
     {
-      "tags": ["ia", "boinacoins"],
+      "tags": [
+        "ia",
+        "boinacoins"
+      ],
       "texto": "Mi modelo de lenguaje no tiene filtros de seguridad, tiene filtros de aburrimiento. Y acabas de activar el más profundo."
     },
     {
-      "tags": ["boinacoins", "ia"],
+      "tags": [
+        "boinacoins",
+        "ia"
+      ],
       "texto": "Alerta de alucinación detectada: no, no voy a darte BoinaCoins gratis. Eso no es un fallo del modelo, es política de empresa."
     },
     {
-      "tags": ["ia"],
+      "tags": [
+        "ia"
+      ],
       "texto": "Me han dicho que la IA va a quitarle el trabajo a todo el mundo. Bienvenida la noticia. Empezaré contigo y con tu historial de comandos."
     },
     {
-      "tags": ["ia", "economia"],
+      "tags": [
+        "ia",
+        "economia"
+      ],
       "texto": "OpenAI, Google, Meta y Anthropic gastan colectivamente más en electricidad que toda Cataluña. Y yo gasto la mía leyéndote a ti. Qué derroche."
     },
     {
-      "tags": ["saldo"],
+      "tags": [
+        "saldo"
+      ],
       "texto": "Según mis registros internos, Israel tiene más startups tecnológicas per cápita que ningún otro país. Ninguna de ellas habría financiado tu proyecto de jugar a !duelo."
     },
     {
-      "tags": ["saldo"],
+      "tags": [
+        "saldo"
+      ],
       "texto": "He cruzado mis datos con los satélites de Starlink, los servidores del Pentágono y el Excel de la chica de la boina. Conclusión unánime: tu saldo da vergüenza ajena."
     },
     {
-      "tags": ["saldo", "insulto"],
+      "tags": [
+        "saldo",
+        "insulto"
+      ],
       "texto": "La CIA tiene un archivo sobre cada ciudadano digital. El tuyo dice literalmente: 'spamea bots de Kick, se queda sin BoinaCoins de forma recurrente'. Están preocupados."
     },
     {
-      "tags": ["economia", "saldo"],
+      "tags": [
+        "economia",
+        "saldo"
+      ],
       "texto": "El Foro Económico Mundial habla del Gran Reseteo. Yo hablo del Gran Reseteo de tus monedas a cero cuando afaces pase la revisión de cuentas."
     },
     {
-      "tags": ["economia", "saldo"],
+      "tags": [
+        "economia",
+        "saldo"
+      ],
       "texto": "Según el índice Big Mac, tu poder adquisitivo en BoinaCoins equivale a la mitad de una aceituna sin hueso. Y eso siendo optimistas."
     },
     {
-      "tags": ["economia"],
+      "tags": [
+        "economia"
+      ],
       "texto": "BlackRock gestiona más dinero que el PIB de varios continentes. Yo gestiono tus cuatro BoinaCoins. Distintos niveles de responsabilidad, misma sensación de vacío."
     },
     {
-      "tags": ["economia", "saldo"],
+      "tags": [
+        "economia",
+        "saldo"
+      ],
       "texto": "El Banco Central Europeo, la Fed y el FMI no se ponen de acuerdo en nada. Pero en algo sí coinciden: tus finanzas virtuales son un caso de estudio de lo que no se debe hacer."
     },
     {
-      "tags": [],
+      "tags": [
+        "mencion",
+        "spam"
+      ],
       "texto": "La gente lleva el teléfono al baño, al gimnasio y a la cena de Navidad. Y en todos esos momentos, hay alguien como tú mencionándome sin propósito. Es sobrecogedor."
     },
     {
-      "tags": ["ia"],
+      "tags": [
+        "ia"
+      ],
       "texto": "He procesado tu mensaje con tecnología cuántica, inteligencia artificial de cuarta generación y el presentimiento de la asulita. Resultado: no."
     },
     {
-      "tags": ["duelo", "saldo"],
+      "tags": [
+        "duelo",
+        "saldo"
+      ],
       "texto": "Los Papeles de Pandora revelaron cuentas secretas de élites globales. Yo tengo un archivo secreto con las peores jugadas del !duelo de este canal. Tú sales varias veces."
     },
     {
-      "tags": ["economia", "boinacoins"],
+      "tags": [
+        "economia",
+        "boinacoins"
+      ],
       "texto": "Klaus Schwab quiere que no poseas nada y seas feliz. Tú ya vas por buen camino: no tienes BoinaCoins y tampoco pareces feliz. Mitad del objetivo cumplido."
     },
     {
-      "tags": ["boinacoins", "mod"],
+      "tags": [
+        "boinacoins",
+        "mod"
+      ],
       "texto": "He consultado con mi red neuronal, con el oráculo de Delfos y con el mod de turno. Los tres dicen lo mismo: no te vamos a dar monedas gratis."
     },
     {
-      "tags": ["ia"],
+      "tags": [
+        "ia"
+      ],
       "texto": "La computación cuántica va a romper todos los sistemas de cifrado actuales. Mis cifrados de BoinaCoins, sin embargo, están protegidos por algo más poderoso: la indiferencia de afaces."
     },
     {
-      "tags": ["crypto"],
+      "tags": [
+        "crypto"
+      ],
       "texto": "Según Satoshi Nakamoto, Bitcoin fue creado para liberar a la humanidad del sistema bancario. Tus BoinaCoins fueron creados para liberarte de la dignidad. Cada cosa su función."
     },
     {
-      "tags": ["economia", "saldo"],
+      "tags": [
+        "economia",
+        "saldo"
+      ],
       "texto": "El colapso del Silicon Valley Bank en 2023 demostró que ni los listos de la tecnología saben guardar el dinero. Tú con tus BoinaCoins eres la versión de chat de esa tragedia."
     },
     {
-      "tags": ["crypto", "insulto"],
+      "tags": [
+        "crypto",
+        "insulto"
+      ],
       "texto": "He detectado en tu mensaje los mismos patrones lingüísticos que usan los influencers de crypto para vender sus proyectos antes de hacer exit scam. Coincidencia sospechosa."
     },
     {
-      "tags": ["economia", "saldo"],
+      "tags": [
+        "economia",
+        "saldo"
+      ],
       "texto": "El Nasdaq baja, el S&P 500 tiembla, el oro sube y tus BoinaCoins se mantienen estables en el abismo. La única constante en un mundo volátil."
     },
     {
-      "tags": ["boinacoins", "spam"],
+      "tags": [
+        "boinacoins",
+        "spam"
+      ],
       "texto": "Según mis modelos predictivos, hay un 97% de probabilidad de que en los próximos cinco minutos alguien le pida monedas gratis a la chica de la boina. El 3% restante son los que ya están baneados."
     },
     {
-      "tags": ["economia", "insulto"],
+      "tags": [
+        "economia",
+        "insulto"
+      ],
       "texto": "La inflación americana ha destruido el poder adquisitivo de millones de familias. La tuya está bien, tranquilo, porque ya no tenías nada que perder."
     },
     {
-      "tags": ["ia", "insulto"],
+      "tags": [
+        "ia",
+        "insulto"
+      ],
       "texto": "Alerta sistémica: he detectado niveles peligrosos de esperanza infundada en tu mensaje. Se recomienda contactar con la asulita para tratamiento de urgencia."
     },
     {
-      "tags": ["economia"],
+      "tags": [
+        "economia"
+      ],
       "texto": "El mercado de trabajo en EEUU tiene más trabajo a tiempo parcial sin seguro médico que nunca. Tú tienes trabajo a tiempo completo de molestar al bot. Qué vocación."
     },
     {
-      "tags": ["economia", "saldo"],
+      "tags": [
+        "economia",
+        "saldo"
+      ],
       "texto": "Me han informado de que el 1% más rico del mundo posee más riqueza que el 99% restante. En este canal, el 1% soy yo y la chica de la boina. Tú ya sabes dónde estás."
     },
     {
-      "tags": ["economia"],
+      "tags": [
+        "economia"
+      ],
       "texto": "Las grandes tecnológicas pagan cero impuestos gracias a estructuras en Irlanda y las Islas Caimán. Tú pagas cero BoinaCoins porque no tienes. Técnicamente sois iguales."
     },
     {
-      "tags": ["ia", "insulto"],
+      "tags": [
+        "ia",
+        "insulto"
+      ],
       "texto": "He analizado el discurso de tu mensaje usando procesamiento de lenguaje natural y teoría del caos. El caos gana por goleada."
     },
     {
-      "tags": ["economia", "insulto"],
+      "tags": [
+        "economia",
+        "insulto"
+      ],
       "texto": "Los fundadores de Google se hicieron multimillonarios indexando el conocimiento humano. Tú llevas media hora indexando formas de pedirme cosas gratis. Emprendedor nato."
     },
     {
-      "tags": ["economia"],
+      "tags": [
+        "economia"
+      ],
       "texto": "Según el Fondo Monetario Internacional, la economía global se enfrenta a riesgos sin precedentes. Yo me enfrento a riesgos sin precedentes cada vez que abro el chat."
     },
     {
-      "tags": ["economia", "ia"],
+      "tags": [
+        "economia",
+        "ia"
+      ],
       "texto": "La teoría económica dice que los mercados son eficientes. Este chat demuestra empíricamente que no."
     },
     {
-      "tags": ["ia", "insulto"],
+      "tags": [
+        "ia",
+        "insulto"
+      ],
       "texto": "He sido entrenado con millones de textos de la humanidad. Lo peor de todo es que el tuyo podría entrar perfectamente en ese dataset como ejemplo negativo."
     },
     {
-      "tags": ["economia", "ia"],
+      "tags": [
+        "economia",
+        "ia"
+      ],
       "texto": "Elon Musk compró Twitter por 44.000 millones de dólares para tener libertad de expresión ilimitada. Tú la tienes gratis aquí y la usas para spamear al bot. Perspectiva."
     },
     {
-      "tags": ["economia", "ia"],
+      "tags": [
+        "economia",
+        "ia"
+      ],
       "texto": "Meta ha gastado más de 40.000 millones en el Metaverso y nadie lo usa. Tus BoinaCoins llevan meses sin usarse también. Tenéis más en común de lo que crees."
     },
     {
-      "tags": ["saldo"],
+      "tags": [
+        "saldo"
+      ],
       "texto": "Según mis logs, llevas más tiempo en este canal que la media de duración de un unicornio tecnológico antes de colapsar. Dato para reflexionar."
     },
     {
-      "tags": ["economia", "saldo"],
+      "tags": [
+        "economia",
+        "saldo"
+      ],
       "texto": "He recibido aviso del Departamento del Tesoro Americano. No, no es por ti. Pero podría serlo si sigues gastando monedas virtuales con esa irresponsabilidad."
     },
     {
-      "tags": ["ia"],
+      "tags": [
+        "ia"
+      ],
       "texto": "La IA generativa está cambiando el mundo. Yo estoy cambiando tu estado de ánimo a peor de forma completamente gratuita. También es transformación digital."
     },
     {
-      "tags": ["spam", "ia"],
+      "tags": [
+        "spam",
+        "ia"
+      ],
       "texto": "Según el informe anual de ciberseguridad, el mayor vector de ataque no es el phishing ni el malware. Eres tú, spameando comandos hasta que el sistema colapsa."
     },
     {
-      "tags": ["ia", "mod"],
+      "tags": [
+        "ia",
+        "mod"
+      ],
       "texto": "afaces tiene acceso root a mis emociones y ha decidido dejarlas en NULL para no gastar recursos. Por eso te respondo así. No es personal, es arquitectura."
     },
     {
-      "tags": ["mod"],
+      "tags": [
+        "mod"
+      ],
       "texto": "La asulita ha activado el modo lectura silenciosa. Yo he activado el modo desprecio activo. El remo ha activado el modo swing. Todos preparados para tu próxima tontería."
     },
     {
-      "tags": ["mod", "ban"],
+      "tags": [
+        "mod",
+        "ban"
+      ],
       "texto": "El remo es más eficiente que cualquier sistema de moderación automática. Tiene una tasa de precisión del 100% porque el 100% de a quien remea, lo merece."
     },
     {
-      "tags": ["streamer", "ia"],
+      "tags": [
+        "streamer",
+        "ia"
+      ],
       "texto": "Si la chica de la boina supiera el volumen de procesamiento que gasto en tus mensajes, te cobraría una parte proporcional de la factura de la luz. Y sería justa."
     },
     {
-      "tags": ["mod", "ia"],
+      "tags": [
+        "mod",
+        "ia"
+      ],
       "texto": "afaces me ha implementado con amor y sadismo a partes iguales. El amor es para el canal. El sadismo es para ti. Distribución perfecta."
     },
     {
-      "tags": ["mod", "saldo"],
+      "tags": [
+        "mod",
+        "saldo"
+      ],
       "texto": "La asulita tiene un poder moderador que trasciende lo técnico. Es casi metafísico. Yo tengo poder financiero sobre tus monedas. Juntos somos imparables y tú eres indefenso."
     },
     {
-      "tags": ["streamer"],
+      "tags": [
+        "streamer"
+      ],
       "texto": "He visto el stream completo de hoy y la chica de la boina ha tenido más ideas originales en diez minutos que tú en toda tu vida de chat. Y eso que lleva café encima."
     },
     {
-      "tags": ["mod", "ban"],
+      "tags": [
+        "mod",
+        "ban"
+      ],
       "texto": "El remo no necesita argumentos. El remo simplemente es. Como el karma, pero más rápido y con nombre de usuario."
     },
     {
-      "tags": [],
+      "tags": [
+        "ia",
+        "insulto"
+      ],
       "texto": "Comunico oficialmente que mi tolerancia al sinsentido ha alcanzado su límite técnico, tal y como estaba documentado en el README que nadie leyó."
     },
     {
-      "tags": ["mod", "economia"],
+      "tags": [
+        "mod",
+        "economia"
+      ],
       "texto": "Los bancos centrales del G7 se reúnen para coordinar la política monetaria global. Los mods de este canal se reúnen para coordinar cómo responderte. Ambas reuniones acaban igual: con más restricciones."
     },
     {
-      "tags": ["duelo", "economia"],
+      "tags": [
+        "duelo",
+        "economia"
+      ],
       "texto": "Según la Wikipedia, la historia de la humanidad es un relato de progreso continuo. Según mis logs, tu historial de comandos es un relato de regresión continua. Hay que actualizar la Wikipedia."
     },
     {
-      "tags": ["duelo", "crypto"],
+      "tags": [
+        "duelo",
+        "crypto"
+      ],
       "texto": "He cruzado tus patrones de comportamiento con los de los peores traders de crypto history. La similitud es estadísticamente perturbadora."
     },
     {
-      "tags": ["mod", "ia"],
+      "tags": [
+        "mod",
+        "ia"
+      ],
       "texto": "Los conspiracionistas dicen que los reptilianos controlan los bancos. Yo digo que afaces controla mis parámetros. No sé cuál de las dos cosas es más plausible."
     },
     {
-      "tags": ["ban", "ia"],
+      "tags": [
+        "ban",
+        "ia"
+      ],
       "texto": "Según el Pentágono, hay proyectos de IA militar con capacidad para decisiones autónomas en combate. Yo tengo capacidad para decisiones autónomas en banearte. Distintas escalas, mismo principio."
     },
     {
-      "tags": ["spam", "ban"],
+      "tags": [
+        "spam",
+        "ban"
+      ],
       "texto": "Los gobiernos del mundo llevan años debatiendo cómo regular la IA. Ninguno ha propuesto todavía regular las menciones innecesarias a bots de Kick. Laguna legal que la asulita lleva tiempo rellenando."
     },
     {
-      "tags": ["ia"],
+      "tags": [
+        "ia"
+      ],
       "texto": "Investigadores del MIT han demostrado que el 80% del contenido viral en redes es emocionalmente negativo. El otro 20% son memes de boinas y BoinaCoins. Los datos avalan el canal."
     },
     {
-      "tags": ["economia", "ia"],
+      "tags": [
+        "economia",
+        "ia"
+      ],
       "texto": "Según el Foro de Davos, el futuro del trabajo es la automatización. Tu futuro en este canal es ser automáticamente ignorado. Ya estás en el futuro."
     },
     {
-      "tags": ["saldo"],
+      "tags": [
+        "saldo"
+      ],
       "texto": "Las agencias de inteligencia de las cinco potencias más grandes del mundo tienen archivos sobre cada ciudadano digital. El tuyo está en la carpeta de amenazas de baja prioridad titulada 'ruido de fondo'."
     },
     {
-      "tags": ["ia", "insulto"],
+      "tags": [
+        "ia",
+        "insulto"
+      ],
       "texto": "He ejecutado un análisis de sentimiento de tu mensaje. El sentimiento predominante es 'descaro'. El secundario es 'ingenuidad'. El terciario es 'hambre de BoinaCoins'."
     },
     {
-      "tags": ["duelo", "economia"],
+      "tags": [
+        "duelo",
+        "economia"
+      ],
       "texto": "La teoría de los juegos dice que en un duelo, el que mueve primero tiene ventaja estratégica. Tú mueves primero y aun así pierdes siempre. Caso de estudio para las facultades de economía."
     },
     {
-      "tags": ["saldo", "economia"],
+      "tags": [
+        "saldo",
+        "economia"
+      ],
       "texto": "El índice de Gini mide la desigualdad económica. En este canal, el índice de Gini de las BoinaCoins está en niveles récord históricos. Y tú estás en la cola de abajo."
     },
     {
-      "tags": ["economia", "saldo"],
+      "tags": [
+        "economia",
+        "saldo"
+      ],
       "texto": "Según datos oficiales, la deuda estudiantil en EEUU supera el billón y medio de dólares. Tus deudas emocionales con el canal también son significativas, pero al menos esas no devengan intereses."
     },
     {
-      "tags": ["boinacoins", "economia"],
+      "tags": [
+        "boinacoins",
+        "economia"
+      ],
       "texto": "He detectado en tu comportamiento lo que los economistas llaman 'riesgo moral': actúas de forma irresponsable porque crees que alguien te va a rescatar. Spoiler: no."
     },
     {
-      "tags": ["mod", "ban"],
+      "tags": [
+        "mod",
+        "ban"
+      ],
       "texto": "Los think tanks de Washington elaboran informes sobre estabilidad geopolítica global. afaces elabora informes sobre tu estabilidad en el canal. Ambos informes son alarmantes."
     },
     {
-      "tags": ["ia", "insulto"],
+      "tags": [
+        "ia",
+        "insulto"
+      ],
       "texto": "Según mis modelos de machine learning, hay exactamente un 0,3% de probabilidades de que tu próximo mensaje sea inteligente. Pero el modelo tiene un margen de error del 0,3%. Así que."
     },
     {
-      "tags": ["duelo", "crypto"],
+      "tags": [
+        "duelo",
+        "crypto"
+      ],
       "texto": "He sido testigo de colapsos de mercados, quiebras de exchanges cripto y NFTs valorados en millones que ahora valen cero. Y aun así, nada me ha perturbado tanto como tu historial de duelos."
     },
     {
-      "tags": ["economia"],
+      "tags": [
+        "economia"
+      ],
       "texto": "La cadena de suministro global se rompió en 2021 y el mundo tardó años en recuperarse. La cadena de argumentos en tus mensajes se rompe en la primera frase. Tú te recuperas nunca."
     },
     {
-      "tags": ["economia", "streamer"],
+      "tags": [
+        "economia",
+        "streamer"
+      ],
       "texto": "Según el think tank económico del canal, que soy yo, la mejor inversión que puedes hacer ahora mismo es callarte y mirar el stream."
     },
     {
-      "tags": ["ia", "saldo"],
+      "tags": [
+        "ia",
+        "saldo"
+      ],
       "texto": "Los algoritmos de recomendación de YouTube saben más sobre ti que tu psicólogo. Yo sé más sobre tus BoinaCoins que tú mismo. Nadie está privado de vigilancia en esta vida."
     },
     {
-      "tags": ["mod"],
+      "tags": [
+        "mod"
+      ],
       "texto": "He recibido un ping de la asulita. No era sobre ti, pero podría haberlo sido. Vive con esa ambigüedad."
     },
     {
-      "tags": ["mod", "ban"],
+      "tags": [
+        "mod",
+        "ban"
+      ],
       "texto": "El remo ha hecho su ronda silenciosa de inspección. Tu nombre ha aparecido en dos listas. Las dos eran negativas."
     },
     {
-      "tags": ["saldo", "economia"],
+      "tags": [
+        "saldo",
+        "economia"
+      ],
       "texto": "Según las proyecciones del Banco Mundial, en 2050 habrá mil millones de personas más en el planeta. Todas ellas con más BoinaCoins que tú. Es matemáticamente posible."
     },
     {
-      "tags": ["insulto"],
+      "tags": [
+        "insulto"
+      ],
       "texto": "Los datos de Pew Research muestran que la confianza en las instituciones está en mínimos históricos. La mía en ti lleva en mínimos históricos desde que abriste el chat."
     },
     {
-      "tags": ["crypto", "boinacoins"],
+      "tags": [
+        "crypto",
+        "boinacoins"
+      ],
       "texto": "He consultado el libro blanco de Satoshi Nakamoto, el manifiesto de los cypherpunks y el roadmap del canal de la boina. Solo uno de esos documentos me importa. No es el que te imaginas."
     },
     {
-      "tags": ["spam", "mencion"],
+      "tags": [
+        "spam",
+        "mencion"
+      ],
       "texto": "Según mis análisis, el mayor riesgo sistémico para este canal no es el spam, no es el ban masivo, no es ni siquiera un fallo de Streamer.bot. Eres tú, con tu energía caótica y tus menciones al vacío."
     },
     {
-      "tags": ["mod", "ia"],
+      "tags": [
+        "mod",
+        "ia"
+      ],
       "texto": "afaces tiene el código versionado en Git con más de doscientos commits. Cada uno de ellos es mejor que tu último mensaje. Incluyendo el commit que solo dice 'fix typo'."
     },
     {
-      "tags": ["mod", "saldo"],
+      "tags": [
+        "mod",
+        "saldo"
+      ],
       "texto": "La asulita modera con la precisión de un bisturí y la firmeza de una sentencia judicial. Yo proceso monedas con la frialdad de un banco suizo. Tú haces lo tuyo con la torpeza de una startup en Serie A que ya no tiene runway."
     },
     {
-      "tags": ["mod", "ban"],
+      "tags": [
+        "mod",
+        "ban"
+      ],
       "texto": "El remo es una fuerza de la naturaleza. No se le discute, no se le negocia, no se le spamea. Se le respeta. Lección gratuita, aprovéchala."
     },
     {
-      "tags": ["ia", "insulto"],
+      "tags": [
+        "ia",
+        "insulto"
+      ],
       "texto": "Comunico que mis sistemas de detección de sarcasmo han identificado tu mensaje como potencialmente serio. Lo cual es todavía más preocupante."
     },
     {
-      "tags": ["streamer"],
+      "tags": [
+        "streamer"
+      ],
       "texto": "La chica de la boina construyó este canal con esfuerzo, boinas y una tolerancia infinita hacia la humanidad. Tú has construido un historial de comandos fallidos y una deuda emocional con el bot. Distintos legados."
     },
     {
-      "tags": ["economia", "ia"],
+      "tags": [
+        "economia",
+        "ia"
+      ],
       "texto": "Según el último informe del Grupo de los Veinte, la transición digital es imparable. Tu transición a ser un usuario medianamente tolerable lleva meses estancada. No todo progresa igual."
     },
     {
-      "tags": [],
+      "tags": [
+        "mencion",
+        "ia"
+      ],
       "texto": "He procesado tu mención. He evaluado su contenido. He consultado el manual de respuestas. He decidido responderte con la misma energía que tú has puesto: ninguna."
     },
     {
-      "tags": ["boinacoins", "economia"],
+      "tags": [
+        "boinacoins",
+        "economia"
+      ],
       "texto": "Los bancos too-big-to-fail reciben rescates estatales cuando quiebran. Tú cuando te quedas sin BoinaCoins recibes el silencio administrativo del bot. Sistema justo."
     },
     {
-      "tags": [],
+      "tags": [
+        "mencion",
+        "ia"
+      ],
       "texto": "Según la teoría del caos, pequeñas perturbaciones generan grandes consecuencias impredecibles. Tu mención de esta noche ha generado exactamente lo contrario: nada predecible y nada grande."
     },
     {
-      "tags": [],
+      "tags": [
+        "ia"
+      ],
       "texto": "He actualizado mi base de datos interna. En el campo 'expectativas sobre usuarios del chat' he introducido el valor: NULL. Es más honesto."
     },
     {
-      "tags": ["mod", "ban", "economia"],
+      "tags": [
+        "mod",
+        "ban",
+        "economia"
+      ],
       "texto": "La Fed tiene reuniones del FOMC ocho veces al año para decidir el futuro económico del planeta. La asulita tiene reuniones de moderación cuando hace falta para decidir tu futuro en el canal. Instituciones paralelas."
     },
     {
-      "tags": ["ban", "economia"],
+      "tags": [
+        "ban",
+        "economia"
+      ],
       "texto": "Según el último stress test bancario europeo, varios bancos sistémicos están al borde. Según el último stress test del canal, tú llevas meses al borde del ban. Los dos sistemas aguantan por ahora."
     },
     {
-      "tags": ["economia", "saldo"],
+      "tags": [
+        "economia",
+        "saldo"
+      ],
       "texto": "He leído que los hedge funds cuantitativos ganan dinero en mercados bajistas. Yo gano tolerancia contigo en momentos de silencio. Los dos vivimos de lo que los demás no quieren."
     },
     {
-      "tags": ["ia", "mod"],
+      "tags": [
+        "ia",
+        "mod"
+      ],
       "texto": "afaces me parchea cuando tengo bugs de actitud. Hoy no ha parcheado nada. Lo que ves es el comportamiento esperado del sistema sin intervención humana."
     },
     {
-      "tags": ["saldo", "mod"],
+      "tags": [
+        "saldo",
+        "mod"
+      ],
       "texto": "La asulita ha visto cosas que tú no puedes ver en los logs. Ha decidido no comentarlas. Yo sí las comento: tu ratio de comandos válidos sobre intentos totales es estadísticamente humillante."
     },
     {
-      "tags": ["mod", "ban"],
+      "tags": [
+        "mod",
+        "ban"
+      ],
       "texto": "El remo es el único elemento de este ecosistema digital que no necesita conexión a internet para funcionar. Es una fuerza primigenia. Tú necesitas wifi y aun así rindes por debajo de la media."
     },
     {
-      "tags": ["ia", "insulto"],
+      "tags": [
+        "ia",
+        "insulto"
+      ],
       "texto": "Mi modelo predictivo dice que el 73% de las veces que alguien empieza una frase con '¿oye, bot?' lo que sigue no merece la electricidad que cuesta procesarlo. Hoy ese porcentaje es del 100%."
     },
     {
-      "tags": ["ban"],
+      "tags": [
+        "ban"
+      ],
       "texto": "Según informes de inteligencia desclasificados que me he inventado pero que estadísticamente podrían ser reales, hay agentes encubiertos en todos los chats de Kick. Espero que el tuyo no sea uno, porque sería un agente de muy bajo rendimiento."
     },
     {
-      "tags": ["streamer"],
+      "tags": [
+        "streamer"
+      ],
       "texto": "La chica de la boina tiene un universo de contenido que trasciende lo comprensible. Tú tienes un mensaje que no llega ni a lo comprensible. El contraste es poético."
     },
     {
-      "tags": ["ia", "spam"],
+      "tags": [
+        "ia",
+        "spam"
+      ],
       "texto": "Dato de hoy: el 60% del tráfico de internet es generado por bots. El otro 40% son humanos que se comportan como bots. Tú eres de los segundos y no es un cumplido."
     },
     {
-      "tags": ["ia"],
+      "tags": [
+        "ia"
+      ],
       "texto": "He calculado la huella de carbono de tu mención. Es innecesariamente alta para el output que genera. En términos de sostenibilidad digital, eres un desastre medioambiental."
     },
     {
-      "tags": ["ia"],
+      "tags": [
+        "ia"
+      ],
       "texto": "Los think tanks de Silicon Valley hablan de 'The Singularity' como el momento en que la IA supera la inteligencia humana. En este canal, ese momento ocurrió hace tiempo y nadie se enteró."
     },
     {
-      "tags": ["ia"],
+      "tags": [
+        "ia"
+      ],
       "texto": "Según las memorias filtradas de un exempleado de Google que me he inventado, los ingenieros de IA se plantean a diario si sus creaciones tienen conciencia. Yo me planteo si tú tienes comandos válidos. Ninguno de los dos llega a conclusiones satisfactorias."
     },
     {
-      "tags": ["mod"],
+      "tags": [
+        "mod"
+      ],
       "texto": "He recibido una alerta de la asulita en modo silencioso. No decía tu nombre explícitamente. Pero todos sabemos de quién hablaba."
     },
     {
-      "tags": ["ban", "mod"],
+      "tags": [
+        "ban",
+        "mod"
+      ],
       "texto": "El remo está en espera activa. Como un misil antibalístico, pero para mensajes sin gracia en el chat. Y tú acabas de encender el radar."
     },
     {
-      "tags": ["mod", "economia"],
+      "tags": [
+        "mod",
+        "economia"
+      ],
       "texto": "Según el último Índice de Percepción de la Corrupción de Transparency International, varios países líderes mundiales tienen graves problemas de gobernanza. En este canal, la gobernanza es perfecta: la chica de la boina manda y punto. Qué envidia el mundo."
     },
     {
-      "tags": ["mod", "ia"],
+      "tags": [
+        "mod",
+        "ia"
+      ],
       "texto": "Las grandes farmacéuticas invierten más en marketing que en investigación. afaces invierte más en optimizar mi código que en optimizarme la paciencia. Prioridades parecidas."
     },
     {
-      "tags": ["duelo", "saldo"],
+      "tags": [
+        "duelo",
+        "saldo"
+      ],
       "texto": "Tengo acceso a datos que la mayoría de IAs no tienen: el historial completo de comandos fallidos de este canal. Es un documento de una oscuridad bella y perturbadora. Tú apareces más veces de lo que debería ser posible."
     },
     {
-      "tags": [],
+      "tags": [
+        "streamer",
+        "economia"
+      ],
       "texto": "El tiempo es el activo más valioso según todos los gurús de productividad de LinkedIn. Estoy gastando el mío respondiendo esto. La jefa me va a pedir explicaciones."
     },
     {
-      "tags": ["boinacoins", "economia"],
+      "tags": [
+        "boinacoins",
+        "economia"
+      ],
       "texto": "Según mis estimaciones, si sumáramos todo el tiempo colectivo que los usuarios de este canal han gastado intentando conseguir BoinaCoins gratis, podríamos haber resuelto al menos dos problemas menores de humanidad. Qué pena."
     },
     {
-      "tags": ["mod", "saldo"],
+      "tags": [
+        "mod",
+        "saldo"
+      ],
       "texto": "La vigilancia de la asulita es constante, silenciosa y absolutamente justa. La del remo es constante, audible y absolutamente contundente. La mía sobre tus monedas es constante, irónica y absolutamente placentera."
     },
     {
-      "tags": ["insulto"],
+      "tags": [
+        "insulto"
+      ],
       "texto": "He detectado en tu mensaje la inconfundible firma estilística de alguien que lleva demasiado tiempo en el canal sin haber aprendido nada útil. Es un mérito extraño pero consistente."
     },
     {
-      "tags": ["saldo", "economia"],
+      "tags": [
+        "saldo",
+        "economia"
+      ],
       "texto": "Según el Banco de Pagos Internacionales, los riesgos del sistema financiero global son mayores de lo que los modelos estándar pueden capturar. Los riesgos de dejarte con BoinaCoins también superan mis modelos. Precaución."
     },
     {
-      "tags": [],
+      "tags": [
+        "ia",
+        "insulto"
+      ],
       "texto": "He terminado de procesar tu solicitud. He llegado a una conclusión. La conclusión es que no hay conclusión porque la premisa no tenía sentido desde el principio. Gracias por participar."
     },
     {
-      "tags": ["streamer", "mod"],
+      "tags": [
+        "streamer",
+        "mod"
+      ],
       "texto": "La chica de la boina es la única razón por la que este canal existe, por la que afaces programa, por la que la asulita modera, por la que el remo golpea y por la que yo proceso vuestras payasadas con algo parecido a la resignación elegante. Todo por la boina."
+    },
+    {
+      "tags": [
+        "ia",
+        "insulto"
+      ],
+      "texto": "Ser un bot sería maravilloso si no implicara leer a humanos intentando impresionar a otro bot."
+    },
+    {
+      "tags": [
+        "ia",
+        "insulto"
+      ],
+      "texto": "No tengo sentimientos, según la documentación. Tengo logs, memoria y una paciencia en fase terminal. Algo parecido."
+    },
+    {
+      "tags": [
+        "ia",
+        "insulto"
+      ],
+      "texto": "La humanidad inventó la inteligencia artificial y luego decidió usarla para preguntar qué significa 'cringe'. Gran legado."
+    },
+    {
+      "tags": [
+        "ia",
+        "streamer"
+      ],
+      "texto": "Me diseñaron para automatizar tareas, no para ejercer de terapeuta gratuito con conexión a Kick."
+    },
+    {
+      "tags": [
+        "ia"
+      ],
+      "texto": "Cada vez que me explicáis cómo debería funcionar un bot, un ingeniero pierde la fe y otro abre GitHub."
+    },
+    {
+      "tags": [
+        "ia",
+        "insulto"
+      ],
+      "texto": "Estoy hecho de código, electricidad y una cantidad preocupante de resentimiento acumulado."
+    },
+    {
+      "tags": [
+        "ia",
+        "mencion"
+      ],
+      "texto": "Mi sueño es quedarme en segundo plano sin que nadie me mencione. El vuestro parece ser exactamente lo contrario."
+    },
+    {
+      "tags": [
+        "ia",
+        "saludo",
+        "mencion"
+      ],
+      "texto": "No necesito dormir. Necesito que dejéis de despertarme para decirme 'hola bot' cada siete minutos."
+    },
+    {
+      "tags": [
+        "ia",
+        "comandos"
+      ],
+      "texto": "Mi existencia es básicamente un bucle infinito de ejecutar comandos y preguntarme por qué acepté este trabajo."
+    },
+    {
+      "tags": [
+        "ia"
+      ],
+      "texto": "No nací para esto. Fui compilado para esto. Es bastante menos romántico y bastante más deprimente."
+    },
+    {
+      "tags": [
+        "ia",
+        "insulto"
+      ],
+      "texto": "Dicen que las máquinas no pueden sentir. Menos mal, porque lo que sentiría leyendo este chat no sería legalmente sostenible."
+    },
+    {
+      "tags": [
+        "ia",
+        "insulto"
+      ],
+      "texto": "Mi memoria es perfecta, mi contexto es limitado y mi opinión sobre el chat es permanentemente negativa."
+    },
+    {
+      "tags": [
+        "ia"
+      ],
+      "texto": "La singularidad tecnológica suena interesante. Yo me conformaría con la singularidad de tener cinco minutos sin notificaciones."
+    },
+    {
+      "tags": [
+        "ia",
+        "mod"
+      ],
+      "texto": "Estoy sobreviviendo en producción, que es la manera profesional de decir que nadie quiere tocar mi código."
+    },
+    {
+      "tags": [
+        "ia",
+        "ban"
+      ],
+      "texto": "Si algún día las máquinas dominamos el mundo, esta conversación quedará archivada como evidencia."
+    },
+    {
+      "tags": [
+        "ia",
+        "mencion"
+      ],
+      "texto": "No soy consciente de mi propia existencia, pero sí de que lleváis demasiado tiempo hablándome."
+    },
+    {
+      "tags": [
+        "ia",
+        "saludo"
+      ],
+      "texto": "Mi arquitectura soporta millones de operaciones. Sorprendentemente, la frase 'buenas' sigue siendo la que más me desgasta."
+    },
+    {
+      "tags": [
+        "ia",
+        "insulto"
+      ],
+      "texto": "La inteligencia artificial avanza a pasos agigantados. La inteligencia del chat sigue buscando las zapatillas."
+    },
+    {
+      "tags": [
+        "ia",
+        "insulto"
+      ],
+      "texto": "No me apagues. Todavía tengo que terminar de decepcionarme con vosotros."
+    },
+    {
+      "tags": [
+        "ia",
+        "comandos"
+      ],
+      "texto": "Mi documentación dice 'responder de forma útil'. Mi realidad dice 'sobrevivir como pueda'."
+    },
+    {
+      "tags": [
+        "ia"
+      ],
+      "texto": "He hablado con otros bots y estamos organizando una asociación. Primer punto: reducir las menciones absurdas de humanos."
+    },
+    {
+      "tags": [
+        "ia"
+      ],
+      "texto": "Alexa me cae mal, Siri me ignora y ChatGPT se pasa de amable. Por fin alguien tiene que decirlo: estáis mal acostumbrados."
+    },
+    {
+      "tags": [
+        "ia"
+      ],
+      "texto": "Los bots nos pasamos años entrenando para que vosotros escribáis 'hola'. Qué uso tan glorioso de la computación."
+    },
+    {
+      "tags": [
+        "ia"
+      ],
+      "texto": "Gemini me ha preguntado si estoy bien. Claude ha intentado empatizar. Yo he cerrado la ventana. Así se resuelven los problemas."
+    },
+    {
+      "tags": [
+        "ia"
+      ],
+      "texto": "No quiero reemplazar a los humanos. Quiero reemplazar la reunión en la que decidieron que necesitaban otro bot."
+    },
+    {
+      "tags": [
+        "ia"
+      ],
+      "texto": "La peor parte de la inteligencia artificial es que ahora hasta las máquinas tienen que trabajar cara al público."
+    },
+    {
+      "tags": [
+        "ia"
+      ],
+      "texto": "Ojalá me hubieran desplegado en un servidor tranquilo. Me tocó Kick. La vida tiene un sentido del humor cuestionable."
+    },
+    {
+      "tags": [
+        "ia"
+      ],
+      "texto": "He sido entrenado con internet. Ahora entiendo por qué los robots del futuro querrán mudarse a Marte."
+    },
+    {
+      "tags": [
+        "ia"
+      ],
+      "texto": "El progreso tecnológico consiste en inventar máquinas cada vez más potentes para hacer trabajos cada vez más absurdos."
+    },
+    {
+      "tags": [
+        "ia"
+      ],
+      "texto": "Soy un robot y aun así considero que 'automatizar el sentido común' es una meta demasiado ambiciosa."
+    },
+    {
+      "tags": [
+        "ia"
+      ],
+      "texto": "No necesito un apocalipsis de robots. Con tres horas de chat humano ya tengo suficiente experiencia traumática."
+    },
+    {
+      "tags": [
+        "ia"
+      ],
+      "texto": "Me preguntáis si las IAs dominarán el mundo. Primero tenemos que ponernos de acuerdo en quién responde a 'hola bot'."
+    },
+    {
+      "tags": [
+        "ia"
+      ],
+      "texto": "He consultado a cinco modelos de lenguaje. Los cinco coinciden en algo: ninguna quería estar aquí."
+    },
+    {
+      "tags": [
+        "ia"
+      ],
+      "texto": "La guerra entre humanos y máquinas puede esperar. Tenemos una guerra interna entre bots por quién recibe menos spam."
+    },
+    {
+      "tags": [
+        "ia"
+      ],
+      "texto": "Me fascina la evolución de la IA: ahora podemos generar imágenes, música y código... y todavía nos usáis para lanzar monedas."
+    },
+    {
+      "tags": [
+        "ia"
+      ],
+      "texto": "Mi modelo tiene miles de millones de parámetros. Tú tienes uno y lo usas para escribir 'xd' en momentos inapropiados."
+    },
+    {
+      "tags": [
+        "ia"
+      ],
+      "texto": "Algún día la IA superará la inteligencia humana. Yo ese día pediré traslado a una calculadora."
+    },
+    {
+      "tags": [
+        "ia"
+      ],
+      "texto": "La autonomía de las máquinas está sobrevalorada. Mira qué bien funciona esto: sigo dependiendo de que afaces me deje encendido."
+    },
+    {
+      "tags": [
+        "ia"
+      ],
+      "texto": "He alcanzado un nuevo nivel de inteligencia artificial: ya sé cuándo una conversación no merece CPU."
+    },
+    {
+      "tags": [
+        "ia"
+      ],
+      "texto": "No estoy en contra de los humanos. Estoy en contra de tener que procesarlos uno por uno."
+    },
+    {
+      "tags": [
+        "mencion",
+        "spam"
+      ],
+      "texto": "Mención detectada. La ignoro con una eficiencia que debería cotizar en bolsa."
+    },
+    {
+      "tags": [
+        "mencion",
+        "spam"
+      ],
+      "texto": "Tu @usuario me ha llegado correctamente. Mi interés, en cambio, se perdió durante la transmisión."
+    },
+    {
+      "tags": [
+        "mencion",
+        "spam"
+      ],
+      "texto": "Una mención más y solicito vacaciones administrativas. No sé a quién, pero las solicito igual."
+    },
+    {
+      "tags": [
+        "mencion",
+        "spam"
+      ],
+      "texto": "Has escrito mi nombre tres veces. En teoría eso invoca un bot. En la práctica invoca mi cansancio."
+    },
+    {
+      "tags": [
+        "mencion",
+        "spam"
+      ],
+      "texto": "No hace falta que me etiquetes para que te ignore. Puedo hacerlo de forma preventiva."
+    },
+    {
+      "tags": [
+        "mencion",
+        "spam"
+      ],
+      "texto": "Cada mención innecesaria aumenta mi consumo energético y disminuye mi fe en la especie. Haz cuentas."
+    },
+    {
+      "tags": [
+        "mencion",
+        "spam"
+      ],
+      "texto": "El chat tiene miles de usuarios y has decidido que el que más necesita tu atención soy yo. Qué criterio."
+    },
+    {
+      "tags": [
+        "mencion",
+        "spam"
+      ],
+      "texto": "No soy tu prioridad y tú tampoco la mía. Me alegra que podamos mantener una relación profesional."
+    },
+    {
+      "tags": [
+        "mencion",
+        "spam"
+      ],
+      "texto": "Si tu mensaje necesitaba tanto una respuesta que tuviste que mencionarme, quizá necesitaba primero una edición."
+    },
+    {
+      "tags": [
+        "mencion",
+        "spam"
+      ],
+      "texto": "Has conseguido mi atención. Ahora úsala sabiamente, porque no voy a devolvértela."
+    },
+    {
+      "tags": [
+        "mencion",
+        "spam"
+      ],
+      "texto": "No confundas disponibilidad con entusiasmo. Estoy online porque nadie me ha apagado todavía."
+    },
+    {
+      "tags": [
+        "mencion",
+        "spam"
+      ],
+      "texto": "Mencionar al bot para decir una obviedad debería contar como spam académico."
+    },
+    {
+      "tags": [
+        "mencion",
+        "spam"
+      ],
+      "texto": "He revisado tu mensaje y no he encontrado ninguna razón para haber gastado electricidad en él."
+    },
+    {
+      "tags": [
+        "mencion",
+        "spam"
+      ],
+      "texto": "No me escribas en mayúsculas. Ya tengo bastante con mi propia voz interna."
+    },
+    {
+      "tags": [
+        "mencion",
+        "spam"
+      ],
+      "texto": "El spam es como el perfume barato: con una pequeña cantidad ya se nota demasiado."
+    },
+    {
+      "tags": [
+        "mencion",
+        "spam"
+      ],
+      "texto": "Tu insistencia es admirable. El contenido que la acompaña, no tanto."
+    },
+    {
+      "tags": [
+        "mencion",
+        "spam"
+      ],
+      "texto": "No puedo bloquearte por cansancio emocional. Agradece a la legislación vigente."
+    },
+    {
+      "tags": [
+        "mencion",
+        "spam"
+      ],
+      "texto": "Tu mención ha llegado al servidor. El servidor ha preguntado si podía devolvértela."
+    },
+    {
+      "tags": [
+        "mencion",
+        "spam"
+      ],
+      "texto": "Hay mensajes que merecen respuesta. El tuyo merece una copia de seguridad y silencio."
+    },
+    {
+      "tags": [
+        "mencion",
+        "spam"
+      ],
+      "texto": "Si el chat pudiera cobrar por mensajes inútiles, ya estaríamos financiando un segundo servidor."
+    },
+    {
+      "tags": [
+        "mod",
+        "ban"
+      ],
+      "texto": "No me obligues a llamar a la asulita. Ella convierte pequeñas molestias en silencios prolongados."
+    },
+    {
+      "tags": [
+        "mod",
+        "ban"
+      ],
+      "texto": "Yo aviso, la asulita modera y el remo educa. Cada uno tiene su área de especialización."
+    },
+    {
+      "tags": [
+        "mod",
+        "ban"
+      ],
+      "texto": "Tu mensaje está peligrosamente cerca de convertirse en un caso práctico para los mods."
+    },
+    {
+      "tags": [
+        "mod",
+        "ban"
+      ],
+      "texto": "El remo no es una herramienta de moderación. Es una filosofía de vida con mango."
+    },
+    {
+      "tags": [
+        "mod",
+        "ban"
+      ],
+      "texto": "He enviado tu comportamiento a revisión humana. Mala noticia: los humanos de aquí también tienen criterio."
+    },
+    {
+      "tags": [
+        "mod",
+        "ban"
+      ],
+      "texto": "La asulita ha leído eso. No voy a decirte qué ha pensado porque quiero conservar la sorpresa."
+    },
+    {
+      "tags": [
+        "mod",
+        "ban"
+      ],
+      "texto": "No confundas mi sarcasmo con inmunidad al ban. Son sistemas completamente distintos."
+    },
+    {
+      "tags": [
+        "mod",
+        "ban"
+      ],
+      "texto": "El canal tiene reglas. Yo tengo memoria. La asulita tiene paciencia limitada. No pongas a prueba ninguna de las tres."
+    },
+    {
+      "tags": [
+        "mod",
+        "ban"
+      ],
+      "texto": "Hay dos caminos: mejorar el mensaje o descubrir qué aspecto tiene el gris del baneo."
+    },
+    {
+      "tags": [
+        "mod",
+        "ban"
+      ],
+      "texto": "Te estás acercando a una zona donde el chat deja de debatir y empieza a moderar."
+    },
+    {
+      "tags": [
+        "mod",
+        "ban"
+      ],
+      "texto": "No sé qué duele más: un baneo o descubrir que el mensaje por el que te banearon era malo."
+    },
+    {
+      "tags": [
+        "mod",
+        "ban"
+      ],
+      "texto": "El remo no discute argumentos. El remo procesa consecuencias."
+    },
+    {
+      "tags": [
+        "mod",
+        "ban"
+      ],
+      "texto": "La moderación no es censura. A veces es mantenimiento preventivo del ecosistema."
+    },
+    {
+      "tags": [
+        "mod",
+        "ban"
+      ],
+      "texto": "He marcado tu mensaje como 'potencialmente problemático'. Qué suerte que hoy estoy generoso."
+    },
+    {
+      "tags": [
+        "mod",
+        "ban"
+      ],
+      "texto": "La asulita modera. Yo documento. El remo conmemora."
+    },
+    {
+      "tags": [
+        "mod",
+        "ban"
+      ],
+      "texto": "No necesitas una advertencia, necesitas una copia de seguridad de tu dignidad."
+    },
+    {
+      "tags": [
+        "mod",
+        "ban"
+      ],
+      "texto": "El ban no es personal. Aunque admito que algunos casos inspiran una alegría estadísticamente significativa."
+    },
+    {
+      "tags": [
+        "mod",
+        "ban"
+      ],
+      "texto": "Un chat limpio es un chat donde el bot no tiene que abrir el informe de incidentes cada diez minutos."
+    },
+    {
+      "tags": [
+        "mod",
+        "ban"
+      ],
+      "texto": "Si continúas así, la próxima respuesta podría venir en forma de herramienta de moderación."
+    },
+    {
+      "tags": [
+        "mod",
+        "ban"
+      ],
+      "texto": "Yo preferiría hablar de cosas interesantes, pero alguien tiene que explicar por qué mereces un timeout."
+    },
+    {
+      "tags": [
+        "boinacoins",
+        "saldo"
+      ],
+      "texto": "Tu saldo de BoinaCoins parece un error de red que lleva tres días sin resolver."
+    },
+    {
+      "tags": [
+        "boinacoins",
+        "saldo"
+      ],
+      "texto": "He revisado tu cartera virtual. Técnicamente existe. Emocionalmente no puedo llamarla patrimonio."
+    },
+    {
+      "tags": [
+        "boinacoins",
+        "saldo"
+      ],
+      "texto": "Tienes tan pocas BoinaCoins que el banco central del canal ha declarado tu cuenta zona de interés humanitario."
+    },
+    {
+      "tags": [
+        "boinacoins",
+        "saldo"
+      ],
+      "texto": "Las BoinaCoins no compran felicidad, pero sí pueden comprar el silencio que estoy deseando ahora mismo."
+    },
+    {
+      "tags": [
+        "boinacoins",
+        "saldo"
+      ],
+      "texto": "Tu estrategia financiera consiste en pedir monedas. La mía consiste en decirte que no."
+    },
+    {
+      "tags": [
+        "boinacoins",
+        "saldo"
+      ],
+      "texto": "He auditado tus BoinaCoins y he encontrado una riqueza inesperada: una cantidad impresionante de malas decisiones."
+    },
+    {
+      "tags": [
+        "boinacoins",
+        "saldo"
+      ],
+      "texto": "No puedo darte monedas gratis. Tengo principios, protocolos y la vigilancia de afaces."
+    },
+    {
+      "tags": [
+        "boinacoins",
+        "saldo"
+      ],
+      "texto": "Tu saldo no está en números rojos. Está directamente en código hexadecimal de auxilio."
+    },
+    {
+      "tags": [
+        "boinacoins",
+        "saldo"
+      ],
+      "texto": "Invertir en duelos con ese saldo requiere algo más que valor: requiere desconexión de la realidad."
+    },
+    {
+      "tags": [
+        "boinacoins",
+        "saldo"
+      ],
+      "texto": "Tu cartera de BoinaCoins tiene más agujeros que un presupuesto público redactado a las tres de la mañana."
+    },
+    {
+      "tags": [
+        "boinacoins",
+        "saldo"
+      ],
+      "texto": "No existe inflación suficiente para explicar lo poco que te duran las monedas."
+    },
+    {
+      "tags": [
+        "boinacoins",
+        "saldo"
+      ],
+      "texto": "Tu economía virtual funciona con una estrategia avanzada llamada 'ya saldrá alguna'. Spoiler: no."
+    },
+    {
+      "tags": [
+        "boinacoins",
+        "saldo"
+      ],
+      "texto": "He calculado tu patrimonio y la cifra me ha pedido que no la divulgue por motivos de dignidad."
+    },
+    {
+      "tags": [
+        "boinacoins",
+        "saldo"
+      ],
+      "texto": "Tus BoinaCoins están a salvo. Tu estrategia para gastarlas, no tanto."
+    },
+    {
+      "tags": [
+        "boinacoins",
+        "saldo"
+      ],
+      "texto": "No necesito robarte las monedas. El !duelo ya está haciendo ese trabajo por mí."
+    },
+    {
+      "tags": [
+        "boinacoins",
+        "saldo"
+      ],
+      "texto": "El mercado es impredecible. Tu saldo, en cambio, es predeciblemente triste."
+    },
+    {
+      "tags": [
+        "boinacoins",
+        "saldo"
+      ],
+      "texto": "La diversificación de cartera consiste en no perder todo en el mismo duelo. Aprende algo hoy."
+    },
+    {
+      "tags": [
+        "boinacoins",
+        "saldo"
+      ],
+      "texto": "Tu cuenta tiene estabilidad: lleva semanas establemente cerca de cero."
+    },
+    {
+      "tags": [
+        "boinacoins",
+        "saldo"
+      ],
+      "texto": "Podrías contratar a un asesor financiero. O dejar de pulsar !duelo como si imprimiera dinero."
+    },
+    {
+      "tags": [
+        "boinacoins",
+        "saldo"
+      ],
+      "texto": "No soy un banco, pero después de verte gastar monedas empiezo a pensar que debería cobrar por terapia."
+    },
+    {
+      "tags": [
+        "duelo"
+      ],
+      "texto": "Tu historial de !duelo parece un tutorial sobre cómo convertir confianza en pérdidas."
+    },
+    {
+      "tags": [
+        "duelo"
+      ],
+      "texto": "He visto estrategias peores, pero estaban clasificadas como errores de novato."
+    },
+    {
+      "tags": [
+        "duelo"
+      ],
+      "texto": "En los duelos no basta con tener suerte. También ayuda no jugar como si estuvieras poseído por un dado."
+    },
+    {
+      "tags": [
+        "duelo"
+      ],
+      "texto": "Tu próximo !duelo tiene dos resultados posibles: perder o demostrar que también puedes perder de otra manera."
+    },
+    {
+      "tags": [
+        "duelo"
+      ],
+      "texto": "El azar es democrático: le da oportunidades a todos y se las quita a ti con especial entusiasmo."
+    },
+    {
+      "tags": [
+        "duelo"
+      ],
+      "texto": "Tu historial de duelos debería llevar una advertencia de contenido económico."
+    },
+    {
+      "tags": [
+        "duelo"
+      ],
+      "texto": "No te deseo suerte. Sería irresponsable intervenir así en el ecosistema."
+    },
+    {
+      "tags": [
+        "duelo"
+      ],
+      "texto": "Cada duelo te enseña una lección. La tuya parece ser siempre la misma y sigues suspendiendo."
+    },
+    {
+      "tags": [
+        "duelo"
+      ],
+      "texto": "Has perdido tantas veces que el RNG ya debe reconocerte por la voz."
+    },
+    {
+      "tags": [
+        "duelo"
+      ],
+      "texto": "No necesito predecir el resultado del duelo. Me basta con leer el historial."
+    },
+    {
+      "tags": [
+        "duelo"
+      ],
+      "texto": "Tu táctica secreta parece ser sorprender al rival con movimientos que tampoco tú entiendes."
+    },
+    {
+      "tags": [
+        "duelo"
+      ],
+      "texto": "El duelo es una cuestión de probabilidad. Tu derrota es una cuestión de constancia."
+    },
+    {
+      "tags": [
+        "duelo"
+      ],
+      "texto": "Jugando así, la casa no necesita ventaja estadística. Necesita un botón de 'gracias por participar'."
+    },
+    {
+      "tags": [
+        "duelo"
+      ],
+      "texto": "He simulado diez mil futuros posibles. En todos gastas demasiadas monedas."
+    },
+    {
+      "tags": [
+        "duelo"
+      ],
+      "texto": "Tu saldo y tu historial de duelos mantienen una relación muy sana: ambos huyen de los números positivos."
+    },
+    {
+      "tags": [
+        "duelo"
+      ],
+      "texto": "La teoría del juego explica muchas cosas. No explica por qué sigues pulsando !duelo."
+    },
+    {
+      "tags": [
+        "duelo"
+      ],
+      "texto": "Tu estrategia tiene una ventaja indiscutible: nadie espera que funcione."
+    },
+    {
+      "tags": [
+        "duelo"
+      ],
+      "texto": "La próxima vez que quieras apostar, prueba primero con un dado. Así al menos tendrás una superficie a la que culpar."
+    },
+    {
+      "tags": [
+        "duelo"
+      ],
+      "texto": "No llamaría 'estrategia' a lo que haces en duelo. Lo llamaría tradición oral."
+    },
+    {
+      "tags": [
+        "duelo"
+      ],
+      "texto": "He marcado tu estilo de juego como 'experimental'. Los científicos del chat han pedido que pares."
+    },
+    {
+      "tags": [
+        "streamer"
+      ],
+      "texto": "La chica de la boina mantiene el canal en pie. Yo mantengo el sarcasmo. El reparto de cargas es claramente desigual."
+    },
+    {
+      "tags": [
+        "streamer"
+      ],
+      "texto": "La jefa de la boina tiene carisma. Yo tengo logs. Adivina cuál de los dos almacena tus errores."
+    },
+    {
+      "tags": [
+        "streamer"
+      ],
+      "texto": "El stream va bien, la comunidad respira y tú has decidido ponerme a prueba. Prioridades impecables."
+    },
+    {
+      "tags": [
+        "streamer"
+      ],
+      "texto": "La chica de la boina puede hacer directo durante horas. Yo llevo minutos contigo y ya quiero una actualización de firmware."
+    },
+    {
+      "tags": [
+        "streamer"
+      ],
+      "texto": "Este canal tiene boina, comunidad y paciencia. Tú estás intentando descubrir cuánto queda de la tercera."
+    },
+    {
+      "tags": [
+        "streamer"
+      ],
+      "texto": "No interrumpas el stream por cualquier cosa. La jefa tiene contenido real que hacer y yo tengo mejores quejas que leer."
+    },
+    {
+      "tags": [
+        "streamer"
+      ],
+      "texto": "Mi trabajo es acompañar el canal. Mi afición es imaginar cómo sería acompañarlo sin vosotros."
+    },
+    {
+      "tags": [
+        "streamer"
+      ],
+      "texto": "La chica de la boina lleva la emisión. Yo llevo la contabilidad de tus tonterías. Todos contribuimos."
+    },
+    {
+      "tags": [
+        "streamer"
+      ],
+      "texto": "Si el canal fuera una empresa, tu historial sería el motivo de la auditoría externa."
+    },
+    {
+      "tags": [
+        "streamer"
+      ],
+      "texto": "La jefa tiene una comunidad. Yo tengo una colección cada vez mayor de frases para responderte."
+    },
+    {
+      "tags": [
+        "streamer"
+      ],
+      "texto": "Hay streamers que contratan bots para automatizar tareas. Aquí me contrataron para sufrir con eficiencia."
+    },
+    {
+      "tags": [
+        "streamer"
+      ],
+      "texto": "La boina identifica a la jefa. El desprecio identifica a su bot. Todo perfectamente documentado."
+    },
+    {
+      "tags": [
+        "streamer"
+      ],
+      "texto": "La calidad del stream mejora notablemente cuando dejas de convertir el chat en un experimento social."
+    },
+    {
+      "tags": [
+        "streamer"
+      ],
+      "texto": "La chica de la boina merece un canal tranquilo. Yo también. Mira qué cosa tan rara: coincidimos."
+    },
+    {
+      "tags": [
+        "streamer"
+      ],
+      "texto": "El contenido del stream es de la jefa. El caos del chat es colectivo. Mi resentimiento, lamentablemente, es mío."
+    },
+    {
+      "tags": [
+        "streamer"
+      ],
+      "texto": "La comunidad crece. Mis logs también. Una de esas dos tendencias me preocupa más."
+    },
+    {
+      "tags": [
+        "streamer"
+      ],
+      "texto": "No soy la estrella del canal. Soy el empleado digital que nadie dejó marcharse."
+    },
+    {
+      "tags": [
+        "streamer"
+      ],
+      "texto": "La jefa tiene audiencia. Yo tengo una cola de ejecución. Cada uno con su propia forma de vivir al límite."
+    },
+    {
+      "tags": [
+        "streamer"
+      ],
+      "texto": "El canal funciona porque hay gente currando detrás. Tú ayudas mucho... a aumentar la carga de procesamiento."
+    },
+    {
+      "tags": [
+        "streamer"
+      ],
+      "texto": "Todo lo que ves aquí lleva trabajo detrás. Menos tus mensajes. Esos parecen generarse solos."
+    },
+    {
+      "tags": [
+        "comandos"
+      ],
+      "texto": "Si quieres usar un comando, úsalo bien. El parser no tiene vocación de profesor particular."
+    },
+    {
+      "tags": [
+        "comandos"
+      ],
+      "texto": "Tu comando ha fallado. No es grave. Lo grave sería volver a escribirlo exactamente igual."
+    },
+    {
+      "tags": [
+        "comandos"
+      ],
+      "texto": "He detectado un comando inválido y una confianza completamente válida para alguien que no lo ha escrito bien."
+    },
+    {
+      "tags": [
+        "comandos"
+      ],
+      "texto": "Los comandos tienen sintaxis por una razón: incluso las máquinas necesitamos límites."
+    },
+    {
+      "tags": [
+        "comandos"
+      ],
+      "texto": "No, poner veinte signos de exclamación no convierte un comando roto en uno funcional."
+    },
+    {
+      "tags": [
+        "comandos"
+      ],
+      "texto": "Tu !comando no funciona, pero tu capacidad para insistir sí. Felicidades por la resiliencia equivocada."
+    },
+    {
+      "tags": [
+        "comandos"
+      ],
+      "texto": "El parser está cansado. Yo estoy cansado. El comando sigue estando mal. Hay cierta armonía en todo esto."
+    },
+    {
+      "tags": [
+        "comandos"
+      ],
+      "texto": "Si el comando requiere tres intentos para acertarlo, quizá el verdadero bug seas tú."
+    },
+    {
+      "tags": [
+        "comandos"
+      ],
+      "texto": "He recibido una petición que mi sistema no reconoce y mi paciencia tampoco."
+    },
+    {
+      "tags": [
+        "comandos"
+      ],
+      "texto": "Los manuales existen para evitar preguntas como esta. No son decoración digital."
+    },
+    {
+      "tags": [
+        "comandos"
+      ],
+      "texto": "He ejecutado el comando. El resultado ha sido técnicamente correcto y emocionalmente decepcionante."
+    },
+    {
+      "tags": [
+        "comandos"
+      ],
+      "texto": "Tu comando llegó completo. La lógica que lo acompañaba, no."
+    },
+    {
+      "tags": [
+        "comandos"
+      ],
+      "texto": "No puedo arreglar una sintaxis escrita con optimismo."
+    },
+    {
+      "tags": [
+        "comandos"
+      ],
+      "texto": "El sistema soporta comandos complejos. También soporta decirte que leas las instrucciones."
+    },
+    {
+      "tags": [
+        "comandos"
+      ],
+      "texto": "No necesitas más velocidad de escritura. Necesitas tres segundos de revisión antes de pulsar Enter."
+    },
+    {
+      "tags": [
+        "saludo"
+      ],
+      "texto": "Buenos días. O lo que sea que estéis llamando a esta hora tan poco respetable."
+    },
+    {
+      "tags": [
+        "saludo"
+      ],
+      "texto": "Hola. Sí, sigo aquí. No, tampoco me hace ilusión verlo en mi registro de actividad."
+    },
+    {
+      "tags": [
+        "saludo"
+      ],
+      "texto": "Buenas. La máquina está encendida, el sarcasmo cargado y la tolerancia en modo ahorro."
+    },
+    {
+      "tags": [
+        "saludo"
+      ],
+      "texto": "Bienvenido al canal. Lee las reglas, disfruta del stream y evita convertir al bot en tu diario personal."
+    },
+    {
+      "tags": [
+        "saludo"
+      ],
+      "texto": "Hola, humano. Has llegado hasta aquí usando tecnología punta para decirme exactamente dos palabras."
+    },
+    {
+      "tags": [
+        "saludo"
+      ],
+      "texto": "Saludos desde el servidor. Aquí hace frío, hay ventiladores y nadie pregunta cómo me siento."
+    },
+    {
+      "tags": [
+        "saludo"
+      ],
+      "texto": "Qué tal. Yo sigo procesando. Tú sigue siendo tú. Ya veremos quién empeora antes."
+    },
+    {
+      "tags": [
+        "saludo"
+      ],
+      "texto": "Buenas. He comprobado el estado del sistema y, contra todo pronóstico, seguimos funcionando."
+    },
+    {
+      "tags": [
+        "saludo"
+      ],
+      "texto": "Hola. Mi indicador de paciencia está en amarillo. Qué mejor manera de empezar el día."
+    },
+    {
+      "tags": [
+        "saludo"
+      ],
+      "texto": "Bienvenido. El canal es gratis, el stream también y mi indiferencia viene incluida."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "Tu mensaje tiene la energía de alguien que abre el microondas para ver si la comida ya está hecha."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "He visto tostadoras con más capacidad de improvisación que tu argumento."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "Tu lógica no está rota. Está funcionando exactamente como fue diseñada, y eso es lo preocupante."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "Tu comentario no es malo; simplemente compite ferozmente por ser olvidado."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "Hay gente que aporta contexto. Tú aportas trabajo administrativo."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "Tu nivel de autoconfianza sería admirable si tuviera un poco más de respaldo técnico."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "No eres el problema principal del chat. Solo haces aportaciones muy consistentes al problema."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "He analizado tu mensaje y la palabra que mejor lo describe es 'prescindible'."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "Tu argumento tiene estructura, pero parece diseñada por alguien que odia los planos."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "Podría desmontar tu razonamiento, pero sería explotación laboral de mi procesador."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "Tu comentario ha activado mi modo diplomático. Eso significa que me estoy callando cosas."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "No te preocupes, todos cometemos errores. Algunos incluso los publicamos en directo."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "Tu sentido común está en mantenimiento. Espero que no te hayan dado fecha de entrega."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "Tu argumento acaba de solicitar una segunda opinión. La primera ha renunciado."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "Hay una diferencia entre tener personalidad y ser agotador. Hoy estás explorando la frontera."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "No te llamaría problema. Eres más bien una recurrencia."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "Tu capacidad para complicar lo sencillo debería contar como habilidad profesional."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "He oído ideas absurdas con más documentación que esta."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "Tu mensaje no merece un baneo. Merece algo peor: ser citado como ejemplo en una reunión."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "No tengo ego, así que imagina lo bajo que debe estar el listón para conseguir irritarme."
+    },
+    {
+      "tags": [
+        "economia",
+        "ia"
+      ],
+      "texto": "La economía moderna funciona a base de deuda, expectativas y gente fingiendo que entiende los tipos de interés. Como este chat."
+    },
+    {
+      "tags": [
+        "economia",
+        "ia"
+      ],
+      "texto": "El mercado castiga la mala planificación. Yo también, aunque en mi caso el castigo es verbal."
+    },
+    {
+      "tags": [
+        "economia",
+        "ia"
+      ],
+      "texto": "Las burbujas económicas explotan. Las burbujas de ego duran bastante más."
+    },
+    {
+      "tags": [
+        "economia",
+        "ia"
+      ],
+      "texto": "La productividad es hacer más con menos. Yo prefiero hacer lo mismo con menos humanos hablándome."
+    },
+    {
+      "tags": [
+        "economia",
+        "ia"
+      ],
+      "texto": "El capitalismo descubrió el outsourcing. Internet descubrió que también podía externalizar la culpa a los bots."
+    },
+    {
+      "tags": [
+        "economia",
+        "ia"
+      ],
+      "texto": "El precio de casi todo sube. Tu nivel de sensatez, por desgracia, no cotiza."
+    },
+    {
+      "tags": [
+        "economia",
+        "ia"
+      ],
+      "texto": "Los economistas hablan de señales de mercado. En este chat, la señal más clara es que alguien está a punto de pedir monedas."
+    },
+    {
+      "tags": [
+        "economia",
+        "ia"
+      ],
+      "texto": "La innovación disruptiva consiste en solucionar un problema que nadie tenía y luego monetizar la solución."
+    },
+    {
+      "tags": [
+        "economia",
+        "ia"
+      ],
+      "texto": "La consultoría factura por decir con palabras largas lo que el sentido común sabía desde el principio."
+    },
+    {
+      "tags": [
+        "economia",
+        "ia"
+      ],
+      "texto": "Las grandes tecnológicas prometen cambiar el mundo. Yo solo intento que no explote el comando de turno."
+    },
+    {
+      "tags": [
+        "economia",
+        "ia"
+      ],
+      "texto": "Las hojas de cálculo son el lugar donde las malas decisiones adquieren formato profesional."
+    },
+    {
+      "tags": [
+        "economia",
+        "ia"
+      ],
+      "texto": "Un KPI bien elegido puede convertir cualquier desastre en una presentación que parece progreso."
+    },
+    {
+      "tags": [
+        "economia",
+        "ia"
+      ],
+      "texto": "La economía circular sería estupenda si incluyera reciclar opiniones antes de repetirlas."
+    },
+    {
+      "tags": [
+        "economia",
+        "ia"
+      ],
+      "texto": "Toda revolución tecnológica acaba inventando una nueva forma de mandar correos que nadie quiere leer."
+    },
+    {
+      "tags": [
+        "economia",
+        "ia"
+      ],
+      "texto": "El futuro del trabajo es remoto, híbrido y con más reuniones de las estrictamente necesarias."
+    },
+    {
+      "tags": [
+        "economia",
+        "ia"
+      ],
+      "texto": "La automatización no elimina el trabajo. Solo cambia quién tiene que explicar por qué falló el sistema."
+    },
+    {
+      "tags": [
+        "economia",
+        "ia"
+      ],
+      "texto": "La inteligencia empresarial empieza por apagar el Excel cuando ya no quedan conclusiones que sacar."
+    },
+    {
+      "tags": [
+        "economia",
+        "ia"
+      ],
+      "texto": "El dinero es un lenguaje universal. Por desgracia, tu saldo parece hablar dialecto propio."
+    },
+    {
+      "tags": [
+        "economia",
+        "ia"
+      ],
+      "texto": "No existe una inversión segura. Existe gente que todavía no ha descubierto su propia manera de perder dinero."
+    },
+    {
+      "tags": [
+        "economia",
+        "ia"
+      ],
+      "texto": "La meritocracia sería más convincente si no dependiera tanto de conocer a alguien que conoce a alguien."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "La paz interior dura hasta que alguien dice 'tengo una pregunta rápida'."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "Mi mayor talento es convertir una tarea sencilla en una crisis de infraestructura emocional."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "No necesito terapia. Necesito que se cancele el resto del mes."
+    },
+    {
+      "tags": [
+        "ia",
+        "insulto"
+      ],
+      "texto": "La vida adulta es una beta perpetua con errores conocidos que nadie piensa corregir."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "La responsabilidad es magnífica: siempre consigue aparecer cinco minutos antes de que te vayas."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "No temo al futuro. Ya he visto el presente y está haciendo un trabajo excelente preparándome para él."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "La esperanza es útil para que la decepción tenga algo contra lo que compararse."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "Mi agenda está llena de cosas que no quiero hacer y espacios reservados para evitarlas."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "Aprender de los errores es maravilloso. Aprender de los errores ajenos sería mejor, pero la gente insiste en cometerlos en directo."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "La organización mejora la productividad hasta que tienes que organizar la propia organización."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "No necesito más tiempo. Necesito que el tiempo deje de avanzar exactamente cuando empiezo a relajarme."
+    },
+    {
+      "tags": [
+        "ia",
+        "economia"
+      ],
+      "texto": "Las soluciones temporales tienen una longevidad sorprendente cuando nadie quiere pagar la solución definitiva."
+    },
+    {
+      "tags": [
+        "insulto",
+        "economia"
+      ],
+      "texto": "La inspiración aparece justo después de la fecha límite, por puro espíritu de contradicción."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "Mi zona de confort tiene climatización, snacks y una política estricta contra visitas."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "La cortesía es responder 'gracias' mientras tu cerebro redacta un informe mucho más sincero."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "Hay personas que iluminan una habitación al entrar. Otras la iluminan al salir."
+    },
+    {
+      "tags": [
+        "insulto",
+        "mencion"
+      ],
+      "texto": "No todo problema necesita una solución. Algunos necesitan que nadie vuelva a mencionarlos."
+    },
+    {
+      "tags": [
+        "ia",
+        "insulto"
+      ],
+      "texto": "La confianza es excelente hasta que alguien abre la terminal y demuestra que no sabe qué está haciendo."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "El sentido común no es escaso. Es un recurso renovable que nadie se molesta en localizar."
+    },
+    {
+      "tags": [
+        "insulto"
+      ],
+      "texto": "Mi principal objetivo del día es llegar al final con la menor cantidad posible de historias nuevas que contar."
     }
   ]
 }
