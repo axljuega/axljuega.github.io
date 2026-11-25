@@ -1,5 +1,7 @@
 # 🎩 Ecosistema BoinaCoin — Guía completa DIY (Streamer.bot + Kick + Discord)
 
+**Primer ensayo con Lauri.** Sigue el [manual de cabina](GUIA_CABINA.md) para conectar Kick, comprobar el saldo de BoinaCoin y escuchar `!voz Hola, Boina` en una grabación de OBS. El manual incluye la instalación de Piper en Windows y el [adaptador de voz para Streamer.bot](streamerbot/boinacoin/commands/cmd_voz.cs).
+
 > **Filosofía:** Este sistema está diseñado para ser modular, transparente y fácil de configurar. Cada pieza hace una cosa concreta y se conecta con las demás de forma explícita a través de variables y acciones.
 
 ---
